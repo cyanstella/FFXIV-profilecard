@@ -5,31 +5,20 @@
 const MAX_LENGTH = 80;
 
 
-
 /* ==================================================
-   回答
-   文字数
-   フォントサイズ
+   回答・文字数・フォントサイズ
 ================================================== */
 
 for (let i = 1; i <= 20; i++) {
 
   const input =
-    document.getElementById(
-      `q${i}`
-    );
-
+    document.getElementById(`q${i}`);
 
   const answer =
-    document.getElementById(
-      `answer-${i}`
-    );
-
+    document.getElementById(`answer-${i}`);
 
   const count =
-    document.getElementById(
-      `count-q${i}`
-    );
+    document.getElementById(`count-q${i}`);
 
 
   if (!input || !answer) {
@@ -39,11 +28,7 @@ for (let i = 1; i <= 20; i++) {
 
   const updateAnswer = () => {
 
-
-    if (
-      input.value.length >
-      MAX_LENGTH
-    ) {
+    if (input.value.length > MAX_LENGTH) {
 
       input.value =
         input.value.slice(
@@ -57,7 +42,6 @@ for (let i = 1; i <= 20; i++) {
     const text =
       input.value;
 
-
     const length =
       text.length;
 
@@ -67,9 +51,7 @@ for (let i = 1; i <= 20; i++) {
 
 
     answer.style.fontSize =
-      getAnswerFontSize(
-        length
-      );
+      getAnswerFontSize(length);
 
 
     if (count) {
@@ -88,10 +70,7 @@ for (let i = 1; i <= 20; i++) {
       );
 
 
-      if (
-        length >=
-        MAX_LENGTH
-      ) {
+      if (length >= MAX_LENGTH) {
 
         counter.classList.add(
           "is-limit"
@@ -99,10 +78,7 @@ for (let i = 1; i <= 20; i++) {
 
       }
 
-      else if (
-        length >=
-        60
-      ) {
+      else if (length >= 60) {
 
         counter.classList.add(
           "is-warning"
@@ -126,72 +102,57 @@ for (let i = 1; i <= 20; i++) {
 }
 
 
-
 /* ==================================================
-   回答フォントサイズ
+   フォントサイズ
 ================================================== */
 
-function getAnswerFontSize(
-  length
-) {
+function getAnswerFontSize(length) {
 
   if (length <= 25) {
     return "24px";
   }
 
-
   if (length <= 45) {
     return "22px";
   }
-
 
   if (length <= 60) {
     return "20px";
   }
 
-
   return "18px";
-
 }
-
 
 
 /* ==================================================
    IMAGE → DATA URL
 ================================================== */
 
-function readImageAsDataURL(
-  file
-) {
+function readImageAsDataURL(file) {
 
   return new Promise(
-    (
-      resolve,
-      reject
-    ) => {
+    (resolve, reject) => {
 
       const reader =
         new FileReader();
 
 
-      reader.onload =
-        () => {
+      reader.onload = () => {
 
-          resolve(
-            reader.result
-          );
+        resolve(
+          reader.result
+        );
 
-        };
+      };
 
 
-      reader.onerror =
-        () => {
+      reader.onerror = () => {
 
-          reject(
-            reader.error
-          );
+        reject(
+          reader.error
+        );
 
-        };
+      };
 
 
       reader.readAsDataURL(
@@ -202,7 +163,6 @@ function readImageAsDataURL(
   );
 
 }
-
 
 
 /* ==================================================
@@ -225,58 +185,48 @@ let questionBackgroundData =
   null;
 
 
-questionBackgroundUpload
-  .addEventListener(
-    "change",
-    async (event) => {
+questionBackgroundUpload.addEventListener(
+  "change",
+  async (event) => {
 
-      const file =
-        event.target.files[0];
-
-
-      if (!file) {
-        return;
-      }
+    const file =
+      event.target.files[0];
 
 
-      try {
-
-        questionBackgroundData =
-          await readImageAsDataURL(
-            file
-          );
+    if (!file) {
+      return;
+    }
 
 
-        questionBackgrounds
-          .forEach(
-            (background) => {
+    try {
 
-              background
-                .style
-                .backgroundImage =
-                `url("${questionBackgroundData}")`;
-
-            }
-          );
-
-      }
-
-      catch (error) {
-
-        console.error(
-          error
-        );
+      questionBackgroundData =
+        await readImageAsDataURL(file);
 
 
-        alert(
-          "質問用背景画像の読み込みに失敗しました。"
-        );
+      questionBackgrounds.forEach(
+        (background) => {
 
-      }
+          background.style.backgroundImage =
+            `url("${questionBackgroundData}")`;
+
+        }
+      );
 
     }
-  );
 
+    catch (error) {
+
+      console.error(error);
+
+      alert(
+        "質問用背景画像の読み込みに失敗しました。"
+      );
+
+    }
+
+  }
+);
 
 
 /* ==================================================
@@ -299,58 +249,48 @@ let answerBackgroundData =
   null;
 
 
-answerBackgroundUpload
-  .addEventListener(
-    "change",
-    async (event) => {
+answerBackgroundUpload.addEventListener(
+  "change",
+  async (event) => {
 
-      const file =
-        event.target.files[0];
-
-
-      if (!file) {
-        return;
-      }
+    const file =
+      event.target.files[0];
 
 
-      try {
-
-        answerBackgroundData =
-          await readImageAsDataURL(
-            file
-          );
+    if (!file) {
+      return;
+    }
 
 
-        answerBackgrounds
-          .forEach(
-            (background) => {
+    try {
 
-              background
-                .style
-                .backgroundImage =
-                `url("${answerBackgroundData}")`;
-
-            }
-          );
-
-      }
-
-      catch (error) {
-
-        console.error(
-          error
-        );
+      answerBackgroundData =
+        await readImageAsDataURL(file);
 
 
-        alert(
-          "回答用背景画像の読み込みに失敗しました。"
-        );
+      answerBackgrounds.forEach(
+        (background) => {
 
-      }
+          background.style.backgroundImage =
+            `url("${answerBackgroundData}")`;
+
+        }
+      );
 
     }
-  );
 
+    catch (error) {
+
+      console.error(error);
+
+      alert(
+        "回答用背景画像の読み込みに失敗しました。"
+      );
+
+    }
+
+  }
+);
 
 
 /* ==================================================
@@ -373,17 +313,14 @@ document
         "";
 
 
-      questionBackgrounds
-        .forEach(
-          (background) => {
+      questionBackgrounds.forEach(
+        (background) => {
 
-            background
-              .style
-              .backgroundImage =
-              "";
+          background.style.backgroundImage =
+            "";
 
-          }
-        );
+        }
+      );
 
     }
   );
@@ -405,25 +342,21 @@ document
         "";
 
 
-      answerBackgrounds
-        .forEach(
-          (background) => {
+      answerBackgrounds.forEach(
+        (background) => {
 
-            background
-              .style
-              .backgroundImage =
-              "";
+          background.style.backgroundImage =
+            "";
 
-          }
-        );
+        }
+      );
 
     }
   );
 
 
-
 /* ==================================================
-   OVERLAY
+   OVERLAY ELEMENTS
 ================================================== */
 
 const questionOpacityControl =
@@ -470,7 +403,6 @@ let answerOverlayColor =
   "black";
 
 
-
 /* ==================================================
    質問カバー更新
 ================================================== */
@@ -484,23 +416,19 @@ function updateQuestionOverlay() {
 
 
   const rgb =
-    questionOverlayColor ===
-    "white"
+    questionOverlayColor === "white"
       ? "255, 255, 255"
       : "0, 0, 0";
 
 
-  questionOverlays
-    .forEach(
-      (overlay) => {
+  questionOverlays.forEach(
+    (overlay) => {
 
-        overlay
-          .style
-          .backgroundColor =
-          `rgba(${rgb}, ${opacity})`;
+      overlay.style.backgroundColor =
+        `rgba(${rgb}, ${opacity})`;
 
-      }
-    );
+    }
+  );
 
 
   questionOpacityValue.textContent =
@@ -509,7 +437,6 @@ function updateQuestionOverlay() {
     )}%`;
 
 }
-
 
 
 /* ==================================================
@@ -525,23 +452,19 @@ function updateAnswerOverlay() {
 
 
   const rgb =
-    answerOverlayColor ===
-    "white"
+    answerOverlayColor === "white"
       ? "255, 255, 255"
       : "0, 0, 0";
 
 
-  answerOverlays
-    .forEach(
-      (overlay) => {
+  answerOverlays.forEach(
+    (overlay) => {
 
-        overlay
-          .style
-          .backgroundColor =
-          `rgba(${rgb}, ${opacity})`;
+      overlay.style.backgroundColor =
+        `rgba(${rgb}, ${opacity})`;
 
-      }
-    );
+    }
+  );
 
 
   answerOpacityValue.textContent =
@@ -552,24 +475,20 @@ function updateAnswerOverlay() {
 }
 
 
-
 /* ==================================================
    カバー濃度
 ================================================== */
 
-questionOpacityControl
-  .addEventListener(
-    "input",
-    updateQuestionOverlay
-  );
+questionOpacityControl.addEventListener(
+  "input",
+  updateQuestionOverlay
+);
 
 
-answerOpacityControl
-  .addEventListener(
-    "input",
-    updateAnswerOverlay
-  );
-
+answerOpacityControl.addEventListener(
+  "input",
+  updateAnswerOverlay
+);
 
 
 /* ==================================================
@@ -605,7 +524,6 @@ document
   );
 
 
-
 /* ==================================================
    回答カバー色
 ================================================== */
@@ -639,9 +557,8 @@ document
   );
 
 
-
 /* ==================================================
-   質問カード文字色
+   質問文字色
 ================================================== */
 
 const questionCard =
@@ -666,22 +583,27 @@ document
           }
 
 
-          questionCard
-            .classList
-            .remove(
-              "text-white",
+          questionCard.classList.remove(
+            "text-white",
+            "text-black"
+          );
+
+
+          if (radio.value === "black") {
+
+            questionCard.classList.add(
               "text-black"
             );
 
+          }
 
-          questionCard
-            .classList
-            .add(
-              radio.value ===
-              "black"
-                ? "text-black"
-                : "text-white"
+          else {
+
+            questionCard.classList.add(
+              "text-white"
             );
+
+          }
 
         }
       );
@@ -690,9 +612,8 @@ document
   );
 
 
-
 /* ==================================================
-   回答カード文字色
+   回答文字色
 ================================================== */
 
 const answerCards =
@@ -717,36 +638,39 @@ document
           }
 
 
-          answerCards
-            .forEach(
-              (card) => {
+          answerCards.forEach(
+            (card) => {
 
-                card
-                  .classList
-                  .remove(
-                    "text-white",
-                    "text-black"
-                  );
+              card.classList.remove(
+                "text-white",
+                "text-black"
+              );
 
 
-                card
-                  .classList
-                  .add(
-                    radio.value ===
-                    "black"
-                      ? "text-black"
-                      : "text-white"
-                  );
+              if (radio.value === "black") {
+
+                card.classList.add(
+                  "text-black"
+                );
 
               }
-            );
+
+              else {
+
+                card.classList.add(
+                  "text-white"
+                );
+
+              }
+
+            }
+          );
 
         }
       );
 
     }
   );
-
 
 
 /* ==================================================
@@ -756,7 +680,6 @@ document
 updateQuestionOverlay();
 
 updateAnswerOverlay();
-
 
 
 /* ==================================================
@@ -769,155 +692,137 @@ const generateButton =
   );
 
 
-generateButton
-  .addEventListener(
-    "click",
-    async () => {
+generateButton.addEventListener(
+  "click",
+  async () => {
 
-      generateButton.disabled =
-        true;
-
-
-      generateButton.textContent =
-        "画像を生成しています…";
+    generateButton.disabled =
+      true;
 
 
-      try {
+    generateButton.textContent =
+      "画像を生成しています…";
 
 
-        if (document.fonts) {
+    try {
 
-          await document
-            .fonts
-            .ready;
+      if (document.fonts) {
 
-        }
-
-
-        await sleep(300);
-
-
-        for (
-          let i = 1;
-          i <= 4;
-          i++
-        ) {
-
-          const card =
-            document.getElementById(
-              `card-${i}`
-            );
-
-
-          card.classList.add(
-            "exporting"
-          );
-
-
-          await sleep(100);
-
-
-          const dataUrl =
-            await htmlToImage.toPng(
-              card,
-              {
-
-                width: 1200,
-
-                height: 1200,
-
-                canvasWidth:
-                  1200,
-
-                canvasHeight:
-                  1200,
-
-                pixelRatio:
-                  1,
-
-                cacheBust:
-                  true,
-
-                style: {
-
-                  width:
-                    "1200px",
-
-                  height:
-                    "1200px",
-
-                  margin:
-                    "0"
-
-                }
-
-              }
-            );
-
-
-          card.classList.remove(
-            "exporting"
-          );
-
-
-          downloadImage(
-            dataUrl,
-            `ffxiv-profile-${i}.png`
-          );
-
-
-          await sleep(
-            400
-          );
-
-        }
+        await document.fonts.ready;
 
       }
 
-      catch (error) {
 
-        console.error(
-          error
+      await sleep(300);
+
+
+      for (
+        let i = 1;
+        i <= 4;
+        i++
+      ) {
+
+        const card =
+          document.getElementById(
+            `card-${i}`
+          );
+
+
+        card.classList.add(
+          "exporting"
         );
 
 
-        document
-          .querySelectorAll(
-            ".profile-card"
-          )
-          .forEach(
-            (card) => {
+        await sleep(100);
 
-              card
-                .classList
-                .remove(
-                  "exporting"
-                );
+
+        const dataUrl =
+          await htmlToImage.toPng(
+            card,
+            {
+
+              width: 1200,
+
+              height: 1200,
+
+              canvasWidth: 1200,
+
+              canvasHeight: 1200,
+
+              pixelRatio: 1,
+
+              cacheBust: true,
+
+              style: {
+
+                width: "1200px",
+
+                height: "1200px",
+
+                margin: "0"
+
+              }
 
             }
           );
 
 
-        alert(
-          "画像の生成に失敗しました。"
+        card.classList.remove(
+          "exporting"
         );
 
-      }
 
-      finally {
+        downloadImage(
+          dataUrl,
+          `ffxiv-profile-${i}.png`
+        );
 
-        generateButton.disabled =
-          false;
 
-
-        generateButton.textContent =
-          "4枚の画像を書き出す";
+        await sleep(400);
 
       }
 
     }
-  );
 
+    catch (error) {
+
+      console.error(error);
+
+
+      document
+        .querySelectorAll(
+          ".profile-card"
+        )
+        .forEach(
+          (card) => {
+
+            card.classList.remove(
+              "exporting"
+            );
+
+          }
+        );
+
+
+      alert(
+        "画像の生成に失敗しました。"
+      );
+
+    }
+
+    finally {
+
+      generateButton.disabled =
+        false;
+
+
+      generateButton.textContent =
+        "4枚の画像を書き出す";
+
+    }
+
+  }
+);
 
 
 /* ==================================================
@@ -930,9 +835,7 @@ function downloadImage(
 ) {
 
   const link =
-    document.createElement(
-      "a"
-    );
+    document.createElement("a");
 
 
   link.download =
@@ -954,7 +857,6 @@ function downloadImage(
   link.remove();
 
 }
-
 
 
 /* ==================================================
