@@ -1,5 +1,5 @@
 /* =========================
-   質問 → 回答カード反映
+   回答をカードへ反映
 ========================= */
 
 for (let i = 1; i <= 20; i++) {
@@ -10,11 +10,9 @@ for (let i = 1; i <= 20; i++) {
   const answer =
     document.getElementById(`answer-${i}`);
 
-
   if (!input || !answer) {
     continue;
   }
-
 
   input.addEventListener(
     "input",
@@ -25,7 +23,6 @@ for (let i = 1; i <= 20; i++) {
 
     }
   );
-
 }
 
 
@@ -38,14 +35,12 @@ const backgroundUpload =
     "background-upload"
   );
 
-
 const cardBackgrounds =
   document.querySelectorAll(
     ".card-background"
   );
 
-
-let currentBackgroundURL = null;
+let currentBackgroundData = null;
 
 
 backgroundUpload.addEventListener(
@@ -55,42 +50,40 @@ backgroundUpload.addEventListener(
     const file =
       event.target.files[0];
 
-
     if (!file) {
       return;
     }
 
-
-    /* 前のURLを開放 */
-
-    if (currentBackgroundURL) {
-
-      URL.revokeObjectURL(
-        currentBackgroundURL
-      );
-
-    }
+    const reader =
+      new FileReader();
 
 
-    currentBackgroundURL =
-      URL.createObjectURL(file);
+    reader.onload =
+      (e) => {
+
+        currentBackgroundData =
+          e.target.result;
+
+        cardBackgrounds.forEach(
+          (background) => {
+
+            background.style.backgroundImage =
+              `url("${currentBackgroundData}")`;
+
+          }
+        );
+
+      };
 
 
-    cardBackgrounds.forEach(
-      (background) => {
-
-        background.style.backgroundImage =
-          `url("${currentBackgroundURL}")`;
-
-      }
-    );
+    reader.readAsDataURL(file);
 
   }
 );
 
 
 /* =========================
-   背景削除
+   背景画像を解除
 ========================= */
 
 const removeBackgroundButton =
@@ -103,19 +96,9 @@ removeBackgroundButton.addEventListener(
   "click",
   () => {
 
-    if (currentBackgroundURL) {
-
-      URL.revokeObjectURL(
-        currentBackgroundURL
-      );
-
-      currentBackgroundURL = null;
-
-    }
-
+    currentBackgroundData = null;
 
     backgroundUpload.value = "";
-
 
     cardBackgrounds.forEach(
       (background) => {
@@ -138,12 +121,10 @@ const opacityControl =
     "overlay-opacity"
   );
 
-
 const opacityValue =
   document.getElementById(
     "opacity-value"
   );
-
 
 const overlays =
   document.querySelectorAll(
@@ -156,8 +137,9 @@ opacityControl.addEventListener(
   () => {
 
     const opacity =
-      Number(opacityControl.value);
-
+      Number(
+        opacityControl.value
+      );
 
     overlays.forEach(
       (overlay) => {
@@ -167,7 +149,6 @@ opacityControl.addEventListener(
 
       }
     );
-
 
     opacityValue.textContent =
       `${Math.round(opacity * 100)}%`;
@@ -197,6 +178,13 @@ generateButton.addEventListener(
 
 
     try {
+
+      /*
+        背景画像などの描画を待つ
+      */
+
+      await sleep(500);
+
 
       for (let i = 1; i <= 4; i++) {
 
@@ -228,13 +216,7 @@ generateButton.addEventListener(
         );
 
 
-        /*
-          連続ダウンロードを
-          ブラウザが処理しやすいよう
-          少し間隔をあける
-        */
-
-        await sleep(350);
+        await sleep(500);
 
       }
 
@@ -260,7 +242,7 @@ generateButton.addEventListener(
 
 
 /* =========================
-   DOWNLOAD
+   ダウンロード
 ========================= */
 
 function downloadImage(
@@ -271,25 +253,19 @@ function downloadImage(
   const link =
     document.createElement("a");
 
-
   link.download =
     filename;
 
-
   link.href =
     dataUrl;
-
 
   document.body.appendChild(
     link
   );
 
-
   link.click();
 
-
   link.remove();
-
 }
 
 
@@ -306,5 +282,4 @@ function sleep(ms) {
         ms
       )
   );
-
 }

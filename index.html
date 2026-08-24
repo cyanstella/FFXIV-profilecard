@@ -8,7 +8,7 @@
 
   <link rel="stylesheet" href="./style.css">
 
-  <!-- HTMLをPNG化するライブラリ -->
+  <!-- HTMLをPNG化 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
 </head>
 
@@ -19,11 +19,10 @@
     <p>キャラクター設定 20の質問</p>
   </header>
 
-
   <main>
 
     <!-- =========================
-         設定
+         カード設定
     ========================== -->
 
     <section class="settings">
@@ -42,7 +41,6 @@
         >
       </div>
 
-
       <div class="setting-item">
 
         <label for="overlay-opacity">
@@ -58,12 +56,9 @@
           value="0.45"
         >
 
-        <span id="opacity-value">
-          45%
-        </span>
+        <span id="opacity-value">45%</span>
 
       </div>
-
 
       <button
         type="button"
@@ -75,7 +70,6 @@
     </section>
 
 
-
     <!-- =========================
          回答入力
     ========================== -->
@@ -84,188 +78,147 @@
 
       <h2>回答を入力</h2>
 
-
       <div class="input-question">
         <label for="q1">
           01. キャラクター名と、その名前の由来は？
         </label>
-
         <textarea id="q1"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q2">
           02. 出身地はどこ？
         </label>
-
         <textarea id="q2"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q3">
           03. 年齢・誕生日は？
         </label>
-
         <textarea id="q3"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q4">
           04. 性格を一言で表すと？
         </label>
-
         <textarea id="q4"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q5">
           05. 得意なこと・苦手なことは？
         </label>
-
         <textarea id="q5"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q6">
           06. 好きな食べ物・嫌いな食べ物は？
         </label>
-
         <textarea id="q6"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q7">
           07. 普段はどんな仕事や生活をしている？
         </label>
-
         <textarea id="q7"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q8">
           08. 戦う理由、冒険を続ける理由は？
         </label>
-
         <textarea id="q8"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q9">
           09. 大切にしている人・場所・物は？
         </label>
-
         <textarea id="q9"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q10">
           10. 密かに抱えている夢や目標は？
         </label>
-
         <textarea id="q10"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q11">
           11. 一番信頼している相手は？
         </label>
-
         <textarea id="q11"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q12">
           12. 苦手なタイプの人は？
         </label>
-
         <textarea id="q12"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q13">
           13. 怒るとどうなる？
         </label>
-
         <textarea id="q13"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q14">
           14. 落ち込んだときはどう過ごす？
         </label>
-
         <textarea id="q14"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q15">
           15. 恋愛には積極的？それとも慎重？
         </label>
-
         <textarea id="q15"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q16">
           16. 休日があったら何をして過ごす？
         </label>
-
         <textarea id="q16"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q17">
           17. 一番怖いものは？
         </label>
-
         <textarea id="q17"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q18">
           18. 過去に後悔していることは？
         </label>
-
         <textarea id="q18"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q19">
           19. 誰にも言っていない秘密は？
         </label>
-
         <textarea id="q19"></textarea>
       </div>
-
 
       <div class="input-question">
         <label for="q20">
           20. 最後に、このキャラクターを一言で紹介すると？
         </label>
-
         <textarea id="q20"></textarea>
       </div>
 
     </section>
-
 
 
     <!-- =========================
@@ -276,10 +229,7 @@
 
       <h2>プレビュー</h2>
 
-
-      <!-- =========================
-           CARD 1
-      ========================== -->
+      <!-- 1枚目 -->
 
       <section
         class="profile-card"
@@ -303,7 +253,6 @@
             </h2>
 
           </header>
-
 
           <ol class="question-list">
 
@@ -333,7 +282,6 @@
 
           </ol>
 
-
           <p class="page-number">
             1 / 4
           </p>
@@ -343,10 +291,7 @@
       </section>
 
 
-
-      <!-- =========================
-           CARD 2
-      ========================== -->
+      <!-- 2枚目 -->
 
       <section
         class="profile-card answer-card"
@@ -359,7 +304,6 @@
         <div class="card-content">
 
           <header class="card-header">
-
             <p class="small-title">
               CHARACTER PROFILE
             </p>
@@ -367,93 +311,56 @@
             <h2>
               Q01 - Q07
             </h2>
-
           </header>
-
 
           <div class="answer-block">
             <p class="question">
               01. キャラクター名と、その名前の由来は？
             </p>
-
-            <p
-              class="answer-text"
-              id="answer-1"
-            ></p>
+            <p class="answer-text" id="answer-1"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               02. 出身地はどこ？
             </p>
-
-            <p
-              class="answer-text"
-              id="answer-2"
-            ></p>
+            <p class="answer-text" id="answer-2"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               03. 年齢・誕生日は？
             </p>
-
-            <p
-              class="answer-text"
-              id="answer-3"
-            ></p>
+            <p class="answer-text" id="answer-3"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               04. 性格を一言で表すと？
             </p>
-
-            <p
-              class="answer-text"
-              id="answer-4"
-            ></p>
+            <p class="answer-text" id="answer-4"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               05. 得意なこと・苦手なことは？
             </p>
-
-            <p
-              class="answer-text"
-              id="answer-5"
-            ></p>
+            <p class="answer-text" id="answer-5"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               06. 好きな食べ物・嫌いな食べ物は？
             </p>
-
-            <p
-              class="answer-text"
-              id="answer-6"
-            ></p>
+            <p class="answer-text" id="answer-6"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               07. 普段はどんな仕事や生活をしている？
             </p>
-
-            <p
-              class="answer-text"
-              id="answer-7"
-            ></p>
+            <p class="answer-text" id="answer-7"></p>
           </div>
-
 
           <p class="page-number">
             2 / 4
@@ -464,10 +371,7 @@
       </section>
 
 
-
-      <!-- =========================
-           CARD 3
-      ========================== -->
+      <!-- 3枚目 -->
 
       <section
         class="profile-card answer-card"
@@ -480,7 +384,6 @@
         <div class="card-content">
 
           <header class="card-header">
-
             <p class="small-title">
               CHARACTER PROFILE
             </p>
@@ -488,72 +391,56 @@
             <h2>
               Q08 - Q14
             </h2>
-
           </header>
-
 
           <div class="answer-block">
             <p class="question">
               08. 戦う理由、冒険を続ける理由は？
             </p>
-
             <p class="answer-text" id="answer-8"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               09. 大切にしている人・場所・物は？
             </p>
-
             <p class="answer-text" id="answer-9"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               10. 密かに抱えている夢や目標は？
             </p>
-
             <p class="answer-text" id="answer-10"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               11. 一番信頼している相手は？
             </p>
-
             <p class="answer-text" id="answer-11"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               12. 苦手なタイプの人は？
             </p>
-
             <p class="answer-text" id="answer-12"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               13. 怒るとどうなる？
             </p>
-
             <p class="answer-text" id="answer-13"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               14. 落ち込んだときはどう過ごす？
             </p>
-
             <p class="answer-text" id="answer-14"></p>
           </div>
-
 
           <p class="page-number">
             3 / 4
@@ -564,10 +451,7 @@
       </section>
 
 
-
-      <!-- =========================
-           CARD 4
-      ========================== -->
+      <!-- 4枚目 -->
 
       <section
         class="profile-card answer-card"
@@ -591,60 +475,47 @@
 
           </header>
 
-
           <div class="answer-block">
             <p class="question">
               15. 恋愛には積極的？それとも慎重？
             </p>
-
             <p class="answer-text" id="answer-15"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               16. 休日があったら何をして過ごす？
             </p>
-
             <p class="answer-text" id="answer-16"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               17. 一番怖いものは？
             </p>
-
             <p class="answer-text" id="answer-17"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               18. 過去に後悔していることは？
             </p>
-
             <p class="answer-text" id="answer-18"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               19. 誰にも言っていない秘密は？
             </p>
-
             <p class="answer-text" id="answer-19"></p>
           </div>
-
 
           <div class="answer-block">
             <p class="question">
               20. このキャラクターを一言で紹介すると？
             </p>
-
             <p class="answer-text" id="answer-20"></p>
           </div>
-
 
           <p class="page-number">
             4 / 4
@@ -657,10 +528,7 @@
     </section>
 
 
-
-    <!-- =========================
-         書き出し
-    ========================== -->
+    <!-- 書き出し -->
 
     <section class="export-area">
 
@@ -671,9 +539,7 @@
         4枚の画像を書き出す
       </button>
 
-      <p>
-        PNG形式で4枚保存されます
-      </p>
+      <p>PNG形式で4枚保存されます</p>
 
     </section>
 
@@ -681,11 +547,9 @@
 
 
   <footer class="site-footer">
-
     <p>
       FFXIV Character Profile Card
     </p>
-
   </footer>
 
 

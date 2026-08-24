@@ -1,16 +1,10 @@
-/* =========================
-   RESET
-========================= */
-
 * {
   box-sizing: border-box;
 }
 
-
 html {
   scroll-behavior: smooth;
 }
-
 
 body {
   margin: 0;
@@ -35,10 +29,8 @@ body {
 
 .site-header {
   padding: 70px 20px 50px;
-
   text-align: center;
 }
-
 
 .site-header h1 {
   margin: 0;
@@ -54,7 +46,6 @@ body {
   letter-spacing: 0.14em;
 }
 
-
 .site-header p {
   margin-top: 12px;
 
@@ -62,7 +53,6 @@ body {
 
   letter-spacing: 0.18em;
 }
-
 
 main {
   width: min(100%, 1500px);
@@ -91,26 +81,21 @@ main {
   border-radius: 12px;
 }
 
-
 .settings h2,
 .input-area h2,
 .preview-area > h2 {
   margin-top: 0;
 
-  font-family:
-    Georgia,
-    serif;
+  font-family: Georgia, serif;
 
   font-weight: 400;
 
   letter-spacing: 0.08em;
 }
 
-
 .setting-item {
   margin-bottom: 25px;
 }
-
 
 .setting-item label {
   display: block;
@@ -123,18 +108,15 @@ main {
   font-weight: 600;
 }
 
-
 .setting-item input[type="file"] {
   width: 100%;
 }
-
 
 .setting-item input[type="range"] {
   width: min(500px, 80%);
 
   vertical-align: middle;
 }
-
 
 #opacity-value {
   display: inline-block;
@@ -170,7 +152,6 @@ button {
     transform 0.2s;
 }
 
-
 button:hover {
   background: #b79a66;
   color: #111111;
@@ -187,7 +168,6 @@ button:hover {
   margin-bottom: 30px;
 }
 
-
 .input-question label {
   display: block;
 
@@ -198,7 +178,6 @@ button:hover {
   font-size: 15px;
   font-weight: 600;
 }
-
 
 .input-question textarea {
   width: 100%;
@@ -222,7 +201,6 @@ button:hover {
   resize: vertical;
 }
 
-
 .input-question textarea:focus {
   border-color: #b79a66;
 }
@@ -235,7 +213,6 @@ button:hover {
 .preview-area {
   margin-top: 100px;
 }
-
 
 .preview-area > h2 {
   text-align: center;
@@ -265,9 +242,6 @@ button:hover {
   border: 2px solid #a58b5b;
 }
 
-
-/* 内側フレーム */
-
 .profile-card::after {
   content: "";
 
@@ -294,7 +268,9 @@ button:hover {
 
   z-index: 0;
 
-  background:
+  background-color: #101722;
+
+  background-image:
     linear-gradient(
       135deg,
       #131e31,
@@ -302,10 +278,9 @@ button:hover {
     );
 
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
 }
-
 
 .card-overlay {
   position: absolute;
@@ -318,9 +293,6 @@ button:hover {
 
   pointer-events: none;
 }
-
-
-/* 背景の上に薄いグラデーション */
 
 .card-overlay::after {
   content: "";
@@ -364,21 +336,17 @@ button:hover {
   text-align: center;
 }
 
-
 .small-title {
   margin: 0 0 10px;
 
   color: #d3b87c;
 
-  font-family:
-    Georgia,
-    serif;
+  font-family: Georgia, serif;
 
   font-size: 18px;
 
   letter-spacing: 0.28em;
 }
-
 
 .card-header h2 {
   margin: 0;
@@ -393,7 +361,6 @@ button:hover {
 
   letter-spacing: 0.08em;
 }
-
 
 .card-header h2 span {
   color: #d3b87c;
@@ -416,28 +383,20 @@ button:hover {
 
   margin: 0;
 
-  padding:
-    0
-    0
-    0
-    40px;
+  padding: 0 0 0 40px;
 
   font-size: 19px;
   line-height: 1.55;
 }
 
-
 .question-list li {
   padding-left: 7px;
 }
 
-
 .question-list li::marker {
   color: #d3b87c;
 
-  font-family:
-    Georgia,
-    serif;
+  font-family: Georgia, serif;
 
   font-size: 18px;
 }
@@ -451,7 +410,6 @@ button:hover {
   margin-bottom: 40px;
 }
 
-
 .answer-block {
   margin-bottom: 26px;
 
@@ -462,12 +420,8 @@ button:hover {
     rgba(211, 184, 124, 0.4);
 }
 
-
 .question {
-  margin:
-    0
-    0
-    9px;
+  margin: 0 0 9px;
 
   color: #d3b87c;
 
@@ -476,7 +430,6 @@ button:hover {
 
   letter-spacing: 0.03em;
 }
-
 
 .answer-text {
   margin: 0;
@@ -494,9 +447,6 @@ button:hover {
   white-space: pre-wrap;
   overflow-wrap: break-word;
 }
-
-
-/* 未入力 */
 
 .answer-text:empty::before {
   content: "—";
@@ -519,9 +469,7 @@ button:hover {
 
   color: #d3b87c;
 
-  font-family:
-    Georgia,
-    serif;
+  font-family: Georgia, serif;
 
   font-size: 18px;
 
@@ -539,15 +487,11 @@ button:hover {
   text-align: center;
 }
 
-
 #generate-button {
-  padding:
-    18px
-    45px;
+  padding: 18px 45px;
 
   font-size: 18px;
 }
-
 
 .export-area p {
   color: #868e9c;
@@ -561,9 +505,7 @@ button:hover {
 ========================= */
 
 .site-footer {
-  padding:
-    45px
-    20px;
+  padding: 45px 20px;
 
   text-align: center;
 
@@ -586,28 +528,21 @@ button:hover {
     height: 900px;
   }
 
-
   .card-content {
-    padding:
-      60px
-      65px;
+    padding: 60px 65px;
   }
-
 
   .card-header {
     margin-bottom: 30px;
   }
 
-
   .card-header h2 {
     font-size: 36px;
   }
 
-
   .small-title {
     font-size: 14px;
   }
-
 
   .question-list {
     column-gap: 45px;
@@ -616,23 +551,19 @@ button:hover {
     font-size: 13.5px;
   }
 
-
   .answer-block {
     margin-bottom: 16px;
 
     padding-bottom: 13px;
   }
 
-
   .question {
     font-size: 13px;
   }
 
-
   .answer-text {
     font-size: 17px;
   }
-
 
   .page-number {
     right: 65px;
@@ -640,34 +571,27 @@ button:hover {
 
     font-size: 14px;
   }
-
 }
 
 
 /* =========================
-   MOBILE PREVIEW
+   MOBILE
 ========================= */
 
 @media screen and (max-width: 950px) {
 
   main {
-    padding:
-      0
-      12px
-      80px;
+    padding: 0 12px 80px;
   }
-
 
   .site-header h1 {
     font-size: 25px;
   }
 
-
   .settings,
   .input-area {
     padding: 22px;
   }
-
 
   .profile-card {
     width: 100%;
@@ -678,26 +602,21 @@ button:hover {
     margin: 30px auto;
   }
 
-
   .card-content {
     padding: 7%;
   }
-
 
   .profile-card::after {
     inset: 2%;
   }
 
-
   .card-header {
     margin-bottom: 4%;
   }
 
-
   .small-title {
     font-size: clamp(7px, 1.4vw, 11px);
   }
-
 
   .card-header h2 {
     font-size:
@@ -707,7 +626,6 @@ button:hover {
         30px
       );
   }
-
 
   .question-list {
     column-gap: 5%;
@@ -723,13 +641,10 @@ button:hover {
       );
   }
 
-
   .answer-block {
     margin-bottom: 1.7%;
-
     padding-bottom: 1.4%;
   }
-
 
   .question {
     margin-bottom: 0.6%;
@@ -742,7 +657,6 @@ button:hover {
       );
   }
 
-
   .answer-text {
     font-size:
       clamp(
@@ -751,7 +665,6 @@ button:hover {
         14px
       );
   }
-
 
   .page-number {
     right: 7%;
@@ -764,5 +677,4 @@ button:hover {
         12px
       );
   }
-
 }
