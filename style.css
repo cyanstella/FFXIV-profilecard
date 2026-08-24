@@ -32,14 +32,14 @@ body {
 ================================================== */
 
 .site-header {
-  max-width: 900px;
+  max-width: 1100px;
 
   margin: 0 auto;
 
   padding:
-    70px
+    60px
     20px
-    55px;
+    45px;
 
   text-align: center;
 }
@@ -72,7 +72,7 @@ body {
 }
 
 .site-description {
-  max-width: 700px;
+  max-width: 760px;
 
   margin:
     32px
@@ -99,6 +99,7 @@ body {
   color: #aeb5c1;
 
   font-size: 14px;
+
   line-height: 1.8;
 
   letter-spacing: 0.03em;
@@ -139,18 +140,175 @@ body {
 
 
 /* ==================================================
-   MAIN
+   EDITOR LAYOUT
 ================================================== */
 
-main {
-  width: min(100%, 1500px);
+.editor-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(520px, 1fr);
+
+  gap: 36px;
+
+  align-items: start;
+
+  width: min(100%, 1600px);
 
   margin: 0 auto;
 
   padding:
     0
-    20px
+    24px
     100px;
+}
+
+
+/* ==================================================
+   LEFT PANEL
+================================================== */
+
+.editor-panel {
+  min-width: 0;
+}
+
+
+/* ==================================================
+   RIGHT PANEL
+================================================== */
+
+.preview-panel {
+  min-width: 0;
+}
+
+.preview-sticky {
+  position: sticky;
+
+  top: 18px;
+
+  padding:
+    24px;
+
+  background: #10151f;
+
+  border:
+    1px solid
+    #292f3b;
+
+  border-radius: 12px;
+}
+
+.preview-heading {
+  margin-bottom: 18px;
+}
+
+.preview-heading h2 {
+  margin:
+    0
+    0
+    6px;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-weight: 400;
+
+  letter-spacing: 0.08em;
+}
+
+.preview-heading p {
+  margin: 0;
+
+  color: #818996;
+
+  font-size: 12px;
+}
+
+
+/* ==================================================
+   PREVIEW TABS
+================================================== */
+
+.preview-tabs {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 8px;
+
+  margin-bottom: 18px;
+}
+
+.preview-tab {
+  width: 100%;
+
+  padding:
+    10px
+    6px;
+
+  background: #171d27;
+
+  border:
+    1px solid
+    #343d4d;
+
+  color: #b5bbc5;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  border-radius: 5px;
+
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.preview-tab:hover {
+  background: #1f2632;
+
+  color: #ffffff;
+
+  transform: none;
+}
+
+.preview-tab.is-active {
+  background: #a58b5b;
+
+  border-color: #a58b5b;
+
+  color: #111111;
+}
+
+
+/* ==================================================
+   PREVIEW STAGE
+================================================== */
+
+.preview-stage {
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.preview-card {
+  display: none;
+
+  width: 100% !important;
+  height: auto !important;
+
+  aspect-ratio: 1 / 1;
+
+  margin: 0 !important;
+}
+
+.preview-card.is-active {
+  display: block;
 }
 
 
@@ -160,14 +318,14 @@ main {
 
 .settings,
 .input-area {
-  max-width: 900px;
+  width: 100%;
 
   margin:
     0
-    auto
-    70px;
+    0
+    34px;
 
-  padding: 35px;
+  padding: 30px;
 
   background: #121722;
 
@@ -179,8 +337,7 @@ main {
 }
 
 .settings h2,
-.input-area h2,
-.preview-area > h2 {
+.input-area h2 {
   margin-top: 0;
 
   font-family:
@@ -246,6 +403,8 @@ main {
 .radio-group {
   display: flex;
 
+  flex-wrap: wrap;
+
   gap: 25px;
 }
 
@@ -275,7 +434,7 @@ main {
 }
 
 .range-row input[type="range"] {
-  width: min(500px, 80%);
+  width: 100%;
 }
 
 .range-row span {
@@ -319,6 +478,7 @@ button {
 
 button:hover {
   background: #b79a66;
+
   color: #111111;
 
   transform:
@@ -391,6 +551,7 @@ button:disabled {
   font-family: inherit;
 
   font-size: 16px;
+
   line-height: 1.45;
 
   resize: none;
@@ -429,21 +590,6 @@ button:disabled {
 
 
 /* ==================================================
-   PREVIEW
-================================================== */
-
-.preview-area {
-  margin-top: 100px;
-}
-
-.preview-area > h2 {
-  margin-bottom: 50px;
-
-  text-align: center;
-}
-
-
-/* ==================================================
    CARD
 ================================================== */
 
@@ -452,10 +598,6 @@ button:disabled {
 
   width: 1200px;
   height: 1200px;
-
-  margin:
-    60px
-    auto;
 
   overflow: hidden;
 
@@ -487,12 +629,6 @@ button:disabled {
 
 /* ==================================================
    BACKGROUND
-
-   background-position:
-   JSで横・縦位置を変更
-
-   transform:
-   JSで拡大率を変更
 ================================================== */
 
 .card-background {
@@ -525,10 +661,6 @@ button:disabled {
 
   transform-origin:
     center center;
-
-  transition:
-    transform 0.15s,
-    background-position 0.15s;
 }
 
 
@@ -547,9 +679,6 @@ button:disabled {
     rgba(0, 0, 0, 0.45);
 
   pointer-events: none;
-
-  transition:
-    background-color 0.2s;
 }
 
 
@@ -572,7 +701,7 @@ button:disabled {
 
 
 /* ==================================================
-   CARD HEADER
+   HEADER
 ================================================== */
 
 .card-header {
@@ -581,17 +710,9 @@ button:disabled {
   text-align: center;
 }
 
-
-/* 1枚目だけタイトル下を広げる */
-
 #card-1 .card-header {
   margin-bottom: 80px;
 }
-
-
-/* ==================================================
-   GOLD HEADER
-================================================== */
 
 .small-title {
   margin:
@@ -727,6 +848,7 @@ button:disabled {
   white-space: pre-wrap;
 
   overflow-wrap: anywhere;
+
   word-break: break-word;
 }
 
@@ -794,7 +916,7 @@ button:disabled {
 
 
 /* ==================================================
-   見出しは常に金色
+   GOLD HEADER
 ================================================== */
 
 .profile-card .small-title,
@@ -850,27 +972,145 @@ button:disabled {
 
 
 /* ==================================================
-   EXPORT
+   PREVIEW縮小表示
+================================================== */
+
+.preview-panel .profile-card:not(.exporting) .card-content {
+  padding: 7%;
+}
+
+.preview-panel .profile-card:not(.exporting)::after {
+  inset: 2%;
+}
+
+.preview-panel .profile-card:not(.exporting) .card-header {
+  margin-bottom: 4%;
+}
+
+.preview-panel #card-1:not(.exporting) .card-header {
+  margin-bottom: 7%;
+}
+
+.preview-panel .profile-card:not(.exporting) .small-title {
+  font-size:
+    clamp(
+      7px,
+      0.9vw,
+      13px
+    );
+}
+
+.preview-panel .profile-card:not(.exporting) .card-header h2 {
+  font-size:
+    clamp(
+      16px,
+      2.2vw,
+      34px
+    );
+}
+
+.preview-panel .profile-card:not(.exporting) .question-columns {
+  column-gap: 5%;
+}
+
+.preview-panel .profile-card:not(.exporting) .question-list {
+  padding-left: 5%;
+
+  font-size:
+    clamp(
+      7px,
+      0.95vw,
+      14px
+    );
+
+  line-height: 1.45;
+}
+
+.preview-panel .profile-card:not(.exporting) .question-list li {
+  margin-bottom: 3%;
+}
+
+.preview-panel .profile-card:not(.exporting) .question-list li::marker {
+  font-size:
+    clamp(
+      7px,
+      0.9vw,
+      13px
+    );
+}
+
+.preview-panel .profile-card:not(.exporting) .answer-block {
+  margin-bottom: 1.5%;
+
+  padding-bottom: 1.3%;
+}
+
+.preview-panel .profile-card:not(.exporting) .question {
+  font-size:
+    clamp(
+      7px,
+      0.9vw,
+      13px
+    );
+}
+
+.preview-panel .profile-card:not(.exporting) .answer-text {
+  max-height: none;
+
+  line-height: 1.35;
+}
+
+.preview-panel .profile-card:not(.exporting) .copyright {
+  left: 7%;
+  bottom: 5%;
+
+  font-size:
+    clamp(
+      6px,
+      0.8vw,
+      11px
+    );
+}
+
+.preview-panel .profile-card:not(.exporting) .page-number {
+  right: 7%;
+  bottom: 5%;
+
+  font-size:
+    clamp(
+      7px,
+      0.9vw,
+      13px
+    );
+}
+
+
+/* ==================================================
+   EXPORT AREA
 ================================================== */
 
 .export-area {
-  margin-top: 80px;
+  margin-top: 22px;
 
   text-align: center;
 }
 
 #generate-button {
-  padding:
-    18px
-    45px;
+  width: 100%;
 
-  font-size: 18px;
+  padding:
+    16px
+    25px;
+
+  font-size: 17px;
 }
 
 .export-area p {
+  margin-bottom: 0;
+
   color: #868e9c;
 
-  font-size: 13px;
+  font-size: 12px;
 }
 
 
@@ -921,257 +1161,17 @@ button:disabled {
 
 
 /* ==================================================
-   TABLET
-================================================== */
-
-@media screen and (max-width: 1280px) {
-
-  .profile-card {
-    width: 900px;
-    height: 900px;
-  }
-
-  .card-content {
-    padding:
-      60px
-      65px;
-  }
-
-  .card-header {
-    margin-bottom: 30px;
-  }
-
-  #card-1 .card-header {
-    margin-bottom: 60px;
-  }
-
-  .card-header h2 {
-    font-size: 36px;
-  }
-
-  .small-title {
-    font-size: 14px;
-  }
-
-  .question-columns {
-    column-gap: 45px;
-  }
-
-  .question-list {
-    padding-left: 32px;
-
-    font-size: 13.5px;
-  }
-
-  .question-list li {
-    margin-bottom: 11px;
-  }
-
-  .question-list li::marker {
-    font-size: 13px;
-  }
-
-  .answer-block {
-    margin-bottom: 11px;
-
-    padding-bottom: 10px;
-  }
-
-  .question {
-    font-size: 12px;
-  }
-
-  .copyright {
-    left: 65px;
-    bottom: 52px;
-
-    font-size: 11px;
-  }
-
-  .page-number {
-    right: 65px;
-    bottom: 52px;
-
-    font-size: 14px;
-  }
-
-}
-
-
-/* ==================================================
-   MOBILE
-================================================== */
-
-@media screen and (max-width: 950px) {
-
-  main {
-    padding:
-      0
-      12px
-      80px;
-  }
-
-  .site-header {
-    padding:
-      45px
-      16px
-      40px;
-  }
-
-  .site-header h1 {
-    font-size: 25px;
-  }
-
-  .site-subtitle {
-    font-size: 12px;
-  }
-
-  .site-description {
-    padding:
-      18px
-      16px;
-  }
-
-  .site-description p {
-    font-size: 12px;
-  }
-
-  .settings,
-  .input-area {
-    padding: 22px;
-  }
-
-  .radio-group {
-    flex-wrap: wrap;
-  }
-
-  .range-row {
-    align-items: center;
-  }
-
-  .range-row input[type="range"] {
-    width: 100%;
-  }
-
-  .profile-card {
-    width: 100%;
-    height: auto;
-
-    aspect-ratio: 1 / 1;
-
-    margin:
-      30px
-      auto;
-  }
-
-  .card-content {
-    padding: 7%;
-  }
-
-  .profile-card::after {
-    inset: 2%;
-  }
-
-  .card-header {
-    margin-bottom: 4%;
-  }
-
-  #card-1 .card-header {
-    margin-bottom: 7%;
-  }
-
-  .small-title {
-    font-size:
-      clamp(
-        7px,
-        1.4vw,
-        11px
-      );
-  }
-
-  .card-header h2 {
-    font-size:
-      clamp(
-        15px,
-        3.6vw,
-        30px
-      );
-  }
-
-  .question-columns {
-    column-gap: 5%;
-  }
-
-  .question-list {
-    padding-left: 5%;
-
-    font-size:
-      clamp(
-        6px,
-        1.45vw,
-        12px
-      );
-
-    line-height: 1.45;
-  }
-
-  .question-list li {
-    margin-bottom: 3%;
-  }
-
-  .answer-block {
-    margin-bottom: 1.5%;
-
-    padding-bottom: 1.3%;
-  }
-
-  .question {
-    font-size:
-      clamp(
-        6px,
-        1.35vw,
-        11px
-      );
-  }
-
-  .answer-text {
-    max-height: none;
-
-    line-height: 1.35;
-  }
-
-  .copyright {
-    left: 7%;
-    bottom: 5%;
-
-    font-size:
-      clamp(
-        6px,
-        1.2vw,
-        10px
-      );
-  }
-
-  .page-number {
-    right: 7%;
-    bottom: 5%;
-
-    font-size:
-      clamp(
-        7px,
-        1.4vw,
-        12px
-      );
-  }
-
-}
-
-
-/* ==================================================
    PNG EXPORT
 ================================================== */
 
 .profile-card.exporting {
+  display: block !important;
+
+  position: fixed !important;
+
+  left: -10000px !important;
+  top: 0 !important;
+
   width: 1200px !important;
   height: 1200px !important;
 
@@ -1199,20 +1199,20 @@ button:disabled {
 }
 
 .profile-card.exporting .small-title {
-  color:
-    #a58b5b !important;
-
   font-size:
     18px !important;
+
+  color:
+    #a58b5b !important;
 }
 
 .profile-card.exporting .card-header h2,
 .profile-card.exporting .card-header h2 span {
-  color:
-    #a58b5b !important;
-
   font-size:
     48px !important;
+
+  color:
+    #a58b5b !important;
 }
 
 .profile-card.exporting .question-columns {
@@ -1254,6 +1254,14 @@ button:disabled {
     16px !important;
 }
 
+.profile-card.exporting .answer-text {
+  max-height:
+    82px !important;
+
+  line-height:
+    1.45 !important;
+}
+
 .profile-card.exporting .copyright {
   left:
     90px !important;
@@ -1279,4 +1287,100 @@ button:disabled {
 .profile-card.exporting::after {
   inset:
     25px !important;
+}
+
+
+/* ==================================================
+   TABLET / NARROW PC
+================================================== */
+
+@media screen and (max-width: 1180px) {
+
+  .editor-layout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(430px, 0.9fr);
+
+    gap: 24px;
+  }
+
+  .settings,
+  .input-area {
+    padding: 24px;
+  }
+
+  .preview-sticky {
+    padding: 18px;
+  }
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media screen and (max-width: 900px) {
+
+  .site-header {
+    padding:
+      45px
+      16px
+      40px;
+  }
+
+  .site-header h1 {
+    font-size: 25px;
+  }
+
+  .site-subtitle {
+    font-size: 12px;
+  }
+
+  .site-description {
+    padding:
+      18px
+      16px;
+  }
+
+  .site-description p {
+    font-size: 12px;
+  }
+
+
+  .editor-layout {
+    display: block;
+
+    width: 100%;
+
+    padding:
+      0
+      12px
+      80px;
+  }
+
+
+  .preview-panel {
+    margin-top: 30px;
+  }
+
+
+  .preview-sticky {
+    position: static;
+
+    padding: 16px;
+  }
+
+
+  .preview-tabs {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+
+  .settings,
+  .input-area {
+    padding: 22px;
+  }
+
 }

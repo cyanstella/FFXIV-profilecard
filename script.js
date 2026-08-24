@@ -29,8 +29,7 @@ for (let i = 1; i <= 20; i++) {
 
 
   /* ==================================================
-     Enter制限
-     最大2行
+     ENTERキー制限
   ================================================== */
 
   input.addEventListener(
@@ -57,7 +56,7 @@ for (let i = 1; i <= 20; i++) {
 
 
   /* ==================================================
-     回答更新
+     入力更新
   ================================================== */
 
   const updateAnswer = () => {
@@ -65,8 +64,6 @@ for (let i = 1; i <= 20; i++) {
     let value =
       input.value;
 
-
-    /* 改行コード統一 */
 
     value =
       value.replace(
@@ -81,8 +78,6 @@ for (let i = 1; i <= 20; i++) {
         "\n"
       );
 
-
-    /* 最大2行 */
 
     let lines =
       value.split("\n");
@@ -102,8 +97,6 @@ for (let i = 1; i <= 20; i++) {
 
     }
 
-
-    /* 最大80文字 */
 
     if (value.length > MAX_LENGTH) {
 
@@ -256,7 +249,7 @@ function readImageAsDataURL(file) {
 
 
 /* ==================================================
-   カード設定共通関数
+   カード設定共通
 ================================================== */
 
 function setupCardSettings(options) {
@@ -363,16 +356,12 @@ function setupCardSettings(options) {
     );
 
 
-  let backgroundData =
-    null;
-
-
   let overlayColor =
     "black";
 
 
   /* ==================================================
-     背景画像
+     背景アップロード
   ================================================== */
 
   backgroundUpload.addEventListener(
@@ -390,7 +379,7 @@ function setupCardSettings(options) {
 
       try {
 
-        backgroundData =
+        const backgroundData =
           await readImageAsDataURL(
             file
           );
@@ -457,11 +446,6 @@ function setupCardSettings(options) {
       `scale(${scale})`;
 
 
-    /*
-      拡大時の基準位置も
-      横位置・縦位置に合わせる
-    */
-
     background.style.transformOrigin =
       `${x}% ${y}%`;
 
@@ -506,10 +490,6 @@ function setupCardSettings(options) {
     "click",
     () => {
 
-      backgroundData =
-        null;
-
-
       backgroundUpload.value =
         "";
 
@@ -517,10 +497,6 @@ function setupCardSettings(options) {
       background.style.backgroundImage =
         "";
 
-
-      /*
-        位置・拡大率も初期値へ戻す
-      */
 
       bgX.value =
         50;
@@ -541,7 +517,7 @@ function setupCardSettings(options) {
 
 
   /* ==================================================
-     カバー
+     OVERLAY
   ================================================== */
 
   function updateOverlay() {
@@ -644,8 +620,6 @@ function setupCardSettings(options) {
     );
 
 
-  /* 初期状態 */
-
   updateBackgroundTransform();
 
   updateOverlay();
@@ -708,7 +682,7 @@ setupCardSettings({
 
 
 /* ==================================================
-   回答カード1
+   回答1
 ================================================== */
 
 setupCardSettings({
@@ -762,7 +736,7 @@ setupCardSettings({
 
 
 /* ==================================================
-   回答カード2
+   回答2
 ================================================== */
 
 setupCardSettings({
@@ -816,7 +790,7 @@ setupCardSettings({
 
 
 /* ==================================================
-   回答カード3
+   回答3
 ================================================== */
 
 setupCardSettings({
@@ -867,6 +841,81 @@ setupCardSettings({
     "answer3-text-color"
 
 });
+
+
+/* ==================================================
+   プレビュータブ
+================================================== */
+
+const previewTabs =
+  document.querySelectorAll(
+    ".preview-tab"
+  );
+
+
+const previewCards =
+  document.querySelectorAll(
+    ".preview-card"
+  );
+
+
+previewTabs.forEach(
+  (tab) => {
+
+    tab.addEventListener(
+      "click",
+      () => {
+
+        const targetCardId =
+          tab.dataset.card;
+
+
+        previewTabs.forEach(
+          (item) => {
+
+            item.classList.remove(
+              "is-active"
+            );
+
+          }
+        );
+
+
+        previewCards.forEach(
+          (card) => {
+
+            card.classList.remove(
+              "is-active"
+            );
+
+          }
+        );
+
+
+        tab.classList.add(
+          "is-active"
+        );
+
+
+        const targetCard =
+          document.getElementById(
+            targetCardId
+          );
+
+
+        if (targetCard) {
+
+          targetCard.classList.add(
+            "is-active"
+          );
+
+        }
+
+      }
+    );
+
+  }
+);
 
 
 /* ==================================================
@@ -923,7 +972,7 @@ generateButton.addEventListener(
 
 
         await sleep(
-          100
+          120
         );
 
 
