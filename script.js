@@ -1,26 +1,35 @@
-/* =========================
+/* ==================================================
    基本設定
-========================= */
+================================================== */
 
 const MAX_LENGTH = 80;
 
 
-/* =========================
-   回答反映
+
+/* ==================================================
+   回答
    文字数
-   自動フォントサイズ
-========================= */
+   フォントサイズ
+================================================== */
 
 for (let i = 1; i <= 20; i++) {
 
   const input =
-    document.getElementById(`q${i}`);
+    document.getElementById(
+      `q${i}`
+    );
+
 
   const answer =
-    document.getElementById(`answer-${i}`);
+    document.getElementById(
+      `answer-${i}`
+    );
+
 
   const count =
-    document.getElementById(`count-q${i}`);
+    document.getElementById(
+      `count-q${i}`
+    );
 
 
   if (!input || !answer) {
@@ -30,7 +39,11 @@ for (let i = 1; i <= 20; i++) {
 
   const updateAnswer = () => {
 
-    if (input.value.length > MAX_LENGTH) {
+
+    if (
+      input.value.length >
+      MAX_LENGTH
+    ) {
 
       input.value =
         input.value.slice(
@@ -44,6 +57,7 @@ for (let i = 1; i <= 20; i++) {
     const text =
       input.value;
 
+
     const length =
       text.length;
 
@@ -53,7 +67,9 @@ for (let i = 1; i <= 20; i++) {
 
 
     answer.style.fontSize =
-      getAnswerFontSize(length);
+      getAnswerFontSize(
+        length
+      );
 
 
     if (count) {
@@ -72,13 +88,21 @@ for (let i = 1; i <= 20; i++) {
       );
 
 
-      if (length >= MAX_LENGTH) {
+      if (
+        length >=
+        MAX_LENGTH
+      ) {
 
         counter.classList.add(
           "is-limit"
         );
 
-      } else if (length >= 60) {
+      }
+
+      else if (
+        length >=
+        60
+      ) {
 
         counter.classList.add(
           "is-warning"
@@ -102,52 +126,77 @@ for (let i = 1; i <= 20; i++) {
 }
 
 
-/* =========================
-   フォントサイズ
-========================= */
 
-function getAnswerFontSize(length) {
+/* ==================================================
+   回答フォントサイズ
+================================================== */
+
+function getAnswerFontSize(
+  length
+) {
 
   if (length <= 25) {
     return "24px";
   }
 
+
   if (length <= 45) {
     return "22px";
   }
+
 
   if (length <= 60) {
     return "20px";
   }
 
+
   return "18px";
+
 }
 
 
-/* =========================
-   Data URL
-========================= */
 
-function readImageAsDataURL(file) {
+/* ==================================================
+   IMAGE → DATA URL
+================================================== */
+
+function readImageAsDataURL(
+  file
+) {
 
   return new Promise(
-    (resolve, reject) => {
+    (
+      resolve,
+      reject
+    ) => {
 
       const reader =
         new FileReader();
 
 
-      reader.onload = () => {
-        resolve(reader.result);
-      };
+      reader.onload =
+        () => {
+
+          resolve(
+            reader.result
+          );
+
+        };
 
 
-      reader.onerror = () => {
-        reject(reader.error);
-      };
+      reader.onerror =
+        () => {
+
+          reject(
+            reader.error
+          );
+
+        };
 
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(
+        file
+      );
 
     }
   );
@@ -155,9 +204,10 @@ function readImageAsDataURL(file) {
 }
 
 
-/* =========================
+
+/* ==================================================
    質問背景
-========================= */
+================================================== */
 
 const questionBackgroundUpload =
   document.getElementById(
@@ -171,54 +221,67 @@ const questionBackgrounds =
   );
 
 
-let questionBackgroundData = null;
+let questionBackgroundData =
+  null;
 
 
-questionBackgroundUpload.addEventListener(
-  "change",
-  async (event) => {
+questionBackgroundUpload
+  .addEventListener(
+    "change",
+    async (event) => {
 
-    const file =
-      event.target.files[0];
+      const file =
+        event.target.files[0];
 
 
-    if (!file) {
-      return;
+      if (!file) {
+        return;
+      }
+
+
+      try {
+
+        questionBackgroundData =
+          await readImageAsDataURL(
+            file
+          );
+
+
+        questionBackgrounds
+          .forEach(
+            (background) => {
+
+              background
+                .style
+                .backgroundImage =
+                `url("${questionBackgroundData}")`;
+
+            }
+          );
+
+      }
+
+      catch (error) {
+
+        console.error(
+          error
+        );
+
+
+        alert(
+          "質問用背景画像の読み込みに失敗しました。"
+        );
+
+      }
+
     }
+  );
 
 
-    try {
 
-      questionBackgroundData =
-        await readImageAsDataURL(file);
-
-
-      questionBackgrounds.forEach(
-        (background) => {
-
-          background.style.backgroundImage =
-            `url("${questionBackgroundData}")`;
-
-        }
-      );
-
-    } catch (error) {
-
-      console.error(error);
-
-      alert(
-        "質問用背景画像の読み込みに失敗しました。"
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================
+/* ==================================================
    回答背景
-========================= */
+================================================== */
 
 const answerBackgroundUpload =
   document.getElementById(
@@ -232,104 +295,136 @@ const answerBackgrounds =
   );
 
 
-let answerBackgroundData = null;
+let answerBackgroundData =
+  null;
 
 
-answerBackgroundUpload.addEventListener(
-  "change",
-  async (event) => {
+answerBackgroundUpload
+  .addEventListener(
+    "change",
+    async (event) => {
 
-    const file =
-      event.target.files[0];
+      const file =
+        event.target.files[0];
 
 
-    if (!file) {
-      return;
+      if (!file) {
+        return;
+      }
+
+
+      try {
+
+        answerBackgroundData =
+          await readImageAsDataURL(
+            file
+          );
+
+
+        answerBackgrounds
+          .forEach(
+            (background) => {
+
+              background
+                .style
+                .backgroundImage =
+                `url("${answerBackgroundData}")`;
+
+            }
+          );
+
+      }
+
+      catch (error) {
+
+        console.error(
+          error
+        );
+
+
+        alert(
+          "回答用背景画像の読み込みに失敗しました。"
+        );
+
+      }
+
     }
+  );
 
 
-    try {
+
+/* ==================================================
+   背景解除
+================================================== */
+
+document
+  .getElementById(
+    "remove-question-background"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      questionBackgroundData =
+        null;
+
+
+      questionBackgroundUpload.value =
+        "";
+
+
+      questionBackgrounds
+        .forEach(
+          (background) => {
+
+            background
+              .style
+              .backgroundImage =
+              "";
+
+          }
+        );
+
+    }
+  );
+
+
+document
+  .getElementById(
+    "remove-answer-background"
+  )
+  .addEventListener(
+    "click",
+    () => {
 
       answerBackgroundData =
-        await readImageAsDataURL(file);
+        null;
 
 
-      answerBackgrounds.forEach(
-        (background) => {
-
-          background.style.backgroundImage =
-            `url("${answerBackgroundData}")`;
-
-        }
-      );
-
-    } catch (error) {
-
-      console.error(error);
-
-      alert(
-        "回答用背景画像の読み込みに失敗しました。"
-      );
-
-    }
-
-  }
-);
+      answerBackgroundUpload.value =
+        "";
 
 
-/* =========================
-   背景解除
-========================= */
+      answerBackgrounds
+        .forEach(
+          (background) => {
 
-document
-  .getElementById("remove-question-background")
-  .addEventListener(
-    "click",
-    () => {
+            background
+              .style
+              .backgroundImage =
+              "";
 
-      questionBackgroundData = null;
-
-      questionBackgroundUpload.value = "";
-
-
-      questionBackgrounds.forEach(
-        (background) => {
-
-          background.style.backgroundImage = "";
-
-        }
-      );
+          }
+        );
 
     }
   );
 
 
-document
-  .getElementById("remove-answer-background")
-  .addEventListener(
-    "click",
-    () => {
 
-      answerBackgroundData = null;
-
-      answerBackgroundUpload.value = "";
-
-
-      answerBackgrounds.forEach(
-        (background) => {
-
-          background.style.backgroundImage = "";
-
-        }
-      );
-
-    }
-  );
-
-
-/* =========================
-   質問背景の暗さ
-========================= */
+/* ==================================================
+   OVERLAY
+================================================== */
 
 const questionOpacityControl =
   document.getElementById(
@@ -349,37 +444,6 @@ const questionOverlays =
   );
 
 
-questionOpacityControl.addEventListener(
-  "input",
-  () => {
-
-    const opacity =
-      Number(
-        questionOpacityControl.value
-      );
-
-
-    questionOverlays.forEach(
-      (overlay) => {
-
-        overlay.style.backgroundColor =
-          `rgba(5, 10, 20, ${opacity})`;
-
-      }
-    );
-
-
-    questionOpacityValue.textContent =
-      `${Math.round(opacity * 100)}%`;
-
-  }
-);
-
-
-/* =========================
-   回答背景の暗さ
-========================= */
-
 const answerOpacityControl =
   document.getElementById(
     "answer-overlay-opacity"
@@ -398,36 +462,306 @@ const answerOverlays =
   );
 
 
-answerOpacityControl.addEventListener(
-  "input",
-  () => {
-
-    const opacity =
-      Number(
-        answerOpacityControl.value
-      );
+let questionOverlayColor =
+  "black";
 
 
-    answerOverlays.forEach(
+let answerOverlayColor =
+  "black";
+
+
+
+/* ==================================================
+   質問カバー更新
+================================================== */
+
+function updateQuestionOverlay() {
+
+  const opacity =
+    Number(
+      questionOpacityControl.value
+    );
+
+
+  const rgb =
+    questionOverlayColor ===
+    "white"
+      ? "255, 255, 255"
+      : "0, 0, 0";
+
+
+  questionOverlays
+    .forEach(
       (overlay) => {
 
-        overlay.style.backgroundColor =
-          `rgba(5, 10, 20, ${opacity})`;
+        overlay
+          .style
+          .backgroundColor =
+          `rgba(${rgb}, ${opacity})`;
 
       }
     );
 
 
-    answerOpacityValue.textContent =
-      `${Math.round(opacity * 100)}%`;
+  questionOpacityValue.textContent =
+    `${Math.round(
+      opacity * 100
+    )}%`;
 
-  }
-);
+}
 
 
-/* =========================
-   PNG書き出し
-========================= */
+
+/* ==================================================
+   回答カバー更新
+================================================== */
+
+function updateAnswerOverlay() {
+
+  const opacity =
+    Number(
+      answerOpacityControl.value
+    );
+
+
+  const rgb =
+    answerOverlayColor ===
+    "white"
+      ? "255, 255, 255"
+      : "0, 0, 0";
+
+
+  answerOverlays
+    .forEach(
+      (overlay) => {
+
+        overlay
+          .style
+          .backgroundColor =
+          `rgba(${rgb}, ${opacity})`;
+
+      }
+    );
+
+
+  answerOpacityValue.textContent =
+    `${Math.round(
+      opacity * 100
+    )}%`;
+
+}
+
+
+
+/* ==================================================
+   カバー濃度
+================================================== */
+
+questionOpacityControl
+  .addEventListener(
+    "input",
+    updateQuestionOverlay
+  );
+
+
+answerOpacityControl
+  .addEventListener(
+    "input",
+    updateAnswerOverlay
+  );
+
+
+
+/* ==================================================
+   質問カバー色
+================================================== */
+
+document
+  .querySelectorAll(
+    'input[name="question-overlay-color"]'
+  )
+  .forEach(
+    (radio) => {
+
+      radio.addEventListener(
+        "change",
+        () => {
+
+          if (!radio.checked) {
+            return;
+          }
+
+
+          questionOverlayColor =
+            radio.value;
+
+
+          updateQuestionOverlay();
+
+        }
+      );
+
+    }
+  );
+
+
+
+/* ==================================================
+   回答カバー色
+================================================== */
+
+document
+  .querySelectorAll(
+    'input[name="answer-overlay-color"]'
+  )
+  .forEach(
+    (radio) => {
+
+      radio.addEventListener(
+        "change",
+        () => {
+
+          if (!radio.checked) {
+            return;
+          }
+
+
+          answerOverlayColor =
+            radio.value;
+
+
+          updateAnswerOverlay();
+
+        }
+      );
+
+    }
+  );
+
+
+
+/* ==================================================
+   質問カード文字色
+================================================== */
+
+const questionCard =
+  document.getElementById(
+    "card-1"
+  );
+
+
+document
+  .querySelectorAll(
+    'input[name="question-text-color"]'
+  )
+  .forEach(
+    (radio) => {
+
+      radio.addEventListener(
+        "change",
+        () => {
+
+          if (!radio.checked) {
+            return;
+          }
+
+
+          questionCard
+            .classList
+            .remove(
+              "text-white",
+              "text-black"
+            );
+
+
+          questionCard
+            .classList
+            .add(
+              radio.value ===
+              "black"
+                ? "text-black"
+                : "text-white"
+            );
+
+        }
+      );
+
+    }
+  );
+
+
+
+/* ==================================================
+   回答カード文字色
+================================================== */
+
+const answerCards =
+  document.querySelectorAll(
+    ".answer-card"
+  );
+
+
+document
+  .querySelectorAll(
+    'input[name="answer-text-color"]'
+  )
+  .forEach(
+    (radio) => {
+
+      radio.addEventListener(
+        "change",
+        () => {
+
+          if (!radio.checked) {
+            return;
+          }
+
+
+          answerCards
+            .forEach(
+              (card) => {
+
+                card
+                  .classList
+                  .remove(
+                    "text-white",
+                    "text-black"
+                  );
+
+
+                card
+                  .classList
+                  .add(
+                    radio.value ===
+                    "black"
+                      ? "text-black"
+                      : "text-white"
+                  );
+
+              }
+            );
+
+        }
+      );
+
+    }
+  );
+
+
+
+/* ==================================================
+   初期状態
+================================================== */
+
+updateQuestionOverlay();
+
+updateAnswerOverlay();
+
+
+
+/* ==================================================
+   PNG EXPORT
+================================================== */
 
 const generateButton =
   document.getElementById(
@@ -435,124 +769,160 @@ const generateButton =
   );
 
 
-generateButton.addEventListener(
-  "click",
-  async () => {
+generateButton
+  .addEventListener(
+    "click",
+    async () => {
 
-    generateButton.disabled = true;
-
-    generateButton.textContent =
-      "画像を生成しています…";
-
-
-    try {
-
-      if (document.fonts) {
-        await document.fonts.ready;
-      }
+      generateButton.disabled =
+        true;
 
 
-      await sleep(300);
+      generateButton.textContent =
+        "画像を生成しています…";
 
 
-      for (let i = 1; i <= 4; i++) {
+      try {
 
-        const card =
-          document.getElementById(
-            `card-${i}`
+
+        if (document.fonts) {
+
+          await document
+            .fonts
+            .ready;
+
+        }
+
+
+        await sleep(300);
+
+
+        for (
+          let i = 1;
+          i <= 4;
+          i++
+        ) {
+
+          const card =
+            document.getElementById(
+              `card-${i}`
+            );
+
+
+          card.classList.add(
+            "exporting"
           );
 
 
-        /*
-          書き出し専用スタイル
-        */
+          await sleep(100);
 
-        card.classList.add(
-          "exporting"
+
+          const dataUrl =
+            await htmlToImage.toPng(
+              card,
+              {
+
+                width: 1200,
+
+                height: 1200,
+
+                canvasWidth:
+                  1200,
+
+                canvasHeight:
+                  1200,
+
+                pixelRatio:
+                  1,
+
+                cacheBust:
+                  true,
+
+                style: {
+
+                  width:
+                    "1200px",
+
+                  height:
+                    "1200px",
+
+                  margin:
+                    "0"
+
+                }
+
+              }
+            );
+
+
+          card.classList.remove(
+            "exporting"
+          );
+
+
+          downloadImage(
+            dataUrl,
+            `ffxiv-profile-${i}.png`
+          );
+
+
+          await sleep(
+            400
+          );
+
+        }
+
+      }
+
+      catch (error) {
+
+        console.error(
+          error
         );
 
 
-        await sleep(100);
+        document
+          .querySelectorAll(
+            ".profile-card"
+          )
+          .forEach(
+            (card) => {
 
-
-        const dataUrl =
-          await htmlToImage.toPng(
-            card,
-            {
-
-              width: 1200,
-              height: 1200,
-
-              canvasWidth: 1200,
-              canvasHeight: 1200,
-
-              pixelRatio: 1,
-
-              cacheBust: true,
-
-              style: {
-                width: "1200px",
-                height: "1200px",
-                margin: "0"
-              }
+              card
+                .classList
+                .remove(
+                  "exporting"
+                );
 
             }
           );
 
 
-        card.classList.remove(
-          "exporting"
+        alert(
+          "画像の生成に失敗しました。"
         );
-
-
-        downloadImage(
-          dataUrl,
-          `ffxiv-profile-${i}.png`
-        );
-
-
-        await sleep(400);
 
       }
 
-    } catch (error) {
+      finally {
 
-      console.error(error);
-
-
-      document
-        .querySelectorAll(".profile-card")
-        .forEach(
-          (card) => {
-
-            card.classList.remove(
-              "exporting"
-            );
-
-          }
-        );
+        generateButton.disabled =
+          false;
 
 
-      alert(
-        "画像の生成に失敗しました。"
-      );
+        generateButton.textContent =
+          "4枚の画像を書き出す";
 
-    } finally {
-
-      generateButton.disabled = false;
-
-      generateButton.textContent =
-        "4枚の画像を書き出す";
+      }
 
     }
-
-  }
-);
+  );
 
 
-/* =========================
+
+/* ==================================================
    DOWNLOAD
-========================= */
+================================================== */
 
 function downloadImage(
   dataUrl,
@@ -560,7 +930,9 @@ function downloadImage(
 ) {
 
   const link =
-    document.createElement("a");
+    document.createElement(
+      "a"
+    );
 
 
   link.download =
@@ -584,18 +956,22 @@ function downloadImage(
 }
 
 
-/* =========================
+
+/* ==================================================
    WAIT
-========================= */
+================================================== */
 
 function sleep(ms) {
 
   return new Promise(
-    resolve =>
+    (resolve) => {
+
       setTimeout(
         resolve,
         ms
-      )
+      );
+
+    }
   );
 
 }

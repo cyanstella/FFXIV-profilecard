@@ -1,14 +1,16 @@
-/* =========================
+/* ==================================================
    RESET
-========================= */
+================================================== */
 
 * {
   box-sizing: border-box;
 }
 
+
 html {
   scroll-behavior: smooth;
 }
+
 
 body {
   margin: 0;
@@ -27,16 +29,22 @@ body {
 }
 
 
-/* =========================
+
+/* ==================================================
    SITE
-========================= */
+================================================== */
 
 .site-header {
+
   padding: 70px 20px 50px;
+
   text-align: center;
+
 }
 
+
 .site-header h1 {
+
   margin: 0;
 
   font-family:
@@ -48,79 +56,127 @@ body {
   font-weight: 400;
 
   letter-spacing: 0.14em;
+
 }
 
+
 .site-header p {
+
   margin-top: 12px;
 
   color: #b79a66;
 
   letter-spacing: 0.18em;
+
 }
 
+
 main {
+
   width: min(100%, 1500px);
 
   margin: 0 auto;
 
-  padding: 0 20px 100px;
+  padding:
+    0
+    20px
+    100px;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    SETTINGS
-========================= */
+================================================== */
 
 .settings,
 .input-area {
+
   max-width: 900px;
 
-  margin: 0 auto 70px;
+  margin:
+    0
+    auto
+    70px;
 
   padding: 35px;
 
   background: #121722;
 
-  border: 1px solid #2b3240;
+  border:
+    1px
+    solid
+    #2b3240;
+
   border-radius: 12px;
+
 }
+
 
 .settings h2,
 .input-area h2,
 .preview-area > h2 {
+
   margin-top: 0;
 
-  font-family: Georgia, serif;
+  font-family:
+    Georgia,
+    serif;
+
   font-weight: 400;
 
   letter-spacing: 0.08em;
+
 }
+
 
 .setting-group {
+
   margin-top: 30px;
+
   padding-top: 28px;
 
-  border-top: 1px solid #343d4d;
+  border-top:
+    1px
+    solid
+    #343d4d;
+
 }
+
 
 .setting-group:first-of-type {
+
   margin-top: 10px;
+
 }
 
+
 .setting-group h3 {
-  margin: 0 0 22px;
+
+  margin:
+    0
+    0
+    22px;
 
   color: #d6c19a;
 
   font-size: 18px;
   font-weight: 500;
+
 }
+
 
 .setting-item {
+
   margin-bottom: 25px;
+
 }
 
-.setting-item label {
+
+.setting-item > label,
+.setting-label {
+
   display: block;
 
   margin-bottom: 10px;
@@ -129,38 +185,101 @@ main {
 
   font-size: 14px;
   font-weight: 600;
+
 }
+
 
 .setting-item input[type="file"] {
+
   width: 100%;
+
 }
 
-.setting-item input[type="range"] {
-  width: min(500px, 80%);
 
-  vertical-align: middle;
+.range-row {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
 }
+
+
+.range-row input[type="range"] {
+
+  width:
+    min(
+      500px,
+      80%
+    );
+
+}
+
 
 #question-opacity-value,
 #answer-opacity-value {
-  display: inline-block;
 
-  width: 55px;
-
-  margin-left: 12px;
+  min-width: 50px;
 
   color: #d6c19a;
+
 }
 
 
-/* =========================
+
+/* ==================================================
+   RADIO
+================================================== */
+
+.radio-group {
+
+  display: flex;
+
+  gap: 25px;
+
+}
+
+
+.radio-group label {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+}
+
+
+.radio-group input {
+
+  cursor: pointer;
+
+}
+
+
+
+/* ==================================================
    BUTTON
-========================= */
+================================================== */
 
 button {
-  padding: 13px 24px;
 
-  border: 1px solid #b79a66;
+  padding:
+    13px
+    24px;
+
+  border:
+    1px
+    solid
+    #b79a66;
+
   border-radius: 5px;
 
   background: #171d27;
@@ -174,31 +293,46 @@ button {
     background 0.2s,
     color 0.2s,
     transform 0.2s;
+
 }
 
+
 button:hover {
+
   background: #b79a66;
   color: #111111;
 
-  transform: translateY(-1px);
+  transform:
+    translateY(-1px);
+
 }
+
 
 button:disabled {
+
   opacity: 0.6;
+
   cursor: wait;
+
   transform: none;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    INPUT
-========================= */
+================================================== */
 
 .input-question {
+
   margin-bottom: 30px;
+
 }
 
+
 .input-question label {
+
   display: block;
 
   margin-bottom: 9px;
@@ -207,15 +341,23 @@ button:disabled {
 
   font-size: 15px;
   font-weight: 600;
+
 }
 
+
 .input-question textarea {
+
   width: 100%;
+
   min-height: 95px;
 
   padding: 15px;
 
-  border: 1px solid #343d4d;
+  border:
+    1px
+    solid
+    #343d4d;
+
   border-radius: 6px;
 
   outline: none;
@@ -229,18 +371,24 @@ button:disabled {
   line-height: 1.7;
 
   resize: vertical;
+
 }
+
 
 .input-question textarea:focus {
+
   border-color: #b79a66;
+
 }
 
 
-/* =========================
-   文字数
-========================= */
+
+/* ==================================================
+   CHARACTER COUNT
+================================================== */
 
 .character-count {
+
   margin-top: 7px;
 
   text-align: right;
@@ -248,53 +396,79 @@ button:disabled {
   color: #858d9a;
 
   font-size: 12px;
+
 }
+
 
 .character-count.is-warning {
+
   color: #d7b06d;
+
 }
+
 
 .character-count.is-limit {
+
   color: #e07878;
+
   font-weight: bold;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    PREVIEW
-========================= */
+================================================== */
 
 .preview-area {
+
   margin-top: 100px;
+
 }
+
 
 .preview-area > h2 {
+
   margin-bottom: 50px;
+
   text-align: center;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    CARD
-========================= */
+================================================== */
 
 .profile-card {
+
   position: relative;
 
   width: 1200px;
   height: 1200px;
 
-  margin: 60px auto;
+  margin:
+    60px
+    auto;
 
   overflow: hidden;
 
   background: #101722;
+
   color: #ffffff;
 
-  border: 2px solid #a58b5b;
+  border:
+    2px
+    solid
+    #a58b5b;
+
 }
 
+
 .profile-card::after {
+
   content: "";
 
   position: absolute;
@@ -303,17 +477,28 @@ button:disabled {
 
   z-index: 5;
 
-  border: 1px solid rgba(207, 175, 112, 0.55);
+  border:
+    1px
+    solid
+    rgba(
+      207,
+      175,
+      112,
+      0.55
+    );
 
   pointer-events: none;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    BACKGROUND
-========================= */
+================================================== */
 
 .card-background {
+
   position: absolute;
 
   inset: 0;
@@ -330,43 +515,50 @@ button:disabled {
     );
 
   background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+
+  background-position:
+    center
+    center;
+
+  background-repeat:
+    no-repeat;
+
 }
 
+
+
+/* ==================================================
+   OVERLAY
+================================================== */
+
 .card-overlay {
+
   position: absolute;
 
   inset: 0;
 
   z-index: 1;
 
-  background: rgba(5, 10, 20, 0.45);
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      0.45
+    );
 
   pointer-events: none;
-}
 
-.card-overlay::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(3, 8, 16, 0.03),
-      rgba(3, 8, 16, 0.20)
-    );
 }
 
 
-/* =========================
+
+/* ==================================================
    CONTENT
-========================= */
+================================================== */
 
 .card-content {
+
   position: relative;
 
   z-index: 2;
@@ -374,32 +566,152 @@ button:disabled {
   width: 100%;
   height: 100%;
 
-  padding: 85px 90px;
+  padding:
+    85px
+    90px;
+
 }
 
 
-/* =========================
+
+/* ==================================================
+   TEXT COLOR
+================================================== */
+
+.profile-card.text-white {
+
+  color: #ffffff;
+
+}
+
+
+.profile-card.text-black {
+
+  color: #111111;
+
+}
+
+
+/* メイン見出し */
+
+.profile-card.text-white
+.card-header h2 {
+
+  color: #ffffff;
+
+}
+
+
+.profile-card.text-black
+.card-header h2 {
+
+  color: #111111;
+
+}
+
+
+/* 質問一覧 */
+
+.profile-card.text-white
+.question-list {
+
+  color: #ffffff;
+
+}
+
+
+.profile-card.text-black
+.question-list {
+
+  color: #111111;
+
+}
+
+
+/* 回答 */
+
+.profile-card.text-white
+.answer-text {
+
+  color: #ffffff;
+
+}
+
+
+.profile-card.text-black
+.answer-text {
+
+  color: #111111;
+
+}
+
+
+/* 権利表記 */
+
+.profile-card.text-white
+.copyright {
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.82
+    );
+
+}
+
+
+.profile-card.text-black
+.copyright {
+
+  color:
+    rgba(
+      0,
+      0,
+      0,
+      0.78
+    );
+
+}
+
+
+
+/* ==================================================
    HEADER
-========================= */
+================================================== */
 
 .card-header {
+
   margin-bottom: 50px;
+
   text-align: center;
+
 }
 
+
 .small-title {
-  margin: 0 0 10px;
+
+  margin:
+    0
+    0
+    10px;
 
   color: #d3b87c;
 
-  font-family: Georgia, serif;
+  font-family:
+    Georgia,
+    serif;
 
   font-size: 18px;
 
   letter-spacing: 0.28em;
+
 }
 
+
 .card-header h2 {
+
   margin: 0;
 
   font-family:
@@ -411,18 +723,24 @@ button:disabled {
   font-weight: 400;
 
   letter-spacing: 0.08em;
+
 }
+
 
 .card-header h2 span {
+
   color: #d3b87c;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    QUESTION LIST
-========================= */
+================================================== */
 
 .question-columns {
+
   display: grid;
 
   grid-template-columns:
@@ -432,64 +750,101 @@ button:disabled {
   column-gap: 70px;
 
   align-items: start;
+
 }
 
+
 .question-list {
+
   margin: 0;
 
   padding-left: 44px;
 
   font-size: 19px;
+
   line-height: 1.55;
+
 }
+
 
 .question-list li {
+
   margin-bottom: 18px;
+
   padding-left: 7px;
+
 }
+
 
 .question-list li::marker {
+
   color: #d3b87c;
 
-  font-family: Georgia, serif;
+  font-family:
+    Georgia,
+    serif;
 
   font-size: 18px;
+
   font-weight: bold;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    ANSWER
-========================= */
+================================================== */
 
-.answer-card .card-header {
+.answer-card
+.card-header {
+
   margin-bottom: 36px;
+
 }
+
 
 .answer-block {
+
   margin-bottom: 18px;
 
   padding-bottom: 15px;
 
   border-bottom:
-    1px solid
-    rgba(211, 184, 124, 0.4);
+    1px
+    solid
+    rgba(
+      211,
+      184,
+      124,
+      0.4
+    );
+
 }
 
+
 .question {
-  margin: 0 0 7px;
+
+  margin:
+    0
+    0
+    7px;
 
   color: #d3b87c;
 
   font-size: 16px;
+
   font-weight: 600;
 
   line-height: 1.4;
 
   letter-spacing: 0.03em;
+
 }
 
+
 .answer-text {
+
   margin: 0;
 
   min-height: 30px;
@@ -503,34 +858,40 @@ button:disabled {
     serif;
 
   font-size: 24px;
+
   line-height: 1.45;
 
   white-space: pre-wrap;
 
   overflow-wrap: anywhere;
+
   word-break: break-word;
+
 }
+
 
 .answer-text:empty::before {
+
   content: "—";
 
-  color: rgba(255, 255, 255, 0.45);
+  opacity: 0.55;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    COPYRIGHT
-========================= */
+================================================== */
 
 .copyright {
+
   position: absolute;
 
   left: 90px;
   bottom: 70px;
 
   margin: 0;
-
-  color: rgba(255, 255, 255, 0.78);
 
   font-family:
     Arial,
@@ -540,14 +901,17 @@ button:disabled {
   font-size: 14px;
 
   letter-spacing: 0.04em;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    PAGE
-========================= */
+================================================== */
 
 .page-number {
+
   position: absolute;
 
   right: 90px;
@@ -557,42 +921,61 @@ button:disabled {
 
   color: #d3b87c;
 
-  font-family: Georgia, serif;
+  font-family:
+    Georgia,
+    serif;
 
   font-size: 18px;
 
   letter-spacing: 0.18em;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    EXPORT
-========================= */
+================================================== */
 
 .export-area {
+
   margin-top: 80px;
+
   text-align: center;
+
 }
+
 
 #generate-button {
-  padding: 18px 45px;
+
+  padding:
+    18px
+    45px;
 
   font-size: 18px;
+
 }
 
+
 .export-area p {
+
   color: #868e9c;
 
   font-size: 13px;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    FOOTER
-========================= */
+================================================== */
 
 .site-footer {
-  padding: 45px 20px;
+
+  padding:
+    45px
+    20px;
 
   text-align: center;
 
@@ -601,249 +984,443 @@ button:disabled {
   font-size: 12px;
 
   letter-spacing: 0.12em;
+
 }
 
 
-/* =========================
+
+/* ==================================================
    TABLET
-========================= */
+================================================== */
 
 @media screen and (max-width: 1280px) {
 
   .profile-card {
+
     width: 900px;
     height: 900px;
+
   }
+
 
   .card-content {
-    padding: 60px 65px;
+
+    padding:
+      60px
+      65px;
+
   }
+
 
   .card-header {
+
     margin-bottom: 30px;
+
   }
+
 
   .card-header h2 {
+
     font-size: 36px;
+
   }
+
 
   .small-title {
+
     font-size: 14px;
+
   }
+
 
   .question-columns {
+
     column-gap: 45px;
+
   }
+
 
   .question-list {
+
     padding-left: 32px;
+
     font-size: 13.5px;
+
   }
+
 
   .question-list li {
+
     margin-bottom: 11px;
+
   }
 
-  .question-list li::marker {
-    font-size: 13px;
-  }
 
   .answer-block {
+
     margin-bottom: 11px;
+
     padding-bottom: 10px;
+
   }
+
 
   .question {
+
     font-size: 12px;
+
   }
 
+
   .copyright {
+
     left: 65px;
     bottom: 52px;
 
     font-size: 11px;
+
   }
 
+
   .page-number {
+
     right: 65px;
     bottom: 52px;
 
     font-size: 14px;
+
   }
 
 }
 
 
-/* =========================
+
+/* ==================================================
    MOBILE
-========================= */
+================================================== */
 
 @media screen and (max-width: 950px) {
 
   main {
-    padding: 0 12px 80px;
+
+    padding:
+      0
+      12px
+      80px;
+
   }
 
+
   .site-header h1 {
+
     font-size: 25px;
+
   }
+
 
   .settings,
   .input-area {
+
     padding: 22px;
+
   }
 
+
   .profile-card {
+
     width: 100%;
     height: auto;
 
     aspect-ratio: 1 / 1;
 
-    margin: 30px auto;
+    margin:
+      30px
+      auto;
+
   }
+
 
   .card-content {
+
     padding: 7%;
+
   }
+
 
   .profile-card::after {
+
     inset: 2%;
+
   }
+
 
   .card-header {
+
     margin-bottom: 4%;
+
   }
+
 
   .small-title {
-    font-size: clamp(7px, 1.4vw, 11px);
+
+    font-size:
+      clamp(
+        7px,
+        1.4vw,
+        11px
+      );
+
   }
+
 
   .card-header h2 {
-    font-size: clamp(15px, 3.6vw, 30px);
+
+    font-size:
+      clamp(
+        15px,
+        3.6vw,
+        30px
+      );
+
   }
+
 
   .question-columns {
+
     column-gap: 5%;
+
   }
+
 
   .question-list {
+
     padding-left: 5%;
 
-    font-size: clamp(6px, 1.45vw, 12px);
+    font-size:
+      clamp(
+        6px,
+        1.45vw,
+        12px
+      );
 
     line-height: 1.45;
+
   }
+
 
   .question-list li {
+
     margin-bottom: 3%;
+
   }
+
 
   .answer-block {
+
     margin-bottom: 1.5%;
+
     padding-bottom: 1.3%;
+
   }
+
 
   .question {
-    font-size: clamp(6px, 1.35vw, 11px);
+
+    font-size:
+      clamp(
+        6px,
+        1.35vw,
+        11px
+      );
+
   }
+
 
   .answer-text {
+
     max-height: none;
+
     line-height: 1.35;
+
   }
 
+
   .copyright {
+
     left: 7%;
     bottom: 5%;
 
-    font-size: clamp(6px, 1.2vw, 10px);
+    font-size:
+      clamp(
+        6px,
+        1.2vw,
+        10px
+      );
+
   }
 
+
   .page-number {
+
     right: 7%;
     bottom: 5%;
 
-    font-size: clamp(7px, 1.4vw, 12px);
+    font-size:
+      clamp(
+        7px,
+        1.4vw,
+        12px
+      );
+
   }
 
 }
 
 
-/* =========================
+
+/* ==================================================
    PNG EXPORT専用
-========================= */
+================================================== */
 
 .profile-card.exporting {
+
   width: 1200px !important;
   height: 1200px !important;
 
   margin: 0 !important;
+
   padding: 0 !important;
 
-  aspect-ratio: auto !important;
+  aspect-ratio:
+    auto !important;
+
 }
 
-.profile-card.exporting .card-content {
-  padding: 85px 90px !important;
+
+.profile-card.exporting
+.card-content {
+
+  padding:
+    85px
+    90px !important;
+
 }
 
-.profile-card.exporting .card-header {
-  margin-bottom: 36px !important;
+
+.profile-card.exporting
+.card-header {
+
+  margin-bottom:
+    36px !important;
+
 }
 
-.profile-card.exporting .small-title {
-  font-size: 18px !important;
+
+.profile-card.exporting
+.small-title {
+
+  font-size:
+    18px !important;
+
 }
 
-.profile-card.exporting .card-header h2 {
-  font-size: 48px !important;
+
+.profile-card.exporting
+.card-header h2 {
+
+  font-size:
+    48px !important;
+
 }
 
-.profile-card.exporting .question-columns {
-  column-gap: 70px !important;
+
+.profile-card.exporting
+.question-columns {
+
+  column-gap:
+    70px !important;
+
 }
 
-.profile-card.exporting .question-list {
-  padding-left: 44px !important;
 
-  font-size: 19px !important;
-  line-height: 1.55 !important;
+.profile-card.exporting
+.question-list {
+
+  padding-left:
+    44px !important;
+
+  font-size:
+    19px !important;
+
+  line-height:
+    1.55 !important;
+
 }
 
-.profile-card.exporting .question-list li {
-  margin-bottom: 18px !important;
+
+.profile-card.exporting
+.question-list li {
+
+  margin-bottom:
+    18px !important;
+
 }
 
-.profile-card.exporting .question-list li::marker {
-  font-size: 18px !important;
+
+.profile-card.exporting
+.answer-block {
+
+  margin-bottom:
+    18px !important;
+
+  padding-bottom:
+    15px !important;
+
 }
 
-.profile-card.exporting .answer-block {
-  margin-bottom: 18px !important;
 
-  padding-bottom: 15px !important;
+.profile-card.exporting
+.question {
+
+  font-size:
+    16px !important;
+
 }
 
-.profile-card.exporting .question {
-  margin-bottom: 7px !important;
 
-  font-size: 16px !important;
+.profile-card.exporting
+.copyright {
+
+  left:
+    90px !important;
+
+  bottom:
+    70px !important;
+
+  font-size:
+    14px !important;
+
 }
 
-.profile-card.exporting .copyright {
-  left: 90px !important;
-  bottom: 70px !important;
 
-  font-size: 14px !important;
+.profile-card.exporting
+.page-number {
+
+  right:
+    90px !important;
+
+  bottom:
+    70px !important;
+
+  font-size:
+    18px !important;
+
 }
 
-.profile-card.exporting .page-number {
-  right: 90px !important;
-  bottom: 70px !important;
-
-  font-size: 18px !important;
-}
 
 .profile-card.exporting::after {
-  inset: 25px !important;
+
+  inset:
+    25px !important;
+
 }
