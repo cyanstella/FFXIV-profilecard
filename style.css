@@ -148,9 +148,9 @@ body {
 
   grid-template-columns:
     minmax(0, 1fr)
-    minmax(520px, 1fr);
+    minmax(500px, 1fr);
 
-  gap: 36px;
+  gap: 34px;
 
   align-items: start;
 
@@ -182,13 +182,24 @@ body {
   min-width: 0;
 }
 
+
+/*
+  右側全体を画面内に固定
+*/
+
 .preview-sticky {
   position: sticky;
 
-  top: 18px;
+  top: 16px;
 
-  padding:
-    24px;
+  max-height:
+    calc(100vh - 32px);
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 22px;
 
   background: #10151f;
 
@@ -197,10 +208,19 @@ body {
     #292f3b;
 
   border-radius: 12px;
+
+  overflow: hidden;
 }
 
+
+/* ==================================================
+   PREVIEW HEADING
+================================================== */
+
 .preview-heading {
-  margin-bottom: 18px;
+  flex-shrink: 0;
+
+  margin-bottom: 16px;
 }
 
 .preview-heading h2 {
@@ -228,87 +248,71 @@ body {
 
 
 /* ==================================================
-   PREVIEW TABS
+   PREVIEW SCROLL
 ================================================== */
 
-.preview-tabs {
-  display: grid;
+.preview-scroll {
+  min-height: 0;
 
-  grid-template-columns:
-    repeat(4, 1fr);
+  flex: 1;
 
-  gap: 8px;
+  overflow-y: auto;
 
-  margin-bottom: 18px;
+  padding-right: 8px;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #4c5564
+    #151a23;
 }
 
-.preview-tab {
-  width: 100%;
-
-  padding:
-    10px
-    6px;
-
-  background: #171d27;
-
-  border:
-    1px solid
-    #343d4d;
-
-  color: #b5bbc5;
-
-  font-size: 13px;
-
-  cursor: pointer;
-
-  border-radius: 5px;
-
-  transition:
-    background 0.2s,
-    border-color 0.2s,
-    color 0.2s;
+.preview-scroll::-webkit-scrollbar {
+  width: 8px;
 }
 
-.preview-tab:hover {
-  background: #1f2632;
+.preview-scroll::-webkit-scrollbar-track {
+  background: #151a23;
 
-  color: #ffffff;
-
-  transform: none;
+  border-radius: 10px;
 }
 
-.preview-tab.is-active {
-  background: #a58b5b;
+.preview-scroll::-webkit-scrollbar-thumb {
+  background: #4c5564;
 
-  border-color: #a58b5b;
+  border-radius: 10px;
+}
 
-  color: #111111;
+.preview-scroll::-webkit-scrollbar-thumb:hover {
+  background: #687282;
 }
 
 
 /* ==================================================
-   PREVIEW STAGE
+   PREVIEW BLOCK
 ================================================== */
 
-.preview-stage {
-  width: 100%;
-
-  overflow: hidden;
+.preview-card-block {
+  margin-bottom: 30px;
 }
 
-.preview-card {
-  display: none;
-
-  width: 100% !important;
-  height: auto !important;
-
-  aspect-ratio: 1 / 1;
-
-  margin: 0 !important;
+.preview-card-block:last-child {
+  margin-bottom: 8px;
 }
 
-.preview-card.is-active {
-  display: block;
+.preview-card-label {
+  margin:
+    0
+    0
+    10px;
+
+  color: #d6c19a;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.05em;
 }
 
 
@@ -372,6 +376,7 @@ body {
   color: #d6c19a;
 
   font-size: 18px;
+
   font-weight: 500;
 }
 
@@ -388,6 +393,7 @@ body {
   color: #d6c19a;
 
   font-size: 14px;
+
   font-weight: 600;
 }
 
@@ -464,6 +470,7 @@ button {
   border-radius: 5px;
 
   background: #171d27;
+
   color: #ffffff;
 
   font-size: 15px;
@@ -521,6 +528,7 @@ button:disabled {
   color: #d6c19a;
 
   font-size: 15px;
+
   font-weight: 600;
 }
 
@@ -530,7 +538,9 @@ button:disabled {
   width: 100%;
 
   height: 72px;
+
   min-height: 72px;
+
   max-height: 72px;
 
   padding:
@@ -546,6 +556,7 @@ button:disabled {
   outline: none;
 
   background: #0d1119;
+
   color: #ffffff;
 
   font-family: inherit;
@@ -597,6 +608,7 @@ button:disabled {
   position: relative;
 
   width: 1200px;
+
   height: 1200px;
 
   overflow: hidden;
@@ -692,6 +704,7 @@ button:disabled {
   z-index: 2;
 
   width: 100%;
+
   height: 100%;
 
   padding:
@@ -710,9 +723,20 @@ button:disabled {
   text-align: center;
 }
 
+
+/*
+  1枚目は
+  タイトルと質問一覧の間を広め
+*/
+
 #card-1 .card-header {
   margin-bottom: 80px;
 }
+
+
+/* ==================================================
+   GOLD HEADER
+================================================== */
 
 .small-title {
   margin:
@@ -745,6 +769,7 @@ button:disabled {
     serif;
 
   font-size: 48px;
+
   font-weight: 400;
 
   letter-spacing: 0.08em;
@@ -823,6 +848,7 @@ button:disabled {
     7px;
 
   font-size: 16px;
+
   font-weight: 600;
 
   line-height: 1.4;
@@ -832,6 +858,7 @@ button:disabled {
   margin: 0;
 
   min-height: 30px;
+
   max-height: 82px;
 
   overflow: hidden;
@@ -916,7 +943,7 @@ button:disabled {
 
 
 /* ==================================================
-   GOLD HEADER
+   見出しは常に金色
 ================================================== */
 
 .profile-card .small-title,
@@ -934,6 +961,7 @@ button:disabled {
   position: absolute;
 
   left: 90px;
+
   bottom: 70px;
 
   margin: 0;
@@ -957,6 +985,7 @@ button:disabled {
   position: absolute;
 
   right: 90px;
+
   bottom: 70px;
 
   margin: 0;
@@ -972,26 +1001,47 @@ button:disabled {
 
 
 /* ==================================================
-   PREVIEW縮小表示
+   RIGHT PREVIEW SIZE
 ================================================== */
 
-.preview-panel .profile-card:not(.exporting) .card-content {
+.preview-panel .profile-card:not(.exporting) {
+  width: 100%;
+
+  height: auto;
+
+  aspect-ratio: 1 / 1;
+
+  margin: 0;
+}
+
+
+.preview-panel .profile-card:not(.exporting)
+.card-content {
   padding: 7%;
 }
+
 
 .preview-panel .profile-card:not(.exporting)::after {
   inset: 2%;
 }
 
-.preview-panel .profile-card:not(.exporting) .card-header {
+
+.preview-panel .profile-card:not(.exporting)
+.card-header {
   margin-bottom: 4%;
 }
 
-.preview-panel #card-1:not(.exporting) .card-header {
+
+.preview-panel
+#card-1:not(.exporting)
+.card-header {
   margin-bottom: 7%;
 }
 
-.preview-panel .profile-card:not(.exporting) .small-title {
+
+.preview-panel
+.profile-card:not(.exporting)
+.small-title {
   font-size:
     clamp(
       7px,
@@ -1000,7 +1050,10 @@ button:disabled {
     );
 }
 
-.preview-panel .profile-card:not(.exporting) .card-header h2 {
+
+.preview-panel
+.profile-card:not(.exporting)
+.card-header h2 {
   font-size:
     clamp(
       16px,
@@ -1009,11 +1062,17 @@ button:disabled {
     );
 }
 
-.preview-panel .profile-card:not(.exporting) .question-columns {
+
+.preview-panel
+.profile-card:not(.exporting)
+.question-columns {
   column-gap: 5%;
 }
 
-.preview-panel .profile-card:not(.exporting) .question-list {
+
+.preview-panel
+.profile-card:not(.exporting)
+.question-list {
   padding-left: 5%;
 
   font-size:
@@ -1026,11 +1085,17 @@ button:disabled {
   line-height: 1.45;
 }
 
-.preview-panel .profile-card:not(.exporting) .question-list li {
+
+.preview-panel
+.profile-card:not(.exporting)
+.question-list li {
   margin-bottom: 3%;
 }
 
-.preview-panel .profile-card:not(.exporting) .question-list li::marker {
+
+.preview-panel
+.profile-card:not(.exporting)
+.question-list li::marker {
   font-size:
     clamp(
       7px,
@@ -1039,13 +1104,19 @@ button:disabled {
     );
 }
 
-.preview-panel .profile-card:not(.exporting) .answer-block {
+
+.preview-panel
+.profile-card:not(.exporting)
+.answer-block {
   margin-bottom: 1.5%;
 
   padding-bottom: 1.3%;
 }
 
-.preview-panel .profile-card:not(.exporting) .question {
+
+.preview-panel
+.profile-card:not(.exporting)
+.question {
   font-size:
     clamp(
       7px,
@@ -1054,14 +1125,21 @@ button:disabled {
     );
 }
 
-.preview-panel .profile-card:not(.exporting) .answer-text {
+
+.preview-panel
+.profile-card:not(.exporting)
+.answer-text {
   max-height: none;
 
   line-height: 1.35;
 }
 
-.preview-panel .profile-card:not(.exporting) .copyright {
+
+.preview-panel
+.profile-card:not(.exporting)
+.copyright {
   left: 7%;
+
   bottom: 5%;
 
   font-size:
@@ -1072,8 +1150,12 @@ button:disabled {
     );
 }
 
-.preview-panel .profile-card:not(.exporting) .page-number {
+
+.preview-panel
+.profile-card:not(.exporting)
+.page-number {
   right: 7%;
+
   bottom: 5%;
 
   font-size:
@@ -1090,7 +1172,15 @@ button:disabled {
 ================================================== */
 
 .export-area {
-  margin-top: 22px;
+  flex-shrink: 0;
+
+  margin-top: 18px;
+
+  padding-top: 18px;
+
+  border-top:
+    1px solid
+    #292f3b;
 
   text-align: center;
 }
@@ -1165,14 +1255,14 @@ button:disabled {
 ================================================== */
 
 .profile-card.exporting {
-  display: block !important;
-
   position: fixed !important;
 
   left: -10000px !important;
+
   top: 0 !important;
 
   width: 1200px !important;
+
   height: 1200px !important;
 
   margin: 0 !important;
@@ -1182,43 +1272,51 @@ button:disabled {
   aspect-ratio: auto !important;
 }
 
+
 .profile-card.exporting .card-content {
   padding:
     85px
     90px !important;
 }
 
-.profile-card.exporting.answer-card .card-header {
+
+.profile-card.exporting.answer-card
+.card-header {
   margin-bottom:
     36px !important;
 }
+
 
 #card-1.exporting .card-header {
   margin-bottom:
     80px !important;
 }
 
-.profile-card.exporting .small-title {
-  font-size:
-    18px !important;
 
+.profile-card.exporting .small-title {
   color:
     #a58b5b !important;
+
+  font-size:
+    18px !important;
 }
+
 
 .profile-card.exporting .card-header h2,
 .profile-card.exporting .card-header h2 span {
-  font-size:
-    48px !important;
-
   color:
     #a58b5b !important;
+
+  font-size:
+    48px !important;
 }
+
 
 .profile-card.exporting .question-columns {
   column-gap:
     70px !important;
 }
+
 
 .profile-card.exporting .question-list {
   padding-left:
@@ -1231,17 +1329,23 @@ button:disabled {
     1.55 !important;
 }
 
-.profile-card.exporting .question-list li {
+
+.profile-card.exporting
+.question-list li {
   margin-bottom:
     18px !important;
 }
 
-.profile-card.exporting .question-list li::marker {
+
+.profile-card.exporting
+.question-list li::marker {
   font-size:
     18px !important;
 }
 
-.profile-card.exporting .answer-block {
+
+.profile-card.exporting
+.answer-block {
   margin-bottom:
     18px !important;
 
@@ -1249,12 +1353,16 @@ button:disabled {
     15px !important;
 }
 
-.profile-card.exporting .question {
+
+.profile-card.exporting
+.question {
   font-size:
     16px !important;
 }
 
-.profile-card.exporting .answer-text {
+
+.profile-card.exporting
+.answer-text {
   max-height:
     82px !important;
 
@@ -1262,7 +1370,9 @@ button:disabled {
     1.45 !important;
 }
 
-.profile-card.exporting .copyright {
+
+.profile-card.exporting
+.copyright {
   left:
     90px !important;
 
@@ -1273,7 +1383,9 @@ button:disabled {
     14px !important;
 }
 
-.profile-card.exporting .page-number {
+
+.profile-card.exporting
+.page-number {
   right:
     90px !important;
 
@@ -1284,6 +1396,7 @@ button:disabled {
     18px !important;
 }
 
+
 .profile-card.exporting::after {
   inset:
     25px !important;
@@ -1291,7 +1404,7 @@ button:disabled {
 
 
 /* ==================================================
-   TABLET / NARROW PC
+   NARROW PC / TABLET
 ================================================== */
 
 @media screen and (max-width: 1180px) {
@@ -1299,15 +1412,17 @@ button:disabled {
   .editor-layout {
     grid-template-columns:
       minmax(0, 1fr)
-      minmax(430px, 0.9fr);
+      minmax(420px, 0.9fr);
 
     gap: 24px;
   }
+
 
   .settings,
   .input-area {
     padding: 24px;
   }
+
 
   .preview-sticky {
     padding: 18px;
@@ -1329,19 +1444,23 @@ button:disabled {
       40px;
   }
 
+
   .site-header h1 {
     font-size: 25px;
   }
 
+
   .site-subtitle {
     font-size: 12px;
   }
+
 
   .site-description {
     padding:
       18px
       16px;
   }
+
 
   .site-description p {
     font-size: 12px;
@@ -1360,6 +1479,12 @@ button:disabled {
   }
 
 
+  .settings,
+  .input-area {
+    padding: 22px;
+  }
+
+
   .preview-panel {
     margin-top: 30px;
   }
@@ -1368,19 +1493,28 @@ button:disabled {
   .preview-sticky {
     position: static;
 
+    max-height: none;
+
     padding: 16px;
+
+    overflow: visible;
   }
 
 
-  .preview-tabs {
-    grid-template-columns:
-      repeat(2, 1fr);
+  .preview-scroll {
+    overflow: visible;
+
+    padding-right: 0;
   }
 
 
-  .settings,
-  .input-area {
-    padding: 22px;
+  .preview-card-block {
+    margin-bottom: 35px;
+  }
+
+
+  .export-area {
+    margin-top: 12px;
   }
 
 }
