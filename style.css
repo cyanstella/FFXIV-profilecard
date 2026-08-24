@@ -99,7 +99,6 @@ body {
   color: #aeb5c1;
 
   font-size: 14px;
-
   line-height: 1.8;
 
   letter-spacing: 0.03em;
@@ -279,13 +278,14 @@ main {
   width: min(500px, 80%);
 }
 
-#question-opacity-value,
-#answer1-opacity-value,
-#answer2-opacity-value,
-#answer3-opacity-value {
-  min-width: 50px;
+.range-row span {
+  min-width: 56px;
 
   color: #d6c19a;
+
+  font-size: 13px;
+
+  text-align: right;
 }
 
 
@@ -391,7 +391,6 @@ button:disabled {
   font-family: inherit;
 
   font-size: 16px;
-
   line-height: 1.45;
 
   resize: none;
@@ -488,6 +487,12 @@ button:disabled {
 
 /* ==================================================
    BACKGROUND
+
+   background-position:
+   JSで横・縦位置を変更
+
+   transform:
+   JSで拡大率を変更
 ================================================== */
 
 .card-background {
@@ -509,11 +514,21 @@ button:disabled {
   background-size: cover;
 
   background-position:
-    center
-    center;
+    50%
+    50%;
 
   background-repeat:
     no-repeat;
+
+  transform:
+    scale(1);
+
+  transform-origin:
+    center center;
+
+  transition:
+    transform 0.15s,
+    background-position 0.15s;
 }
 
 
@@ -567,10 +582,7 @@ button:disabled {
 }
 
 
-/*
-  1枚目のみ
-  タイトルと質問一覧の間を広くする
-*/
+/* 1枚目だけタイトル下を広げる */
 
 #card-1 .card-header {
   margin-bottom: 80px;
@@ -816,7 +828,7 @@ button:disabled {
 
 
 /* ==================================================
-   PAGE
+   PAGE NUMBER
 ================================================== */
 
 .page-number {
@@ -838,7 +850,7 @@ button:disabled {
 
 
 /* ==================================================
-   EXPORT AREA
+   EXPORT
 ================================================== */
 
 .export-area {
@@ -1033,6 +1045,14 @@ button:disabled {
     flex-wrap: wrap;
   }
 
+  .range-row {
+    align-items: center;
+  }
+
+  .range-row input[type="range"] {
+    width: 100%;
+  }
+
   .profile-card {
     width: 100%;
     height: auto;
@@ -1168,22 +1188,15 @@ button:disabled {
     90px !important;
 }
 
-
-/* 回答カード */
-
 .profile-card.exporting.answer-card .card-header {
   margin-bottom:
     36px !important;
 }
 
-
-/* 1枚目 */
-
 #card-1.exporting .card-header {
   margin-bottom:
     80px !important;
 }
-
 
 .profile-card.exporting .small-title {
   color:
