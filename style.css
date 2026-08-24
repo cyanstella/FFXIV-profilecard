@@ -111,7 +111,7 @@ body {
 
 
 /* ==================================================
-   HASHTAG LINK
+   HASHTAG
 ================================================== */
 
 .hashtag-link {
@@ -478,7 +478,7 @@ button:disabled {
 
   border:
     1px solid
-    rgba(207, 175, 112, 0.55);
+    rgba(165, 139, 91, 0.7);
 
   pointer-events: none;
 }
@@ -555,7 +555,8 @@ button:disabled {
 
 
 /* ==================================================
-   HEADER
+   CARD HEADER
+   外枠と同じ金色
 ================================================== */
 
 .card-header {
@@ -564,11 +565,19 @@ button:disabled {
   text-align: center;
 }
 
+
+/*
+  FFXIV CHARACTER PROFILE
+  CHARACTER PROFILE
+*/
+
 .small-title {
   margin:
     0
     0
     10px;
+
+  color: #a58b5b;
 
   font-family:
     Georgia,
@@ -576,21 +585,38 @@ button:disabled {
 
   font-size: 18px;
 
+  font-weight: 600;
+
   letter-spacing: 0.28em;
 }
+
+
+/*
+  キャラクター設定 20の質問
+  Q01 - Q07
+  Q08 - Q14
+  Q15 - Q20
+*/
 
 .card-header h2 {
   margin: 0;
 
+  color: #a58b5b;
+
   font-family:
     Georgia,
     "Hiragino Mincho ProN",
+    "Yu Mincho",
     serif;
 
   font-size: 48px;
   font-weight: 400;
 
   letter-spacing: 0.08em;
+}
+
+.card-header h2 span {
+  color: #a58b5b;
 }
 
 
@@ -652,7 +678,7 @@ button:disabled {
 
   border-bottom:
     1px solid
-    rgba(160, 160, 160, 0.42);
+    rgba(165, 139, 91, 0.45);
 }
 
 .question {
@@ -699,15 +725,15 @@ button:disabled {
 
 /* ==================================================
    WHITE TEXT
+
+   ※カード見出しは対象外
+   常に金色
 ================================================== */
 
 .profile-card.text-white {
   color: #ffffff;
 }
 
-.profile-card.text-white .small-title,
-.profile-card.text-white .card-header h2,
-.profile-card.text-white .card-header h2 span,
 .profile-card.text-white .question-list,
 .profile-card.text-white .question,
 .profile-card.text-white .answer-text,
@@ -730,15 +756,15 @@ button:disabled {
 
 /* ==================================================
    BLACK TEXT
+
+   ※カード見出しは対象外
+   常に金色
 ================================================== */
 
 .profile-card.text-black {
   color: #111111;
 }
 
-.profile-card.text-black .small-title,
-.profile-card.text-black .card-header h2,
-.profile-card.text-black .card-header h2 span,
 .profile-card.text-black .question-list,
 .profile-card.text-black .question,
 .profile-card.text-black .answer-text,
@@ -756,6 +782,18 @@ button:disabled {
 .answer-text:empty::before {
   color:
     rgba(0, 0, 0, 0.55);
+}
+
+
+/*
+  白黒設定より後に指定して
+  カード見出しを確実に金色へ固定
+*/
+
+.profile-card .small-title,
+.profile-card .card-header h2,
+.profile-card .card-header h2 span {
+  color: #a58b5b;
 }
 
 
@@ -1129,11 +1167,18 @@ button:disabled {
 }
 
 .profile-card.exporting .small-title {
+  color:
+    #a58b5b !important;
+
   font-size:
     18px !important;
 }
 
-.profile-card.exporting .card-header h2 {
+.profile-card.exporting .card-header h2,
+.profile-card.exporting .card-header h2 span {
+  color:
+    #a58b5b !important;
+
   font-size:
     48px !important;
 }
