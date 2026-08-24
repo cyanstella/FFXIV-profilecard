@@ -143,10 +143,17 @@ for (let i = 1; i <= 20; i++) {
       text;
 
 
-    answer.style.fontSize =
-      getAnswerFontSize(
-        length
-      );
+    /*
+      ★ 修正ポイント
+
+      直接 font-size を変更せず、
+      CSS変数に本来の文字サイズを保存
+    */
+
+    answer.style.setProperty(
+      "--answer-font-size",
+      getAnswerFontSize(length)
+    );
 
 
     if (count) {
@@ -310,7 +317,6 @@ function setupCardSettings(options) {
     textRadioName
 
   } = options;
-
 
 
   const card =
