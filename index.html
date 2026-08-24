@@ -1,19 +1,140 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<main>
 
-  <title>FF14 Profile Card</title>
+  <!-- 入力フォーム -->
+  <section class="input-area">
 
-  <link rel="stylesheet" href="./style.css">
-</head>
+    <h1>FFXIV キャラクター設定 20の質問</h1>
 
-<body>
+    <div class="input-question">
+      <label for="q1">1. キャラクター名と、その名前の由来は？</label>
+      <textarea id="q1"></textarea>
+    </div>
 
-  <h1>FF14 Profile Card</h1>
-  <h2>プロフィール作成</h2>
+    <div class="input-question">
+      <label for="q2">2. 出身地はどこ？</label>
+      <textarea id="q2"></textarea>
+    </div>
 
-  <script src="./script.js"></script>
-</body>
-</html>
+    <div class="input-question">
+      <label for="q3">3. 年齢・誕生日は？</label>
+      <textarea id="q3"></textarea>
+    </div>
+
+    <!-- Q4〜Q20も同様に追加 -->
+
+  </section>
+
+
+  <!-- =========================
+       1枚目：質問一覧
+  ========================== -->
+
+  <section class="profile-card" id="card-1">
+
+    <header class="card-header">
+      <h2>FFXIV CHARACTER PROFILE</h2>
+      <p>キャラクター設定 20の質問</p>
+    </header>
+
+    <ol class="question-list">
+      <li>キャラクター名と、その名前の由来は？</li>
+      <li>出身地はどこ？</li>
+      <li>年齢・誕生日は？</li>
+      <li>性格を一言で表すと？</li>
+      <li>得意なこと・苦手なことは？</li>
+      <li>好きな食べ物・嫌いな食べ物は？</li>
+      <li>普段はどんな仕事や生活をしている？</li>
+      <li>戦う理由、冒険を続ける理由は？</li>
+      <li>大切にしている人・場所・物は？</li>
+      <li>密かに抱えている夢や目標は？</li>
+      <li>一番信頼している相手は？</li>
+      <li>苦手なタイプの人は？</li>
+      <li>怒るとどうなる？</li>
+      <li>落ち込んだときはどう過ごす？</li>
+      <li>恋愛には積極的？それとも慎重？</li>
+      <li>休日があったら何をして過ごす？</li>
+      <li>一番怖いものは？</li>
+      <li>過去に後悔していることは？</li>
+      <li>誰にも言っていない秘密は？</li>
+      <li>最後に、このキャラクターを一言で紹介すると？</li>
+    </ol>
+
+    <p class="page-number">1 / 4</p>
+
+  </section>
+
+
+  <!-- =========================
+       2枚目：Q1〜Q7
+  ========================== -->
+
+  <section class="profile-card answer-card" id="card-2">
+
+    <header class="card-header">
+      <h2>CHARACTER PROFILE</h2>
+      <p>Q01 - Q07</p>
+    </header>
+
+    <div class="answer">
+      <p class="question">01. キャラクター名と、その名前の由来は？</p>
+      <p class="answer-text" id="answer-1"></p>
+    </div>
+
+    <div class="answer">
+      <p class="question">02. 出身地はどこ？</p>
+      <p class="answer-text" id="answer-2"></p>
+    </div>
+
+    <div class="answer">
+      <p class="question">03. 年齢・誕生日は？</p>
+      <p class="answer-text" id="answer-3"></p>
+    </div>
+
+    <!-- Q4〜Q7 -->
+
+    <p class="page-number">2 / 4</p>
+
+  </section>
+
+
+  <!-- =========================
+       3枚目：Q8〜Q14
+  ========================== -->
+
+  <section class="profile-card answer-card" id="card-3">
+
+    <header class="card-header">
+      <h2>CHARACTER PROFILE</h2>
+      <p>Q08 - Q14</p>
+    </header>
+
+    <!-- Q8〜Q14 -->
+
+    <p class="page-number">3 / 4</p>
+
+  </section>
+
+
+  <!-- =========================
+       4枚目：Q15〜Q20
+  ========================== -->
+
+  <section class="profile-card answer-card" id="card-4">
+
+    <header class="card-header">
+      <h2>CHARACTER PROFILE</h2>
+      <p>Q15 - Q20</p>
+    </header>
+
+    <!-- Q15〜Q20 -->
+
+    <p class="page-number">4 / 4</p>
+
+  </section>
+
+
+  <button id="generate-button">
+    4枚の画像を書き出す
+  </button>
+
+</main>
