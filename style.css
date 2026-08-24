@@ -1,0 +1,14 @@
+.profile-card {
+  border-radius: 30px;
+  background:
+    linear-gradient(...);
+}
+
+.character-name {
+  font-size: 64px;
+  letter-spacing: .15em;
+}
+
+.job {
+  writing-mode: vertical-rl;
+}
