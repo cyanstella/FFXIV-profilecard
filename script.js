@@ -4,10 +4,6 @@
 
 const MAX_LENGTH = 80;
 
-/*
-  最大2行
-  = 改行は1回まで
-*/
 const MAX_LINES = 2;
 
 
@@ -34,9 +30,6 @@ for (let i = 1; i <= 20; i++) {
 
   /* ==================================================
      ENTERキー制限
-
-     すでに2行ある場合、
-     3行目を作るEnterを無効化
   ================================================== */
 
   input.addEventListener(
@@ -73,7 +66,7 @@ for (let i = 1; i <= 20; i++) {
 
 
     /*
-      Windows形式の改行を統一
+      改行コード統一
     */
 
     value =
@@ -91,10 +84,7 @@ for (let i = 1; i <= 20; i++) {
 
 
     /*
-      3行以上になっていた場合は
-      2行までに制限
-
-      コピペした場合にも有効
+      最大2行
     */
 
     let lines =
@@ -131,10 +121,6 @@ for (let i = 1; i <= 20; i++) {
     }
 
 
-    /*
-      textareaへ修正内容を戻す
-    */
-
     if (input.value !== value) {
 
       input.value =
@@ -151,28 +137,15 @@ for (let i = 1; i <= 20; i++) {
       text.length;
 
 
-    /*
-      プレビューへ反映
-    */
-
     answer.textContent =
       text;
 
-
-    /*
-      文字数によって
-      フォントサイズを変更
-    */
 
     answer.style.fontSize =
       getAnswerFontSize(
         length
       );
 
-
-    /*
-      文字数カウンター
-    */
 
     if (count) {
 

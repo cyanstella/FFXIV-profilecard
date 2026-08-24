@@ -109,12 +109,33 @@ body {
   margin-top: 10px;
 }
 
-.site-description strong {
+
+/* ==================================================
+   HASHTAG LINK
+================================================== */
+
+.hashtag-link {
   color: #d6c19a;
 
   font-weight: 600;
 
   letter-spacing: 0.04em;
+
+  text-decoration: none;
+
+  border-bottom:
+    1px solid
+    rgba(214, 193, 154, 0.45);
+
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.hashtag-link:hover {
+  color: #ffffff;
+
+  border-bottom-color: #ffffff;
 }
 
 
@@ -340,11 +361,6 @@ button:disabled {
   font-size: 15px;
   font-weight: 600;
 }
-
-
-/*
-  回答欄は最大2行を想定した高さに固定
-*/
 
 .input-question textarea {
   display: block;
