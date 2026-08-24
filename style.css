@@ -319,8 +319,7 @@ button:hover {
   background: #b79a66;
   color: #111111;
 
-  transform:
-    translateY(-1px);
+  transform: translateY(-1px);
 }
 
 button:disabled {
@@ -556,13 +555,24 @@ button:disabled {
 
 /* ==================================================
    CARD HEADER
-   外枠と同じ金色
 ================================================== */
 
 .card-header {
   margin-bottom: 50px;
 
   text-align: center;
+}
+
+
+/*
+  1枚目だけ
+  タイトルと質問一覧の間を広げる
+
+  50px → 80px
+*/
+
+#card-1 .card-header {
+  margin-bottom: 80px;
 }
 
 
@@ -725,9 +735,6 @@ button:disabled {
 
 /* ==================================================
    WHITE TEXT
-
-   ※カード見出しは対象外
-   常に金色
 ================================================== */
 
 .profile-card.text-white {
@@ -756,9 +763,6 @@ button:disabled {
 
 /* ==================================================
    BLACK TEXT
-
-   ※カード見出しは対象外
-   常に金色
 ================================================== */
 
 .profile-card.text-black {
@@ -785,10 +789,9 @@ button:disabled {
 }
 
 
-/*
-  白黒設定より後に指定して
-  カード見出しを確実に金色へ固定
-*/
+/* ==================================================
+   見出しは常に金色
+================================================== */
 
 .profile-card .small-title,
 .profile-card .card-header h2,
@@ -934,6 +937,15 @@ button:disabled {
     margin-bottom: 30px;
   }
 
+
+  /*
+    1枚目だけ余白を広めに維持
+  */
+
+  #card-1 .card-header {
+    margin-bottom: 60px;
+  }
+
   .card-header h2 {
     font-size: 36px;
   }
@@ -1053,6 +1065,16 @@ button:disabled {
     margin-bottom: 4%;
   }
 
+
+  /*
+    モバイルでも
+    1枚目のタイトル下だけ少し広く
+  */
+
+  #card-1 .card-header {
+    margin-bottom: 7%;
+  }
+
   .small-title {
     font-size:
       clamp(
@@ -1161,10 +1183,28 @@ button:disabled {
     90px !important;
 }
 
-.profile-card.exporting .card-header {
+
+/*
+  回答カードは従来通り
+*/
+
+.profile-card.exporting.answer-card .card-header {
   margin-bottom:
     36px !important;
 }
+
+
+/*
+  1枚目はタイトル下を広くする
+
+  PNGにしても80pxを維持
+*/
+
+#card-1.exporting .card-header {
+  margin-bottom:
+    80px !important;
+}
+
 
 .profile-card.exporting .small-title {
   color:
