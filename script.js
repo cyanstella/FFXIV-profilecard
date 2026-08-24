@@ -31,7 +31,7 @@ for (let i = 1; i <= 20; i++) {
   const updateAnswer = () => {
 
     /*
-      念のためJS側でも80文字に制限
+      念のためJS側でも最大80文字
     */
 
     if (input.value.length > MAX_LENGTH) {
@@ -54,7 +54,7 @@ for (let i = 1; i <= 20; i++) {
 
 
     /*
-      回答をカードへ表示
+      回答表示
     */
 
     answer.textContent =
@@ -62,7 +62,8 @@ for (let i = 1; i <= 20; i++) {
 
 
     /*
-      文字数によってフォントサイズ変更
+      文字数に合わせて
+      フォントサイズを自動変更
     */
 
     answer.style.fontSize =
@@ -70,7 +71,7 @@ for (let i = 1; i <= 20; i++) {
 
 
     /*
-      カウンター
+      文字数カウンター
     */
 
     if (count) {
@@ -120,15 +121,10 @@ for (let i = 1; i <= 20; i++) {
 
 
 /* =========================
-   フォントサイズ判定
+   フォントサイズ
 ========================= */
 
 function getAnswerFontSize(length) {
-
-  /*
-    短文は大きく、
-    長文ほど少しずつ小さくする
-  */
 
   if (length <= 25) {
 
@@ -157,27 +153,68 @@ function getAnswerFontSize(length) {
 
 
 /* =========================
-   背景画像
+   画像をData URL化する関数
 ========================= */
 
-const backgroundUpload =
+function readImageAsDataURL(file) {
+
+  return new Promise(
+    (resolve, reject) => {
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        () => {
+
+          resolve(
+            reader.result
+          );
+
+        };
+
+
+      reader.onerror =
+        () => {
+
+          reject(
+            reader.error
+          );
+
+        };
+
+
+      reader.readAsDataURL(file);
+
+    }
+  );
+
+}
+
+
+/* =========================
+   質問背景
+========================= */
+
+const questionBackgroundUpload =
   document.getElementById(
-    "background-upload"
+    "question-background-upload"
   );
 
 
-const cardBackgrounds =
+const questionBackgrounds =
   document.querySelectorAll(
-    ".card-background"
+    ".question-background"
   );
 
 
-let currentBackgroundData = null;
+let questionBackgroundData = null;
 
 
-backgroundUpload.addEventListener(
+questionBackgroundUpload.addEventListener(
   "change",
-  (event) => {
+  async (event) => {
 
     const file =
       event.target.files[0];
@@ -188,55 +225,119 @@ backgroundUpload.addEventListener(
     }
 
 
-    const reader =
-      new FileReader();
+    try {
+
+      questionBackgroundData =
+        await readImageAsDataURL(file);
 
 
-    reader.onload =
-      (e) => {
+      questionBackgrounds.forEach(
+        (background) => {
 
-        currentBackgroundData =
-          e.target.result;
+          background.style.backgroundImage =
+            `url("${questionBackgroundData}")`;
 
+        }
+      );
 
-        cardBackgrounds.forEach(
-          (background) => {
+    } catch (error) {
 
-            background.style.backgroundImage =
-              `url("${currentBackgroundData}")`;
-
-          }
-        );
-
-      };
+      console.error(error);
 
 
-    reader.readAsDataURL(file);
+      alert(
+        "質問用背景画像の読み込みに失敗しました。"
+      );
+
+    }
 
   }
 );
 
 
 /* =========================
-   背景画像を解除
+   回答背景
 ========================= */
 
-const removeBackgroundButton =
+const answerBackgroundUpload =
   document.getElementById(
-    "remove-background"
+    "answer-background-upload"
   );
 
 
-removeBackgroundButton.addEventListener(
+const answerBackgrounds =
+  document.querySelectorAll(
+    ".answer-background"
+  );
+
+
+let answerBackgroundData = null;
+
+
+answerBackgroundUpload.addEventListener(
+  "change",
+  async (event) => {
+
+    const file =
+      event.target.files[0];
+
+
+    if (!file) {
+      return;
+    }
+
+
+    try {
+
+      answerBackgroundData =
+        await readImageAsDataURL(file);
+
+
+      answerBackgrounds.forEach(
+        (background) => {
+
+          background.style.backgroundImage =
+            `url("${answerBackgroundData}")`;
+
+        }
+      );
+
+    } catch (error) {
+
+      console.error(error);
+
+
+      alert(
+        "回答用背景画像の読み込みに失敗しました。"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================
+   質問背景解除
+========================= */
+
+const removeQuestionBackground =
+  document.getElementById(
+    "remove-question-background"
+  );
+
+
+removeQuestionBackground.addEventListener(
   "click",
   () => {
 
-    currentBackgroundData = null;
-
-    backgroundUpload.value = "";
+    questionBackgroundData = null;
 
 
-    cardBackgrounds.forEach(
+    questionBackgroundUpload.value = "";
+
+
+    questionBackgrounds.forEach(
       (background) => {
 
         background.style.backgroundImage = "";
@@ -249,38 +350,70 @@ removeBackgroundButton.addEventListener(
 
 
 /* =========================
-   背景の暗さ
+   回答背景解除
 ========================= */
 
-const opacityControl =
+const removeAnswerBackground =
   document.getElementById(
-    "overlay-opacity"
+    "remove-answer-background"
   );
 
 
-const opacityValue =
+removeAnswerBackground.addEventListener(
+  "click",
+  () => {
+
+    answerBackgroundData = null;
+
+
+    answerBackgroundUpload.value = "";
+
+
+    answerBackgrounds.forEach(
+      (background) => {
+
+        background.style.backgroundImage = "";
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================
+   質問背景の暗さ
+========================= */
+
+const questionOpacityControl =
   document.getElementById(
-    "opacity-value"
+    "question-overlay-opacity"
   );
 
 
-const overlays =
+const questionOpacityValue =
+  document.getElementById(
+    "question-opacity-value"
+  );
+
+
+const questionOverlays =
   document.querySelectorAll(
-    ".card-overlay"
+    ".question-overlay"
   );
 
 
-opacityControl.addEventListener(
+questionOpacityControl.addEventListener(
   "input",
   () => {
 
     const opacity =
       Number(
-        opacityControl.value
+        questionOpacityControl.value
       );
 
 
-    overlays.forEach(
+    questionOverlays.forEach(
       (overlay) => {
 
         overlay.style.backgroundColor =
@@ -290,7 +423,56 @@ opacityControl.addEventListener(
     );
 
 
-    opacityValue.textContent =
+    questionOpacityValue.textContent =
+      `${Math.round(opacity * 100)}%`;
+
+  }
+);
+
+
+/* =========================
+   回答背景の暗さ
+========================= */
+
+const answerOpacityControl =
+  document.getElementById(
+    "answer-overlay-opacity"
+  );
+
+
+const answerOpacityValue =
+  document.getElementById(
+    "answer-opacity-value"
+  );
+
+
+const answerOverlays =
+  document.querySelectorAll(
+    ".answer-overlay"
+  );
+
+
+answerOpacityControl.addEventListener(
+  "input",
+  () => {
+
+    const opacity =
+      Number(
+        answerOpacityControl.value
+      );
+
+
+    answerOverlays.forEach(
+      (overlay) => {
+
+        overlay.style.backgroundColor =
+          `rgba(5, 10, 20, ${opacity})`;
+
+      }
+    );
+
+
+    answerOpacityValue.textContent =
       `${Math.round(opacity * 100)}%`;
 
   }
@@ -313,6 +495,7 @@ generateButton.addEventListener(
 
     generateButton.disabled = true;
 
+
     generateButton.textContent =
       "画像を生成しています…";
 
@@ -320,16 +503,18 @@ generateButton.addEventListener(
     try {
 
       /*
-        フォント読み込みを待つ
+        フォント読み込み待ち
       */
 
       if (document.fonts) {
+
         await document.fonts.ready;
+
       }
 
 
       /*
-        背景などの描画待ち
+        背景描画待ち
       */
 
       await sleep(500);
@@ -344,9 +529,7 @@ generateButton.addEventListener(
 
 
         /*
-          画面上ではレスポンシブで
-          900px等になっている場合があるので、
-          出力時のみ1200×1200に固定
+          現在のstyleを保存
         */
 
         const originalWidth =
@@ -356,11 +539,18 @@ generateButton.addEventListener(
           card.style.height;
 
 
+        /*
+          出力時は1200×1200固定
+        */
+
         card.style.width =
           "1200px";
 
         card.style.height =
           "1200px";
+
+
+        await sleep(100);
 
 
         const dataUrl =

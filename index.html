@@ -8,6 +8,7 @@
 
   <link rel="stylesheet" href="./style.css">
 
+  <!-- HTMLをPNG化 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
 </head>
 
@@ -17,6 +18,7 @@
     <h1>FFXIV CHARACTER PROFILE</h1>
     <p>キャラクター設定 20の質問</p>
   </header>
+
 
   <main>
 
@@ -28,47 +30,114 @@
 
       <h2>カード設定</h2>
 
-      <div class="setting-item">
-        <label for="background-upload">
-          背景画像
-        </label>
 
-        <input
-          type="file"
-          id="background-upload"
-          accept="image/png, image/jpeg, image/webp"
+      <!-- 質問用背景 -->
+
+      <div class="setting-group">
+
+        <h3>質問カード背景</h3>
+
+        <div class="setting-item">
+
+          <label for="question-background-upload">
+            背景画像
+          </label>
+
+          <input
+            type="file"
+            id="question-background-upload"
+            accept="image/png, image/jpeg, image/webp"
+          >
+
+        </div>
+
+
+        <div class="setting-item">
+
+          <label for="question-overlay-opacity">
+            背景の暗さ
+          </label>
+
+          <input
+            type="range"
+            id="question-overlay-opacity"
+            min="0"
+            max="0.9"
+            step="0.05"
+            value="0.45"
+          >
+
+          <span id="question-opacity-value">
+            45%
+          </span>
+
+        </div>
+
+
+        <button
+          type="button"
+          id="remove-question-background"
         >
+          質問背景を解除
+        </button>
+
       </div>
 
-      <div class="setting-item">
 
-        <label for="overlay-opacity">
-          背景の暗さ
-        </label>
+      <!-- 回答用背景 -->
 
-        <input
-          type="range"
-          id="overlay-opacity"
-          min="0"
-          max="0.9"
-          step="0.05"
-          value="0.45"
+      <div class="setting-group">
+
+        <h3>回答カード背景</h3>
+
+        <div class="setting-item">
+
+          <label for="answer-background-upload">
+            背景画像
+          </label>
+
+          <input
+            type="file"
+            id="answer-background-upload"
+            accept="image/png, image/jpeg, image/webp"
+          >
+
+        </div>
+
+
+        <div class="setting-item">
+
+          <label for="answer-overlay-opacity">
+            背景の暗さ
+          </label>
+
+          <input
+            type="range"
+            id="answer-overlay-opacity"
+            min="0"
+            max="0.9"
+            step="0.05"
+            value="0.45"
+          >
+
+          <span id="answer-opacity-value">
+            45%
+          </span>
+
+        </div>
+
+
+        <button
+          type="button"
+          id="remove-answer-background"
         >
-
-        <span id="opacity-value">
-          45%
-        </span>
+          回答背景を解除
+        </button>
 
       </div>
-
-      <button
-        type="button"
-        id="remove-background"
-      >
-        背景画像を解除
-      </button>
 
     </section>
+
 
 
     <!-- =========================
@@ -78,6 +147,7 @@
     <section class="input-area">
 
       <h2>回答を入力</h2>
+
 
       <div class="input-question">
         <label for="q1">
@@ -421,6 +491,7 @@
     </section>
 
 
+
     <!-- =========================
          プレビュー
     ========================== -->
@@ -430,12 +501,19 @@
       <h2>プレビュー</h2>
 
 
-      <!-- 1枚目 -->
+      <!-- =========================
+           1枚目
+      ========================== -->
 
-      <section class="profile-card" id="card-1">
+      <section
+        class="profile-card"
+        id="card-1"
+      >
 
-        <div class="card-background"></div>
-        <div class="card-overlay"></div>
+        <div class="card-background question-background"></div>
+
+        <div class="card-overlay question-overlay"></div>
+
 
         <div class="card-content">
 
@@ -455,7 +533,14 @@
 
           <div class="question-columns">
 
-            <ol class="question-list" start="1">
+
+            <!-- 左列 1〜10 -->
+
+            <ol
+              class="question-list"
+              start="1"
+            >
+
               <li>キャラクター名と、その名前の由来は？</li>
               <li>出身地はどこ？</li>
               <li>年齢・誕生日は？</li>
@@ -466,10 +551,17 @@
               <li>戦う理由、冒険を続ける理由は？</li>
               <li>大切にしている人・場所・物は？</li>
               <li>密かに抱えている夢や目標は？</li>
+
             </ol>
 
 
-            <ol class="question-list" start="11">
+            <!-- 右列 11〜20 -->
+
+            <ol
+              class="question-list"
+              start="11"
+            >
+
               <li>一番信頼している相手は？</li>
               <li>苦手なタイプの人は？</li>
               <li>怒るとどうなる？</li>
@@ -480,9 +572,16 @@
               <li>過去に後悔していることは？</li>
               <li>誰にも言っていない秘密は？</li>
               <li>このキャラクターを一言で紹介すると？</li>
+
             </ol>
 
           </div>
+
+
+          <p class="copyright">
+            © SQUARE ENIX
+          </p>
+
 
           <p class="page-number">
             1 / 4
@@ -493,54 +592,138 @@
       </section>
 
 
-      <!-- 2枚目 -->
 
-      <section class="profile-card answer-card" id="card-2">
+      <!-- =========================
+           2枚目
+      ========================== -->
 
-        <div class="card-background"></div>
-        <div class="card-overlay"></div>
+      <section
+        class="profile-card answer-card"
+        id="card-2"
+      >
+
+        <div class="card-background answer-background"></div>
+
+        <div class="card-overlay answer-overlay"></div>
+
 
         <div class="card-content">
 
           <header class="card-header">
-            <p class="small-title">CHARACTER PROFILE</p>
-            <h2>Q01 - Q07</h2>
+
+            <p class="small-title">
+              CHARACTER PROFILE
+            </p>
+
+            <h2>
+              Q01 - Q07
+            </h2>
+
           </header>
 
-          <div class="answer-block">
-            <p class="question">01. キャラクター名と、その名前の由来は？</p>
-            <p class="answer-text" id="answer-1"></p>
-          </div>
 
           <div class="answer-block">
-            <p class="question">02. 出身地はどこ？</p>
-            <p class="answer-text" id="answer-2"></p>
+
+            <p class="question">
+              01. キャラクター名と、その名前の由来は？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-1"
+            ></p>
+
           </div>
 
-          <div class="answer-block">
-            <p class="question">03. 年齢・誕生日は？</p>
-            <p class="answer-text" id="answer-3"></p>
-          </div>
 
           <div class="answer-block">
-            <p class="question">04. 性格を一言で表すと？</p>
-            <p class="answer-text" id="answer-4"></p>
+
+            <p class="question">
+              02. 出身地はどこ？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-2"
+            ></p>
+
           </div>
 
-          <div class="answer-block">
-            <p class="question">05. 得意なこと・苦手なことは？</p>
-            <p class="answer-text" id="answer-5"></p>
-          </div>
 
           <div class="answer-block">
-            <p class="question">06. 好きな食べ物・嫌いな食べ物は？</p>
-            <p class="answer-text" id="answer-6"></p>
+
+            <p class="question">
+              03. 年齢・誕生日は？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-3"
+            ></p>
+
           </div>
 
+
           <div class="answer-block">
-            <p class="question">07. 普段はどんな仕事や生活をしている？</p>
-            <p class="answer-text" id="answer-7"></p>
+
+            <p class="question">
+              04. 性格を一言で表すと？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-4"
+            ></p>
+
           </div>
+
+
+          <div class="answer-block">
+
+            <p class="question">
+              05. 得意なこと・苦手なことは？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-5"
+            ></p>
+
+          </div>
+
+
+          <div class="answer-block">
+
+            <p class="question">
+              06. 好きな食べ物・嫌いな食べ物は？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-6"
+            ></p>
+
+          </div>
+
+
+          <div class="answer-block">
+
+            <p class="question">
+              07. 普段はどんな仕事や生活をしている？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-7"
+            ></p>
+
+          </div>
+
+
+          <p class="copyright">
+            © SQUARE ENIX
+          </p>
+
 
           <p class="page-number">
             2 / 4
@@ -551,54 +734,138 @@
       </section>
 
 
-      <!-- 3枚目 -->
 
-      <section class="profile-card answer-card" id="card-3">
+      <!-- =========================
+           3枚目
+      ========================== -->
 
-        <div class="card-background"></div>
-        <div class="card-overlay"></div>
+      <section
+        class="profile-card answer-card"
+        id="card-3"
+      >
+
+        <div class="card-background answer-background"></div>
+
+        <div class="card-overlay answer-overlay"></div>
+
 
         <div class="card-content">
 
           <header class="card-header">
-            <p class="small-title">CHARACTER PROFILE</p>
-            <h2>Q08 - Q14</h2>
+
+            <p class="small-title">
+              CHARACTER PROFILE
+            </p>
+
+            <h2>
+              Q08 - Q14
+            </h2>
+
           </header>
 
-          <div class="answer-block">
-            <p class="question">08. 戦う理由、冒険を続ける理由は？</p>
-            <p class="answer-text" id="answer-8"></p>
-          </div>
 
           <div class="answer-block">
-            <p class="question">09. 大切にしている人・場所・物は？</p>
-            <p class="answer-text" id="answer-9"></p>
+
+            <p class="question">
+              08. 戦う理由、冒険を続ける理由は？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-8"
+            ></p>
+
           </div>
 
-          <div class="answer-block">
-            <p class="question">10. 密かに抱えている夢や目標は？</p>
-            <p class="answer-text" id="answer-10"></p>
-          </div>
 
           <div class="answer-block">
-            <p class="question">11. 一番信頼している相手は？</p>
-            <p class="answer-text" id="answer-11"></p>
+
+            <p class="question">
+              09. 大切にしている人・場所・物は？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-9"
+            ></p>
+
           </div>
 
-          <div class="answer-block">
-            <p class="question">12. 苦手なタイプの人は？</p>
-            <p class="answer-text" id="answer-12"></p>
-          </div>
 
           <div class="answer-block">
-            <p class="question">13. 怒るとどうなる？</p>
-            <p class="answer-text" id="answer-13"></p>
+
+            <p class="question">
+              10. 密かに抱えている夢や目標は？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-10"
+            ></p>
+
           </div>
 
+
           <div class="answer-block">
-            <p class="question">14. 落ち込んだときはどう過ごす？</p>
-            <p class="answer-text" id="answer-14"></p>
+
+            <p class="question">
+              11. 一番信頼している相手は？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-11"
+            ></p>
+
           </div>
+
+
+          <div class="answer-block">
+
+            <p class="question">
+              12. 苦手なタイプの人は？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-12"
+            ></p>
+
+          </div>
+
+
+          <div class="answer-block">
+
+            <p class="question">
+              13. 怒るとどうなる？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-13"
+            ></p>
+
+          </div>
+
+
+          <div class="answer-block">
+
+            <p class="question">
+              14. 落ち込んだときはどう過ごす？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-14"
+            ></p>
+
+          </div>
+
+
+          <p class="copyright">
+            © SQUARE ENIX
+          </p>
+
 
           <p class="page-number">
             3 / 4
@@ -609,49 +876,124 @@
       </section>
 
 
-      <!-- 4枚目 -->
 
-      <section class="profile-card answer-card" id="card-4">
+      <!-- =========================
+           4枚目
+      ========================== -->
 
-        <div class="card-background"></div>
-        <div class="card-overlay"></div>
+      <section
+        class="profile-card answer-card"
+        id="card-4"
+      >
+
+        <div class="card-background answer-background"></div>
+
+        <div class="card-overlay answer-overlay"></div>
+
 
         <div class="card-content">
 
           <header class="card-header">
-            <p class="small-title">CHARACTER PROFILE</p>
-            <h2>Q15 - Q20</h2>
+
+            <p class="small-title">
+              CHARACTER PROFILE
+            </p>
+
+            <h2>
+              Q15 - Q20
+            </h2>
+
           </header>
 
-          <div class="answer-block">
-            <p class="question">15. 恋愛には積極的？それとも慎重？</p>
-            <p class="answer-text" id="answer-15"></p>
-          </div>
 
           <div class="answer-block">
-            <p class="question">16. 休日があったら何をして過ごす？</p>
-            <p class="answer-text" id="answer-16"></p>
+
+            <p class="question">
+              15. 恋愛には積極的？それとも慎重？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-15"
+            ></p>
+
           </div>
 
-          <div class="answer-block">
-            <p class="question">17. 一番怖いものは？</p>
-            <p class="answer-text" id="answer-17"></p>
-          </div>
 
           <div class="answer-block">
-            <p class="question">18. 過去に後悔していることは？</p>
-            <p class="answer-text" id="answer-18"></p>
+
+            <p class="question">
+              16. 休日があったら何をして過ごす？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-16"
+            ></p>
+
           </div>
 
-          <div class="answer-block">
-            <p class="question">19. 誰にも言っていない秘密は？</p>
-            <p class="answer-text" id="answer-19"></p>
-          </div>
 
           <div class="answer-block">
-            <p class="question">20. このキャラクターを一言で紹介すると？</p>
-            <p class="answer-text" id="answer-20"></p>
+
+            <p class="question">
+              17. 一番怖いものは？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-17"
+            ></p>
+
           </div>
+
+
+          <div class="answer-block">
+
+            <p class="question">
+              18. 過去に後悔していることは？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-18"
+            ></p>
+
+          </div>
+
+
+          <div class="answer-block">
+
+            <p class="question">
+              19. 誰にも言っていない秘密は？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-19"
+            ></p>
+
+          </div>
+
+
+          <div class="answer-block">
+
+            <p class="question">
+              20. このキャラクターを一言で紹介すると？
+            </p>
+
+            <p
+              class="answer-text"
+              id="answer-20"
+            ></p>
+
+          </div>
+
+
+          <p class="copyright">
+            © SQUARE ENIX
+          </p>
+
 
           <p class="page-number">
             4 / 4
@@ -662,6 +1004,7 @@
       </section>
 
     </section>
+
 
 
     <!-- =========================
