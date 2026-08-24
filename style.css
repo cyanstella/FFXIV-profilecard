@@ -157,7 +157,7 @@ body {
 
 
 /* ==================================================
-   SETTINGS / INPUT
+   SETTINGS
 ================================================== */
 
 .settings,
@@ -361,14 +361,11 @@ button:disabled {
   font-weight: 600;
 }
 
-.input-question textarea {
+.input-question textarea,
+.input-question input[type="text"] {
   display: block;
 
   width: 100%;
-
-  height: 72px;
-  min-height: 72px;
-  max-height: 72px;
 
   padding: 12px 15px;
 
@@ -389,14 +386,63 @@ button:disabled {
   font-size: 16px;
 
   line-height: 1.45;
+}
+
+.input-question textarea {
+  height: 72px;
+  min-height: 72px;
+  max-height: 72px;
 
   resize: none;
 
   overflow-y: hidden;
 }
 
-.input-question textarea:focus {
+.input-question input[type="text"] {
+  height: 48px;
+}
+
+.input-question textarea:focus,
+.input-question input[type="text"]:focus {
   border-color: #b79a66;
+}
+
+.input-question input[type="text"]::placeholder {
+  color: #626b78;
+}
+
+
+/* ==================================================
+   CUSTOM QUESTION
+================================================== */
+
+.custom-question-block {
+  margin-top: 42px;
+
+  padding-top: 28px;
+
+  border-top:
+    1px solid
+    #343d4d;
+}
+
+.custom-question-title {
+  margin-bottom: 22px;
+
+  color: #d6c19a;
+
+  font-family:
+    Georgia,
+    "Yu Mincho",
+    serif;
+
+  font-size: 18px;
+
+  font-weight: 600;
+}
+
+.custom-answer-label {
+  margin-top: 22px;
 }
 
 
@@ -547,8 +593,7 @@ button:disabled {
   background-size: cover;
 
   background-position:
-    50%
-    50%;
+    50% 50%;
 
   background-repeat:
     no-repeat;
@@ -719,13 +764,6 @@ button:disabled {
   line-height: 1.4;
 }
 
-
-/*
-   --answer-font-size は
-   JSで1200px出力時に2行以内になる
-   サイズを自動計算
-*/
-
 .answer-text {
   margin: 0;
 
@@ -760,7 +798,7 @@ button:disabled {
 
 
 /* ==================================================
-   WHITE TEXT
+   WHITE
 ================================================== */
 
 .profile-card.text-white {
@@ -788,7 +826,7 @@ button:disabled {
 
 
 /* ==================================================
-   BLACK TEXT
+   BLACK
 ================================================== */
 
 .profile-card.text-black {
@@ -874,7 +912,7 @@ button:disabled {
 
 
 /* ==================================================
-   RIGHT SIDE PREVIEW
+   RIGHT PREVIEW
 ================================================== */
 
 .preview-panel
@@ -1003,11 +1041,6 @@ button:disabled {
 }
 
 
-/*
-  プレビューでは1200px版の
-  約55%で表示
-*/
-
 .preview-panel
 .profile-card:not(.exporting)
 .answer-text {
@@ -1058,7 +1091,7 @@ button:disabled {
 
 
 /* ==================================================
-   EXPORT AREA
+   EXPORT
 ================================================== */
 
 .export-area {
@@ -1133,14 +1166,6 @@ button:disabled {
 /* ==================================================
    PNG EXPORT
 ================================================== */
-
-/*
-  重要：
-  left:-10000px は使用しない。
-
-  html-to-imageで完全透明になる場合があるため、
-  元の場所で1200pxへ拡大してキャプチャする。
-*/
 
 .profile-card.exporting {
   position: relative !important;
@@ -1266,11 +1291,6 @@ button:disabled {
     1.4 !important;
 }
 
-
-/*
-  回答文字はJSが計算したサイズを
-  そのまま使用
-*/
 
 .profile-card.exporting
 .answer-text {

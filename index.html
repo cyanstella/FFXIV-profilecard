@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
@@ -908,7 +909,7 @@
       <h2>回答を入力</h2>
 
       <p class="input-guide">
-        各回答は最大80文字・2行まで入力できます。
+        各回答は最大80文字・2行まで入力できます。20番のみ質問文を自由に設定できます。
       </p>
 
 
@@ -1121,14 +1122,49 @@
       </div>
 
 
-      <div class="input-question">
-        <label for="q20">
-          20. 最後に、このキャラクターを一言で紹介すると？
+
+      <!-- ==================================================
+           Q20 自由質問
+      ================================================== -->
+
+      <div class="input-question custom-question-block">
+
+        <div class="custom-question-title">
+          20. 自由質問
+        </div>
+
+        <label for="q20-title">
+          質問文
         </label>
-        <textarea id="q20" maxlength="80"></textarea>
+
+        <input
+          type="text"
+          id="q20-title"
+          maxlength="40"
+          placeholder="例：このキャラクターが一番幸せを感じる瞬間は？"
+        >
+
+        <div class="character-count">
+          <span id="count-q20-title">0</span> / 40
+        </div>
+
+
+        <label
+          for="q20"
+          class="custom-answer-label"
+        >
+          回答
+        </label>
+
+        <textarea
+          id="q20"
+          maxlength="80"
+        ></textarea>
+
         <div class="character-count">
           <span id="count-q20">0</span> / 80
         </div>
+
       </div>
 
     </section>
@@ -1202,6 +1238,7 @@
               class="question-list"
               start="1"
             >
+
               <li>キャラクター名と、その名前の由来は？</li>
               <li>出身地はどこ？</li>
               <li>年齢・誕生日は？</li>
@@ -1212,6 +1249,7 @@
               <li>戦う理由、冒険を続ける理由は？</li>
               <li>大切にしている人・場所・物は？</li>
               <li>密かに抱えている夢や目標は？</li>
+
             </ol>
 
 
@@ -1219,6 +1257,7 @@
               class="question-list"
               start="11"
             >
+
               <li>一番信頼している相手は？</li>
               <li>苦手なタイプの人は？</li>
               <li>怒るとどうなる？</li>
@@ -1228,7 +1267,11 @@
               <li>一番怖いものは？</li>
               <li>過去に後悔していることは？</li>
               <li>誰にも言っていない秘密は？</li>
-              <li>このキャラクターを一言で紹介すると？</li>
+
+              <li id="question-20-preview">
+                自由質問
+              </li>
+
             </ol>
 
           </div>
@@ -1555,10 +1598,19 @@
 
 
           <div class="answer-block">
-            <p class="question">
-              20. このキャラクターを一言で紹介すると？
+
+            <p
+              class="question"
+              id="answer-question-20"
+            >
+              20. 自由質問
             </p>
-            <p class="answer-text" id="answer-20"></p>
+
+            <p
+              class="answer-text"
+              id="answer-20"
+            ></p>
+
           </div>
 
 

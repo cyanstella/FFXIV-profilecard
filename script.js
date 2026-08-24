@@ -5,21 +5,12 @@
 const MAX_LENGTH = 80;
 const MAX_LINES = 2;
 
+const CUSTOM_QUESTION_MAX_LENGTH = 40;
+
 
 /* ==================================================
    回答文字測定用
 ================================================== */
-
-/*
-  書き出しカードでは
-
-  1200px
-  - 左右padding 90px × 2
-  = 回答欄 約1020px
-
-  この幅で実際に文字を測定して、
-  2行を超える場合はフォントを縮小する。
-*/
 
 const answerMeasure =
   document.createElement("div");
@@ -34,50 +25,30 @@ answerMeasure.setAttribute(
 Object.assign(
   answerMeasure.style,
   {
-    position:
-      "fixed",
+    position: "fixed",
+    left: "-99999px",
+    top: "0",
+    visibility: "hidden",
+    pointerEvents: "none",
 
-    left:
-      "-99999px",
+    width: "1020px",
 
-    top:
-      "0",
-
-    visibility:
-      "hidden",
-
-    pointerEvents:
-      "none",
-
-    width:
-      "1020px",
-
-    margin:
-      "0",
-
-    padding:
-      "0",
-
-    border:
-      "0",
+    margin: "0",
+    padding: "0",
+    border: "0",
 
     fontFamily:
       '"Hiragino Mincho ProN", "Yu Mincho", serif',
 
-    fontWeight:
-      "400",
+    fontWeight: "400",
 
-    lineHeight:
-      "1.42",
+    lineHeight: "1.42",
 
-    whiteSpace:
-      "pre-wrap",
+    whiteSpace: "pre-wrap",
 
-    overflowWrap:
-      "anywhere",
+    overflowWrap: "anywhere",
 
-    wordBreak:
-      "break-word"
+    wordBreak: "break-word"
   }
 );
 
@@ -119,9 +90,7 @@ for (
     !input ||
     !answer
   ) {
-
     continue;
-
   }
 
 
@@ -136,9 +105,7 @@ for (
       if (
         event.key !== "Enter"
       ) {
-
         return;
-
       }
 
 
@@ -152,9 +119,7 @@ for (
         currentLines >=
         MAX_LINES
       ) {
-
         event.preventDefault();
-
       }
 
     }
@@ -162,7 +127,7 @@ for (
 
 
   /* ==================================================
-     更新
+     回答更新
   ================================================== */
 
   const updateAnswer =
@@ -171,8 +136,6 @@ for (
       let value =
         input.value;
 
-
-      /* 改行コード統一 */
 
       value =
         value.replace(
@@ -188,7 +151,7 @@ for (
         );
 
 
-      /* 明示改行は最大2行 */
+      /* 最大2行 */
 
       let lines =
         value.split("\n");
@@ -251,11 +214,6 @@ for (
         text;
 
 
-      /*
-        文字数による基準サイズを取得後、
-        さらに実際の横幅で2行に収まるか測定。
-      */
-
       const baseSize =
         getAnswerBaseFontSize(
           length
@@ -274,8 +232,6 @@ for (
         `${fittedSize}px`
       );
 
-
-      /* 文字数 */
 
       if (count) {
 
@@ -331,6 +287,161 @@ for (
 
 
 /* ==================================================
+   Q20 自由質問
+================================================== */
+
+const q20Title =
+  document.getElementById(
+    "q20-title"
+  );
+
+
+const q20TitleCount =
+  document.getElementById(
+    "count-q20-title"
+  );
+
+
+const question20Preview =
+  document.getElementById(
+    "question-20-preview"
+  );
+
+
+const answerQuestion20 =
+  document.getElementById(
+    "answer-question-20"
+  );
+
+
+function updateQ20Title() {
+
+  if (
+    !q20Title ||
+    !question20Preview ||
+    !answerQuestion20
+  ) {
+    return;
+  }
+
+
+  let value =
+    q20Title.value;
+
+
+  /*
+    改行を含ませない
+  */
+
+  value =
+    value.replace(
+      /[\r\n]/g,
+      ""
+    );
+
+
+  if (
+    value.length >
+    CUSTOM_QUESTION_MAX_LENGTH
+  ) {
+
+    value =
+      value.slice(
+        0,
+        CUSTOM_QUESTION_MAX_LENGTH
+      );
+
+  }
+
+
+  if (
+    q20Title.value !==
+    value
+  ) {
+
+    q20Title.value =
+      value;
+
+  }
+
+
+  const trimmedValue =
+    value.trim();
+
+
+  const displayText =
+    trimmedValue ||
+    "自由質問";
+
+
+  question20Preview.textContent =
+    displayText;
+
+
+  answerQuestion20.textContent =
+    `20. ${displayText}`;
+
+
+  if (
+    q20TitleCount
+  ) {
+
+    q20TitleCount.textContent =
+      value.length;
+
+
+    const counter =
+      q20TitleCount.parentElement;
+
+
+    counter.classList.remove(
+      "is-warning",
+      "is-limit"
+    );
+
+
+    if (
+      value.length >=
+      CUSTOM_QUESTION_MAX_LENGTH
+    ) {
+
+      counter.classList.add(
+        "is-limit"
+      );
+
+    }
+
+    else if (
+      value.length >= 32
+    ) {
+
+      counter.classList.add(
+        "is-warning"
+      );
+
+    }
+
+  }
+
+}
+
+
+if (
+  q20Title
+) {
+
+  q20Title.addEventListener(
+    "input",
+    updateQ20Title
+  );
+
+
+  updateQ20Title();
+
+}
+
+
+/* ==================================================
    基準フォントサイズ
 ================================================== */
 
@@ -341,27 +452,21 @@ function getAnswerBaseFontSize(
   if (
     length <= 25
   ) {
-
     return 24;
-
   }
 
 
   if (
     length <= 45
   ) {
-
     return 22;
-
   }
 
 
   if (
     length <= 60
   ) {
-
     return 20;
-
   }
 
 
@@ -371,7 +476,7 @@ function getAnswerBaseFontSize(
 
 
 /* ==================================================
-   2行に収まるサイズを自動計算
+   2行に収まるサイズを計算
 ================================================== */
 
 function getFittedAnswerFontSize(
@@ -380,15 +485,9 @@ function getFittedAnswerFontSize(
 ) {
 
   if (!text) {
-
     return baseSize;
-
   }
 
-
-  /*
-    最小14pxまで1pxずつ縮小
-  */
 
   const MIN_FONT_SIZE =
     14;
@@ -407,12 +506,6 @@ function getFittedAnswerFontSize(
     answerMeasure.textContent =
       text;
 
-
-    /*
-      line-height 1.42
-
-      2行分 + 丸め誤差を少し許容
-    */
 
     const twoLineHeight =
       size *
@@ -611,7 +704,7 @@ function setupCardSettings(
 
 
   /* ==================================================
-     背景アップロード
+     背景画像
   ================================================== */
 
   backgroundUpload.addEventListener(
@@ -625,9 +718,7 @@ function setupCardSettings(
 
 
       if (!file) {
-
         return;
-
       }
 
 
@@ -667,7 +758,7 @@ function setupCardSettings(
 
 
   /* ==================================================
-     位置・拡大
+     背景位置・拡大率
   ================================================== */
 
   function updateBackgroundTransform() {
@@ -827,9 +918,7 @@ function setupCardSettings(
             if (
               !radio.checked
             ) {
-
               return;
-
             }
 
 
@@ -866,9 +955,7 @@ function setupCardSettings(
             if (
               !radio.checked
             ) {
-
               return;
-
             }
 
 
@@ -1169,11 +1256,6 @@ generateButton.addEventListener(
           "exporting"
         );
 
-
-        /*
-          ブラウザに1200pxレイアウトを
-          確実に反映させる
-        */
 
         await nextFrame();
 
