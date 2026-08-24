@@ -7,8 +7,8 @@ const MAX_LENGTH = 80;
 
 /* =========================
    回答反映
-   文字数カウント
-   フォントサイズ自動調整
+   文字数
+   自動フォントサイズ
 ========================= */
 
 for (let i = 1; i <= 20; i++) {
@@ -30,10 +30,6 @@ for (let i = 1; i <= 20; i++) {
 
   const updateAnswer = () => {
 
-    /*
-      念のためJS側でも最大80文字
-    */
-
     if (input.value.length > MAX_LENGTH) {
 
       input.value =
@@ -48,31 +44,17 @@ for (let i = 1; i <= 20; i++) {
     const text =
       input.value;
 
-
     const length =
       text.length;
 
-
-    /*
-      回答表示
-    */
 
     answer.textContent =
       text;
 
 
-    /*
-      文字数に合わせて
-      フォントサイズを自動変更
-    */
-
     answer.style.fontSize =
       getAnswerFontSize(length);
 
-
-    /*
-      文字数カウンター
-    */
 
     if (count) {
 
@@ -127,33 +109,23 @@ for (let i = 1; i <= 20; i++) {
 function getAnswerFontSize(length) {
 
   if (length <= 25) {
-
     return "24px";
-
   }
-
 
   if (length <= 45) {
-
     return "22px";
-
   }
-
 
   if (length <= 60) {
-
     return "20px";
-
   }
 
-
   return "18px";
-
 }
 
 
 /* =========================
-   画像をData URL化する関数
+   Data URL
 ========================= */
 
 function readImageAsDataURL(file) {
@@ -165,24 +137,14 @@ function readImageAsDataURL(file) {
         new FileReader();
 
 
-      reader.onload =
-        () => {
-
-          resolve(
-            reader.result
-          );
-
-        };
+      reader.onload = () => {
+        resolve(reader.result);
+      };
 
 
-      reader.onerror =
-        () => {
-
-          reject(
-            reader.error
-          );
-
-        };
+      reader.onerror = () => {
+        reject(reader.error);
+      };
 
 
       reader.readAsDataURL(file);
@@ -243,7 +205,6 @@ questionBackgroundUpload.addEventListener(
     } catch (error) {
 
       console.error(error);
-
 
       alert(
         "質問用背景画像の読み込みに失敗しました。"
@@ -306,7 +267,6 @@ answerBackgroundUpload.addEventListener(
 
       console.error(error);
 
-
       alert(
         "回答用背景画像の読み込みに失敗しました。"
       );
@@ -318,67 +278,53 @@ answerBackgroundUpload.addEventListener(
 
 
 /* =========================
-   質問背景解除
+   背景解除
 ========================= */
 
-const removeQuestionBackground =
-  document.getElementById(
-    "remove-question-background"
+document
+  .getElementById("remove-question-background")
+  .addEventListener(
+    "click",
+    () => {
+
+      questionBackgroundData = null;
+
+      questionBackgroundUpload.value = "";
+
+
+      questionBackgrounds.forEach(
+        (background) => {
+
+          background.style.backgroundImage = "";
+
+        }
+      );
+
+    }
   );
 
 
-removeQuestionBackground.addEventListener(
-  "click",
-  () => {
+document
+  .getElementById("remove-answer-background")
+  .addEventListener(
+    "click",
+    () => {
 
-    questionBackgroundData = null;
+      answerBackgroundData = null;
 
-
-    questionBackgroundUpload.value = "";
-
-
-    questionBackgrounds.forEach(
-      (background) => {
-
-        background.style.backgroundImage = "";
-
-      }
-    );
-
-  }
-);
+      answerBackgroundUpload.value = "";
 
 
-/* =========================
-   回答背景解除
-========================= */
+      answerBackgrounds.forEach(
+        (background) => {
 
-const removeAnswerBackground =
-  document.getElementById(
-    "remove-answer-background"
+          background.style.backgroundImage = "";
+
+        }
+      );
+
+    }
   );
-
-
-removeAnswerBackground.addEventListener(
-  "click",
-  () => {
-
-    answerBackgroundData = null;
-
-
-    answerBackgroundUpload.value = "";
-
-
-    answerBackgrounds.forEach(
-      (background) => {
-
-        background.style.backgroundImage = "";
-
-      }
-    );
-
-  }
-);
 
 
 /* =========================
@@ -495,29 +441,18 @@ generateButton.addEventListener(
 
     generateButton.disabled = true;
 
-
     generateButton.textContent =
       "画像を生成しています…";
 
 
     try {
 
-      /*
-        フォント読み込み待ち
-      */
-
       if (document.fonts) {
-
         await document.fonts.ready;
-
       }
 
 
-      /*
-        背景描画待ち
-      */
-
-      await sleep(500);
+      await sleep(300);
 
 
       for (let i = 1; i <= 4; i++) {
@@ -529,25 +464,12 @@ generateButton.addEventListener(
 
 
         /*
-          現在のstyleを保存
+          書き出し専用スタイル
         */
 
-        const originalWidth =
-          card.style.width;
-
-        const originalHeight =
-          card.style.height;
-
-
-        /*
-          出力時は1200×1200固定
-        */
-
-        card.style.width =
-          "1200px";
-
-        card.style.height =
-          "1200px";
+        card.classList.add(
+          "exporting"
+        );
 
 
         await sleep(100);
@@ -566,21 +488,21 @@ generateButton.addEventListener(
 
               pixelRatio: 1,
 
-              cacheBust: true
+              cacheBust: true,
+
+              style: {
+                width: "1200px",
+                height: "1200px",
+                margin: "0"
+              }
 
             }
           );
 
 
-        /*
-          元に戻す
-        */
-
-        card.style.width =
-          originalWidth;
-
-        card.style.height =
-          originalHeight;
+        card.classList.remove(
+          "exporting"
+        );
 
 
         downloadImage(
@@ -589,17 +511,26 @@ generateButton.addEventListener(
         );
 
 
-        /*
-          連続ダウンロード対策
-        */
-
-        await sleep(500);
+        await sleep(400);
 
       }
 
     } catch (error) {
 
       console.error(error);
+
+
+      document
+        .querySelectorAll(".profile-card")
+        .forEach(
+          (card) => {
+
+            card.classList.remove(
+              "exporting"
+            );
+
+          }
+        );
 
 
       alert(
@@ -609,7 +540,6 @@ generateButton.addEventListener(
     } finally {
 
       generateButton.disabled = false;
-
 
       generateButton.textContent =
         "4枚の画像を書き出す";
@@ -621,7 +551,7 @@ generateButton.addEventListener(
 
 
 /* =========================
-   ダウンロード
+   DOWNLOAD
 ========================= */
 
 function downloadImage(

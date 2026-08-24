@@ -33,7 +33,6 @@ body {
 
 .site-header {
   padding: 70px 20px 50px;
-
   text-align: center;
 }
 
@@ -92,7 +91,6 @@ main {
   margin-top: 0;
 
   font-family: Georgia, serif;
-
   font-weight: 400;
 
   letter-spacing: 0.08em;
@@ -187,9 +185,7 @@ button:hover {
 
 button:disabled {
   opacity: 0.6;
-
   cursor: wait;
-
   transform: none;
 }
 
@@ -241,7 +237,7 @@ button:disabled {
 
 
 /* =========================
-   文字数カウンター
+   文字数
 ========================= */
 
 .character-count {
@@ -252,8 +248,6 @@ button:disabled {
   color: #858d9a;
 
   font-size: 12px;
-
-  transition: color 0.2s;
 }
 
 .character-count.is-warning {
@@ -262,7 +256,6 @@ button:disabled {
 
 .character-count.is-limit {
   color: #e07878;
-
   font-weight: bold;
 }
 
@@ -277,7 +270,6 @@ button:disabled {
 
 .preview-area > h2 {
   margin-bottom: 50px;
-
   text-align: center;
 }
 
@@ -297,14 +289,10 @@ button:disabled {
   overflow: hidden;
 
   background: #101722;
-
   color: #ffffff;
 
   border: 2px solid #a58b5b;
 }
-
-
-/* 内側フレーム */
 
 .profile-card::after {
   content: "";
@@ -375,7 +363,7 @@ button:disabled {
 
 
 /* =========================
-   CARD CONTENT
+   CONTENT
 ========================= */
 
 .card-content {
@@ -396,7 +384,6 @@ button:disabled {
 
 .card-header {
   margin-bottom: 50px;
-
   text-align: center;
 }
 
@@ -405,9 +392,7 @@ button:disabled {
 
   color: #d3b87c;
 
-  font-family:
-    Georgia,
-    serif;
+  font-family: Georgia, serif;
 
   font-size: 18px;
 
@@ -434,7 +419,7 @@ button:disabled {
 
 
 /* =========================
-   1枚目：質問一覧
+   QUESTION LIST
 ========================= */
 
 .question-columns {
@@ -460,16 +445,13 @@ button:disabled {
 
 .question-list li {
   margin-bottom: 18px;
-
   padding-left: 7px;
 }
 
 .question-list li::marker {
   color: #d3b87c;
 
-  font-family:
-    Georgia,
-    serif;
+  font-family: Georgia, serif;
 
   font-size: 18px;
   font-weight: bold;
@@ -477,7 +459,7 @@ button:disabled {
 
 
 /* =========================
-   ANSWERS
+   ANSWER
 ========================= */
 
 .answer-card .card-header {
@@ -527,8 +509,6 @@ button:disabled {
 
   overflow-wrap: anywhere;
   word-break: break-word;
-
-  transition: font-size 0.15s;
 }
 
 .answer-text:empty::before {
@@ -546,7 +526,7 @@ button:disabled {
   position: absolute;
 
   left: 90px;
-  bottom: 55px;
+  bottom: 70px;
 
   margin: 0;
 
@@ -571,15 +551,13 @@ button:disabled {
   position: absolute;
 
   right: 90px;
-  bottom: 55px;
+  bottom: 70px;
 
   margin: 0;
 
   color: #d3b87c;
 
-  font-family:
-    Georgia,
-    serif;
+  font-family: Georgia, serif;
 
   font-size: 18px;
 
@@ -593,7 +571,6 @@ button:disabled {
 
 .export-area {
   margin-top: 80px;
-
   text-align: center;
 }
 
@@ -660,7 +637,6 @@ button:disabled {
 
   .question-list {
     padding-left: 32px;
-
     font-size: 13.5px;
   }
 
@@ -674,7 +650,6 @@ button:disabled {
 
   .answer-block {
     margin-bottom: 11px;
-
     padding-bottom: 10px;
   }
 
@@ -682,20 +657,16 @@ button:disabled {
     font-size: 12px;
   }
 
-  .answer-text {
-    line-height: 1.4;
-  }
-
   .copyright {
     left: 65px;
-    bottom: 42px;
+    bottom: 52px;
 
     font-size: 11px;
   }
 
   .page-number {
     right: 65px;
-    bottom: 42px;
+    bottom: 52px;
 
     font-size: 14px;
   }
@@ -744,21 +715,11 @@ button:disabled {
   }
 
   .small-title {
-    font-size:
-      clamp(
-        7px,
-        1.4vw,
-        11px
-      );
+    font-size: clamp(7px, 1.4vw, 11px);
   }
 
   .card-header h2 {
-    font-size:
-      clamp(
-        15px,
-        3.6vw,
-        30px
-      );
+    font-size: clamp(15px, 3.6vw, 30px);
   }
 
   .question-columns {
@@ -768,12 +729,7 @@ button:disabled {
   .question-list {
     padding-left: 5%;
 
-    font-size:
-      clamp(
-        6px,
-        1.45vw,
-        12px
-      );
+    font-size: clamp(6px, 1.45vw, 12px);
 
     line-height: 1.45;
   }
@@ -782,60 +738,112 @@ button:disabled {
     margin-bottom: 3%;
   }
 
-  .question-list li::marker {
-    font-size:
-      clamp(
-        6px,
-        1.35vw,
-        11px
-      );
-  }
-
   .answer-block {
     margin-bottom: 1.5%;
-
     padding-bottom: 1.3%;
   }
 
   .question {
-    margin-bottom: 0.5%;
-
-    font-size:
-      clamp(
-        6px,
-        1.35vw,
-        11px
-      );
+    font-size: clamp(6px, 1.35vw, 11px);
   }
 
   .answer-text {
     max-height: none;
-
     line-height: 1.35;
   }
 
   .copyright {
     left: 7%;
-    bottom: 4%;
+    bottom: 5%;
 
-    font-size:
-      clamp(
-        6px,
-        1.2vw,
-        10px
-      );
+    font-size: clamp(6px, 1.2vw, 10px);
   }
 
   .page-number {
     right: 7%;
-    bottom: 4%;
+    bottom: 5%;
 
-    font-size:
-      clamp(
-        7px,
-        1.4vw,
-        12px
-      );
+    font-size: clamp(7px, 1.4vw, 12px);
   }
 
+}
+
+
+/* =========================
+   PNG EXPORT専用
+========================= */
+
+.profile-card.exporting {
+  width: 1200px !important;
+  height: 1200px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  aspect-ratio: auto !important;
+}
+
+.profile-card.exporting .card-content {
+  padding: 85px 90px !important;
+}
+
+.profile-card.exporting .card-header {
+  margin-bottom: 36px !important;
+}
+
+.profile-card.exporting .small-title {
+  font-size: 18px !important;
+}
+
+.profile-card.exporting .card-header h2 {
+  font-size: 48px !important;
+}
+
+.profile-card.exporting .question-columns {
+  column-gap: 70px !important;
+}
+
+.profile-card.exporting .question-list {
+  padding-left: 44px !important;
+
+  font-size: 19px !important;
+  line-height: 1.55 !important;
+}
+
+.profile-card.exporting .question-list li {
+  margin-bottom: 18px !important;
+}
+
+.profile-card.exporting .question-list li::marker {
+  font-size: 18px !important;
+}
+
+.profile-card.exporting .answer-block {
+  margin-bottom: 18px !important;
+
+  padding-bottom: 15px !important;
+}
+
+.profile-card.exporting .question {
+  margin-bottom: 7px !important;
+
+  font-size: 16px !important;
+}
+
+.profile-card.exporting .copyright {
+  left: 90px !important;
+  bottom: 70px !important;
+
+  font-size: 14px !important;
+}
+
+.profile-card.exporting .page-number {
+  right: 90px !important;
+  bottom: 70px !important;
+
+  font-size: 18px !important;
+}
+
+.profile-card.exporting::after {
+  inset: 25px !important;
 }
