@@ -152,8 +152,7 @@ main {
   background: #121722;
 
   border:
-    1px
-    solid
+    1px solid
     #2b3240;
 
   border-radius: 12px;
@@ -179,8 +178,7 @@ main {
   padding-top: 28px;
 
   border-top:
-    1px
-    solid
+    1px solid
     #343d4d;
 }
 
@@ -278,8 +276,7 @@ button {
     24px;
 
   border:
-    1px
-    solid
+    1px solid
     #b79a66;
 
   border-radius: 5px;
@@ -318,6 +315,17 @@ button:disabled {
    INPUT
 ================================================== */
 
+.input-guide {
+  margin:
+    -5px
+    0
+    35px;
+
+  color: #858d9a;
+
+  font-size: 13px;
+}
+
 .input-question {
   margin-bottom: 30px;
 }
@@ -333,16 +341,26 @@ button:disabled {
   font-weight: 600;
 }
 
+
+/*
+  回答欄は最大2行を想定した高さに固定
+*/
+
 .input-question textarea {
+  display: block;
+
   width: 100%;
 
-  min-height: 95px;
+  height: 72px;
+  min-height: 72px;
+  max-height: 72px;
 
-  padding: 15px;
+  padding:
+    12px
+    15px;
 
   border:
-    1px
-    solid
+    1px solid
     #343d4d;
 
   border-radius: 6px;
@@ -355,9 +373,12 @@ button:disabled {
   font-family: inherit;
 
   font-size: 16px;
-  line-height: 1.7;
 
-  resize: vertical;
+  line-height: 1.45;
+
+  resize: none;
+
+  overflow-y: hidden;
 }
 
 .input-question textarea:focus {
@@ -426,8 +447,7 @@ button:disabled {
   color: #ffffff;
 
   border:
-    2px
-    solid
+    2px solid
     #a58b5b;
 }
 
@@ -441,8 +461,7 @@ button:disabled {
   z-index: 5;
 
   border:
-    1px
-    solid
+    1px solid
     rgba(207, 175, 112, 0.55);
 
   pointer-events: none;

@@ -4,9 +4,15 @@
 
 const MAX_LENGTH = 80;
 
+/*
+  最大2行
+  = 改行は1回まで
+*/
+const MAX_LINES = 2;
+
 
 /* ==================================================
-   回答・文字数・フォントサイズ
+   回答・文字数・行数・フォントサイズ
 ================================================== */
 
 for (let i = 1; i <= 20; i++) {
@@ -26,12 +32,98 @@ for (let i = 1; i <= 20; i++) {
   }
 
 
+  /* ==================================================
+     ENTERキー制限
+
+     すでに2行ある場合、
+     3行目を作るEnterを無効化
+  ================================================== */
+
+  input.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (event.key !== "Enter") {
+        return;
+      }
+
+
+      const currentLines =
+        input.value.split("\n").length;
+
+
+      if (currentLines >= MAX_LINES) {
+
+        event.preventDefault();
+
+      }
+
+    }
+  );
+
+
+  /* ==================================================
+     入力内容更新
+  ================================================== */
+
   const updateAnswer = () => {
 
-    if (input.value.length > MAX_LENGTH) {
+    let value =
+      input.value;
 
-      input.value =
-        input.value.slice(
+
+    /*
+      Windows形式の改行を統一
+    */
+
+    value =
+      value.replace(
+        /\r\n/g,
+        "\n"
+      );
+
+
+    value =
+      value.replace(
+        /\r/g,
+        "\n"
+      );
+
+
+    /*
+      3行以上になっていた場合は
+      2行までに制限
+
+      コピペした場合にも有効
+    */
+
+    let lines =
+      value.split("\n");
+
+
+    if (lines.length > MAX_LINES) {
+
+      lines =
+        lines.slice(
+          0,
+          MAX_LINES
+        );
+
+
+      value =
+        lines.join("\n");
+
+    }
+
+
+    /*
+      最大80文字
+    */
+
+    if (value.length > MAX_LENGTH) {
+
+      value =
+        value.slice(
           0,
           MAX_LENGTH
         );
@@ -39,20 +131,48 @@ for (let i = 1; i <= 20; i++) {
     }
 
 
+    /*
+      textareaへ修正内容を戻す
+    */
+
+    if (input.value !== value) {
+
+      input.value =
+        value;
+
+    }
+
+
     const text =
       input.value;
+
 
     const length =
       text.length;
 
 
+    /*
+      プレビューへ反映
+    */
+
     answer.textContent =
       text;
 
 
-    answer.style.fontSize =
-      getAnswerFontSize(length);
+    /*
+      文字数によって
+      フォントサイズを変更
+    */
 
+    answer.style.fontSize =
+      getAnswerFontSize(
+        length
+      );
+
+
+    /*
+      文字数カウンター
+    */
 
     if (count) {
 
@@ -137,22 +257,24 @@ function readImageAsDataURL(file) {
         new FileReader();
 
 
-      reader.onload = () => {
+      reader.onload =
+        () => {
 
-        resolve(
-          reader.result
-        );
+          resolve(
+            reader.result
+          );
 
-      };
+        };
 
 
-      reader.onerror = () => {
+      reader.onerror =
+        () => {
 
-        reject(
-          reader.error
-        );
+          reject(
+            reader.error
+          );
 
-      };
+        };
 
 
       reader.readAsDataURL(
@@ -201,7 +323,9 @@ questionBackgroundUpload.addEventListener(
     try {
 
       questionBackgroundData =
-        await readImageAsDataURL(file);
+        await readImageAsDataURL(
+          file
+        );
 
 
       questionBackgrounds.forEach(
@@ -218,6 +342,7 @@ questionBackgroundUpload.addEventListener(
     catch (error) {
 
       console.error(error);
+
 
       alert(
         "質問用背景画像の読み込みに失敗しました。"
@@ -265,7 +390,9 @@ answerBackgroundUpload.addEventListener(
     try {
 
       answerBackgroundData =
-        await readImageAsDataURL(file);
+        await readImageAsDataURL(
+          file
+        );
 
 
       answerBackgrounds.forEach(
@@ -282,6 +409,7 @@ answerBackgroundUpload.addEventListener(
     catch (error) {
 
       console.error(error);
+
 
       alert(
         "回答用背景画像の読み込みに失敗しました。"
@@ -356,7 +484,7 @@ document
 
 
 /* ==================================================
-   OVERLAY ELEMENTS
+   OVERLAY
 ================================================== */
 
 const questionOpacityControl =
