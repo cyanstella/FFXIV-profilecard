@@ -1,5 +1,14 @@
 /* =========================
-   回答をカードへ反映
+   基本設定
+========================= */
+
+const MAX_LENGTH = 80;
+
+
+/* =========================
+   回答反映
+   文字数カウント
+   フォントサイズ自動調整
 ========================= */
 
 for (let i = 1; i <= 20; i++) {
@@ -10,21 +19,139 @@ for (let i = 1; i <= 20; i++) {
   const answer =
     document.getElementById(`answer-${i}`);
 
+  const count =
+    document.getElementById(`count-q${i}`);
+
 
   if (!input || !answer) {
     continue;
   }
 
 
-  input.addEventListener(
-    "input",
-    () => {
+  const updateAnswer = () => {
 
-      answer.textContent =
-        input.value;
+    /*
+      念のためJS側でも80文字に制限
+    */
+
+    if (input.value.length > MAX_LENGTH) {
+
+      input.value =
+        input.value.slice(
+          0,
+          MAX_LENGTH
+        );
 
     }
+
+
+    const text =
+      input.value;
+
+
+    const length =
+      text.length;
+
+
+    /*
+      回答をカードへ表示
+    */
+
+    answer.textContent =
+      text;
+
+
+    /*
+      文字数によってフォントサイズ変更
+    */
+
+    answer.style.fontSize =
+      getAnswerFontSize(length);
+
+
+    /*
+      カウンター
+    */
+
+    if (count) {
+
+      count.textContent =
+        length;
+
+
+      const counter =
+        count.parentElement;
+
+
+      counter.classList.remove(
+        "is-warning",
+        "is-limit"
+      );
+
+
+      if (length >= MAX_LENGTH) {
+
+        counter.classList.add(
+          "is-limit"
+        );
+
+      } else if (length >= 60) {
+
+        counter.classList.add(
+          "is-warning"
+        );
+
+      }
+
+    }
+
+  };
+
+
+  input.addEventListener(
+    "input",
+    updateAnswer
   );
+
+
+  updateAnswer();
+
+}
+
+
+/* =========================
+   フォントサイズ判定
+========================= */
+
+function getAnswerFontSize(length) {
+
+  /*
+    短文は大きく、
+    長文ほど少しずつ小さくする
+  */
+
+  if (length <= 25) {
+
+    return "24px";
+
+  }
+
+
+  if (length <= 45) {
+
+    return "22px";
+
+  }
+
+
+  if (length <= 60) {
+
+    return "20px";
+
+  }
+
+
+  return "18px";
 
 }
 
@@ -193,7 +320,16 @@ generateButton.addEventListener(
     try {
 
       /*
-        背景画像やフォント等の描画を少し待つ
+        フォント読み込みを待つ
+      */
+
+      if (document.fonts) {
+        await document.fonts.ready;
+      }
+
+
+      /*
+        背景などの描画待ち
       */
 
       await sleep(500);
@@ -207,6 +343,26 @@ generateButton.addEventListener(
           );
 
 
+        /*
+          画面上ではレスポンシブで
+          900px等になっている場合があるので、
+          出力時のみ1200×1200に固定
+        */
+
+        const originalWidth =
+          card.style.width;
+
+        const originalHeight =
+          card.style.height;
+
+
+        card.style.width =
+          "1200px";
+
+        card.style.height =
+          "1200px";
+
+
         const dataUrl =
           await htmlToImage.toPng(
             card,
@@ -214,6 +370,9 @@ generateButton.addEventListener(
 
               width: 1200,
               height: 1200,
+
+              canvasWidth: 1200,
+              canvasHeight: 1200,
 
               pixelRatio: 1,
 
@@ -223,6 +382,17 @@ generateButton.addEventListener(
           );
 
 
+        /*
+          元に戻す
+        */
+
+        card.style.width =
+          originalWidth;
+
+        card.style.height =
+          originalHeight;
+
+
         downloadImage(
           dataUrl,
           `ffxiv-profile-${i}.png`
@@ -230,7 +400,7 @@ generateButton.addEventListener(
 
 
         /*
-          ブラウザの連続ダウンロード対策
+          連続ダウンロード対策
         */
 
         await sleep(500);
