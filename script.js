@@ -14,13 +14,21 @@ const MAX_LINES = 2;
 for (let i = 1; i <= 20; i++) {
 
   const input =
-    document.getElementById(`q${i}`);
+    document.getElementById(
+      `q${i}`
+    );
+
 
   const answer =
-    document.getElementById(`answer-${i}`);
+    document.getElementById(
+      `answer-${i}`
+    );
+
 
   const count =
-    document.getElementById(`count-q${i}`);
+    document.getElementById(
+      `count-q${i}`
+    );
 
 
   if (!input || !answer) {
@@ -65,6 +73,8 @@ for (let i = 1; i <= 20; i++) {
       input.value;
 
 
+    /* 改行コード統一 */
+
     value =
       value.replace(
         /\r\n/g,
@@ -78,6 +88,8 @@ for (let i = 1; i <= 20; i++) {
         "\n"
       );
 
+
+    /* 最大2行 */
 
     let lines =
       value.split("\n");
@@ -97,6 +109,8 @@ for (let i = 1; i <= 20; i++) {
 
     }
 
+
+    /* 最大80文字 */
 
     if (value.length > MAX_LENGTH) {
 
@@ -190,18 +204,28 @@ for (let i = 1; i <= 20; i++) {
 function getAnswerFontSize(length) {
 
   if (length <= 25) {
+
     return "24px";
+
   }
+
 
   if (length <= 45) {
+
     return "22px";
+
   }
+
 
   if (length <= 60) {
+
     return "20px";
+
   }
 
+
   return "18px";
+
 }
 
 
@@ -256,26 +280,37 @@ function setupCardSettings(options) {
 
   const {
     cardId,
+
     backgroundSelector,
+
     backgroundUploadId,
+
     removeButtonId,
 
     bgXId,
+
     bgXValueId,
 
     bgYId,
+
     bgYValueId,
 
     bgScaleId,
+
     bgScaleValueId,
 
     overlaySelector,
+
     overlayOpacityId,
+
     overlayOpacityValueId,
+
     overlayRadioName,
 
     textRadioName
+
   } = options;
+
 
 
   const card =
@@ -361,7 +396,7 @@ function setupCardSettings(options) {
 
 
   /* ==================================================
-     背景アップロード
+     背景画像
   ================================================== */
 
   backgroundUpload.addEventListener(
@@ -682,7 +717,7 @@ setupCardSettings({
 
 
 /* ==================================================
-   回答1
+   回答カード1
 ================================================== */
 
 setupCardSettings({
@@ -736,7 +771,7 @@ setupCardSettings({
 
 
 /* ==================================================
-   回答2
+   回答カード2
 ================================================== */
 
 setupCardSettings({
@@ -790,7 +825,7 @@ setupCardSettings({
 
 
 /* ==================================================
-   回答3
+   回答カード3
 ================================================== */
 
 setupCardSettings({
@@ -841,81 +876,6 @@ setupCardSettings({
     "answer3-text-color"
 
 });
-
-
-/* ==================================================
-   プレビュータブ
-================================================== */
-
-const previewTabs =
-  document.querySelectorAll(
-    ".preview-tab"
-  );
-
-
-const previewCards =
-  document.querySelectorAll(
-    ".preview-card"
-  );
-
-
-previewTabs.forEach(
-  (tab) => {
-
-    tab.addEventListener(
-      "click",
-      () => {
-
-        const targetCardId =
-          tab.dataset.card;
-
-
-        previewTabs.forEach(
-          (item) => {
-
-            item.classList.remove(
-              "is-active"
-            );
-
-          }
-        );
-
-
-        previewCards.forEach(
-          (card) => {
-
-            card.classList.remove(
-              "is-active"
-            );
-
-          }
-        );
-
-
-        tab.classList.add(
-          "is-active"
-        );
-
-
-        const targetCard =
-          document.getElementById(
-            targetCardId
-          );
-
-
-        if (targetCard) {
-
-          targetCard.classList.add(
-            "is-active"
-          );
-
-        }
-
-      }
-    );
-
-  }
-);
 
 
 /* ==================================================
