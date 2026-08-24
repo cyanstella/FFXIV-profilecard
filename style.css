@@ -28,11 +28,18 @@ body {
 
 
 /* ==================================================
-   SITE
+   SITE HEADER
 ================================================== */
 
 .site-header {
-  padding: 70px 20px 50px;
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  padding:
+    70px
+    20px
+    55px;
 
   text-align: center;
 }
@@ -51,20 +58,79 @@ body {
   letter-spacing: 0.14em;
 }
 
-.site-header p {
-  margin-top: 12px;
+.site-subtitle {
+  margin:
+    12px
+    0
+    0;
 
   color: #b79a66;
 
+  font-size: 15px;
+
   letter-spacing: 0.18em;
 }
+
+.site-description {
+  max-width: 700px;
+
+  margin:
+    32px
+    auto
+    0;
+
+  padding:
+    24px
+    30px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  border:
+    1px solid
+    #292f3b;
+
+  border-radius: 8px;
+}
+
+.site-description p {
+  margin: 0;
+
+  color: #aeb5c1;
+
+  font-size: 14px;
+
+  line-height: 1.8;
+
+  letter-spacing: 0.03em;
+}
+
+.site-description .hashtag-guide {
+  margin-top: 10px;
+}
+
+.site-description strong {
+  color: #d6c19a;
+
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+}
+
+
+/* ==================================================
+   MAIN
+================================================== */
 
 main {
   width: min(100%, 1500px);
 
   margin: 0 auto;
 
-  padding: 0 20px 100px;
+  padding:
+    0
+    20px
+    100px;
 }
 
 
@@ -76,13 +142,20 @@ main {
 .input-area {
   max-width: 900px;
 
-  margin: 0 auto 70px;
+  margin:
+    0
+    auto
+    70px;
 
   padding: 35px;
 
   background: #121722;
 
-  border: 1px solid #2b3240;
+  border:
+    1px
+    solid
+    #2b3240;
+
   border-radius: 12px;
 }
 
@@ -105,7 +178,10 @@ main {
 
   padding-top: 28px;
 
-  border-top: 1px solid #343d4d;
+  border-top:
+    1px
+    solid
+    #343d4d;
 }
 
 .setting-group:first-of-type {
@@ -113,7 +189,10 @@ main {
 }
 
 .setting-group h3 {
-  margin: 0 0 22px;
+  margin:
+    0
+    0
+    22px;
 
   color: #d6c19a;
 
@@ -194,9 +273,15 @@ main {
 ================================================== */
 
 button {
-  padding: 13px 24px;
+  padding:
+    13px
+    24px;
 
-  border: 1px solid #b79a66;
+  border:
+    1px
+    solid
+    #b79a66;
+
   border-radius: 5px;
 
   background: #171d27;
@@ -216,7 +301,8 @@ button:hover {
   background: #b79a66;
   color: #111111;
 
-  transform: translateY(-1px);
+  transform:
+    translateY(-1px);
 }
 
 button:disabled {
@@ -249,11 +335,16 @@ button:disabled {
 
 .input-question textarea {
   width: 100%;
+
   min-height: 95px;
 
   padding: 15px;
 
-  border: 1px solid #343d4d;
+  border:
+    1px
+    solid
+    #343d4d;
+
   border-radius: 6px;
 
   outline: none;
@@ -324,7 +415,9 @@ button:disabled {
   width: 1200px;
   height: 1200px;
 
-  margin: 60px auto;
+  margin:
+    60px
+    auto;
 
   overflow: hidden;
 
@@ -332,7 +425,10 @@ button:disabled {
 
   color: #ffffff;
 
-  border: 2px solid #a58b5b;
+  border:
+    2px
+    solid
+    #a58b5b;
 }
 
 .profile-card::after {
@@ -345,7 +441,8 @@ button:disabled {
   z-index: 5;
 
   border:
-    1px solid
+    1px
+    solid
     rgba(207, 175, 112, 0.55);
 
   pointer-events: none;
@@ -373,8 +470,13 @@ button:disabled {
     );
 
   background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+
+  background-position:
+    center
+    center;
+
+  background-repeat:
+    no-repeat;
 }
 
 
@@ -411,7 +513,9 @@ button:disabled {
   width: 100%;
   height: 100%;
 
-  padding: 85px 90px;
+  padding:
+    85px
+    90px;
 }
 
 
@@ -426,7 +530,10 @@ button:disabled {
 }
 
 .small-title {
-  margin: 0 0 10px;
+  margin:
+    0
+    0
+    10px;
 
   font-family:
     Georgia,
@@ -514,7 +621,10 @@ button:disabled {
 }
 
 .question {
-  margin: 0 0 7px;
+  margin:
+    0
+    0
+    7px;
 
   font-size: 16px;
   font-weight: 600;
@@ -670,7 +780,9 @@ button:disabled {
 }
 
 #generate-button {
-  padding: 18px 45px;
+  padding:
+    18px
+    45px;
 
   font-size: 18px;
 }
@@ -687,15 +799,44 @@ button:disabled {
 ================================================== */
 
 .site-footer {
-  padding: 45px 20px;
+  padding:
+    45px
+    20px
+    35px;
 
   text-align: center;
+
+  border-top:
+    1px solid
+    #202631;
+}
+
+.footer-title {
+  margin: 0;
 
   color: #686f7b;
 
   font-size: 12px;
 
   letter-spacing: 0.12em;
+}
+
+.footer-copyright {
+  margin:
+    14px
+    0
+    0;
+
+  color: #8e939c;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 12px;
+
+  letter-spacing: 0.05em;
 }
 
 
@@ -711,7 +852,9 @@ button:disabled {
   }
 
   .card-content {
-    padding: 60px 65px;
+    padding:
+      60px
+      65px;
   }
 
   .card-header {
@@ -778,11 +921,35 @@ button:disabled {
 @media screen and (max-width: 950px) {
 
   main {
-    padding: 0 12px 80px;
+    padding:
+      0
+      12px
+      80px;
+  }
+
+  .site-header {
+    padding:
+      45px
+      16px
+      40px;
   }
 
   .site-header h1 {
     font-size: 25px;
+  }
+
+  .site-subtitle {
+    font-size: 12px;
+  }
+
+  .site-description {
+    padding:
+      18px
+      16px;
+  }
+
+  .site-description p {
+    font-size: 12px;
   }
 
   .settings,
@@ -796,7 +963,9 @@ button:disabled {
 
     aspect-ratio: 1 / 1;
 
-    margin: 30px auto;
+    margin:
+      30px
+      auto;
   }
 
   .card-content {
@@ -813,12 +982,20 @@ button:disabled {
 
   .small-title {
     font-size:
-      clamp(7px, 1.4vw, 11px);
+      clamp(
+        7px,
+        1.4vw,
+        11px
+      );
   }
 
   .card-header h2 {
     font-size:
-      clamp(15px, 3.6vw, 30px);
+      clamp(
+        15px,
+        3.6vw,
+        30px
+      );
   }
 
   .question-columns {
@@ -829,7 +1006,11 @@ button:disabled {
     padding-left: 5%;
 
     font-size:
-      clamp(6px, 1.45vw, 12px);
+      clamp(
+        6px,
+        1.45vw,
+        12px
+      );
 
     line-height: 1.45;
   }
@@ -846,7 +1027,11 @@ button:disabled {
 
   .question {
     font-size:
-      clamp(6px, 1.35vw, 11px);
+      clamp(
+        6px,
+        1.35vw,
+        11px
+      );
   }
 
   .answer-text {
@@ -860,7 +1045,11 @@ button:disabled {
     bottom: 5%;
 
     font-size:
-      clamp(6px, 1.2vw, 10px);
+      clamp(
+        6px,
+        1.2vw,
+        10px
+      );
   }
 
   .page-number {
@@ -868,7 +1057,11 @@ button:disabled {
     bottom: 5%;
 
     font-size:
-      clamp(7px, 1.4vw, 12px);
+      clamp(
+        7px,
+        1.4vw,
+        12px
+      );
   }
 
 }
