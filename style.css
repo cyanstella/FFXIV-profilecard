@@ -129,7 +129,7 @@ body {
 
 
 /* ==================================================
-   2 COLUMN LAYOUT
+   2 COLUMN
 ================================================== */
 
 .editor-layout {
@@ -157,7 +157,7 @@ body {
 
 
 /* ==================================================
-   SETTINGS
+   SETTINGS / INPUT
 ================================================== */
 
 .settings,
@@ -609,11 +609,6 @@ button:disabled {
   margin-bottom: 80px;
 }
 
-
-/* ==================================================
-   GOLD HEADER
-================================================== */
-
 .small-title {
   margin: 0 0 10px;
 
@@ -726,15 +721,17 @@ button:disabled {
 
 
 /*
-  回答文字サイズは
-  JavaScriptからCSS変数に保存する
+   --answer-font-size は
+   JSで1200px出力時に2行以内になる
+   サイズを自動計算
 */
 
 .answer-text {
   margin: 0;
 
   min-height: 30px;
-  max-height: 82px;
+
+  max-height: 74px;
 
   overflow: hidden;
 
@@ -746,7 +743,7 @@ button:disabled {
   font-size:
     var(--answer-font-size, 24px);
 
-  line-height: 1.45;
+  line-height: 1.42;
 
   white-space: pre-wrap;
 
@@ -877,7 +874,7 @@ button:disabled {
 
 
 /* ==================================================
-   RIGHT SIDE PREVIEW SCALE
+   RIGHT SIDE PREVIEW
 ================================================== */
 
 .preview-panel
@@ -1007,15 +1004,15 @@ button:disabled {
 
 
 /*
-  ★ 今回の重要修正
-
-  回答文字もプレビューカードの
-  縮小率に合わせて小さくする
+  プレビューでは1200px版の
+  約55%で表示
 */
 
 .preview-panel
 .profile-card:not(.exporting)
 .answer-text {
+  min-height: 16px;
+
   max-height: none;
 
   font-size:
@@ -1024,7 +1021,7 @@ button:disabled {
       * 0.55
     );
 
-  line-height: 1.35;
+  line-height: 1.42;
 }
 
 
@@ -1137,22 +1134,38 @@ button:disabled {
    PNG EXPORT
 ================================================== */
 
+/*
+  重要：
+  left:-10000px は使用しない。
+
+  html-to-imageで完全透明になる場合があるため、
+  元の場所で1200pxへ拡大してキャプチャする。
+*/
+
 .profile-card.exporting {
-  position: fixed !important;
+  position: relative !important;
 
-  left: -10000px !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
 
-  top: 0 !important;
+  display: block !important;
 
   width: 1200px !important;
+  min-width: 1200px !important;
+  max-width: none !important;
 
   height: 1200px !important;
+  min-height: 1200px !important;
+  max-height: 1200px !important;
 
   margin: 0 !important;
 
   padding: 0 !important;
 
   aspect-ratio: auto !important;
+
+  overflow: hidden !important;
 }
 
 
@@ -1248,24 +1261,33 @@ button:disabled {
 .question {
   font-size:
     16px !important;
+
+  line-height:
+    1.4 !important;
 }
 
 
 /*
-  PNG出力時は
-  元の回答文字サイズを使用
+  回答文字はJSが計算したサイズを
+  そのまま使用
 */
 
 .profile-card.exporting
 .answer-text {
+  min-height:
+    30px !important;
+
   max-height:
-    82px !important;
+    74px !important;
 
   font-size:
     var(--answer-font-size, 24px) !important;
 
   line-height:
-    1.45 !important;
+    1.42 !important;
+
+  overflow:
+    hidden !important;
 }
 
 
@@ -1395,18 +1417,13 @@ button:disabled {
   }
 
 
-  /*
-    スマホではカード幅がさらに変わるため
-    プレビュー文字を少し調整
-  */
-
   .preview-panel
   .profile-card:not(.exporting)
   .answer-text {
     font-size:
       calc(
         var(--answer-font-size, 24px)
-        * 0.48
+        * 0.30
       );
   }
 

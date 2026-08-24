@@ -3,15 +3,99 @@
 ================================================== */
 
 const MAX_LENGTH = 80;
-
 const MAX_LINES = 2;
+
+
+/* ==================================================
+   回答文字測定用
+================================================== */
+
+/*
+  書き出しカードでは
+
+  1200px
+  - 左右padding 90px × 2
+  = 回答欄 約1020px
+
+  この幅で実際に文字を測定して、
+  2行を超える場合はフォントを縮小する。
+*/
+
+const answerMeasure =
+  document.createElement("div");
+
+
+answerMeasure.setAttribute(
+  "aria-hidden",
+  "true"
+);
+
+
+Object.assign(
+  answerMeasure.style,
+  {
+    position:
+      "fixed",
+
+    left:
+      "-99999px",
+
+    top:
+      "0",
+
+    visibility:
+      "hidden",
+
+    pointerEvents:
+      "none",
+
+    width:
+      "1020px",
+
+    margin:
+      "0",
+
+    padding:
+      "0",
+
+    border:
+      "0",
+
+    fontFamily:
+      '"Hiragino Mincho ProN", "Yu Mincho", serif',
+
+    fontWeight:
+      "400",
+
+    lineHeight:
+      "1.42",
+
+    whiteSpace:
+      "pre-wrap",
+
+    overflowWrap:
+      "anywhere",
+
+    wordBreak:
+      "break-word"
+  }
+);
+
+
+document.body.appendChild(
+  answerMeasure
+);
 
 
 /* ==================================================
    回答入力
 ================================================== */
 
-for (let i = 1; i <= 20; i++) {
+for (
+  let i = 1;
+  i <= 20;
+  i++
+) {
 
   const input =
     document.getElementById(
@@ -31,29 +115,43 @@ for (let i = 1; i <= 20; i++) {
     );
 
 
-  if (!input || !answer) {
+  if (
+    !input ||
+    !answer
+  ) {
+
     continue;
+
   }
 
 
   /* ==================================================
-     ENTERキー制限
+     ENTER制限
   ================================================== */
 
   input.addEventListener(
     "keydown",
     (event) => {
 
-      if (event.key !== "Enter") {
+      if (
+        event.key !== "Enter"
+      ) {
+
         return;
+
       }
 
 
       const currentLines =
-        input.value.split("\n").length;
+        input.value
+          .split("\n")
+          .length;
 
 
-      if (currentLines >= MAX_LINES) {
+      if (
+        currentLines >=
+        MAX_LINES
+      ) {
 
         event.preventDefault();
 
@@ -64,133 +162,161 @@ for (let i = 1; i <= 20; i++) {
 
 
   /* ==================================================
-     入力更新
+     更新
   ================================================== */
 
-  const updateAnswer = () => {
+  const updateAnswer =
+    () => {
 
-    let value =
-      input.value;
-
-
-    /* 改行コード統一 */
-
-    value =
-      value.replace(
-        /\r\n/g,
-        "\n"
-      );
+      let value =
+        input.value;
 
 
-    value =
-      value.replace(
-        /\r/g,
-        "\n"
-      );
+      /* 改行コード統一 */
 
-
-    /* 最大2行 */
-
-    let lines =
-      value.split("\n");
-
-
-    if (lines.length > MAX_LINES) {
-
-      lines =
-        lines.slice(
-          0,
-          MAX_LINES
+      value =
+        value.replace(
+          /\r\n/g,
+          "\n"
         );
 
 
       value =
-        lines.join("\n");
-
-    }
-
-
-    /* 最大80文字 */
-
-    if (value.length > MAX_LENGTH) {
-
-      value =
-        value.slice(
-          0,
-          MAX_LENGTH
+        value.replace(
+          /\r/g,
+          "\n"
         );
 
-    }
+
+      /* 明示改行は最大2行 */
+
+      let lines =
+        value.split("\n");
 
 
-    if (input.value !== value) {
+      if (
+        lines.length >
+        MAX_LINES
+      ) {
 
-      input.value =
-        value;
-
-    }
-
-
-    const text =
-      input.value;
-
-
-    const length =
-      text.length;
+        lines =
+          lines.slice(
+            0,
+            MAX_LINES
+          );
 
 
-    answer.textContent =
-      text;
+        value =
+          lines.join("\n");
+
+      }
 
 
-    /*
-      ★ 修正ポイント
+      /* 最大80文字 */
 
-      直接 font-size を変更せず、
-      CSS変数に本来の文字サイズを保存
-    */
+      if (
+        value.length >
+        MAX_LENGTH
+      ) {
 
-    answer.style.setProperty(
-      "--answer-font-size",
-      getAnswerFontSize(length)
-    );
+        value =
+          value.slice(
+            0,
+            MAX_LENGTH
+          );
 
-
-    if (count) {
-
-      count.textContent =
-        length;
+      }
 
 
-      const counter =
-        count.parentElement;
+      if (
+        input.value !==
+        value
+      ) {
+
+        input.value =
+          value;
+
+      }
 
 
-      counter.classList.remove(
-        "is-warning",
-        "is-limit"
+      const text =
+        input.value;
+
+
+      const length =
+        text.length;
+
+
+      answer.textContent =
+        text;
+
+
+      /*
+        文字数による基準サイズを取得後、
+        さらに実際の横幅で2行に収まるか測定。
+      */
+
+      const baseSize =
+        getAnswerBaseFontSize(
+          length
+        );
+
+
+      const fittedSize =
+        getFittedAnswerFontSize(
+          text,
+          baseSize
+        );
+
+
+      answer.style.setProperty(
+        "--answer-font-size",
+        `${fittedSize}px`
       );
 
 
-      if (length >= MAX_LENGTH) {
+      /* 文字数 */
 
-        counter.classList.add(
+      if (count) {
+
+        count.textContent =
+          length;
+
+
+        const counter =
+          count.parentElement;
+
+
+        counter.classList.remove(
+          "is-warning",
           "is-limit"
         );
 
+
+        if (
+          length >=
+          MAX_LENGTH
+        ) {
+
+          counter.classList.add(
+            "is-limit"
+          );
+
+        }
+
+        else if (
+          length >= 60
+        ) {
+
+          counter.classList.add(
+            "is-warning"
+          );
+
+        }
+
       }
 
-      else if (length >= 60) {
-
-        counter.classList.add(
-          "is-warning"
-        );
-
-      }
-
-    }
-
-  };
+    };
 
 
   input.addEventListener(
@@ -205,33 +331,109 @@ for (let i = 1; i <= 20; i++) {
 
 
 /* ==================================================
-   回答フォントサイズ
+   基準フォントサイズ
 ================================================== */
 
-function getAnswerFontSize(length) {
+function getAnswerBaseFontSize(
+  length
+) {
 
-  if (length <= 25) {
+  if (
+    length <= 25
+  ) {
 
-    return "24px";
-
-  }
-
-
-  if (length <= 45) {
-
-    return "22px";
+    return 24;
 
   }
 
 
-  if (length <= 60) {
+  if (
+    length <= 45
+  ) {
 
-    return "20px";
+    return 22;
 
   }
 
 
-  return "18px";
+  if (
+    length <= 60
+  ) {
+
+    return 20;
+
+  }
+
+
+  return 18;
+
+}
+
+
+/* ==================================================
+   2行に収まるサイズを自動計算
+================================================== */
+
+function getFittedAnswerFontSize(
+  text,
+  baseSize
+) {
+
+  if (!text) {
+
+    return baseSize;
+
+  }
+
+
+  /*
+    最小14pxまで1pxずつ縮小
+  */
+
+  const MIN_FONT_SIZE =
+    14;
+
+
+  for (
+    let size = baseSize;
+    size >= MIN_FONT_SIZE;
+    size--
+  ) {
+
+    answerMeasure.style.fontSize =
+      `${size}px`;
+
+
+    answerMeasure.textContent =
+      text;
+
+
+    /*
+      line-height 1.42
+
+      2行分 + 丸め誤差を少し許容
+    */
+
+    const twoLineHeight =
+      size *
+      1.42 *
+      2 +
+      3;
+
+
+    if (
+      answerMeasure.scrollHeight <=
+      twoLineHeight
+    ) {
+
+      return size;
+
+    }
+
+  }
+
+
+  return MIN_FONT_SIZE;
 
 }
 
@@ -240,10 +442,15 @@ function getAnswerFontSize(length) {
    FILE → DATA URL
 ================================================== */
 
-function readImageAsDataURL(file) {
+function readImageAsDataURL(
+  file
+) {
 
   return new Promise(
-    (resolve, reject) => {
+    (
+      resolve,
+      reject
+    ) => {
 
       const reader =
         new FileReader();
@@ -283,7 +490,9 @@ function readImageAsDataURL(file) {
    カード設定共通
 ================================================== */
 
-function setupCardSettings(options) {
+function setupCardSettings(
+  options
+) {
 
   const {
     cardId,
@@ -402,39 +611,45 @@ function setupCardSettings(options) {
 
 
   /* ==================================================
-     背景画像
+     背景アップロード
   ================================================== */
 
   backgroundUpload.addEventListener(
     "change",
-    async (event) => {
+    async (
+      event
+    ) => {
 
       const file =
         event.target.files[0];
 
 
       if (!file) {
+
         return;
+
       }
 
 
       try {
 
-        const backgroundData =
+        const dataUrl =
           await readImageAsDataURL(
             file
           );
 
 
         background.style.backgroundImage =
-          `url("${backgroundData}")`;
+          `url("${dataUrl}")`;
 
 
         updateBackgroundTransform();
 
       }
 
-      catch (error) {
+      catch (
+        error
+      ) {
 
         console.error(
           error
@@ -452,7 +667,7 @@ function setupCardSettings(options) {
 
 
   /* ==================================================
-     背景位置・拡大率
+     位置・拡大
   ================================================== */
 
   function updateBackgroundTransform() {
@@ -476,7 +691,8 @@ function setupCardSettings(options) {
 
 
     const scale =
-      scalePercent / 100;
+      scalePercent /
+      100;
 
 
     background.style.backgroundPosition =
@@ -570,7 +786,8 @@ function setupCardSettings(options) {
 
 
     const rgb =
-      overlayColor === "white"
+      overlayColor ===
+      "white"
         ? "255, 255, 255"
         : "0, 0, 0";
 
@@ -581,7 +798,8 @@ function setupCardSettings(options) {
 
     overlayOpacityValue.textContent =
       `${Math.round(
-        opacity * 100
+        opacity *
+        100
       )}%`;
 
   }
@@ -598,14 +816,20 @@ function setupCardSettings(options) {
       `input[name="${overlayRadioName}"]`
     )
     .forEach(
-      (radio) => {
+      (
+        radio
+      ) => {
 
         radio.addEventListener(
           "change",
           () => {
 
-            if (!radio.checked) {
+            if (
+              !radio.checked
+            ) {
+
               return;
+
             }
 
 
@@ -631,14 +855,20 @@ function setupCardSettings(options) {
       `input[name="${textRadioName}"]`
     )
     .forEach(
-      (radio) => {
+      (
+        radio
+      ) => {
 
         radio.addEventListener(
           "change",
           () => {
 
-            if (!radio.checked) {
+            if (
+              !radio.checked
+            ) {
+
               return;
+
             }
 
 
@@ -649,7 +879,8 @@ function setupCardSettings(options) {
 
 
             card.classList.add(
-              radio.value === "black"
+              radio.value ===
+              "black"
                 ? "text-black"
                 : "text-white"
             );
@@ -885,7 +1116,7 @@ setupCardSettings({
 
 
 /* ==================================================
-   PNG EXPORT
+   EXPORT
 ================================================== */
 
 const generateButton =
@@ -908,7 +1139,9 @@ generateButton.addEventListener(
 
     try {
 
-      if (document.fonts) {
+      if (
+        document.fonts
+      ) {
 
         await document.fonts.ready;
 
@@ -916,7 +1149,7 @@ generateButton.addEventListener(
 
 
       await sleep(
-        300
+        250
       );
 
 
@@ -937,9 +1170,14 @@ generateButton.addEventListener(
         );
 
 
-        await sleep(
-          120
-        );
+        /*
+          ブラウザに1200pxレイアウトを
+          確実に反映させる
+        */
+
+        await nextFrame();
+
+        await nextFrame();
 
 
         const dataUrl =
@@ -965,6 +1203,9 @@ generateButton.addEventListener(
               cacheBust:
                 true,
 
+              backgroundColor:
+                "#101722",
+
               style: {
 
                 width:
@@ -972,6 +1213,9 @@ generateButton.addEventListener(
 
                 height:
                   "1200px",
+
+                maxWidth:
+                  "none",
 
                 margin:
                   "0"
@@ -1001,7 +1245,9 @@ generateButton.addEventListener(
 
     }
 
-    catch (error) {
+    catch (
+      error
+    ) {
 
       console.error(
         error
@@ -1013,7 +1259,9 @@ generateButton.addEventListener(
           ".profile-card"
         )
         .forEach(
-          (card) => {
+          (
+            card
+          ) => {
 
             card.classList.remove(
               "exporting"
@@ -1081,13 +1329,42 @@ function downloadImage(
 
 
 /* ==================================================
+   NEXT FRAME
+================================================== */
+
+function nextFrame() {
+
+  return new Promise(
+    (
+      resolve
+    ) => {
+
+      requestAnimationFrame(
+        () => {
+
+          resolve();
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================================
    WAIT
 ================================================== */
 
-function sleep(ms) {
+function sleep(
+  ms
+) {
 
   return new Promise(
-    (resolve) => {
+    (
+      resolve
+    ) => {
 
       setTimeout(
         resolve,
