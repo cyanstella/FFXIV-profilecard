@@ -36,8 +36,8 @@
   <div class="site-description">
 
     <p>
-    カード背景画像、文字色などを設定し、FFXIVのキャラクターの設定などを記入すると<br>
-    サイト下部にあるプレビューのようなカード画像4枚に出力できます
+      カード背景画像、文字色などを設定し、FFXIVのキャラクターの設定などを記入すると、
+      サイト下部にあるプレビューのようなカード画像4枚に出力できます
     </p>
 
     <p class="hashtag-guide">
@@ -71,7 +71,9 @@
     <h2>カード設定</h2>
 
 
-    <!-- 質問カード -->
+    <!-- ==================================================
+         質問カード
+    ================================================== -->
 
     <div class="setting-group">
 
@@ -192,21 +194,23 @@
     </div>
 
 
-    <!-- 回答カード -->
+    <!-- ==================================================
+         回答カード1
+    ================================================== -->
 
     <div class="setting-group">
 
-      <h3>回答カード</h3>
+      <h3>回答カード1（Q01 - Q07）</h3>
 
       <div class="setting-item">
 
-        <label for="answer-background-upload">
+        <label for="answer1-background-upload">
           背景画像
         </label>
 
         <input
           type="file"
-          id="answer-background-upload"
+          id="answer1-background-upload"
           accept="image/png, image/jpeg, image/webp"
         >
 
@@ -224,7 +228,7 @@
           <label>
             <input
               type="radio"
-              name="answer-text-color"
+              name="answer1-text-color"
               value="white"
               checked
             >
@@ -234,7 +238,7 @@
           <label>
             <input
               type="radio"
-              name="answer-text-color"
+              name="answer1-text-color"
               value="black"
             >
             黒
@@ -256,7 +260,7 @@
           <label>
             <input
               type="radio"
-              name="answer-overlay-color"
+              name="answer1-overlay-color"
               value="black"
               checked
             >
@@ -266,7 +270,7 @@
           <label>
             <input
               type="radio"
-              name="answer-overlay-color"
+              name="answer1-overlay-color"
               value="white"
             >
             白
@@ -279,7 +283,7 @@
 
       <div class="setting-item">
 
-        <label for="answer-overlay-opacity">
+        <label for="answer1-overlay-opacity">
           背景カバーの濃さ
         </label>
 
@@ -287,14 +291,14 @@
 
           <input
             type="range"
-            id="answer-overlay-opacity"
+            id="answer1-overlay-opacity"
             min="0"
             max="0.9"
             step="0.05"
             value="0.45"
           >
 
-          <span id="answer-opacity-value">
+          <span id="answer1-opacity-value">
             45%
           </span>
 
@@ -305,9 +309,255 @@
 
       <button
         type="button"
-        id="remove-answer-background"
+        id="remove-answer1-background"
       >
-        回答背景を解除
+        回答1背景を解除
+      </button>
+
+    </div>
+
+
+    <!-- ==================================================
+         回答カード2
+    ================================================== -->
+
+    <div class="setting-group">
+
+      <h3>回答カード2（Q08 - Q14）</h3>
+
+      <div class="setting-item">
+
+        <label for="answer2-background-upload">
+          背景画像
+        </label>
+
+        <input
+          type="file"
+          id="answer2-background-upload"
+          accept="image/png, image/jpeg, image/webp"
+        >
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <span class="setting-label">
+          文字色
+        </span>
+
+        <div class="radio-group">
+
+          <label>
+            <input
+              type="radio"
+              name="answer2-text-color"
+              value="white"
+              checked
+            >
+            白
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="answer2-text-color"
+              value="black"
+            >
+            黒
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <span class="setting-label">
+          背景カバー色
+        </span>
+
+        <div class="radio-group">
+
+          <label>
+            <input
+              type="radio"
+              name="answer2-overlay-color"
+              value="black"
+              checked
+            >
+            黒
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="answer2-overlay-color"
+              value="white"
+            >
+            白
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer2-overlay-opacity">
+          背景カバーの濃さ
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer2-overlay-opacity"
+            min="0"
+            max="0.9"
+            step="0.05"
+            value="0.45"
+          >
+
+          <span id="answer2-opacity-value">
+            45%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="remove-answer2-background"
+      >
+        回答2背景を解除
+      </button>
+
+    </div>
+
+
+    <!-- ==================================================
+         回答カード3
+    ================================================== -->
+
+    <div class="setting-group">
+
+      <h3>回答カード3（Q15 - Q20）</h3>
+
+      <div class="setting-item">
+
+        <label for="answer3-background-upload">
+          背景画像
+        </label>
+
+        <input
+          type="file"
+          id="answer3-background-upload"
+          accept="image/png, image/jpeg, image/webp"
+        >
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <span class="setting-label">
+          文字色
+        </span>
+
+        <div class="radio-group">
+
+          <label>
+            <input
+              type="radio"
+              name="answer3-text-color"
+              value="white"
+              checked
+            >
+            白
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="answer3-text-color"
+              value="black"
+            >
+            黒
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <span class="setting-label">
+          背景カバー色
+        </span>
+
+        <div class="radio-group">
+
+          <label>
+            <input
+              type="radio"
+              name="answer3-overlay-color"
+              value="black"
+              checked
+            >
+            黒
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="answer3-overlay-color"
+              value="white"
+            >
+            白
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer3-overlay-opacity">
+          背景カバーの濃さ
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer3-overlay-opacity"
+            min="0"
+            max="0.9"
+            step="0.05"
+            value="0.45"
+          >
+
+          <span id="answer3-opacity-value">
+            45%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="remove-answer3-background"
+      >
+        回答3背景を解除
       </button>
 
     </div>
@@ -559,7 +809,9 @@
     <h2>プレビュー</h2>
 
 
-    <!-- 1枚目 -->
+    <!-- ==================================================
+         CARD 1
+    ================================================== -->
 
     <section
       class="profile-card text-white"
@@ -567,6 +819,7 @@
     >
 
       <div class="card-background question-background"></div>
+
       <div class="card-overlay question-overlay"></div>
 
 
@@ -635,241 +888,406 @@
     </section>
 
 
-    <!-- 2枚目 -->
+    <!-- ==================================================
+         CARD 2
+    ================================================== -->
 
     <section
       class="profile-card answer-card text-white"
       id="card-2"
     >
 
-      <div class="card-background answer-background"></div>
-      <div class="card-overlay answer-overlay"></div>
+      <div class="card-background answer1-background"></div>
+
+      <div class="card-overlay answer1-overlay"></div>
 
 
       <div class="card-content">
 
         <header class="card-header">
-          <p class="small-title">CHARACTER PROFILE</p>
-          <h2>Q01 - Q07</h2>
+
+          <p class="small-title">
+            CHARACTER PROFILE
+          </p>
+
+          <h2>
+            Q01 - Q07
+          </h2>
+
         </header>
 
 
         <div class="answer-block">
+
           <p class="question">
             01. キャラクター名と、その名前の由来は？
           </p>
-          <p class="answer-text" id="answer-1"></p>
+
+          <p
+            class="answer-text"
+            id="answer-1"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             02. 出身地はどこ？
           </p>
-          <p class="answer-text" id="answer-2"></p>
+
+          <p
+            class="answer-text"
+            id="answer-2"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             03. 年齢・誕生日は？
           </p>
-          <p class="answer-text" id="answer-3"></p>
+
+          <p
+            class="answer-text"
+            id="answer-3"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             04. 性格を一言で表すと？
           </p>
-          <p class="answer-text" id="answer-4"></p>
+
+          <p
+            class="answer-text"
+            id="answer-4"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             05. 得意なこと・苦手なことは？
           </p>
-          <p class="answer-text" id="answer-5"></p>
+
+          <p
+            class="answer-text"
+            id="answer-5"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             06. 好きな食べ物・嫌いな食べ物は？
           </p>
-          <p class="answer-text" id="answer-6"></p>
+
+          <p
+            class="answer-text"
+            id="answer-6"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             07. 普段はどんな仕事や生活をしている？
           </p>
-          <p class="answer-text" id="answer-7"></p>
+
+          <p
+            class="answer-text"
+            id="answer-7"
+          ></p>
+
         </div>
 
 
-        <p class="copyright">© SQUARE ENIX</p>
-        <p class="page-number">2 / 4</p>
+        <p class="copyright">
+          © SQUARE ENIX
+        </p>
+
+        <p class="page-number">
+          2 / 4
+        </p>
 
       </div>
 
     </section>
 
 
-    <!-- 3枚目 -->
+    <!-- ==================================================
+         CARD 3
+    ================================================== -->
 
     <section
       class="profile-card answer-card text-white"
       id="card-3"
     >
 
-      <div class="card-background answer-background"></div>
-      <div class="card-overlay answer-overlay"></div>
+      <div class="card-background answer2-background"></div>
+
+      <div class="card-overlay answer2-overlay"></div>
 
 
       <div class="card-content">
 
         <header class="card-header">
-          <p class="small-title">CHARACTER PROFILE</p>
-          <h2>Q08 - Q14</h2>
+
+          <p class="small-title">
+            CHARACTER PROFILE
+          </p>
+
+          <h2>
+            Q08 - Q14
+          </h2>
+
         </header>
 
 
         <div class="answer-block">
+
           <p class="question">
             08. 戦う理由、冒険を続ける理由は？
           </p>
-          <p class="answer-text" id="answer-8"></p>
+
+          <p
+            class="answer-text"
+            id="answer-8"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             09. 大切にしている人・場所・物は？
           </p>
-          <p class="answer-text" id="answer-9"></p>
+
+          <p
+            class="answer-text"
+            id="answer-9"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             10. 密かに抱えている夢や目標は？
           </p>
-          <p class="answer-text" id="answer-10"></p>
+
+          <p
+            class="answer-text"
+            id="answer-10"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             11. 一番信頼している相手は？
           </p>
-          <p class="answer-text" id="answer-11"></p>
+
+          <p
+            class="answer-text"
+            id="answer-11"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             12. 苦手なタイプの人は？
           </p>
-          <p class="answer-text" id="answer-12"></p>
+
+          <p
+            class="answer-text"
+            id="answer-12"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             13. 怒るとどうなる？
           </p>
-          <p class="answer-text" id="answer-13"></p>
+
+          <p
+            class="answer-text"
+            id="answer-13"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             14. 落ち込んだときはどう過ごす？
           </p>
-          <p class="answer-text" id="answer-14"></p>
+
+          <p
+            class="answer-text"
+            id="answer-14"
+          ></p>
+
         </div>
 
 
-        <p class="copyright">© SQUARE ENIX</p>
-        <p class="page-number">3 / 4</p>
+        <p class="copyright">
+          © SQUARE ENIX
+        </p>
+
+        <p class="page-number">
+          3 / 4
+        </p>
 
       </div>
 
     </section>
 
 
-    <!-- 4枚目 -->
+    <!-- ==================================================
+         CARD 4
+    ================================================== -->
 
     <section
       class="profile-card answer-card text-white"
       id="card-4"
     >
 
-      <div class="card-background answer-background"></div>
-      <div class="card-overlay answer-overlay"></div>
+      <div class="card-background answer3-background"></div>
+
+      <div class="card-overlay answer3-overlay"></div>
 
 
       <div class="card-content">
 
         <header class="card-header">
-          <p class="small-title">CHARACTER PROFILE</p>
-          <h2>Q15 - Q20</h2>
+
+          <p class="small-title">
+            CHARACTER PROFILE
+          </p>
+
+          <h2>
+            Q15 - Q20
+          </h2>
+
         </header>
 
 
         <div class="answer-block">
+
           <p class="question">
             15. 恋愛には積極的？それとも慎重？
           </p>
-          <p class="answer-text" id="answer-15"></p>
+
+          <p
+            class="answer-text"
+            id="answer-15"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             16. 休日があったら何をして過ごす？
           </p>
-          <p class="answer-text" id="answer-16"></p>
+
+          <p
+            class="answer-text"
+            id="answer-16"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             17. 一番怖いものは？
           </p>
-          <p class="answer-text" id="answer-17"></p>
+
+          <p
+            class="answer-text"
+            id="answer-17"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             18. 過去に後悔していることは？
           </p>
-          <p class="answer-text" id="answer-18"></p>
+
+          <p
+            class="answer-text"
+            id="answer-18"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             19. 誰にも言っていない秘密は？
           </p>
-          <p class="answer-text" id="answer-19"></p>
+
+          <p
+            class="answer-text"
+            id="answer-19"
+          ></p>
+
         </div>
 
 
         <div class="answer-block">
+
           <p class="question">
             20. このキャラクターを一言で紹介すると？
           </p>
-          <p class="answer-text" id="answer-20"></p>
+
+          <p
+            class="answer-text"
+            id="answer-20"
+          ></p>
+
         </div>
 
 
-        <p class="copyright">© SQUARE ENIX</p>
-        <p class="page-number">4 / 4</p>
+        <p class="copyright">
+          © SQUARE ENIX
+        </p>
+
+        <p class="page-number">
+          4 / 4
+        </p>
 
       </div>
 
@@ -916,4 +1334,5 @@
 <script src="./script.js"></script>
 
 </body>
+
 </html>

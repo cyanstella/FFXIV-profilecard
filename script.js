@@ -8,7 +8,7 @@ const MAX_LINES = 2;
 
 
 /* ==================================================
-   回答・文字数・行数・フォントサイズ
+   回答入力
 ================================================== */
 
 for (let i = 1; i <= 20; i++) {
@@ -56,7 +56,7 @@ for (let i = 1; i <= 20; i++) {
 
 
   /* ==================================================
-     入力内容更新
+     入力更新
   ================================================== */
 
   const updateAnswer = () => {
@@ -65,9 +65,7 @@ for (let i = 1; i <= 20; i++) {
       input.value;
 
 
-    /*
-      改行コード統一
-    */
+    /* 改行コード統一 */
 
     value =
       value.replace(
@@ -83,9 +81,7 @@ for (let i = 1; i <= 20; i++) {
       );
 
 
-    /*
-      最大2行
-    */
+    /* 最大2行 */
 
     let lines =
       value.split("\n");
@@ -106,9 +102,7 @@ for (let i = 1; i <= 20; i++) {
     }
 
 
-    /*
-      最大80文字
-    */
+    /* 最大80文字 */
 
     if (value.length > MAX_LENGTH) {
 
@@ -261,8 +255,14 @@ function readImageAsDataURL(file) {
 
 
 /* ==================================================
-   質問背景
+   質問カード設定
 ================================================== */
+
+const questionCard =
+  document.getElementById(
+    "card-1"
+  );
+
 
 const questionBackgroundUpload =
   document.getElementById(
@@ -270,15 +270,41 @@ const questionBackgroundUpload =
   );
 
 
-const questionBackgrounds =
-  document.querySelectorAll(
+const questionBackground =
+  document.querySelector(
     ".question-background"
+  );
+
+
+const questionOverlay =
+  document.querySelector(
+    ".question-overlay"
+  );
+
+
+const questionOpacityControl =
+  document.getElementById(
+    "question-overlay-opacity"
+  );
+
+
+const questionOpacityValue =
+  document.getElementById(
+    "question-opacity-value"
   );
 
 
 let questionBackgroundData =
   null;
 
+
+let questionOverlayColor =
+  "black";
+
+
+/* ==================================================
+   質問背景画像
+================================================== */
 
 questionBackgroundUpload.addEventListener(
   "change",
@@ -301,14 +327,8 @@ questionBackgroundUpload.addEventListener(
         );
 
 
-      questionBackgrounds.forEach(
-        (background) => {
-
-          background.style.backgroundImage =
-            `url("${questionBackgroundData}")`;
-
-        }
-      );
+      questionBackground.style.backgroundImage =
+        `url("${questionBackgroundData}")`;
 
     }
 
@@ -328,74 +348,7 @@ questionBackgroundUpload.addEventListener(
 
 
 /* ==================================================
-   回答背景
-================================================== */
-
-const answerBackgroundUpload =
-  document.getElementById(
-    "answer-background-upload"
-  );
-
-
-const answerBackgrounds =
-  document.querySelectorAll(
-    ".answer-background"
-  );
-
-
-let answerBackgroundData =
-  null;
-
-
-answerBackgroundUpload.addEventListener(
-  "change",
-  async (event) => {
-
-    const file =
-      event.target.files[0];
-
-
-    if (!file) {
-      return;
-    }
-
-
-    try {
-
-      answerBackgroundData =
-        await readImageAsDataURL(
-          file
-        );
-
-
-      answerBackgrounds.forEach(
-        (background) => {
-
-          background.style.backgroundImage =
-            `url("${answerBackgroundData}")`;
-
-        }
-      );
-
-    }
-
-    catch (error) {
-
-      console.error(error);
-
-
-      alert(
-        "回答用背景画像の読み込みに失敗しました。"
-      );
-
-    }
-
-  }
-);
-
-
-/* ==================================================
-   背景解除
+   質問背景解除
 ================================================== */
 
 document
@@ -414,94 +367,11 @@ document
         "";
 
 
-      questionBackgrounds.forEach(
-        (background) => {
-
-          background.style.backgroundImage =
-            "";
-
-        }
-      );
-
-    }
-  );
-
-
-document
-  .getElementById(
-    "remove-answer-background"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      answerBackgroundData =
-        null;
-
-
-      answerBackgroundUpload.value =
+      questionBackground.style.backgroundImage =
         "";
 
-
-      answerBackgrounds.forEach(
-        (background) => {
-
-          background.style.backgroundImage =
-            "";
-
-        }
-      );
-
     }
   );
-
-
-/* ==================================================
-   OVERLAY
-================================================== */
-
-const questionOpacityControl =
-  document.getElementById(
-    "question-overlay-opacity"
-  );
-
-
-const questionOpacityValue =
-  document.getElementById(
-    "question-opacity-value"
-  );
-
-
-const questionOverlays =
-  document.querySelectorAll(
-    ".question-overlay"
-  );
-
-
-const answerOpacityControl =
-  document.getElementById(
-    "answer-overlay-opacity"
-  );
-
-
-const answerOpacityValue =
-  document.getElementById(
-    "answer-opacity-value"
-  );
-
-
-const answerOverlays =
-  document.querySelectorAll(
-    ".answer-overlay"
-  );
-
-
-let questionOverlayColor =
-  "black";
-
-
-let answerOverlayColor =
-  "black";
 
 
 /* ==================================================
@@ -522,14 +392,8 @@ function updateQuestionOverlay() {
       : "0, 0, 0";
 
 
-  questionOverlays.forEach(
-    (overlay) => {
-
-      overlay.style.backgroundColor =
-        `rgba(${rgb}, ${opacity})`;
-
-    }
-  );
+  questionOverlay.style.backgroundColor =
+    `rgba(${rgb}, ${opacity})`;
 
 
   questionOpacityValue.textContent =
@@ -540,45 +404,7 @@ function updateQuestionOverlay() {
 }
 
 
-/* ==================================================
-   回答カバー更新
-================================================== */
-
-function updateAnswerOverlay() {
-
-  const opacity =
-    Number(
-      answerOpacityControl.value
-    );
-
-
-  const rgb =
-    answerOverlayColor === "white"
-      ? "255, 255, 255"
-      : "0, 0, 0";
-
-
-  answerOverlays.forEach(
-    (overlay) => {
-
-      overlay.style.backgroundColor =
-        `rgba(${rgb}, ${opacity})`;
-
-    }
-  );
-
-
-  answerOpacityValue.textContent =
-    `${Math.round(
-      opacity * 100
-    )}%`;
-
-}
-
-
-/* ==================================================
-   カバー濃度
-================================================== */
+/* カバー濃度 */
 
 questionOpacityControl.addEventListener(
   "input",
@@ -586,15 +412,7 @@ questionOpacityControl.addEventListener(
 );
 
 
-answerOpacityControl.addEventListener(
-  "input",
-  updateAnswerOverlay
-);
-
-
-/* ==================================================
-   質問カバー色
-================================================== */
+/* カバー色 */
 
 document
   .querySelectorAll(
@@ -625,48 +443,7 @@ document
   );
 
 
-/* ==================================================
-   回答カバー色
-================================================== */
-
-document
-  .querySelectorAll(
-    'input[name="answer-overlay-color"]'
-  )
-  .forEach(
-    (radio) => {
-
-      radio.addEventListener(
-        "change",
-        () => {
-
-          if (!radio.checked) {
-            return;
-          }
-
-
-          answerOverlayColor =
-            radio.value;
-
-
-          updateAnswerOverlay();
-
-        }
-      );
-
-    }
-  );
-
-
-/* ==================================================
-   質問文字色
-================================================== */
-
-const questionCard =
-  document.getElementById(
-    "card-1"
-  );
-
+/* 文字色 */
 
 document
   .querySelectorAll(
@@ -690,81 +467,10 @@ document
           );
 
 
-          if (radio.value === "black") {
-
-            questionCard.classList.add(
-              "text-black"
-            );
-
-          }
-
-          else {
-
-            questionCard.classList.add(
-              "text-white"
-            );
-
-          }
-
-        }
-      );
-
-    }
-  );
-
-
-/* ==================================================
-   回答文字色
-================================================== */
-
-const answerCards =
-  document.querySelectorAll(
-    ".answer-card"
-  );
-
-
-document
-  .querySelectorAll(
-    'input[name="answer-text-color"]'
-  )
-  .forEach(
-    (radio) => {
-
-      radio.addEventListener(
-        "change",
-        () => {
-
-          if (!radio.checked) {
-            return;
-          }
-
-
-          answerCards.forEach(
-            (card) => {
-
-              card.classList.remove(
-                "text-white",
-                "text-black"
-              );
-
-
-              if (radio.value === "black") {
-
-                card.classList.add(
-                  "text-black"
-                );
-
-              }
-
-              else {
-
-                card.classList.add(
-                  "text-white"
-                );
-
-              }
-
-            }
+          questionCard.classList.add(
+            radio.value === "black"
+              ? "text-black"
+              : "text-white"
           );
 
         }
@@ -774,13 +480,363 @@ document
   );
 
 
-/* ==================================================
-   初期状態
-================================================== */
-
 updateQuestionOverlay();
 
-updateAnswerOverlay();
+
+/* ==================================================
+   回答カード共通設定
+================================================== */
+
+function setupAnswerCard(options) {
+
+  const {
+    cardId,
+    backgroundUploadId,
+    backgroundSelector,
+    removeButtonId,
+    overlaySelector,
+    opacityControlId,
+    opacityValueId,
+    overlayRadioName,
+    textRadioName
+  } = options;
+
+
+  const card =
+    document.getElementById(
+      cardId
+    );
+
+
+  const upload =
+    document.getElementById(
+      backgroundUploadId
+    );
+
+
+  const background =
+    document.querySelector(
+      backgroundSelector
+    );
+
+
+  const removeButton =
+    document.getElementById(
+      removeButtonId
+    );
+
+
+  const overlay =
+    document.querySelector(
+      overlaySelector
+    );
+
+
+  const opacityControl =
+    document.getElementById(
+      opacityControlId
+    );
+
+
+  const opacityValue =
+    document.getElementById(
+      opacityValueId
+    );
+
+
+  let backgroundData =
+    null;
+
+
+  let overlayColor =
+    "black";
+
+
+  /* ==================================================
+     背景画像
+  ================================================== */
+
+  upload.addEventListener(
+    "change",
+    async (event) => {
+
+      const file =
+        event.target.files[0];
+
+
+      if (!file) {
+        return;
+      }
+
+
+      try {
+
+        backgroundData =
+          await readImageAsDataURL(
+            file
+          );
+
+
+        background.style.backgroundImage =
+          `url("${backgroundData}")`;
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+
+        alert(
+          "背景画像の読み込みに失敗しました。"
+        );
+
+      }
+
+    }
+  );
+
+
+  /* ==================================================
+     背景解除
+  ================================================== */
+
+  removeButton.addEventListener(
+    "click",
+    () => {
+
+      backgroundData =
+        null;
+
+
+      upload.value =
+        "";
+
+
+      background.style.backgroundImage =
+        "";
+
+    }
+  );
+
+
+  /* ==================================================
+     カバー更新
+  ================================================== */
+
+  function updateOverlay() {
+
+    const opacity =
+      Number(
+        opacityControl.value
+      );
+
+
+    const rgb =
+      overlayColor === "white"
+        ? "255, 255, 255"
+        : "0, 0, 0";
+
+
+    overlay.style.backgroundColor =
+      `rgba(${rgb}, ${opacity})`;
+
+
+    opacityValue.textContent =
+      `${Math.round(
+        opacity * 100
+      )}%`;
+
+  }
+
+
+  /* カバー濃度 */
+
+  opacityControl.addEventListener(
+    "input",
+    updateOverlay
+  );
+
+
+  /* カバー色 */
+
+  document
+    .querySelectorAll(
+      `input[name="${overlayRadioName}"]`
+    )
+    .forEach(
+      (radio) => {
+
+        radio.addEventListener(
+          "change",
+          () => {
+
+            if (!radio.checked) {
+              return;
+            }
+
+
+            overlayColor =
+              radio.value;
+
+
+            updateOverlay();
+
+          }
+        );
+
+      }
+    );
+
+
+  /* 文字色 */
+
+  document
+    .querySelectorAll(
+      `input[name="${textRadioName}"]`
+    )
+    .forEach(
+      (radio) => {
+
+        radio.addEventListener(
+          "change",
+          () => {
+
+            if (!radio.checked) {
+              return;
+            }
+
+
+            card.classList.remove(
+              "text-white",
+              "text-black"
+            );
+
+
+            card.classList.add(
+              radio.value === "black"
+                ? "text-black"
+                : "text-white"
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+  updateOverlay();
+
+}
+
+
+/* ==================================================
+   回答カード1
+================================================== */
+
+setupAnswerCard({
+
+  cardId:
+    "card-2",
+
+  backgroundUploadId:
+    "answer1-background-upload",
+
+  backgroundSelector:
+    ".answer1-background",
+
+  removeButtonId:
+    "remove-answer1-background",
+
+  overlaySelector:
+    ".answer1-overlay",
+
+  opacityControlId:
+    "answer1-overlay-opacity",
+
+  opacityValueId:
+    "answer1-opacity-value",
+
+  overlayRadioName:
+    "answer1-overlay-color",
+
+  textRadioName:
+    "answer1-text-color"
+
+});
+
+
+/* ==================================================
+   回答カード2
+================================================== */
+
+setupAnswerCard({
+
+  cardId:
+    "card-3",
+
+  backgroundUploadId:
+    "answer2-background-upload",
+
+  backgroundSelector:
+    ".answer2-background",
+
+  removeButtonId:
+    "remove-answer2-background",
+
+  overlaySelector:
+    ".answer2-overlay",
+
+  opacityControlId:
+    "answer2-overlay-opacity",
+
+  opacityValueId:
+    "answer2-opacity-value",
+
+  overlayRadioName:
+    "answer2-overlay-color",
+
+  textRadioName:
+    "answer2-text-color"
+
+});
+
+
+/* ==================================================
+   回答カード3
+================================================== */
+
+setupAnswerCard({
+
+  cardId:
+    "card-4",
+
+  backgroundUploadId:
+    "answer3-background-upload",
+
+  backgroundSelector:
+    ".answer3-background",
+
+  removeButtonId:
+    "remove-answer3-background",
+
+  overlaySelector:
+    ".answer3-overlay",
+
+  opacityControlId:
+    "answer3-overlay-opacity",
+
+  opacityValueId:
+    "answer3-opacity-value",
+
+  overlayRadioName:
+    "answer3-overlay-color",
+
+  textRadioName:
+    "answer3-text-color"
+
+});
 
 
 /* ==================================================
@@ -842,25 +898,34 @@ generateButton.addEventListener(
             card,
             {
 
-              width: 1200,
+              width:
+                1200,
 
-              height: 1200,
+              height:
+                1200,
 
-              canvasWidth: 1200,
+              canvasWidth:
+                1200,
 
-              canvasHeight: 1200,
+              canvasHeight:
+                1200,
 
-              pixelRatio: 1,
+              pixelRatio:
+                1,
 
-              cacheBust: true,
+              cacheBust:
+                true,
 
               style: {
 
-                width: "1200px",
+                width:
+                  "1200px",
 
-                height: "1200px",
+                height:
+                  "1200px",
 
-                margin: "0"
+                margin:
+                  "0"
 
               }
 
@@ -879,7 +944,9 @@ generateButton.addEventListener(
         );
 
 
-        await sleep(400);
+        await sleep(
+          400
+        );
 
       }
 
@@ -887,7 +954,9 @@ generateButton.addEventListener(
 
     catch (error) {
 
-      console.error(error);
+      console.error(
+        error
+      );
 
 
       document
@@ -936,7 +1005,9 @@ function downloadImage(
 ) {
 
   const link =
-    document.createElement("a");
+    document.createElement(
+      "a"
+    );
 
 
   link.download =

@@ -280,7 +280,9 @@ main {
 }
 
 #question-opacity-value,
-#answer-opacity-value {
+#answer1-opacity-value,
+#answer2-opacity-value,
+#answer3-opacity-value {
   min-width: 50px;
 
   color: #d6c19a;
@@ -319,7 +321,8 @@ button:hover {
   background: #b79a66;
   color: #111111;
 
-  transform: translateY(-1px);
+  transform:
+    translateY(-1px);
 }
 
 button:disabled {
@@ -565,10 +568,8 @@ button:disabled {
 
 
 /*
-  1枚目だけ
-  タイトルと質問一覧の間を広げる
-
-  50px → 80px
+  1枚目のみ
+  タイトルと質問一覧の間を広くする
 */
 
 #card-1 .card-header {
@@ -576,10 +577,9 @@ button:disabled {
 }
 
 
-/*
-  FFXIV CHARACTER PROFILE
-  CHARACTER PROFILE
-*/
+/* ==================================================
+   GOLD HEADER
+================================================== */
 
 .small-title {
   margin:
@@ -599,14 +599,6 @@ button:disabled {
 
   letter-spacing: 0.28em;
 }
-
-
-/*
-  キャラクター設定 20の質問
-  Q01 - Q07
-  Q08 - Q14
-  Q15 - Q20
-*/
 
 .card-header h2 {
   margin: 0;
@@ -846,7 +838,7 @@ button:disabled {
 
 
 /* ==================================================
-   EXPORT
+   EXPORT AREA
 ================================================== */
 
 .export-area {
@@ -936,11 +928,6 @@ button:disabled {
   .card-header {
     margin-bottom: 30px;
   }
-
-
-  /*
-    1枚目だけ余白を広めに維持
-  */
 
   #card-1 .card-header {
     margin-bottom: 60px;
@@ -1042,6 +1029,10 @@ button:disabled {
     padding: 22px;
   }
 
+  .radio-group {
+    flex-wrap: wrap;
+  }
+
   .profile-card {
     width: 100%;
     height: auto;
@@ -1064,12 +1055,6 @@ button:disabled {
   .card-header {
     margin-bottom: 4%;
   }
-
-
-  /*
-    モバイルでも
-    1枚目のタイトル下だけ少し広く
-  */
 
   #card-1 .card-header {
     margin-bottom: 7%;
@@ -1184,9 +1169,7 @@ button:disabled {
 }
 
 
-/*
-  回答カードは従来通り
-*/
+/* 回答カード */
 
 .profile-card.exporting.answer-card .card-header {
   margin-bottom:
@@ -1194,11 +1177,7 @@ button:disabled {
 }
 
 
-/*
-  1枚目はタイトル下を広くする
-
-  PNGにしても80pxを維持
-*/
+/* 1枚目 */
 
 #card-1.exporting .card-header {
   margin-bottom:
