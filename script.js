@@ -10,9 +10,11 @@ for (let i = 1; i <= 20; i++) {
   const answer =
     document.getElementById(`answer-${i}`);
 
+
   if (!input || !answer) {
     continue;
   }
+
 
   input.addEventListener(
     "input",
@@ -23,6 +25,7 @@ for (let i = 1; i <= 20; i++) {
 
     }
   );
+
 }
 
 
@@ -35,10 +38,12 @@ const backgroundUpload =
     "background-upload"
   );
 
+
 const cardBackgrounds =
   document.querySelectorAll(
     ".card-background"
   );
+
 
 let currentBackgroundData = null;
 
@@ -50,9 +55,11 @@ backgroundUpload.addEventListener(
     const file =
       event.target.files[0];
 
+
     if (!file) {
       return;
     }
+
 
     const reader =
       new FileReader();
@@ -63,6 +70,7 @@ backgroundUpload.addEventListener(
 
         currentBackgroundData =
           e.target.result;
+
 
         cardBackgrounds.forEach(
           (background) => {
@@ -100,6 +108,7 @@ removeBackgroundButton.addEventListener(
 
     backgroundUpload.value = "";
 
+
     cardBackgrounds.forEach(
       (background) => {
 
@@ -121,10 +130,12 @@ const opacityControl =
     "overlay-opacity"
   );
 
+
 const opacityValue =
   document.getElementById(
     "opacity-value"
   );
+
 
 const overlays =
   document.querySelectorAll(
@@ -141,6 +152,7 @@ opacityControl.addEventListener(
         opacityControl.value
       );
 
+
     overlays.forEach(
       (overlay) => {
 
@@ -149,6 +161,7 @@ opacityControl.addEventListener(
 
       }
     );
+
 
     opacityValue.textContent =
       `${Math.round(opacity * 100)}%`;
@@ -180,7 +193,7 @@ generateButton.addEventListener(
     try {
 
       /*
-        背景画像などの描画を待つ
+        背景画像やフォント等の描画を少し待つ
       */
 
       await sleep(500);
@@ -216,6 +229,10 @@ generateButton.addEventListener(
         );
 
 
+        /*
+          ブラウザの連続ダウンロード対策
+        */
+
         await sleep(500);
 
       }
@@ -224,6 +241,7 @@ generateButton.addEventListener(
 
       console.error(error);
 
+
       alert(
         "画像の生成に失敗しました。"
       );
@@ -231,6 +249,7 @@ generateButton.addEventListener(
     } finally {
 
       generateButton.disabled = false;
+
 
       generateButton.textContent =
         "4枚の画像を書き出す";
@@ -253,19 +272,25 @@ function downloadImage(
   const link =
     document.createElement("a");
 
+
   link.download =
     filename;
 
+
   link.href =
     dataUrl;
+
 
   document.body.appendChild(
     link
   );
 
+
   link.click();
 
+
   link.remove();
+
 }
 
 
@@ -282,4 +307,5 @@ function sleep(ms) {
         ms
       )
   );
+
 }
