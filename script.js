@@ -20,14 +20,14 @@ const CUSTOM_QUESTION_MAX_LENGTH =
   40;
 
 
-/* ==================================================
-   TRANSPARENT BACKGROUND IMAGE
+/*
+  空img対策用。
 
-   html-to-image対策
-================================================== */
+  GIFではなくPNGを使用。
+*/
 
 const TRANSPARENT_PIXEL =
-  "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjYGBg+A8AAQQBAHAgZQsAAAAASUVORK5CYII=";
 
 
 /* ==================================================
@@ -39,88 +39,49 @@ const QUESTIONS = {
   ja: [
 
     "キャラクター名と、その名前の由来は？",
-
     "出身地はどこ？",
-
     "年齢・誕生日は？",
-
     "性格を一言で表すと？",
-
     "得意なこと・苦手なことは？",
-
     "好きな食べ物・嫌いな食べ物は？",
-
     "普段はどんな仕事や生活をしている？",
-
     "戦う理由、冒険を続ける理由は？",
-
     "大切にしている人・場所・物は？",
-
     "密かに抱えている夢や目標は？",
-
     "一番信頼している相手は？",
-
     "苦手なタイプの人は？",
-
     "怒るとどうなる？",
-
     "落ち込んだときはどう過ごす？",
-
     "恋愛には積極的？それとも慎重？",
-
     "休日があったら何をして過ごす？",
-
     "一番怖いものは？",
-
     "過去に後悔していることは？",
-
     "誰にも言っていない秘密は？",
-
     "自由質問"
 
   ],
 
-
   en: [
 
     "What is your character's name, and where did it come from?",
-
     "Where are they from?",
-
     "How old are they, and when is their birthday?",
-
     "How would you describe their personality in one phrase?",
-
     "What are they good at, and what are they bad at?",
-
     "What foods do they like and dislike?",
-
     "What kind of work or daily life do they usually have?",
-
     "Why do they fight or continue their adventures?",
-
     "Who, where, or what is most important to them?",
-
     "What secret dream or goal do they have?",
-
     "Who do they trust the most?",
-
     "What kind of person do they find difficult to deal with?",
-
     "What are they like when they get angry?",
-
     "What do they do when they feel down?",
-
     "Are they forward or cautious when it comes to romance?",
-
     "How would they spend a day off?",
-
     "What are they most afraid of?",
-
     "What do they regret about their past?",
-
     "What is a secret they have never told anyone?",
-
     "Custom Question"
 
   ]
@@ -129,7 +90,7 @@ const QUESTIONS = {
 
 
 /* ==================================================
-   TRANSLATION
+   TRANSLATIONS
 ================================================== */
 
 const translations = {
@@ -248,7 +209,7 @@ const translations = {
       "画像を準備しています…",
 
     generating:
-      (current) =>
+      current =>
         `${current} / 4 枚目を生成しています…`,
 
     exportNote:
@@ -261,14 +222,18 @@ const translations = {
       "iPhoneでは生成された画像を長押しして「写真に保存」できます。",
 
     generatedAlert:
-      "4枚の画像を生成しました。\n下に表示された画像を長押しして保存できます。",
-
-    errorAlert:
-      "画像の生成に失敗しました。\nページを再読み込みしてもう一度お試しください。",
+      "4枚の画像を生成しました。",
 
     cardGenerationError:
-      (cardNumber) =>
-        `カード${cardNumber}の画像生成に失敗しました。\nページを再読み込みしてもう一度お試しください。`,
+      number =>
+        `カード${number}の画像生成に失敗しました。`,
+
+    generationTimeout:
+      number =>
+        `カード${number}の画像生成がタイムアウトしました。`,
+
+    preparationError:
+      "画像の準備処理に失敗しました。",
 
     backgroundLoadError:
       "背景画像の読み込みに失敗しました。",
@@ -399,7 +364,7 @@ const translations = {
       "Preparing images…",
 
     generating:
-      (current) =>
+      current =>
         `Generating image ${current} / 4…`,
 
     exportNote:
@@ -412,14 +377,18 @@ const translations = {
       "On iPhone, press and hold a generated image to save it to Photos.",
 
     generatedAlert:
-      "Four images have been generated.\nPress and hold the images below to save them.",
-
-    errorAlert:
-      "Image generation failed.\nPlease reload the page and try again.",
+      "Four images have been generated.",
 
     cardGenerationError:
-      (cardNumber) =>
-        `Failed to generate card ${cardNumber}.\nPlease reload the page and try again.`,
+      number =>
+        `Failed to generate card ${number}.`,
+
+    generationTimeout:
+      number =>
+        `Image generation timed out on card ${number}.`,
+
+    preparationError:
+      "Image preparation failed.",
 
     backgroundLoadError:
       "Failed to load the background image.",
@@ -439,69 +408,33 @@ const translations = {
 
 
 /* ==================================================
-   STORAGE
-================================================== */
-
-function getSavedLanguage() {
-
-  try {
-
-    return localStorage.getItem(
-      "ffxiv-profile-language"
-    );
-
-  }
-
-  catch (error) {
-
-    return null;
-
-  }
-
-}
-
-
-function saveLanguage(
-  language
-) {
-
-  try {
-
-    localStorage.setItem(
-      "ffxiv-profile-language",
-      language
-    );
-
-  }
-
-  catch (error) {
-
-    console.warn(
-      "Could not save language.",
-      error
-    );
-
-  }
-
-}
-
-
-/* ==================================================
-   CURRENT LANGUAGE
+   LANGUAGE
 ================================================== */
 
 let currentLanguage =
-  getSavedLanguage()
-  ||
   "ja";
 
 
-if (
-  !translations[currentLanguage]
-) {
+try {
 
-  currentLanguage =
-    "ja";
+  const savedLanguage =
+    localStorage.getItem(
+      "ffxiv-profile-language"
+    );
+
+
+  if (
+    translations[savedLanguage]
+  ) {
+
+    currentLanguage =
+      savedLanguage;
+
+  }
+
+}
+
+catch (error) {
 
 }
 
@@ -515,7 +448,7 @@ document
     ".version-text"
   )
   .forEach(
-    (element) => {
+    element => {
 
       element.textContent =
         APP_VERSION;
@@ -525,7 +458,7 @@ document
 
 
 /* ==================================================
-   BACKGROUND IMAGE INITIALIZATION
+   BACKGROUND INITIALIZATION
 ================================================== */
 
 document
@@ -533,18 +466,10 @@ document
     ".card-background-image"
   )
   .forEach(
-    (image) => {
+    image => {
 
-      if (
-        !image.getAttribute(
-          "src"
-        )
-      ) {
-
-        image.src =
-          TRANSPARENT_PIXEL;
-
-      }
+      image.src =
+        TRANSPARENT_PIXEL;
 
     }
   );
@@ -572,9 +497,18 @@ function setLanguage(
     language;
 
 
-  saveLanguage(
-    language
-  );
+  try {
+
+    localStorage.setItem(
+      "ffxiv-profile-language",
+      language
+    );
+
+  }
+
+  catch (error) {
+
+  }
 
 
   document.documentElement.lang =
@@ -592,7 +526,7 @@ function setLanguage(
       "[data-i18n]"
     )
     .forEach(
-      (element) => {
+      element => {
 
         const key =
           element.dataset.i18n;
@@ -617,12 +551,11 @@ function setLanguage(
       ".language-button"
     )
     .forEach(
-      (button) => {
+      button => {
 
         button.classList.toggle(
           "active",
-          button.dataset.language ===
-          language
+          button.dataset.language === language
         );
 
       }
@@ -651,8 +584,10 @@ function setLanguage(
     i++
   ) {
 
-    const questionText =
-      QUESTIONS[language][
+    const text =
+      QUESTIONS[
+        language
+      ][
         i - 1
       ];
 
@@ -662,10 +597,10 @@ function setLanguage(
         `[data-question="${i}"]`
       )
       .forEach(
-        (element) => {
+        element => {
 
           element.textContent =
-            questionText;
+            text;
 
         }
       );
@@ -676,10 +611,10 @@ function setLanguage(
         `[data-input-question="${i}"]`
       )
       .forEach(
-        (element) => {
+        element => {
 
           element.textContent =
-            `${String(i).padStart(2,"0")}. ${questionText}`;
+            `${String(i).padStart(2,"0")}. ${text}`;
 
         }
       );
@@ -690,10 +625,10 @@ function setLanguage(
         `[data-answer-question="${i}"]`
       )
       .forEach(
-        (element) => {
+        element => {
 
           element.textContent =
-            `${String(i).padStart(2,"0")}. ${questionText}`;
+            `${String(i).padStart(2,"0")}. ${text}`;
 
         }
       );
@@ -704,18 +639,35 @@ function setLanguage(
   updateQ20Title();
 
 
-  const q20Input =
+  const q20TitleInput =
     document.getElementById(
       "q20-title"
     );
 
 
   if (
-    q20Input
+    q20TitleInput
   ) {
 
-    q20Input.placeholder =
+    q20TitleInput.placeholder =
       t.customQuestionPlaceholder;
+
+  }
+
+
+  const generateButton =
+    document.getElementById(
+      "generate-button"
+    );
+
+
+  if (
+    generateButton &&
+    !generateButton.disabled
+  ) {
+
+    generateButton.textContent =
+      t.generate;
 
   }
 
@@ -736,29 +688,12 @@ function setLanguage(
   }
 
 
-  const button =
-    document.getElementById(
-      "generate-button"
-    );
-
-
-  if (
-    button &&
-    !button.disabled
-  ) {
-
-    button.textContent =
-      t.generate;
-
-  }
-
-
   requestAnimationFrame(
     () => {
 
-      fitAllAnswerCards();
-
       updatePreviewScales();
+
+      fitAllAnswerCards();
 
     }
   );
@@ -767,7 +702,7 @@ function setLanguage(
 
 
 /* ==================================================
-   LANGUAGE BUTTON
+   LANGUAGE BUTTONS
 ================================================== */
 
 document
@@ -775,7 +710,7 @@ document
     ".language-button"
   )
   .forEach(
-    (button) => {
+    button => {
 
       button.addEventListener(
         "click",
@@ -836,74 +771,6 @@ if (
 
 
 /* ==================================================
-   ANSWER MEASURE
-================================================== */
-
-const answerMeasure =
-  document.createElement(
-    "div"
-  );
-
-
-answerMeasure.setAttribute(
-  "aria-hidden",
-  "true"
-);
-
-
-Object.assign(
-  answerMeasure.style,
-  {
-
-    position:
-      "fixed",
-
-    left:
-      "-99999px",
-
-    top:
-      "0",
-
-    visibility:
-      "hidden",
-
-    width:
-      "1020px",
-
-    margin:
-      "0",
-
-    padding:
-      "0",
-
-    fontFamily:
-      '"Hiragino Mincho ProN", "Yu Mincho", serif',
-
-    fontWeight:
-      "400",
-
-    lineHeight:
-      "1.38",
-
-    whiteSpace:
-      "pre-wrap",
-
-    overflowWrap:
-      "anywhere",
-
-    wordBreak:
-      "break-word"
-
-  }
-);
-
-
-document.body.appendChild(
-  answerMeasure
-);
-
-
-/* ==================================================
    ANSWER INPUT
 ================================================== */
 
@@ -919,13 +786,13 @@ for (
     );
 
 
-  const answer =
+  const output =
     document.getElementById(
       `answer-${i}`
     );
 
 
-  const count =
+  const counter =
     document.getElementById(
       `count-q${i}`
     );
@@ -933,7 +800,7 @@ for (
 
   if (
     !input ||
-    !answer
+    !output
   ) {
 
     continue;
@@ -943,7 +810,7 @@ for (
 
   input.addEventListener(
     "keydown",
-    (event) => {
+    event => {
 
       if (
         event.key !==
@@ -971,7 +838,8 @@ for (
   );
 
 
-  const updateAnswer =
+  input.addEventListener(
+    "input",
     () => {
 
       let value =
@@ -1024,45 +892,27 @@ for (
       }
 
 
+      input.value =
+        value;
+
+
+      output.textContent =
+        value;
+
+
       if (
-        input.value !==
-        value
+        counter
       ) {
 
-        input.value =
-          value;
+        counter.textContent =
+          value.length;
 
       }
 
 
-      answer.textContent =
-        value;
-
-
-      const baseSize =
-        getAnswerBaseFontSize(
-          value.length
-        );
-
-
-      const fittedSize =
-        getFittedAnswerFontSize(
-          value,
-          baseSize
-        );
-
-
-      answer.style.setProperty(
+      output.style.setProperty(
         "--answer-font-size",
-        `${fittedSize}px`
-      );
-
-
-      updateCounter(
-        count,
-        value.length,
-        MAX_LENGTH,
-        60
+        `${getAnswerFontSize(value.length)}px`
       );
 
 
@@ -1070,25 +920,17 @@ for (
         fitAllAnswerCards
       );
 
-    };
-
-
-  input.addEventListener(
-    "input",
-    updateAnswer
+    }
   );
-
-
-  updateAnswer();
 
 }
 
 
 /* ==================================================
-   ANSWER FONT
+   ANSWER FONT SIZE
 ================================================== */
 
-function getAnswerBaseFontSize(
+function getAnswerFontSize(
   length
 ) {
 
@@ -1100,7 +942,6 @@ function getAnswerBaseFontSize(
 
   }
 
-
   if (
     length <= 45
   ) {
@@ -1108,7 +949,6 @@ function getAnswerBaseFontSize(
     return 22;
 
   }
-
 
   if (
     length <= 60
@@ -1124,67 +964,6 @@ function getAnswerBaseFontSize(
 }
 
 
-function getFittedAnswerFontSize(
-  text,
-  baseSize
-) {
-
-  if (
-    !text
-  ) {
-
-    return baseSize;
-
-  }
-
-
-  const MIN_FONT_SIZE =
-    14;
-
-
-  for (
-    let size = baseSize;
-    size >= MIN_FONT_SIZE;
-    size--
-  ) {
-
-    answerMeasure.style.fontSize =
-      `${size}px`;
-
-
-    answerMeasure.textContent =
-      text;
-
-
-    const maxHeight =
-      (
-        size
-        *
-        1.38
-        *
-        2
-      )
-      +
-      3;
-
-
-    if (
-      answerMeasure.scrollHeight <=
-      maxHeight
-    ) {
-
-      return size;
-
-    }
-
-  }
-
-
-  return MIN_FONT_SIZE;
-
-}
-
-
 /* ==================================================
    CARD FIT
 ================================================== */
@@ -1196,62 +975,57 @@ function fitAllAnswerCards() {
       ".answer-card"
     )
     .forEach(
-      fitAnswerCard
+      card => {
+
+        card.classList.remove(
+          "compact-1",
+          "compact-2"
+        );
+
+
+        if (
+          cardFits(
+            card
+          )
+        ) {
+
+          return;
+
+        }
+
+
+        card.classList.add(
+          "compact-1"
+        );
+
+
+        if (
+          cardFits(
+            card
+          )
+        ) {
+
+          return;
+
+        }
+
+
+        card.classList.remove(
+          "compact-1"
+        );
+
+
+        card.classList.add(
+          "compact-2"
+        );
+
+      }
     );
 
 }
 
 
-function fitAnswerCard(
-  card
-) {
-
-  card.classList.remove(
-    "compact-1",
-    "compact-2"
-  );
-
-
-  if (
-    cardContentFits(
-      card
-    )
-  ) {
-
-    return;
-
-  }
-
-
-  card.classList.add(
-    "compact-1"
-  );
-
-
-  if (
-    cardContentFits(
-      card
-    )
-  ) {
-
-    return;
-
-  }
-
-
-  card.classList.remove(
-    "compact-1"
-  );
-
-
-  card.classList.add(
-    "compact-2"
-  );
-
-}
-
-
-function cardContentFits(
+function cardFits(
   card
 ) {
 
@@ -1288,96 +1062,12 @@ function cardContentFits(
 
 
 /* ==================================================
-   COUNTER
-================================================== */
-
-function updateCounter(
-  countElement,
-  length,
-  max,
-  warning
-) {
-
-  if (
-    !countElement
-  ) {
-
-    return;
-
-  }
-
-
-  countElement.textContent =
-    length;
-
-
-  const counter =
-    countElement.parentElement;
-
-
-  if (
-    !counter
-  ) {
-
-    return;
-
-  }
-
-
-  counter.classList.remove(
-    "is-warning",
-    "is-limit"
-  );
-
-
-  if (
-    length >= max
-  ) {
-
-    counter.classList.add(
-      "is-limit"
-    );
-
-  }
-
-  else if (
-    length >= warning
-  ) {
-
-    counter.classList.add(
-      "is-warning"
-    );
-
-  }
-
-}
-
-
-/* ==================================================
    Q20
 ================================================== */
 
 const q20Title =
   document.getElementById(
     "q20-title"
-  );
-
-
-const q20TitleCount =
-  document.getElementById(
-    "count-q20-title"
-  );
-
-
-const question20Preview =
-  document.getElementById(
-    "question-20-preview"
-  );
-
-
-const answerQuestion20 =
-  document.getElementById(
-    "answer-question-20"
   );
 
 
@@ -1397,21 +1087,11 @@ function updateQ20Title() {
       .replace(
         /[\r\n]/g,
         ""
-      );
-
-
-  if (
-    value.length >
-    CUSTOM_QUESTION_MAX_LENGTH
-  ) {
-
-    value =
-      value.slice(
+      )
+      .slice(
         0,
         CUSTOM_QUESTION_MAX_LENGTH
       );
-
-  }
 
 
   q20Title.value =
@@ -1426,37 +1106,52 @@ function updateQ20Title() {
     ][19];
 
 
+  const preview =
+    document.getElementById(
+      "question-20-preview"
+    );
+
+
+  const answer =
+    document.getElementById(
+      "answer-question-20"
+    );
+
+
+  const counter =
+    document.getElementById(
+      "count-q20-title"
+    );
+
+
   if (
-    question20Preview
+    preview
   ) {
 
-    question20Preview.textContent =
+    preview.textContent =
       displayText;
 
   }
 
 
   if (
-    answerQuestion20
+    answer
   ) {
 
-    answerQuestion20.textContent =
+    answer.textContent =
       `20. ${displayText}`;
 
   }
 
 
-  updateCounter(
-    q20TitleCount,
-    value.length,
-    CUSTOM_QUESTION_MAX_LENGTH,
-    32
-  );
+  if (
+    counter
+  ) {
 
+    counter.textContent =
+      value.length;
 
-  requestAnimationFrame(
-    fitAllAnswerCards
-  );
+  }
 
 }
 
@@ -1502,13 +1197,7 @@ function readImageAsDataURL(
 
 
       reader.onerror =
-        () => {
-
-          reject(
-            reader.error
-          );
-
-        };
+        reject;
 
 
       reader.readAsDataURL(
@@ -1522,7 +1211,52 @@ function readImageAsDataURL(
 
 
 /* ==================================================
-   IMAGE WAIT
+   TIMEOUT WRAPPER
+================================================== */
+
+function withTimeout(
+  promise,
+  milliseconds,
+  label
+) {
+
+  return Promise.race(
+    [
+
+      promise,
+
+      new Promise(
+        (
+          resolve,
+          reject
+        ) => {
+
+          setTimeout(
+            () => {
+
+              reject(
+                new Error(
+                  `${label} timeout`
+                )
+              );
+
+            },
+            milliseconds
+          );
+
+        }
+      )
+
+    ]
+  );
+
+}
+
+
+/* ==================================================
+   WAIT FOR IMAGE
+
+   WebKitで永久待ちしない
 ================================================== */
 
 async function waitForImage(
@@ -1538,9 +1272,14 @@ async function waitForImage(
   }
 
 
+  const src =
+    image.getAttribute(
+      "src"
+    );
+
+
   if (
-    image.complete &&
-    image.naturalWidth > 0
+    !src
   ) {
 
     return;
@@ -1548,35 +1287,83 @@ async function waitForImage(
   }
 
 
+  /*
+    透明画像は待たない
+  */
+
   if (
-    typeof image.decode ===
-    "function"
+    src ===
+    TRANSPARENT_PIXEL
   ) {
 
-    try {
+    return;
 
-      await image.decode();
+  }
 
-      return;
 
-    }
+  /*
+    すでに読み込み処理が終了している場合
+  */
 
-    catch (error) {
+  if (
+    image.complete
+  ) {
 
-    }
+    return;
 
   }
 
 
   await new Promise(
-    (resolve) => {
+    resolve => {
+
+      let finished =
+        false;
+
 
       const finish =
         () => {
 
+          if (
+            finished
+          ) {
+
+            return;
+
+          }
+
+
+          finished =
+            true;
+
+
+          clearTimeout(
+            timeoutId
+          );
+
+
+          image.removeEventListener(
+            "load",
+            finish
+          );
+
+
+          image.removeEventListener(
+            "error",
+            finish
+          );
+
+
           resolve();
 
         };
+
+
+      const timeoutId =
+        setTimeout(
+          finish,
+          3000
+        );
 
 
       image.addEventListener(
@@ -1603,7 +1390,7 @@ async function waitForImage(
 
 
 /* ==================================================
-   BACKGROUND WAIT
+   WAIT FOR ALL REAL BACKGROUNDS
 ================================================== */
 
 async function waitForAllBackgroundImages() {
@@ -1616,11 +1403,40 @@ async function waitForAllBackgroundImages() {
     );
 
 
-  await Promise.all(
-    images.map(
-      waitForImage
-    )
-  );
+  const realImages =
+    images.filter(
+      image => {
+
+        const src =
+          image.getAttribute(
+            "src"
+          );
+
+
+        return (
+          src &&
+          src !==
+          TRANSPARENT_PIXEL
+        );
+
+      }
+    );
+
+
+  if (
+    realImages.length
+  ) {
+
+    await Promise.all(
+      realImages.map(
+        image =>
+          waitForImage(
+            image
+          )
+      )
+    );
+
+  }
 
 
   await nextFrame();
@@ -1635,7 +1451,7 @@ async function waitForAllBackgroundImages() {
 function nextFrame() {
 
   return new Promise(
-    (resolve) => {
+    resolve => {
 
       requestAnimationFrame(
         () => {
@@ -1661,137 +1477,98 @@ function setupCardSettings(
   options
 ) {
 
-  const {
-
-    cardId,
-
-    backgroundImageId,
-
-    backgroundUploadId,
-
-    removeButtonId,
-
-    bgXId,
-
-    bgXValueId,
-
-    bgYId,
-
-    bgYValueId,
-
-    bgScaleId,
-
-    bgScaleValueId,
-
-    overlaySelector,
-
-    overlayOpacityId,
-
-    overlayOpacityValueId,
-
-    overlayRadioName,
-
-    textRadioName
-
-  } = options;
-
-
   const card =
     document.getElementById(
-      cardId
+      options.cardId
     );
 
 
-  const backgroundImage =
+  const image =
     document.getElementById(
-      backgroundImageId
+      options.backgroundImageId
     );
 
 
-  const backgroundUpload =
+  const upload =
     document.getElementById(
-      backgroundUploadId
+      options.backgroundUploadId
     );
 
 
   const removeButton =
     document.getElementById(
-      removeButtonId
+      options.removeButtonId
     );
 
 
-  const bgX =
+  const x =
     document.getElementById(
-      bgXId
+      options.bgXId
     );
 
 
-  const bgXValue =
+  const xValue =
     document.getElementById(
-      bgXValueId
+      options.bgXValueId
     );
 
 
-  const bgY =
+  const y =
     document.getElementById(
-      bgYId
+      options.bgYId
     );
 
 
-  const bgYValue =
+  const yValue =
     document.getElementById(
-      bgYValueId
+      options.bgYValueId
     );
 
 
-  const bgScale =
+  const scale =
     document.getElementById(
-      bgScaleId
+      options.bgScaleId
     );
 
 
-  const bgScaleValue =
+  const scaleValue =
     document.getElementById(
-      bgScaleValueId
+      options.bgScaleValueId
     );
 
 
   const overlay =
     document.querySelector(
-      overlaySelector
+      options.overlaySelector
     );
 
 
-  const overlayOpacity =
+  const opacity =
     document.getElementById(
-      overlayOpacityId
+      options.overlayOpacityId
     );
 
 
-  const overlayOpacityValue =
+  const opacityValue =
     document.getElementById(
-      overlayOpacityValueId
+      options.overlayOpacityValueId
     );
 
 
   if (
     !card ||
-    !backgroundImage ||
-    !backgroundUpload ||
+    !image ||
+    !upload ||
     !removeButton ||
-    !bgX ||
-    !bgXValue ||
-    !bgY ||
-    !bgYValue ||
-    !bgScale ||
-    !bgScaleValue ||
+    !x ||
+    !y ||
+    !scale ||
     !overlay ||
-    !overlayOpacity ||
-    !overlayOpacityValue
+    !opacity
   ) {
 
     console.error(
-      "Card settings initialization failed:",
+      "Card setting element missing.",
       options
     );
 
@@ -1801,272 +1578,114 @@ function setupCardSettings(
   }
 
 
-  if (
-    !backgroundImage.src
-  ) {
-
-    backgroundImage.src =
-      TRANSPARENT_PIXEL;
-
-  }
+  image.src =
+    TRANSPARENT_PIXEL;
 
 
   let overlayColor =
     document.querySelector(
-      `input[name="${overlayRadioName}"]:checked`
+      `input[name="${options.overlayRadioName}"]:checked`
     )?.value
     ||
     "black";
 
 
-  /* ==================================================
-     BACKGROUND
-  ================================================== */
+  function updateBackground() {
 
-  function updateBackgroundImage() {
-
-    const x =
+    const xNumber =
       Number(
-        bgX.value
+        x.value
       );
 
 
-    const y =
+    const yNumber =
       Number(
-        bgY.value
+        y.value
       );
 
 
-    const scale =
+    const scaleNumber =
       Number(
-        bgScale.value
+        scale.value
       );
 
 
-    backgroundImage.style.objectPosition =
-      `${x}% ${y}%`;
+    image.style.objectPosition =
+      `${xNumber}% ${yNumber}%`;
 
 
-    backgroundImage.style.transform =
-      `scale(${scale / 100})`;
+    image.style.transform =
+      `scale(${scaleNumber / 100})`;
 
 
-    backgroundImage.style.transformOrigin =
-      `${x}% ${y}%`;
+    image.style.transformOrigin =
+      `${xNumber}% ${yNumber}%`;
 
 
-    bgXValue.textContent =
-      `${x}%`;
+    if (
+      xValue
+    ) {
+
+      xValue.textContent =
+        `${xNumber}%`;
+
+    }
 
 
-    bgYValue.textContent =
-      `${y}%`;
+    if (
+      yValue
+    ) {
+
+      yValue.textContent =
+        `${yNumber}%`;
+
+    }
 
 
-    bgScaleValue.textContent =
-      `${scale}%`;
+    if (
+      scaleValue
+    ) {
+
+      scaleValue.textContent =
+        `${scaleNumber}%`;
+
+    }
 
   }
 
 
-  /* ==================================================
-     UPLOAD
-  ================================================== */
-
-  backgroundUpload.addEventListener(
-    "change",
-    async (event) => {
-
-      const file =
-        event.target.files[
-          0
-        ];
-
-
-      if (
-        !file
-      ) {
-
-        return;
-
-      }
-
-
-      try {
-
-        const dataUrl =
-          await readImageAsDataURL(
-            file
-          );
-
-
-        backgroundImage.src =
-          dataUrl;
-
-
-        await waitForImage(
-          backgroundImage
-        );
-
-
-        updateBackgroundImage();
-
-      }
-
-      catch (error) {
-
-        console.error(
-          error
-        );
-
-
-        alert(
-          translations[
-            currentLanguage
-          ].backgroundLoadError
-        );
-
-      }
-
-    }
-  );
-
-
-  bgX.addEventListener(
-    "input",
-    updateBackgroundImage
-  );
-
-
-  bgY.addEventListener(
-    "input",
-    updateBackgroundImage
-  );
-
-
-  bgScale.addEventListener(
-    "input",
-    updateBackgroundImage
-  );
-
-
-  /* ==================================================
-     REMOVE BACKGROUND
-  ================================================== */
-
-  removeButton.addEventListener(
-    "click",
-    async () => {
-
-      backgroundUpload.value =
-        "";
-
-
-      backgroundImage.src =
-        TRANSPARENT_PIXEL;
-
-
-      bgX.value =
-        50;
-
-
-      bgY.value =
-        50;
-
-
-      bgScale.value =
-        100;
-
-
-      updateBackgroundImage();
-
-
-      await waitForImage(
-        backgroundImage
-      );
-
-    }
-  );
-
-
-  /* ==================================================
-     OVERLAY
-  ================================================== */
-
   function updateOverlay() {
 
-    const opacity =
+    const value =
       Number(
-        overlayOpacity.value
+        opacity.value
       );
 
 
     const rgb =
       overlayColor ===
       "white"
-
-      ? "255,255,255"
-
-      : "0,0,0";
+      ?
+      "255,255,255"
+      :
+      "0,0,0";
 
 
     overlay.style.backgroundColor =
-      `rgba(${rgb},${opacity})`;
+      `rgba(${rgb},${value})`;
 
 
-    overlayOpacityValue.textContent =
-      `${Math.round(
-        opacity * 100
-      )}%`;
+    if (
+      opacityValue
+    ) {
+
+      opacityValue.textContent =
+        `${Math.round(value * 100)}%`;
+
+    }
 
   }
 
-
-  overlayOpacity.addEventListener(
-    "input",
-    updateOverlay
-  );
-
-
-  document
-    .querySelectorAll(
-      `input[name="${overlayRadioName}"]`
-    )
-    .forEach(
-      (radio) => {
-
-        radio.addEventListener(
-          "change",
-          () => {
-
-            if (
-              !radio.checked
-            ) {
-
-              return;
-
-            }
-
-
-            overlayColor =
-              radio.value;
-
-
-            updateOverlay();
-
-          }
-        );
-
-      }
-    );
-
-
-  /* ==================================================
-     TEXT COLOR + GOLD THEME
-
-     黒文字の場合：
-     light-themeを自動ON
-  ================================================== */
 
   function applyTextTheme(
     color
@@ -2102,29 +1721,143 @@ function setupCardSettings(
   }
 
 
+  upload.addEventListener(
+    "change",
+    async event => {
+
+      const file =
+        event.target.files[0];
+
+
+      if (
+        !file
+      ) {
+
+        return;
+
+      }
+
+
+      try {
+
+        const dataUrl =
+          await readImageAsDataURL(
+            file
+          );
+
+
+        image.src =
+          dataUrl;
+
+
+        await withTimeout(
+          waitForImage(
+            image
+          ),
+          4000,
+          "background image"
+        );
+
+
+        updateBackground();
+
+      }
+
+      catch (error) {
+
+        console.error(
+          error
+        );
+
+
+        alert(
+          translations[
+            currentLanguage
+          ].backgroundLoadError
+        );
+
+      }
+
+    }
+  );
+
+
+  removeButton.addEventListener(
+    "click",
+    () => {
+
+      upload.value =
+        "";
+
+
+      image.src =
+        TRANSPARENT_PIXEL;
+
+
+      x.value =
+        50;
+
+
+      y.value =
+        50;
+
+
+      scale.value =
+        100;
+
+
+      updateBackground();
+
+    }
+  );
+
+
+  x.addEventListener(
+    "input",
+    updateBackground
+  );
+
+
+  y.addEventListener(
+    "input",
+    updateBackground
+  );
+
+
+  scale.addEventListener(
+    "input",
+    updateBackground
+  );
+
+
+  opacity.addEventListener(
+    "input",
+    updateOverlay
+  );
+
+
   document
     .querySelectorAll(
-      `input[name="${textRadioName}"]`
+      `input[name="${options.overlayRadioName}"]`
     )
     .forEach(
-      (radio) => {
+      radio => {
 
         radio.addEventListener(
           "change",
           () => {
 
             if (
-              !radio.checked
+              radio.checked
             ) {
 
-              return;
+              overlayColor =
+                radio.value;
+
+
+              updateOverlay();
 
             }
-
-
-            applyTextTheme(
-              radio.value
-            );
 
           }
         );
@@ -2133,20 +1866,50 @@ function setupCardSettings(
     );
 
 
-  const checkedTextRadio =
+  document
+    .querySelectorAll(
+      `input[name="${options.textRadioName}"]`
+    )
+    .forEach(
+      radio => {
+
+        radio.addEventListener(
+          "change",
+          () => {
+
+            if (
+              radio.checked
+            ) {
+
+              applyTextTheme(
+                radio.value
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+  const checkedText =
     document.querySelector(
-      `input[name="${textRadioName}"]:checked`
+      `input[name="${options.textRadioName}"]:checked`
     );
 
 
   applyTextTheme(
-    checkedTextRadio
-      ? checkedTextRadio.value
-      : "white"
+    checkedText
+      ?
+      checkedText.value
+      :
+      "white"
   );
 
 
-  updateBackgroundImage();
+  updateBackground();
 
   updateOverlay();
 
@@ -2154,7 +1917,7 @@ function setupCardSettings(
 
 
 /* ==================================================
-   CARD 2
+   SETUPS
 ================================================== */
 
 setupCardSettings({
@@ -2207,10 +1970,6 @@ setupCardSettings({
 });
 
 
-/* ==================================================
-   CARD 3
-================================================== */
-
 setupCardSettings({
 
   cardId:
@@ -2260,10 +2019,6 @@ setupCardSettings({
 
 });
 
-
-/* ==================================================
-   CARD 4
-================================================== */
 
 setupCardSettings({
 
@@ -2326,7 +2081,7 @@ function updatePreviewScales() {
       ".card-frame"
     )
     .forEach(
-      (frame) => {
+      frame => {
 
         const card =
           frame.querySelector(
@@ -2343,21 +2098,20 @@ function updatePreviewScales() {
         }
 
 
-        const previewPadding =
+        const padding =
           4;
 
 
-        const availableWidth =
+        const width =
           Math.max(
             0,
-            frame.clientWidth
-            -
-            previewPadding * 2
+            frame.clientWidth -
+            padding * 2
           );
 
 
         const scale =
-          availableWidth /
+          width /
           1200;
 
 
@@ -2368,11 +2122,11 @@ function updatePreviewScales() {
 
 
         card.style.left =
-          `${previewPadding}px`;
+          `${padding}px`;
 
 
         card.style.top =
-          `${previewPadding}px`;
+          `${padding}px`;
 
       }
     );
@@ -2393,7 +2147,7 @@ window.addEventListener(
 
 
 /* ==================================================
-   DATA URL TO BLOB
+   DATAURL -> BLOB
 ================================================== */
 
 function dataURLToBlob(
@@ -2406,27 +2160,13 @@ function dataURLToBlob(
     );
 
 
-  if (
-    parts.length < 2
-  ) {
-
-    throw new Error(
-      "Invalid data URL"
-    );
-
-  }
-
-
-  const mimeMatch =
-    parts[0].match(
-      /:(.*?);/
-    );
-
-
   const mime =
-    mimeMatch
-      ? mimeMatch[1]
-      : "image/png";
+    parts[0]
+      .match(
+        /:(.*?);/
+      )?.[1]
+      ||
+      "image/png";
 
 
   const binary =
@@ -2435,7 +2175,7 @@ function dataURLToBlob(
     );
 
 
-  const array =
+  const bytes =
     new Uint8Array(
       binary.length
     );
@@ -2447,7 +2187,7 @@ function dataURLToBlob(
     i++
   ) {
 
-    array[i] =
+    bytes[i] =
       binary.charCodeAt(
         i
       );
@@ -2457,7 +2197,7 @@ function dataURLToBlob(
 
   return new Blob(
     [
-      array
+      bytes
     ],
     {
       type:
@@ -2469,7 +2209,7 @@ function dataURLToBlob(
 
 
 /* ==================================================
-   GENERATE CARD
+   GENERATE ONE CARD
 ================================================== */
 
 async function generateCardImage(
@@ -2477,8 +2217,7 @@ async function generateCardImage(
   index
 ) {
 
-  const options =
-  {
+  const options = {
 
     width:
       1200,
@@ -2500,13 +2239,12 @@ async function generateCardImage(
 
     backgroundColor:
       index === 1
+        ?
+        "#f4f1e9"
+        :
+        "#101722",
 
-      ? "#f4f1e9"
-
-      : "#101722",
-
-    style:
-    {
+    style: {
 
       position:
         "relative",
@@ -2534,26 +2272,23 @@ async function generateCardImage(
   };
 
 
+  /*
+    iPhone / iPad
+  */
+
   if (
     isIOS
   ) {
 
     const dataUrl =
-      await htmlToImage.toPng(
-        card,
-        options
+      await withTimeout(
+        htmlToImage.toPng(
+          card,
+          options
+        ),
+        20000,
+        `card-${index}`
       );
-
-
-    if (
-      !dataUrl
-    ) {
-
-      throw new Error(
-        `card-${index} toPng failed`
-      );
-
-    }
 
 
     return dataURLToBlob(
@@ -2563,10 +2298,18 @@ async function generateCardImage(
   }
 
 
+  /*
+    PC
+  */
+
   const blob =
-    await htmlToImage.toBlob(
-      card,
-      options
+    await withTimeout(
+      htmlToImage.toBlob(
+        card,
+        options
+      ),
+      15000,
+      `card-${index}`
     );
 
 
@@ -2575,7 +2318,7 @@ async function generateCardImage(
   ) {
 
     throw new Error(
-      `card-${index} toBlob failed`
+      `card-${index} blob is null`
     );
 
   }
@@ -2606,201 +2349,242 @@ let generatedObjectUrls =
   [];
 
 
-if (
-  generateButton
-) {
+generateButton.addEventListener(
+  "click",
+  async () => {
 
-  generateButton.addEventListener(
-    "click",
-    async () => {
-
-      const t =
-        translations[
-          currentLanguage
-        ];
+    const t =
+      translations[
+        currentLanguage
+      ];
 
 
-      let generatingCardNumber =
-        0;
+    let currentCard =
+      0;
 
 
-      generateButton.disabled =
-        true;
+    generateButton.disabled =
+      true;
 
 
-      generateButton.textContent =
-        t.preparing;
+    generateButton.textContent =
+      t.preparing;
 
 
-      clearGeneratedResults();
+    clearGeneratedResults();
 
 
-      try {
+    try {
+
+      if (
+        typeof htmlToImage ===
+        "undefined"
+      ) {
+
+        throw new Error(
+          "html-to-image not loaded"
+        );
+
+      }
+
+
+      /*
+        Font待ちも永久停止させない
+      */
+
+      if (
+        document.fonts
+      ) {
+
+        await withTimeout(
+          document.fonts.ready,
+          5000,
+          "fonts"
+        ).catch(
+          () => {}
+        );
+
+      }
+
+
+      /*
+        背景画像待ち。
+        透明画像は対象外。
+      */
+
+      await withTimeout(
+        waitForAllBackgroundImages(),
+        5000,
+        "background preparation"
+      );
+
+
+      fitAllAnswerCards();
+
+
+      await nextFrame();
+
+
+      await sleep(
+        isIOS
+          ?
+          400
+          :
+          150
+      );
+
+
+      const generated =
+        [];
+
+
+      for (
+        let i = 1;
+        i <= 4;
+        i++
+      ) {
+
+        currentCard =
+          i;
+
+
+        generateButton.textContent =
+          t.generating(
+            i
+          );
+
+
+        const card =
+          document.getElementById(
+            `card-${i}`
+          );
+
 
         if (
-          typeof htmlToImage ===
-          "undefined"
+          !card
         ) {
 
           throw new Error(
-            "html-to-image was not loaded"
+            `card-${i} missing`
           );
 
         }
-
-
-        if (
-          document.fonts
-        ) {
-
-          await document.fonts.ready;
-
-        }
-
-
-        await waitForAllBackgroundImages();
-
-
-        fitAllAnswerCards();
 
 
         await nextFrame();
 
 
-        await sleep(
-          isIOS
-            ? 500
-            : 150
+        const blob =
+          await generateCardImage(
+            card,
+            i
+          );
+
+
+        generated.push(
+          {
+
+            index:
+              i,
+
+            blob:
+              blob,
+
+            filename:
+              `ffxiv-profile-${i}.png`
+
+          }
         );
 
 
-        const generated =
-          [];
+        await sleep(
+          isIOS
+            ?
+            800
+            :
+            250
+        );
 
+      }
+
+
+      /*
+        iOS / iPadOS
+      */
+
+      if (
+        isIOS
+      ) {
+
+        showIOSExportResults(
+          generated
+        );
+
+
+        alert(
+          t.generatedAlert
+        );
+
+      }
+
+
+      /*
+        PC
+      */
+
+      else {
 
         for (
-          let i = 1;
-          i <= 4;
-          i++
+          const item of generated
         ) {
 
-          generatingCardNumber =
-            i;
-
-
-          generateButton.textContent =
-            t.generating(
-              i
-            );
-
-
-          const card =
-            document.getElementById(
-              `card-${i}`
-            );
-
-
-          if (
-            !card
-          ) {
-
-            throw new Error(
-              `card-${i} not found`
-            );
-
-          }
-
-
-          await nextFrame();
-
-
-          const blob =
-            await generateCardImage(
-              card,
-              i
-            );
-
-
-          generated.push(
-            {
-
-              index:
-                i,
-
-              blob:
-                blob,
-
-              filename:
-                `ffxiv-profile-${i}.png`
-
-            }
+          downloadBlob(
+            item.blob,
+            item.filename
           );
 
 
           await sleep(
-            isIOS
-              ? 900
-              : 300
+            300
           );
-
-        }
-
-
-        if (
-          isIOS
-        ) {
-
-          showIOSExportResults(
-            generated
-          );
-
-
-          alert(
-            t.generatedAlert
-          );
-
-        }
-
-        else {
-
-          for (
-            const item of generated
-          ) {
-
-            downloadBlob(
-              item.blob,
-              item.filename
-            );
-
-
-            await sleep(
-              350
-            );
-
-          }
 
         }
 
       }
 
-      catch (
-        error
-      ) {
+    }
 
-        console.error(
-          "Image generation error:",
-          error
+    catch (
+      error
+    ) {
+
+      console.error(
+        "Image generation error:",
+        error
+      );
+
+
+      const message =
+        String(
+          error?.message
+          ||
+          ""
         );
 
 
+      if (
+        currentCard > 0
+      ) {
+
         if (
-          generatingCardNumber >
-          0
+          message.includes(
+            "timeout"
+          )
         ) {
 
           alert(
-            t.cardGenerationError(
-              generatingCardNumber
+            t.generationTimeout(
+              currentCard
             )
           );
 
@@ -2809,30 +2593,45 @@ if (
         else {
 
           alert(
-            t.errorAlert
+            t.cardGenerationError(
+              currentCard
+            )
           );
 
         }
 
       }
 
-      finally {
+      else {
 
-        generateButton.disabled =
-          false;
-
-
-        generateButton.textContent =
-          translations[
-            currentLanguage
-          ].generate;
+        alert(
+          t.preparationError
+        );
 
       }
 
     }
-  );
 
-}
+    finally {
+
+      /*
+        成功・失敗に関係なく
+        必ずボタンを復帰
+      */
+
+      generateButton.disabled =
+        false;
+
+
+      generateButton.textContent =
+        translations[
+          currentLanguage
+        ].generate;
+
+    }
+
+  }
+);
 
 
 /* ==================================================
@@ -2843,12 +2642,6 @@ function showIOSExportResults(
   generated
 ) {
 
-  const t =
-    translations[
-      currentLanguage
-    ];
-
-
   if (
     !mobileExportResults
   ) {
@@ -2858,21 +2651,27 @@ function showIOSExportResults(
   }
 
 
+  const t =
+    translations[
+      currentLanguage
+    ];
+
+
   mobileExportResults.hidden =
     false;
 
 
   generated.forEach(
-    (item) => {
+    item => {
 
-      const objectUrl =
+      const url =
         URL.createObjectURL(
           item.blob
         );
 
 
       generatedObjectUrls.push(
-        objectUrl
+        url
       );
 
 
@@ -2903,21 +2702,11 @@ function showIOSExportResults(
 
 
       image.src =
-        objectUrl;
+        url;
 
 
       image.alt =
         `FFXIV Character Profile Card ${item.index}`;
-
-
-      const actions =
-        document.createElement(
-          "div"
-        );
-
-
-      actions.className =
-        "mobile-export-actions";
 
 
       const openLink =
@@ -2927,7 +2716,7 @@ function showIOSExportResults(
 
 
       openLink.href =
-        objectUrl;
+        url;
 
 
       openLink.target =
@@ -2942,99 +2731,16 @@ function showIOSExportResults(
         t.openImage;
 
 
-      actions.appendChild(
-        openLink
-      );
+      openLink.style.display =
+        "inline-block";
 
 
-      const file =
-        new File(
-          [
-            item.blob
-          ],
-          item.filename,
-          {
-            type:
-              "image/png"
-          }
-        );
+      openLink.style.marginTop =
+        "10px";
 
 
-      if (
-        navigator.share &&
-        navigator.canShare &&
-        navigator.canShare(
-          {
-            files:
-              [
-                file
-              ]
-          }
-        )
-      ) {
-
-        const shareButton =
-          document.createElement(
-            "button"
-          );
-
-
-        shareButton.type =
-          "button";
-
-
-        shareButton.textContent =
-          t.shareSave;
-
-
-        shareButton.addEventListener(
-          "click",
-          async () => {
-
-            try {
-
-              await navigator.share(
-                {
-
-                  files:
-                    [
-                      file
-                    ],
-
-                  title:
-                    `FFXIV Character Profile Card ${item.index}`
-
-                }
-              );
-
-            }
-
-            catch (
-              error
-            ) {
-
-              if (
-                error.name !==
-                "AbortError"
-              ) {
-
-                console.error(
-                  error
-                );
-
-              }
-
-            }
-
-          }
-        );
-
-
-        actions.appendChild(
-          shareButton
-        );
-
-      }
+      openLink.style.color =
+        "#d6c19a";
 
 
       wrapper.appendChild(
@@ -3048,7 +2754,7 @@ function showIOSExportResults(
 
 
       wrapper.appendChild(
-        actions
+        openLink
       );
 
 
@@ -3076,13 +2782,13 @@ function showIOSExportResults(
 
 
 /* ==================================================
-   CLEAR RESULTS
+   CLEAR EXPORT RESULTS
 ================================================== */
 
 function clearGeneratedResults() {
 
   generatedObjectUrls.forEach(
-    (url) => {
+    url => {
 
       URL.revokeObjectURL(
         url
@@ -3171,15 +2877,15 @@ function downloadBlob(
 ================================================== */
 
 function sleep(
-  ms
+  milliseconds
 ) {
 
   return new Promise(
-    (resolve) => {
+    resolve => {
 
       setTimeout(
         resolve,
-        ms
+        milliseconds
       );
 
     }
@@ -3189,7 +2895,7 @@ function sleep(
 
 
 /* ==================================================
-   INITIAL
+   INITIALIZE
 ================================================== */
 
 window.addEventListener(
@@ -3207,7 +2913,29 @@ window.addEventListener(
     fitAllAnswerCards();
 
 
-    await waitForAllBackgroundImages();
+    /*
+      起動時の画像待ちは
+      エラーになってもサイト自体を止めない
+    */
+
+    try {
+
+      await withTimeout(
+        waitForAllBackgroundImages(),
+        4000,
+        "initial image preparation"
+      );
+
+    }
+
+    catch (error) {
+
+      console.warn(
+        "Initial image preparation skipped:",
+        error
+      );
+
+    }
 
   }
 );
