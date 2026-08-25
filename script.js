@@ -20,11 +20,9 @@ const CUSTOM_QUESTION_MAX_LENGTH =
   40;
 
 
-/*
-  空img対策用。
-
-  GIFではなくPNGを使用。
-*/
+/* ==================================================
+   TRANSPARENT PIXEL
+================================================== */
 
 const TRANSPARENT_PIXEL =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjYGBg+A8AAQQBAHAgZQsAAAAASUVORK5CYII=";
@@ -60,6 +58,7 @@ const QUESTIONS = {
     "自由質問"
 
   ],
+
 
   en: [
 
@@ -208,6 +207,10 @@ const translations = {
     preparing:
       "画像を準備しています…",
 
+    cloning:
+      current =>
+        `${current} / 4 枚目を準備しています…`,
+
     generating:
       current =>
         `${current} / 4 枚目を生成しています…`,
@@ -219,7 +222,7 @@ const translations = {
       "PNG形式・1200 × 1200px",
 
     iosGuide:
-      "iPhoneでは生成された画像を長押しして「写真に保存」できます。",
+      "iPhone / iPadでは生成された画像を長押しして保存できます。",
 
     generatedAlert:
       "4枚の画像を生成しました。",
@@ -227,13 +230,6 @@ const translations = {
     cardGenerationError:
       number =>
         `カード${number}の画像生成に失敗しました。`,
-
-    generationTimeout:
-      number =>
-        `カード${number}の画像生成がタイムアウトしました。`,
-
-    preparationError:
-      "画像の準備処理に失敗しました。",
 
     backgroundLoadError:
       "背景画像の読み込みに失敗しました。",
@@ -363,6 +359,10 @@ const translations = {
     preparing:
       "Preparing images…",
 
+    cloning:
+      current =>
+        `Preparing card ${current} / 4…`,
+
     generating:
       current =>
         `Generating image ${current} / 4…`,
@@ -374,7 +374,7 @@ const translations = {
       "PNG · 1200 × 1200px",
 
     iosGuide:
-      "On iPhone, press and hold a generated image to save it to Photos.",
+      "On iPhone / iPad, press and hold a generated image to save it.",
 
     generatedAlert:
       "Four images have been generated.",
@@ -382,13 +382,6 @@ const translations = {
     cardGenerationError:
       number =>
         `Failed to generate card ${number}.`,
-
-    generationTimeout:
-      number =>
-        `Image generation timed out on card ${number}.`,
-
-    preparationError:
-      "Image preparation failed.",
 
     backgroundLoadError:
       "Failed to load the background image.",
@@ -408,7 +401,7 @@ const translations = {
 
 
 /* ==================================================
-   LANGUAGE
+   LANGUAGE STATE
 ================================================== */
 
 let currentLanguage =
@@ -458,7 +451,7 @@ document
 
 
 /* ==================================================
-   BACKGROUND INITIALIZATION
+   INITIAL BACKGROUNDS
 ================================================== */
 
 document
@@ -555,7 +548,8 @@ function setLanguage(
 
         button.classList.toggle(
           "active",
-          button.dataset.language === language
+          button.dataset.language ===
+          language
         );
 
       }
@@ -639,17 +633,17 @@ function setLanguage(
   updateQ20Title();
 
 
-  const q20TitleInput =
+  const q20Input =
     document.getElementById(
       "q20-title"
     );
 
 
   if (
-    q20TitleInput
+    q20Input
   ) {
 
-    q20TitleInput.placeholder =
+    q20Input.placeholder =
       t.customQuestionPlaceholder;
 
   }
@@ -728,7 +722,7 @@ document
 
 
 /* ==================================================
-   IOS
+   IOS / IPADOS
 ================================================== */
 
 function isIOSDevice() {
@@ -771,7 +765,7 @@ if (
 
 
 /* ==================================================
-   ANSWER INPUT
+   ANSWERS
 ================================================== */
 
 for (
@@ -838,8 +832,7 @@ for (
   );
 
 
-  input.addEventListener(
-    "input",
+  const update =
     () => {
 
       let value =
@@ -900,6 +893,12 @@ for (
         value;
 
 
+      output.style.setProperty(
+        "--answer-font-size",
+        `${getAnswerFontSize(value.length)}px`
+      );
+
+
       if (
         counter
       ) {
@@ -910,24 +909,26 @@ for (
       }
 
 
-      output.style.setProperty(
-        "--answer-font-size",
-        `${getAnswerFontSize(value.length)}px`
-      );
-
-
       requestAnimationFrame(
         fitAllAnswerCards
       );
 
-    }
+    };
+
+
+  input.addEventListener(
+    "input",
+    update
   );
+
+
+  update();
 
 }
 
 
 /* ==================================================
-   ANSWER FONT SIZE
+   FONT SIZE
 ================================================== */
 
 function getAnswerFontSize(
@@ -965,7 +966,7 @@ function getAnswerFontSize(
 
 
 /* ==================================================
-   CARD FIT
+   FIT
 ================================================== */
 
 function fitAllAnswerCards() {
@@ -1211,111 +1212,45 @@ function readImageAsDataURL(
 
 
 /* ==================================================
-   TIMEOUT WRAPPER
+   WAIT IMAGE
 ================================================== */
 
-function withTimeout(
-  promise,
-  milliseconds,
-  label
-) {
-
-  return Promise.race(
-    [
-
-      promise,
-
-      new Promise(
-        (
-          resolve,
-          reject
-        ) => {
-
-          setTimeout(
-            () => {
-
-              reject(
-                new Error(
-                  `${label} timeout`
-                )
-              );
-
-            },
-            milliseconds
-          );
-
-        }
-      )
-
-    ]
-  );
-
-}
-
-
-/* ==================================================
-   WAIT FOR IMAGE
-
-   WebKitで永久待ちしない
-================================================== */
-
-async function waitForImage(
+function waitForImage(
   image
 ) {
 
-  if (
-    !image
-  ) {
-
-    return;
-
-  }
-
-
-  const src =
-    image.getAttribute(
-      "src"
-    );
-
-
-  if (
-    !src
-  ) {
-
-    return;
-
-  }
-
-
-  /*
-    透明画像は待たない
-  */
-
-  if (
-    src ===
-    TRANSPARENT_PIXEL
-  ) {
-
-    return;
-
-  }
-
-
-  /*
-    すでに読み込み処理が終了している場合
-  */
-
-  if (
-    image.complete
-  ) {
-
-    return;
-
-  }
-
-
-  await new Promise(
+  return new Promise(
     resolve => {
+
+      if (
+        !image
+      ) {
+
+        resolve();
+
+        return;
+
+      }
+
+
+      const src =
+        image.getAttribute(
+          "src"
+        );
+
+
+      if (
+        !src ||
+        src === TRANSPARENT_PIXEL ||
+        image.complete
+      ) {
+
+        resolve();
+
+        return;
+
+      }
+
 
       let finished =
         false;
@@ -1338,19 +1273,7 @@ async function waitForImage(
 
 
           clearTimeout(
-            timeoutId
-          );
-
-
-          image.removeEventListener(
-            "load",
-            finish
-          );
-
-
-          image.removeEventListener(
-            "error",
-            finish
+            timeout
           );
 
 
@@ -1359,7 +1282,7 @@ async function waitForImage(
         };
 
 
-      const timeoutId =
+      const timeout =
         setTimeout(
           finish,
           3000
@@ -1390,7 +1313,7 @@ async function waitForImage(
 
 
 /* ==================================================
-   WAIT FOR ALL REAL BACKGROUNDS
+   WAIT BACKGROUNDS
 ================================================== */
 
 async function waitForAllBackgroundImages() {
@@ -1415,28 +1338,18 @@ async function waitForAllBackgroundImages() {
 
         return (
           src &&
-          src !==
-          TRANSPARENT_PIXEL
+          src !== TRANSPARENT_PIXEL
         );
 
       }
     );
 
 
-  if (
-    realImages.length
-  ) {
-
-    await Promise.all(
-      realImages.map(
-        image =>
-          waitForImage(
-            image
-          )
-      )
-    );
-
-  }
+  await Promise.all(
+    realImages.map(
+      waitForImage
+    )
+  );
 
 
   await nextFrame();
@@ -1568,7 +1481,7 @@ function setupCardSettings(
   ) {
 
     console.error(
-      "Card setting element missing.",
+      "Missing card settings:",
       options
     );
 
@@ -1726,7 +1639,9 @@ function setupCardSettings(
     async event => {
 
       const file =
-        event.target.files[0];
+        event.target.files[
+          0
+        ];
 
 
       if (
@@ -1750,12 +1665,8 @@ function setupCardSettings(
           dataUrl;
 
 
-        await withTimeout(
-          waitForImage(
-            image
-          ),
-          4000,
-          "background image"
+        await waitForImage(
+          image
         );
 
 
@@ -2147,7 +2058,7 @@ window.addEventListener(
 
 
 /* ==================================================
-   DATAURL -> BLOB
+   DATA URL -> BLOB
 ================================================== */
 
 function dataURLToBlob(
@@ -2209,122 +2120,315 @@ function dataURLToBlob(
 
 
 /* ==================================================
-   GENERATE ONE CARD
+   EXPORT CLONE
 ================================================== */
 
-async function generateCardImage(
-  card,
-  index
+function createExportClone(
+  sourceCard
 ) {
 
-  const options = {
-
-    width:
-      1200,
-
-    height:
-      1200,
-
-    canvasWidth:
-      1200,
-
-    canvasHeight:
-      1200,
-
-    pixelRatio:
-      1,
-
-    cacheBust:
-      false,
-
-    backgroundColor:
-      index === 1
-        ?
-        "#f4f1e9"
-        :
-        "#101722",
-
-    style: {
-
-      position:
-        "relative",
-
-      left:
-        "0",
-
-      top:
-        "0",
-
-      transform:
-        "none",
-
-      transformOrigin:
-        "top left",
-
-      width:
-        "1200px",
-
-      height:
-        "1200px"
-
-    }
-
-  };
-
-
-  /*
-    iPhone / iPad
-  */
-
-  if (
-    isIOS
-  ) {
-
-    const dataUrl =
-      await withTimeout(
-        htmlToImage.toPng(
-          card,
-          options
-        ),
-        20000,
-        `card-${index}`
-      );
-
-
-    return dataURLToBlob(
-      dataUrl
-    );
-
-  }
-
-
-  /*
-    PC
-  */
-
-  const blob =
-    await withTimeout(
-      htmlToImage.toBlob(
-        card,
-        options
-      ),
-      15000,
-      `card-${index}`
+  const workspace =
+    document.getElementById(
+      "export-workspace"
     );
 
 
   if (
-    !blob
+    !workspace
   ) {
 
     throw new Error(
-      `card-${index} blob is null`
+      "export workspace missing"
     );
 
   }
 
 
-  return blob;
+  workspace.innerHTML =
+    "";
+
+
+  const clone =
+    sourceCard.cloneNode(
+      true
+    );
+
+
+  /*
+    clone内で重複IDを作らない
+  */
+
+  clone.removeAttribute(
+    "id"
+  );
+
+
+  clone.querySelectorAll(
+    "[id]"
+  )
+  .forEach(
+    element => {
+
+      element.removeAttribute(
+        "id"
+      );
+
+    }
+  );
+
+
+  clone.classList.add(
+    "export-clone"
+  );
+
+
+  clone.style.setProperty(
+    "--preview-scale",
+    "1"
+  );
+
+
+  clone.style.transform =
+    "none";
+
+
+  clone.style.left =
+    "0";
+
+
+  clone.style.top =
+    "0";
+
+
+  clone.style.width =
+    "1200px";
+
+
+  clone.style.height =
+    "1200px";
+
+
+  workspace.appendChild(
+    clone
+  );
+
+
+  return clone;
+
+}
+
+
+/* ==================================================
+   PREPARE CLONE IMAGES
+================================================== */
+
+async function prepareCloneImages(
+  clone
+) {
+
+  const images =
+    Array.from(
+      clone.querySelectorAll(
+        "img"
+      )
+    );
+
+
+  for (
+    const image of images
+  ) {
+
+    const src =
+      image.getAttribute(
+        "src"
+      );
+
+
+    if (
+      !src
+    ) {
+
+      image.src =
+        TRANSPARENT_PIXEL;
+
+    }
+
+
+    await waitForImage(
+      image
+    );
+
+  }
+
+
+  await nextFrame();
+
+}
+
+
+/* ==================================================
+   GENERATE CLONE
+================================================== */
+
+async function generateCardImage(
+  sourceCard,
+  index
+) {
+
+  const clone =
+    createExportClone(
+      sourceCard
+    );
+
+
+  try {
+
+    await prepareCloneImages(
+      clone
+    );
+
+
+    await nextFrame();
+
+
+    /*
+      WebKitに描画時間を返す
+    */
+
+    if (
+      isIOS
+    ) {
+
+      await sleep(
+        350
+      );
+
+    }
+
+
+    const options = {
+
+      width:
+        1200,
+
+      height:
+        1200,
+
+      canvasWidth:
+        1200,
+
+      canvasHeight:
+        1200,
+
+      pixelRatio:
+        1,
+
+      cacheBust:
+        false,
+
+      backgroundColor:
+        index === 1
+          ?
+          "#f4f1e9"
+          :
+          "#101722",
+
+      style: {
+
+        position:
+          "relative",
+
+        left:
+          "0",
+
+        top:
+          "0",
+
+        transform:
+          "none",
+
+        transformOrigin:
+          "top left",
+
+        width:
+          "1200px",
+
+        height:
+          "1200px"
+
+      }
+
+    };
+
+
+    /*
+      iPhone / iPad
+
+      cloneに対してのみtoPng
+    */
+
+    if (
+      isIOS
+    ) {
+
+      const dataUrl =
+        await htmlToImage.toPng(
+          clone,
+          options
+        );
+
+
+      return dataURLToBlob(
+        dataUrl
+      );
+
+    }
+
+
+    /*
+      PC
+    */
+
+    const blob =
+      await htmlToImage.toBlob(
+        clone,
+        options
+      );
+
+
+    if (
+      !blob
+    ) {
+
+      throw new Error(
+        `card-${index} blob is null`
+      );
+
+    }
+
+
+    return blob;
+
+  }
+
+  finally {
+
+    const workspace =
+      document.getElementById(
+        "export-workspace"
+      );
+
+
+    if (
+      workspace
+    ) {
+
+      workspace.innerHTML =
+        "";
+
+    }
+
+  }
 
 }
 
@@ -2349,248 +2453,254 @@ let generatedObjectUrls =
   [];
 
 
-generateButton.addEventListener(
-  "click",
-  async () => {
+if (
+  generateButton
+) {
 
-    const t =
-      translations[
-        currentLanguage
-      ];
+  generateButton.addEventListener(
+    "click",
+    async () => {
 
-
-    let currentCard =
-      0;
-
-
-    generateButton.disabled =
-      true;
+      const t =
+        translations[
+          currentLanguage
+        ];
 
 
-    generateButton.textContent =
-      t.preparing;
+      let currentCard =
+        0;
 
 
-    clearGeneratedResults();
+      generateButton.disabled =
+        true;
 
 
-    try {
-
-      if (
-        typeof htmlToImage ===
-        "undefined"
-      ) {
-
-        throw new Error(
-          "html-to-image not loaded"
-        );
-
-      }
+      generateButton.textContent =
+        t.preparing;
 
 
-      /*
-        Font待ちも永久停止させない
-      */
-
-      if (
-        document.fonts
-      ) {
-
-        await withTimeout(
-          document.fonts.ready,
-          5000,
-          "fonts"
-        ).catch(
-          () => {}
-        );
-
-      }
+      clearGeneratedResults();
 
 
-      /*
-        背景画像待ち。
-        透明画像は対象外。
-      */
-
-      await withTimeout(
-        waitForAllBackgroundImages(),
-        5000,
-        "background preparation"
-      );
-
-
-      fitAllAnswerCards();
-
-
-      await nextFrame();
-
-
-      await sleep(
-        isIOS
-          ?
-          400
-          :
-          150
-      );
-
-
-      const generated =
-        [];
-
-
-      for (
-        let i = 1;
-        i <= 4;
-        i++
-      ) {
-
-        currentCard =
-          i;
-
-
-        generateButton.textContent =
-          t.generating(
-            i
-          );
-
-
-        const card =
-          document.getElementById(
-            `card-${i}`
-          );
-
+      try {
 
         if (
-          !card
+          typeof htmlToImage ===
+          "undefined"
         ) {
 
           throw new Error(
-            `card-${i} missing`
+            "html-to-image not loaded"
           );
 
         }
+
+
+        /*
+          フォント待機
+        */
+
+        if (
+          document.fonts
+        ) {
+
+          try {
+
+            await Promise.race(
+              [
+
+                document.fonts.ready,
+
+                sleep(
+                  3000
+                )
+
+              ]
+            );
+
+          }
+
+          catch (error) {
+
+          }
+
+        }
+
+
+        await waitForAllBackgroundImages();
+
+
+        fitAllAnswerCards();
 
 
         await nextFrame();
 
 
-        const blob =
-          await generateCardImage(
-            card,
-            i
-          );
+        const generated =
+          [];
 
-
-        generated.push(
-          {
-
-            index:
-              i,
-
-            blob:
-              blob,
-
-            filename:
-              `ffxiv-profile-${i}.png`
-
-          }
-        );
-
-
-        await sleep(
-          isIOS
-            ?
-            800
-            :
-            250
-        );
-
-      }
-
-
-      /*
-        iOS / iPadOS
-      */
-
-      if (
-        isIOS
-      ) {
-
-        showIOSExportResults(
-          generated
-        );
-
-
-        alert(
-          t.generatedAlert
-        );
-
-      }
-
-
-      /*
-        PC
-      */
-
-      else {
 
         for (
-          const item of generated
+          let i = 1;
+          i <= 4;
+          i++
         ) {
 
-          downloadBlob(
-            item.blob,
-            item.filename
+          currentCard =
+            i;
+
+
+          generateButton.textContent =
+            t.cloning(
+              i
+            );
+
+
+          const sourceCard =
+            document.getElementById(
+              `card-${i}`
+            );
+
+
+          if (
+            !sourceCard
+          ) {
+
+            throw new Error(
+              `card-${i} missing`
+            );
+
+          }
+
+
+          /*
+            ボタン表示更新を確実に反映
+          */
+
+          await nextFrame();
+
+
+          if (
+            isIOS
+          ) {
+
+            await sleep(
+              250
+            );
+
+          }
+
+
+          generateButton.textContent =
+            t.generating(
+              i
+            );
+
+
+          await nextFrame();
+
+
+          const blob =
+            await generateCardImage(
+              sourceCard,
+              i
+            );
+
+
+          generated.push(
+            {
+
+              index:
+                i,
+
+              blob:
+                blob,
+
+              filename:
+                `ffxiv-profile-${i}.png`
+
+            }
           );
 
+
+          /*
+            各カード処理後に
+            WebKitへ処理を返す
+          */
 
           await sleep(
-            300
+            isIOS
+              ?
+              1000
+              :
+              300
           );
+
+
+          await nextFrame();
+
+        }
+
+
+        /* ==================================================
+           IOS / IPAD
+        ================================================== */
+
+        if (
+          isIOS
+        ) {
+
+          showIOSExportResults(
+            generated
+          );
+
+
+          alert(
+            t.generatedAlert
+          );
+
+        }
+
+
+        /* ==================================================
+           PC
+        ================================================== */
+
+        else {
+
+          for (
+            const item of generated
+          ) {
+
+            downloadBlob(
+              item.blob,
+              item.filename
+            );
+
+
+            await sleep(
+              300
+            );
+
+          }
 
         }
 
       }
 
-    }
-
-    catch (
-      error
-    ) {
-
-      console.error(
-        "Image generation error:",
+      catch (
         error
-      );
+      ) {
 
-
-      const message =
-        String(
-          error?.message
-          ||
-          ""
+        console.error(
+          "Image generation error:",
+          error
         );
 
 
-      if (
-        currentCard > 0
-      ) {
-
         if (
-          message.includes(
-            "timeout"
-          )
+          currentCard > 0
         ) {
-
-          alert(
-            t.generationTimeout(
-              currentCard
-            )
-          );
-
-        }
-
-        else {
 
           alert(
             t.cardGenerationError(
@@ -2600,38 +2710,60 @@ generateButton.addEventListener(
 
         }
 
+        else {
+
+          alert(
+            currentLanguage ===
+            "ja"
+
+            ?
+            "画像生成の準備に失敗しました。"
+
+            :
+            "Failed to prepare image generation."
+          );
+
+        }
+
       }
 
-      else {
+      finally {
 
-        alert(
-          t.preparationError
-        );
+        /*
+          cloneを必ず消す
+        */
+
+        const workspace =
+          document.getElementById(
+            "export-workspace"
+          );
+
+
+        if (
+          workspace
+        ) {
+
+          workspace.innerHTML =
+            "";
+
+        }
+
+
+        generateButton.disabled =
+          false;
+
+
+        generateButton.textContent =
+          translations[
+            currentLanguage
+          ].generate;
 
       }
 
     }
+  );
 
-    finally {
-
-      /*
-        成功・失敗に関係なく
-        必ずボタンを復帰
-      */
-
-      generateButton.disabled =
-        false;
-
-
-      generateButton.textContent =
-        translations[
-          currentLanguage
-        ].generate;
-
-    }
-
-  }
-);
+}
 
 
 /* ==================================================
@@ -2709,6 +2841,16 @@ function showIOSExportResults(
         `FFXIV Character Profile Card ${item.index}`;
 
 
+      const actions =
+        document.createElement(
+          "div"
+        );
+
+
+      actions.className =
+        "mobile-export-actions";
+
+
       const openLink =
         document.createElement(
           "a"
@@ -2731,16 +2873,109 @@ function showIOSExportResults(
         t.openImage;
 
 
-      openLink.style.display =
-        "inline-block";
+      actions.appendChild(
+        openLink
+      );
 
 
-      openLink.style.marginTop =
-        "10px";
+      try {
+
+        const file =
+          new File(
+            [
+              item.blob
+            ],
+            item.filename,
+            {
+              type:
+                "image/png"
+            }
+          );
 
 
-      openLink.style.color =
-        "#d6c19a";
+        if (
+          navigator.share &&
+          navigator.canShare &&
+          navigator.canShare(
+            {
+              files:
+                [
+                  file
+                ]
+            }
+          )
+        ) {
+
+          const shareButton =
+            document.createElement(
+              "button"
+            );
+
+
+          shareButton.type =
+            "button";
+
+
+          shareButton.textContent =
+            t.shareSave;
+
+
+          shareButton.addEventListener(
+            "click",
+            async () => {
+
+              try {
+
+                await navigator.share(
+                  {
+
+                    files:
+                      [
+                        file
+                      ],
+
+                    title:
+                      `FFXIV Character Profile Card ${item.index}`
+
+                  }
+                );
+
+              }
+
+              catch (error) {
+
+                if (
+                  error.name !==
+                  "AbortError"
+                ) {
+
+                  console.error(
+                    error
+                  );
+
+                }
+
+              }
+
+            }
+          );
+
+
+          actions.appendChild(
+            shareButton
+          );
+
+        }
+
+      }
+
+      catch (error) {
+
+        console.warn(
+          error
+        );
+
+      }
 
 
       wrapper.appendChild(
@@ -2754,7 +2989,7 @@ function showIOSExportResults(
 
 
       wrapper.appendChild(
-        openLink
+        actions
       );
 
 
@@ -2782,7 +3017,7 @@ function showIOSExportResults(
 
 
 /* ==================================================
-   CLEAR EXPORT RESULTS
+   CLEAR GENERATED RESULTS
 ================================================== */
 
 function clearGeneratedResults() {
@@ -2895,7 +3130,7 @@ function sleep(
 
 
 /* ==================================================
-   INITIALIZE
+   INITIAL
 ================================================== */
 
 window.addEventListener(
@@ -2913,25 +3148,15 @@ window.addEventListener(
     fitAllAnswerCards();
 
 
-    /*
-      起動時の画像待ちは
-      エラーになってもサイト自体を止めない
-    */
-
     try {
 
-      await withTimeout(
-        waitForAllBackgroundImages(),
-        4000,
-        "initial image preparation"
-      );
+      await waitForAllBackgroundImages();
 
     }
 
     catch (error) {
 
       console.warn(
-        "Initial image preparation skipped:",
         error
       );
 
