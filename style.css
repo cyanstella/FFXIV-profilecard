@@ -29,8 +29,11 @@ body {
 
 .site-header {
   max-width: 1100px;
+
   margin: 0 auto;
+
   padding: 60px 20px 38px;
+
   text-align: center;
 }
 
@@ -76,6 +79,7 @@ body {
   border-radius: 4px;
 
   background: transparent;
+
   color: #929aa7;
 
   font-size: 13px;
@@ -89,7 +93,9 @@ body {
 }
 
 .language-button:hover {
-  background: rgba(183,154,102,.12);
+  background:
+    rgba(183,154,102,.12);
+
   color: #fff;
 }
 
@@ -145,6 +151,7 @@ body {
 
 .site-description strong {
   color: #fff;
+
   font-weight: 700;
 }
 
@@ -160,6 +167,11 @@ body {
   margin-top: 10px;
 }
 
+
+/* ==================================================
+   HASHTAG
+================================================== */
+
 .hashtag-link {
   color: #d6c19a;
 
@@ -168,7 +180,61 @@ body {
   text-decoration: none;
 
   border-bottom:
-    1px solid rgba(214,193,154,.45);
+    1px solid
+    rgba(214,193,154,.45);
+}
+
+
+/* ==================================================
+   X POST
+================================================== */
+
+.site-description .x-post-guide {
+  margin-top: 16px;
+}
+
+.x-post-link {
+  display: inline-block;
+
+  padding:
+    8px 20px;
+
+  border:
+    1px solid #b79a66;
+
+  border-radius:
+    5px;
+
+  background:
+    #171d27;
+
+  color:
+    #ffffff;
+
+  font-size:
+    13px;
+
+  font-weight:
+    600;
+
+  text-decoration:
+    none;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    color .2s ease;
+}
+
+.x-post-link:hover {
+  background:
+    rgba(183,154,102,.14);
+
+  border-color:
+    #d6c19a;
+
+  color:
+    #ffffff;
 }
 
 
@@ -186,7 +252,8 @@ body {
   border:
     1px solid #2b3240;
 
-  border-radius: 12px;
+  border-radius:
+    12px;
 }
 
 
@@ -204,13 +271,16 @@ body {
   margin:
     0 auto 34px;
 
-  padding: 28px;
+  padding:
+    28px;
 }
 
 .section-heading {
-  margin-bottom: 22px;
+  margin-bottom:
+    22px;
 
-  text-align: center;
+  text-align:
+    center;
 }
 
 .section-heading h2 {
@@ -221,15 +291,19 @@ body {
     Georgia,
     serif;
 
-  font-weight: 400;
+  font-weight:
+    400;
 }
 
 .section-heading p {
-  margin: 0;
+  margin:
+    0;
 
-  color: #818996;
+  color:
+    #818996;
 
-  font-size: 12px;
+  font-size:
+    12px;
 }
 
 .question-card-wrap {
@@ -239,7 +313,8 @@ body {
       680px
     );
 
-  margin: 0 auto;
+  margin:
+    0 auto;
 }
 
 
@@ -257,48 +332,62 @@ body {
   margin:
     0 auto 34px;
 
-  padding: 30px;
+  padding:
+    30px;
 }
 
 .input-area h2 {
-  margin-top: 0;
+  margin-top:
+    0;
 
   font-family:
     Georgia,
     serif;
 
-  font-weight: 400;
+  font-weight:
+    400;
 }
 
 .input-guide {
   margin:
     -5px 0 35px;
 
-  color: #858d9a;
+  color:
+    #858d9a;
 
-  font-size: 13px;
+  font-size:
+    13px;
 }
 
 .input-question {
-  margin-bottom: 30px;
+  margin-bottom:
+    30px;
 }
 
 .input-question label {
-  display: block;
+  display:
+    block;
 
-  margin-bottom: 9px;
+  margin-bottom:
+    9px;
 
-  color: #d6c19a;
+  color:
+    #d6c19a;
 
-  font-size: 15px;
-  font-weight: 600;
+  font-size:
+    15px;
+
+  font-weight:
+    600;
 }
 
 .input-question textarea,
 .input-question input[type="text"] {
-  display: block;
+  display:
+    block;
 
-  width: 100%;
+  width:
+    100%;
 
   padding:
     12px 15px;
@@ -306,38 +395,54 @@ body {
   border:
     1px solid #343d4d;
 
-  border-radius: 6px;
+  border-radius:
+    6px;
 
-  outline: none;
+  outline:
+    none;
 
-  background: #0d1119;
+  background:
+    #0d1119;
 
-  color: #fff;
+  color:
+    #fff;
 
-  font-family: inherit;
-  font-size: 16px;
+  font-family:
+    inherit;
 
-  line-height: 1.45;
+  font-size:
+    16px;
+
+  line-height:
+    1.45;
 }
 
 .input-question textarea {
-  height: 72px;
+  height:
+    72px;
 
-  min-height: 72px;
-  max-height: 72px;
+  min-height:
+    72px;
 
-  resize: none;
+  max-height:
+    72px;
 
-  overflow: hidden;
+  resize:
+    none;
+
+  overflow:
+    hidden;
 }
 
 .input-question input[type="text"] {
-  height: 48px;
+  height:
+    48px;
 }
 
 .input-question textarea:focus,
 .input-question input[type="text"]:focus {
-  border-color: #b79a66;
+  border-color:
+    #b79a66;
 }
 
 
@@ -346,23 +451,30 @@ body {
 ================================================== */
 
 .character-count {
-  margin-top: 7px;
+  margin-top:
+    7px;
 
-  color: #858d9a;
+  color:
+    #858d9a;
 
-  font-size: 12px;
+  font-size:
+    12px;
 
-  text-align: right;
+  text-align:
+    right;
 }
 
 .character-count.is-warning {
-  color: #d7b06d;
+  color:
+    #d7b06d;
 }
 
 .character-count.is-limit {
-  color: #e07878;
+  color:
+    #e07878;
 
-  font-weight: 700;
+  font-weight:
+    700;
 }
 
 
@@ -371,25 +483,33 @@ body {
 ================================================== */
 
 .custom-question-block {
-  margin-top: 42px;
+  margin-top:
+    42px;
 
-  padding-top: 28px;
+  padding-top:
+    28px;
 
   border-top:
     1px solid #343d4d;
 }
 
 .custom-question-title {
-  margin-bottom: 22px;
+  margin-bottom:
+    22px;
 
-  color: #d6c19a;
+  color:
+    #d6c19a;
 
-  font-size: 18px;
-  font-weight: 600;
+  font-size:
+    18px;
+
+  font-weight:
+    600;
 }
 
 .custom-answer-label {
-  margin-top: 22px;
+  margin-top:
+    22px;
 }
 
 
@@ -398,15 +518,18 @@ body {
 ================================================== */
 
 .editor-layout {
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
     minmax(0,1fr)
     minmax(500px,1fr);
 
-  gap: 34px;
+  gap:
+    34px;
 
-  align-items: start;
+  align-items:
+    start;
 
   width:
     min(
@@ -414,7 +537,8 @@ body {
       1600px
     );
 
-  margin: 0 auto;
+  margin:
+    0 auto;
 
   padding:
     0 24px 34px;
@@ -422,20 +546,24 @@ body {
 
 .settings,
 .preview-panel {
-  min-width: 0;
+  min-width:
+    0;
 
-  padding: 30px;
+  padding:
+    30px;
 }
 
 .settings h2,
 .preview-heading h2 {
-  margin-top: 0;
+  margin-top:
+    0;
 
   font-family:
     Georgia,
     serif;
 
-  font-weight: 400;
+  font-weight:
+    400;
 }
 
 
@@ -444,9 +572,11 @@ body {
 ================================================== */
 
 .setting-group {
-  margin-top: 30px;
+  margin-top:
+    30px;
 
-  padding-top: 28px;
+  padding-top:
+    28px;
 
   border-top:
     1px solid #343d4d;
@@ -456,64 +586,89 @@ body {
   margin:
     0 0 22px;
 
-  color: #d6c19a;
+  color:
+    #d6c19a;
 
-  font-size: 18px;
-  font-weight: 500;
+  font-size:
+    18px;
+
+  font-weight:
+    500;
 }
 
 .setting-item {
-  margin-bottom: 25px;
+  margin-bottom:
+    25px;
 }
 
 .setting-item > label,
 .setting-label {
-  display: block;
+  display:
+    block;
 
-  margin-bottom: 10px;
+  margin-bottom:
+    10px;
 
-  color: #d6c19a;
+  color:
+    #d6c19a;
 
-  font-size: 14px;
-  font-weight: 600;
+  font-size:
+    14px;
+
+  font-weight:
+    600;
 }
 
 .radio-group {
-  display: flex;
+  display:
+    flex;
 
-  flex-wrap: wrap;
+  flex-wrap:
+    wrap;
 
-  gap: 25px;
+  gap:
+    25px;
 }
 
 .radio-group label {
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  gap: 7px;
+  gap:
+    7px;
 }
 
 .range-row {
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  gap: 15px;
+  gap:
+    15px;
 }
 
 .range-row input[type="range"] {
-  width: 100%;
+  width:
+    100%;
 }
 
 .range-row span {
-  min-width: 56px;
+  min-width:
+    56px;
 
-  color: #d6c19a;
+  color:
+    #d6c19a;
 
-  font-size: 13px;
+  font-size:
+    13px;
 
-  text-align: right;
+  text-align:
+    right;
 }
 
 
@@ -528,15 +683,20 @@ button {
   border:
     1px solid #b79a66;
 
-  border-radius: 5px;
+  border-radius:
+    5px;
 
-  background: #171d27;
+  background:
+    #171d27;
 
-  color: #fff;
+  color:
+    #fff;
 
-  font-size: 15px;
+  font-size:
+    15px;
 
-  cursor: pointer;
+  cursor:
+    pointer;
 }
 
 
@@ -545,24 +705,32 @@ button {
 ================================================== */
 
 .preview-heading {
-  margin-bottom: 26px;
+  margin-bottom:
+    26px;
 }
 
 .preview-heading p {
-  color: #818996;
+  color:
+    #818996;
 
-  font-size: 12px;
+  font-size:
+    12px;
 }
 
 .preview-card-block {
-  margin-bottom: 42px;
+  margin-bottom:
+    42px;
 }
 
 .preview-card-label {
-  color: #d6c19a;
+  color:
+    #d6c19a;
 
-  font-size: 13px;
-  font-weight: 600;
+  font-size:
+    13px;
+
+  font-weight:
+    600;
 }
 
 
@@ -571,16 +739,20 @@ button {
 ================================================== */
 
 .card-frame {
-  position: relative;
+  position:
+    relative;
 
-  width: 100%;
+  width:
+    100%;
 
   aspect-ratio:
     1 / 1;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  background: #0a0d13;
+  background:
+    #0a0d13;
 }
 
 
@@ -592,15 +764,23 @@ button {
   --preview-scale: .5;
   --answer-scale: 1;
 
-  position: absolute;
+  position:
+    absolute;
 
-  left: 4px;
-  top: 4px;
+  left:
+    4px;
 
-  width: 1200px;
-  height: 1200px;
+  top:
+    4px;
 
-  overflow: hidden;
+  width:
+    1200px;
+
+  height:
+    1200px;
+
+  overflow:
+    hidden;
 
   transform:
     scale(
@@ -610,28 +790,35 @@ button {
   transform-origin:
     top left;
 
-  background: #101722;
+  background:
+    #101722;
 
-  color: #fff;
+  color:
+    #fff;
 
   border:
     2px solid #a58b5b;
 }
 
 .profile-card::after {
-  content: "";
+  content:
+    "";
 
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 25px;
+  inset:
+    25px;
 
-  z-index: 5;
+  z-index:
+    5;
 
   border:
     1px solid
     rgba(165,139,91,.7);
 
-  pointer-events: none;
+  pointer-events:
+    none;
 }
 
 
@@ -674,11 +861,14 @@ button {
 }
 
 .question-fixed-background {
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 0;
+  inset:
+    0;
 
-  z-index: 0;
+  z-index:
+    0;
 
   background:
     radial-gradient(
@@ -704,13 +894,17 @@ button {
 ================================================== */
 
 .card-background {
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 0;
+  inset:
+    0;
 
-  z-index: 0;
+  z-index:
+    0;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
   background:
     linear-gradient(
@@ -721,18 +915,29 @@ button {
 }
 
 .card-background-image {
-  position: absolute;
+  position:
+    absolute;
 
-  left: 0;
-  top: 0;
+  left:
+    0;
 
-  display: block;
+  top:
+    0;
 
-  width: 100%;
-  height: 100%;
+  display:
+    block;
 
-  object-fit: cover;
-  object-position: 50% 50%;
+  width:
+    100%;
+
+  height:
+    100%;
+
+  object-fit:
+    cover;
+
+  object-position:
+    50% 50%;
 
   transform:
     scale(1);
@@ -740,9 +945,11 @@ button {
   transform-origin:
     50% 50%;
 
-  max-width: none;
+  max-width:
+    none;
 
-  pointer-events: none;
+  pointer-events:
+    none;
 }
 
 
@@ -751,16 +958,20 @@ button {
 ================================================== */
 
 .card-overlay {
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 0;
+  inset:
+    0;
 
-  z-index: 1;
+  z-index:
+    1;
 
   background:
     rgba(0,0,0,.45);
 
-  pointer-events: none;
+  pointer-events:
+    none;
 }
 
 
@@ -769,12 +980,17 @@ button {
 ================================================== */
 
 .card-content {
-  position: relative;
+  position:
+    relative;
 
-  z-index: 2;
+  z-index:
+    2;
 
-  width: 100%;
-  height: 100%;
+  width:
+    100%;
+
+  height:
+    100%;
 
   padding:
     85px 90px;
@@ -786,35 +1002,45 @@ button {
 ================================================== */
 
 .card-header {
-  margin-bottom: 50px;
+  margin-bottom:
+    50px;
 
-  text-align: center;
+  text-align:
+    center;
 }
 
 .answer-card .card-header {
-  margin-bottom: 32px;
+  margin-bottom:
+    32px;
 }
 
 .small-title {
   margin:
     0 0 10px;
 
-  color: #a58b5b;
+  color:
+    #a58b5b;
 
   font-family:
     Georgia,
     serif;
 
-  font-size: 18px;
-  font-weight: 600;
+  font-size:
+    18px;
 
-  letter-spacing: .28em;
+  font-weight:
+    600;
+
+  letter-spacing:
+    .28em;
 }
 
 .card-header h2 {
-  margin: 0;
+  margin:
+    0;
 
-  color: #a58b5b;
+  color:
+    #a58b5b;
 
   font-family:
     Georgia,
@@ -822,10 +1048,14 @@ button {
     "Yu Mincho",
     serif;
 
-  font-size: 48px;
-  font-weight: 400;
+  font-size:
+    48px;
 
-  letter-spacing: .08em;
+  font-weight:
+    400;
+
+  letter-spacing:
+    .08em;
 }
 
 #card-1 .card-header {
@@ -849,7 +1079,8 @@ button {
 ================================================== */
 
 .question-columns {
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
     1fr 1fr;
@@ -859,7 +1090,8 @@ button {
 }
 
 .question-list {
-  margin: 0;
+  margin:
+    0;
 
   padding-left:
     48px;
@@ -891,15 +1123,12 @@ button {
     600;
 }
 
-html[lang="en"]
-#card-1
-.card-header h2 {
+html[lang="en"] #card-1 .card-header h2 {
   font-size:
     52px;
 }
 
-html[lang="en"]
-.question-list {
+html[lang="en"] .question-list {
   font-size:
     22px;
 
@@ -907,8 +1136,7 @@ html[lang="en"]
     1.4;
 }
 
-html[lang="en"]
-.question-list li {
+html[lang="en"] .question-list li {
   margin-bottom:
     15px;
 }
@@ -945,7 +1173,8 @@ html[lang="en"]
 }
 
 .answer-text {
-  margin: 0;
+  margin:
+    0;
 
   min-height:
     30px;
@@ -976,7 +1205,8 @@ html[lang="en"]
 }
 
 .answer-text:empty::before {
-  content: "—";
+  content:
+    "—";
 
   opacity:
     .55;
@@ -992,14 +1222,12 @@ html[lang="en"]
     .94;
 }
 
-.answer-card.compact-1
-.card-header {
+.answer-card.compact-1 .card-header {
   margin-bottom:
     26px;
 }
 
-.answer-card.compact-1
-.answer-block {
+.answer-card.compact-1 .answer-block {
   margin-bottom:
     10px;
 
@@ -1007,8 +1235,7 @@ html[lang="en"]
     9px;
 }
 
-.answer-card.compact-1
-.question {
+.answer-card.compact-1 .question {
   font-size:
     15px;
 }
@@ -1019,14 +1246,12 @@ html[lang="en"]
     .88;
 }
 
-.answer-card.compact-2
-.card-header {
+.answer-card.compact-2 .card-header {
   margin-bottom:
     20px;
 }
 
-.answer-card.compact-2
-.answer-block {
+.answer-card.compact-2 .answer-block {
   margin-bottom:
     7px;
 
@@ -1034,8 +1259,7 @@ html[lang="en"]
     7px;
 }
 
-.answer-card.compact-2
-.question {
+.answer-card.compact-2 .question {
   font-size:
     14px;
 }
@@ -1051,7 +1275,8 @@ html[lang="en"]
 .text-white .copyright,
 .text-white .card-version,
 .text-white .page-number {
-  color: #fff;
+  color:
+    #fff;
 }
 
 .text-black,
@@ -1060,7 +1285,8 @@ html[lang="en"]
 .text-black .copyright,
 .text-black .card-version,
 .text-black .page-number {
-  color: #111;
+  color:
+    #111;
 }
 
 
@@ -1076,7 +1302,8 @@ html[lang="en"]
 }
 
 .copyright {
-  position: absolute;
+  position:
+    absolute;
 
   left:
     90px;
@@ -1084,7 +1311,8 @@ html[lang="en"]
   bottom:
     58px;
 
-  margin: 0;
+  margin:
+    0;
 
   font-family:
     Arial,
@@ -1096,7 +1324,8 @@ html[lang="en"]
 }
 
 .card-version {
-  position: absolute;
+  position:
+    absolute;
 
   left:
     50%;
@@ -1110,7 +1339,8 @@ html[lang="en"]
   width:
     520px;
 
-  margin: 0;
+  margin:
+    0;
 
   font-family:
     Arial,
@@ -1128,7 +1358,8 @@ html[lang="en"]
 }
 
 .page-number {
-  position: absolute;
+  position:
+    absolute;
 
   right:
     90px;
@@ -1136,7 +1367,8 @@ html[lang="en"]
   bottom:
     58px;
 
-  margin: 0;
+  margin:
+    0;
 
   font-family:
     Georgia,
@@ -1599,6 +1831,14 @@ html[lang="en"]
   .mobile-export-actions {
     grid-template-columns:
       1fr;
+  }
+
+  .x-post-link {
+    width:
+      100%;
+
+    max-width:
+      260px;
   }
 
 }

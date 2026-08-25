@@ -130,6 +130,9 @@ const translations = {
     hashtagAfter:
       "をお使いください",
 
+    xPostLink:
+      "Xに投稿する",
+
     questionCardTitle:
       "質問カード",
 
@@ -285,6 +288,9 @@ const translations = {
     hashtagAfter:
       "",
 
+    xPostLink:
+      "Post on X",
+
     questionCardTitle:
       "Question Card",
 
@@ -429,7 +435,8 @@ const translations = {
    LANGUAGE STATE
 ================================================== */
 
-let currentLanguage = "ja";
+let currentLanguage =
+  "ja";
 
 
 try {
