@@ -21,6 +21,428 @@ const CUSTOM_QUESTION_MAX_LENGTH =
 
 
 /* ==================================================
+   QUESTIONS
+================================================== */
+
+const QUESTIONS = {
+
+  ja: [
+
+    "キャラクター名と、その名前の由来は？",
+
+    "出身地はどこ？",
+
+    "年齢・誕生日は？",
+
+    "性格を一言で表すと？",
+
+    "得意なこと・苦手なことは？",
+
+    "好きな食べ物・嫌いな食べ物は？",
+
+    "普段はどんな仕事や生活をしている？",
+
+    "戦う理由、冒険を続ける理由は？",
+
+    "大切にしている人・場所・物は？",
+
+    "密かに抱えている夢や目標は？",
+
+    "一番信頼している相手は？",
+
+    "苦手なタイプの人は？",
+
+    "怒るとどうなる？",
+
+    "落ち込んだときはどう過ごす？",
+
+    "恋愛には積極的？それとも慎重？",
+
+    "休日があったら何をして過ごす？",
+
+    "一番怖いものは？",
+
+    "過去に後悔していることは？",
+
+    "誰にも言っていない秘密は？",
+
+    "自由質問"
+
+  ],
+
+
+  en: [
+
+    "What is your character's name, and where did it come from?",
+
+    "Where are they from?",
+
+    "How old are they, and when is their birthday?",
+
+    "How would you describe their personality in one phrase?",
+
+    "What are they good at, and what are they bad at?",
+
+    "What foods do they like and dislike?",
+
+    "What kind of work or daily life do they usually have?",
+
+    "Why do they fight or continue their adventures?",
+
+    "Who, where, or what is most important to them?",
+
+    "What secret dream or goal do they have?",
+
+    "Who do they trust the most?",
+
+    "What kind of person do they find difficult to deal with?",
+
+    "What are they like when they get angry?",
+
+    "What do they do when they feel down?",
+
+    "Are they forward or cautious when it comes to romance?",
+
+    "How would they spend a day off?",
+
+    "What are they most afraid of?",
+
+    "What do they regret about their past?",
+
+    "What is a secret they have never told anyone?",
+
+    "Custom Question"
+
+  ]
+
+};
+
+
+/* ==================================================
+   TRANSLATIONS
+================================================== */
+
+const translations = {
+
+  ja: {
+
+    siteSubtitle:
+      "キャラクター設定 20の質問",
+
+    siteDescription:
+      "FFXIVのキャラクター設定などを20の質問に記入し、背景画像・文字色などを設定すると、プロフィールカード4枚に出力できます",
+
+    mobileNote:
+      "（スマホ表示では縦長表示になります）",
+
+    hashtagBefore:
+      "SNSでご利用の際には",
+
+    hashtagAfter:
+      "をお使いください",
+
+    questionCardTitle:
+      "質問カード",
+
+    questionCardNote:
+      "背景色・文字色は固定です",
+
+    questionCardMainTitle:
+      "キャラクター設定 20の質問",
+
+    questionsInputTitle:
+      "20の質問",
+
+    inputGuide:
+      "各回答は最大80文字・2行まで入力できます。20番のみ質問文を自由に設定できます。",
+
+    customQuestionTitle:
+      "20. 自由質問",
+
+    customQuestionLabel:
+      "質問文",
+
+    customQuestionPlaceholder:
+      "例：このキャラクターが一番幸せな時は？",
+
+    answerLabel:
+      "回答",
+
+    settingsTitle:
+      "回答カード設定",
+
+    answerCard1Settings:
+      "回答カード1（Q01 - Q07）",
+
+    answerCard2Settings:
+      "回答カード2（Q08 - Q14）",
+
+    answerCard3Settings:
+      "回答カード3（Q15 - Q20）",
+
+    backgroundImage:
+      "背景画像",
+
+    backgroundX:
+      "背景画像の横位置",
+
+    backgroundY:
+      "背景画像の縦位置",
+
+    backgroundScale:
+      "背景画像の拡大率",
+
+    textColor:
+      "文字色",
+
+    overlayColor:
+      "背景カバー色",
+
+    overlayOpacity:
+      "背景カバーの濃さ",
+
+    white:
+      "白",
+
+    black:
+      "黒",
+
+    removeBackground1:
+      "回答1背景を解除",
+
+    removeBackground2:
+      "回答2背景を解除",
+
+    removeBackground3:
+      "回答3背景を解除",
+
+    previewTitle:
+      "回答カードプレビュー",
+
+    previewNote:
+      "実際の1200 × 1200pxカードを縮小表示しています",
+
+    answerCard1:
+      "回答カード1",
+
+    answerCard2:
+      "回答カード2",
+
+    answerCard3:
+      "回答カード3",
+
+    generate:
+      "4枚の画像を書き出す",
+
+    preparing:
+      "画像を準備しています…",
+
+    generating:
+      (current) =>
+        `${current} / 4 枚目を生成しています…`,
+
+    exportNote:
+      "質問カードとあわせて4枚生成されます",
+
+    exportSize:
+      "PNG形式・1200 × 1200px",
+
+    iosGuide:
+      "iPhoneでは生成された画像を長押しして「写真に保存」できます。",
+
+    generatedAlert:
+      "4枚の画像を生成しました。\n下に表示された画像を長押しして保存できます。",
+
+    errorAlert:
+      "画像の生成に失敗しました。\nページを再読み込みしてもう一度お試しください。",
+
+    backgroundLoadError:
+      "背景画像の読み込みに失敗しました。",
+
+    openImage:
+      "画像を開く",
+
+    shareSave:
+      "共有 / 保存",
+
+    card:
+      "カード"
+
+  },
+
+
+  en: {
+
+    siteSubtitle:
+      "20 Questions for Your Character",
+
+    siteDescription:
+      "Answer 20 questions about your FFXIV character, customize the background images and text colors, and export four profile cards.",
+
+    mobileNote:
+      "On smartphones, the page is displayed in a vertical layout.",
+
+    hashtagBefore:
+      "When sharing on social media, please use",
+
+    hashtagAfter:
+      "",
+
+    questionCardTitle:
+      "Question Card",
+
+    questionCardNote:
+      "Background and text colors are fixed.",
+
+    questionCardMainTitle:
+      "20 CHARACTER QUESTIONS",
+
+    questionsInputTitle:
+      "20 Questions",
+
+    inputGuide:
+      "Each answer can contain up to 80 characters and 2 lines. Question 20 can be customized.",
+
+    customQuestionTitle:
+      "20. Custom Question",
+
+    customQuestionLabel:
+      "Question",
+
+    customQuestionPlaceholder:
+      "Example: When is this character happiest?",
+
+    answerLabel:
+      "Answer",
+
+    settingsTitle:
+      "Answer Card Settings",
+
+    answerCard1Settings:
+      "Answer Card 1 (Q01 - Q07)",
+
+    answerCard2Settings:
+      "Answer Card 2 (Q08 - Q14)",
+
+    answerCard3Settings:
+      "Answer Card 3 (Q15 - Q20)",
+
+    backgroundImage:
+      "Background Image",
+
+    backgroundX:
+      "Horizontal Position",
+
+    backgroundY:
+      "Vertical Position",
+
+    backgroundScale:
+      "Image Scale",
+
+    textColor:
+      "Text Color",
+
+    overlayColor:
+      "Overlay Color",
+
+    overlayOpacity:
+      "Overlay Opacity",
+
+    white:
+      "White",
+
+    black:
+      "Black",
+
+    removeBackground1:
+      "Clear Card 1 Background",
+
+    removeBackground2:
+      "Clear Card 2 Background",
+
+    removeBackground3:
+      "Clear Card 3 Background",
+
+    previewTitle:
+      "Answer Card Preview",
+
+    previewNote:
+      "The actual 1200 × 1200px cards are shown at a reduced size.",
+
+    answerCard1:
+      "Answer Card 1",
+
+    answerCard2:
+      "Answer Card 2",
+
+    answerCard3:
+      "Answer Card 3",
+
+    generate:
+      "Export 4 Images",
+
+    preparing:
+      "Preparing images…",
+
+    generating:
+      (current) =>
+        `Generating image ${current} / 4…`,
+
+    exportNote:
+      "Four images, including the question card, will be generated.",
+
+    exportSize:
+      "PNG · 1200 × 1200px",
+
+    iosGuide:
+      "On iPhone, press and hold a generated image to save it to Photos.",
+
+    generatedAlert:
+      "Four images have been generated.\nPress and hold the images below to save them.",
+
+    errorAlert:
+      "Image generation failed.\nPlease reload the page and try again.",
+
+    backgroundLoadError:
+      "Failed to load the background image.",
+
+    openImage:
+      "Open Image",
+
+    shareSave:
+      "Share / Save",
+
+    card:
+      "Card"
+
+  }
+
+};
+
+
+/* ==================================================
+   CURRENT LANGUAGE
+================================================== */
+
+let currentLanguage =
+  localStorage.getItem(
+    "ffxiv-profile-language"
+  )
+  ||
+  "ja";
+
+
+if (
+  !translations[currentLanguage]
+) {
+
+  currentLanguage =
+    "ja";
+
+}
+
+
+/* ==================================================
    VERSION DISPLAY
 ================================================== */
 
@@ -39,7 +461,260 @@ document
 
 
 /* ==================================================
-   IOS DETECTION
+   LANGUAGE
+================================================== */
+
+function setLanguage(
+  language
+) {
+
+  if (
+    !translations[language]
+  ) {
+
+    language =
+      "ja";
+
+  }
+
+
+  currentLanguage =
+    language;
+
+
+  localStorage.setItem(
+    "ffxiv-profile-language",
+    language
+  );
+
+
+  document.documentElement.lang =
+    language;
+
+
+  const t =
+    translations[
+      language
+    ];
+
+
+  document
+    .querySelectorAll(
+      "[data-i18n]"
+    )
+    .forEach(
+      (
+        element
+      ) => {
+
+        const key =
+          element.dataset.i18n;
+
+
+        if (
+          typeof t[key] ===
+          "string"
+        ) {
+
+          element.textContent =
+            t[key];
+
+        }
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      ".language-button"
+    )
+    .forEach(
+      (
+        button
+      ) => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.language ===
+          language
+        );
+
+      }
+    );
+
+
+  const questionCardMainTitle =
+    document.getElementById(
+      "question-card-main-title"
+    );
+
+
+  if (
+    questionCardMainTitle
+  ) {
+
+    questionCardMainTitle.textContent =
+      t.questionCardMainTitle;
+
+  }
+
+
+  for (
+    let i = 1;
+    i <= 19;
+    i++
+  ) {
+
+    const questionText =
+      QUESTIONS[language][i - 1];
+
+
+    document
+      .querySelectorAll(
+        `[data-question="${i}"]`
+      )
+      .forEach(
+        (
+          element
+        ) => {
+
+          element.textContent =
+            questionText;
+
+        }
+      );
+
+
+    document
+      .querySelectorAll(
+        `[data-input-question="${i}"]`
+      )
+      .forEach(
+        (
+          element
+        ) => {
+
+          element.textContent =
+            `${String(i).padStart(2,"0")}. ${questionText}`;
+
+        }
+      );
+
+
+    document
+      .querySelectorAll(
+        `[data-answer-question="${i}"]`
+      )
+      .forEach(
+        (
+          element
+        ) => {
+
+          element.textContent =
+            `${String(i).padStart(2,"0")}. ${questionText}`;
+
+        }
+      );
+
+  }
+
+
+  updateQ20Title();
+
+
+  const q20TitleInput =
+    document.getElementById(
+      "q20-title"
+    );
+
+
+  if (
+    q20TitleInput
+  ) {
+
+    q20TitleInput.placeholder =
+      t.customQuestionPlaceholder;
+
+  }
+
+
+  const iosGuide =
+    document.getElementById(
+      "ios-export-guide"
+    );
+
+
+  if (
+    iosGuide
+  ) {
+
+    iosGuide.textContent =
+      t.iosGuide;
+
+  }
+
+
+  const generateButton =
+    document.getElementById(
+      "generate-button"
+    );
+
+
+  if (
+    generateButton &&
+    !generateButton.disabled
+  ) {
+
+    generateButton.textContent =
+      t.generate;
+
+  }
+
+
+  requestAnimationFrame(
+    () => {
+
+      fitAllAnswerCards();
+
+      updatePreviewScales();
+
+    }
+  );
+
+}
+
+
+/* ==================================================
+   LANGUAGE BUTTON
+================================================== */
+
+document
+  .querySelectorAll(
+    ".language-button"
+  )
+  .forEach(
+    (
+      button
+    ) => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          setLanguage(
+            button.dataset.language
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+/* ==================================================
+   IOS
 ================================================== */
 
 function isIOSDevice() {
@@ -150,7 +825,7 @@ document.body.appendChild(
 
 
 /* ==================================================
-   ANSWER INPUT
+   ANSWER INPUTS
 ================================================== */
 
 for (
@@ -290,17 +965,13 @@ for (
         input.value;
 
 
-      const length =
-        text.length;
-
-
       answer.textContent =
         text;
 
 
       const baseSize =
         getAnswerBaseFontSize(
-          length
+          text.length
         );
 
 
@@ -319,7 +990,7 @@ for (
 
       updateCounter(
         count,
-        length,
+        text.length,
         MAX_LENGTH,
         60
       );
@@ -344,7 +1015,7 @@ for (
 
 
 /* ==================================================
-   BASE FONT SIZE
+   ANSWER FONT
 ================================================== */
 
 function getAnswerBaseFontSize(
@@ -382,10 +1053,6 @@ function getAnswerBaseFontSize(
 
 }
 
-
-/* ==================================================
-   FIT ANSWER TO 2 LINES
-================================================== */
 
 function getFittedAnswerFontSize(
   text,
@@ -449,7 +1116,7 @@ function getFittedAnswerFontSize(
 
 
 /* ==================================================
-   CARD HEIGHT FIT
+   FIT ANSWER CARDS
 ================================================== */
 
 function fitAllAnswerCards() {
@@ -539,14 +1206,11 @@ function cardContentFits(
     ];
 
 
-  const bottom =
+  return (
     lastBlock.offsetTop
     +
-    lastBlock.offsetHeight;
-
-
-  return (
-    bottom <=
+    lastBlock.offsetHeight
+    <=
     1045
   );
 
@@ -675,18 +1339,36 @@ function updateQ20Title() {
     value;
 
 
+  const defaultText =
+    QUESTIONS[
+      currentLanguage
+    ][19];
+
+
   const displayText =
     value.trim()
     ||
-    "自由質問";
+    defaultText;
 
 
-  question20Preview.textContent =
-    displayText;
+  if (
+    question20Preview
+  ) {
+
+    question20Preview.textContent =
+      displayText;
+
+  }
 
 
-  answerQuestion20.textContent =
-    `20. ${displayText}`;
+  if (
+    answerQuestion20
+  ) {
+
+    answerQuestion20.textContent =
+      `20. ${displayText}`;
+
+  }
 
 
   updateCounter(
@@ -713,14 +1395,11 @@ if (
     updateQ20Title
   );
 
-
-  updateQ20Title();
-
 }
 
 
 /* ==================================================
-   IMAGE FILE
+   FILE READER
 ================================================== */
 
 function readImageAsDataURL(
@@ -768,7 +1447,152 @@ function readImageAsDataURL(
 
 
 /* ==================================================
-   ANSWER CARD SETTINGS
+   IMAGE WAIT
+================================================== */
+
+async function waitForImage(
+  image
+) {
+
+  if (
+    !image ||
+    !image.getAttribute(
+      "src"
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    typeof image.decode ===
+    "function"
+  ) {
+
+    try {
+
+      await image.decode();
+
+      return;
+
+    }
+
+    catch (
+      error
+    ) {
+
+    }
+
+  }
+
+
+  if (
+    image.complete &&
+    image.naturalWidth > 0
+  ) {
+
+    return;
+
+  }
+
+
+  await new Promise(
+    (
+      resolve
+    ) => {
+
+      const finish =
+        () => {
+
+          resolve();
+
+        };
+
+
+      image.addEventListener(
+        "load",
+        finish,
+        {
+          once:
+            true
+        }
+      );
+
+
+      image.addEventListener(
+        "error",
+        finish,
+        {
+          once:
+            true
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================================
+   WAIT ALL BACKGROUNDS
+================================================== */
+
+async function waitForAllBackgroundImages() {
+
+  const images =
+    Array.from(
+      document.querySelectorAll(
+        ".card-background-image[src]"
+      )
+    );
+
+
+  await Promise.all(
+    images.map(
+      waitForImage
+    )
+  );
+
+
+  await nextFrame();
+
+  await nextFrame();
+
+}
+
+
+/* ==================================================
+   FRAME WAIT
+================================================== */
+
+function nextFrame() {
+
+  return new Promise(
+    (
+      resolve
+    ) => {
+
+      requestAnimationFrame(
+        () => {
+
+          requestAnimationFrame(
+            resolve
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================================
+   CARD SETTINGS
 ================================================== */
 
 function setupCardSettings(
@@ -779,7 +1603,7 @@ function setupCardSettings(
 
     cardId,
 
-    backgroundSelector,
+    backgroundImageId,
 
     backgroundUploadId,
 
@@ -816,9 +1640,9 @@ function setupCardSettings(
     );
 
 
-  const background =
-    document.querySelector(
-      backgroundSelector
+  const backgroundImage =
+    document.getElementById(
+      backgroundImageId
     );
 
 
@@ -888,12 +1712,71 @@ function setupCardSettings(
     );
 
 
+  /* ==================================================
+     SAFETY CHECK
+  ================================================== */
+
+  if (
+    !card ||
+    !backgroundImage ||
+    !backgroundUpload ||
+    !removeButton ||
+    !bgX ||
+    !bgXValue ||
+    !bgY ||
+    !bgYValue ||
+    !bgScale ||
+    !bgScaleValue ||
+    !overlay ||
+    !overlayOpacity ||
+    !overlayOpacityValue
+  ) {
+
+    console.error(
+      "Card settings initialization failed:",
+      {
+
+        cardId,
+
+        backgroundImageId,
+
+        backgroundUploadId,
+
+        removeButtonId,
+
+        bgXId,
+
+        bgXValueId,
+
+        bgYId,
+
+        bgYValueId,
+
+        bgScaleId,
+
+        bgScaleValueId,
+
+        overlaySelector,
+
+        overlayOpacityId,
+
+        overlayOpacityValueId
+
+      }
+    );
+
+
+    return;
+
+  }
+
+
   let overlayColor =
     "black";
 
 
   /* ==================================================
-     IMAGE UPLOAD
+     UPLOAD
   ================================================== */
 
   backgroundUpload.addEventListener(
@@ -903,9 +1786,7 @@ function setupCardSettings(
     ) => {
 
       const file =
-        event.target.files[
-          0
-        ];
+        event.target.files[0];
 
 
       if (
@@ -925,11 +1806,16 @@ function setupCardSettings(
           );
 
 
-        background.style.backgroundImage =
-          `url("${dataUrl}")`;
+        backgroundImage.src =
+          dataUrl;
 
 
-        updateBackground();
+        await waitForImage(
+          backgroundImage
+        );
+
+
+        updateBackgroundImage();
 
       }
 
@@ -943,7 +1829,9 @@ function setupCardSettings(
 
 
         alert(
-          "背景画像の読み込みに失敗しました。"
+          translations[
+            currentLanguage
+          ].backgroundLoadError
         );
 
       }
@@ -953,10 +1841,19 @@ function setupCardSettings(
 
 
   /* ==================================================
-     BACKGROUND POSITION / SCALE
+     BACKGROUND POSITION
   ================================================== */
 
-  function updateBackground() {
+  function updateBackgroundImage() {
+
+    if (
+      !backgroundImage
+    ) {
+
+      return;
+
+    }
+
 
     const x =
       Number(
@@ -976,15 +1873,15 @@ function setupCardSettings(
       );
 
 
-    background.style.backgroundPosition =
+    backgroundImage.style.objectPosition =
       `${x}% ${y}%`;
 
 
-    background.style.transform =
+    backgroundImage.style.transform =
       `scale(${scale / 100})`;
 
 
-    background.style.transformOrigin =
+    backgroundImage.style.transformOrigin =
       `${x}% ${y}%`;
 
 
@@ -1004,24 +1901,24 @@ function setupCardSettings(
 
   bgX.addEventListener(
     "input",
-    updateBackground
+    updateBackgroundImage
   );
 
 
   bgY.addEventListener(
     "input",
-    updateBackground
+    updateBackgroundImage
   );
 
 
   bgScale.addEventListener(
     "input",
-    updateBackground
+    updateBackgroundImage
   );
 
 
   /* ==================================================
-     CLEAR
+     REMOVE
   ================================================== */
 
   removeButton.addEventListener(
@@ -1032,8 +1929,21 @@ function setupCardSettings(
         "";
 
 
-      background.style.backgroundImage =
-        "";
+      backgroundImage.removeAttribute(
+        "src"
+      );
+
+
+      backgroundImage.style.objectPosition =
+        "50% 50%";
+
+
+      backgroundImage.style.transform =
+        "scale(1)";
+
+
+      backgroundImage.style.transformOrigin =
+        "50% 50%";
 
 
       bgX.value =
@@ -1048,7 +1958,7 @@ function setupCardSettings(
         100;
 
 
-      updateBackground();
+      updateBackgroundImage();
 
     }
   );
@@ -1176,7 +2086,7 @@ function setupCardSettings(
     );
 
 
-  updateBackground();
+  updateBackgroundImage();
 
   updateOverlay();
 
@@ -1184,7 +2094,7 @@ function setupCardSettings(
 
 
 /* ==================================================
-   CARD 2
+   CARD 1 SETTINGS
 ================================================== */
 
 setupCardSettings({
@@ -1192,8 +2102,8 @@ setupCardSettings({
   cardId:
     "card-2",
 
-  backgroundSelector:
-    ".answer1-background",
+  backgroundImageId:
+    "answer1-background-image",
 
   backgroundUploadId:
     "answer1-background-upload",
@@ -1238,7 +2148,7 @@ setupCardSettings({
 
 
 /* ==================================================
-   CARD 3
+   CARD 2 SETTINGS
 ================================================== */
 
 setupCardSettings({
@@ -1246,8 +2156,8 @@ setupCardSettings({
   cardId:
     "card-3",
 
-  backgroundSelector:
-    ".answer2-background",
+  backgroundImageId:
+    "answer2-background-image",
 
   backgroundUploadId:
     "answer2-background-upload",
@@ -1292,7 +2202,7 @@ setupCardSettings({
 
 
 /* ==================================================
-   CARD 4
+   CARD 3 SETTINGS
 ================================================== */
 
 setupCardSettings({
@@ -1300,8 +2210,8 @@ setupCardSettings({
   cardId:
     "card-4",
 
-  backgroundSelector:
-    ".answer3-background",
+  backgroundImageId:
+    "answer3-background-image",
 
   backgroundUploadId:
     "answer3-background-upload",
@@ -1347,8 +2257,6 @@ setupCardSettings({
 
 /* ==================================================
    PREVIEW SCALE
-
-   枠切れ防止のため4px内側へ配置
 ================================================== */
 
 function updatePreviewScales() {
@@ -1377,10 +2285,6 @@ function updatePreviewScales() {
         }
 
 
-        const width =
-          frame.clientWidth;
-
-
         const previewPadding =
           4;
 
@@ -1388,7 +2292,8 @@ function updatePreviewScales() {
         const availableWidth =
           Math.max(
             0,
-            width -
+            frame.clientWidth
+            -
             previewPadding * 2
           );
 
@@ -1417,10 +2322,6 @@ function updatePreviewScales() {
 }
 
 
-/* ==================================================
-   RESIZE
-================================================== */
-
 window.addEventListener(
   "resize",
   () => {
@@ -1431,9 +2332,6 @@ window.addEventListener(
 
   }
 );
-
-
-updatePreviewScales();
 
 
 /* ==================================================
@@ -1456,227 +2354,255 @@ let generatedObjectUrls =
   [];
 
 
-generateButton.addEventListener(
-  "click",
-  async () => {
+if (
+  generateButton
+) {
 
-    generateButton.disabled =
-      true;
+  generateButton.addEventListener(
+    "click",
+    async () => {
 
-
-    generateButton.textContent =
-      "画像を生成しています…";
-
-
-    clearGeneratedResults();
-
-
-    try {
-
-      if (
-        document.fonts
-      ) {
-
-        await document.fonts.ready;
-
-      }
+      const t =
+        translations[
+          currentLanguage
+        ];
 
 
-      fitAllAnswerCards();
+      generateButton.disabled =
+        true;
 
 
-      await sleep(
-        250
-      );
+      generateButton.textContent =
+        t.preparing;
 
 
-      const generated =
-        [];
+      clearGeneratedResults();
 
 
-      for (
-        let i = 1;
-        i <= 4;
-        i++
-      ) {
+      try {
 
-        generateButton.textContent =
-          `${i} / 4 枚目を生成しています…`;
+        if (
+          document.fonts
+        ) {
 
+          await document.fonts.ready;
 
-        const card =
-          document.getElementById(
-            `card-${i}`
-          );
+        }
 
 
-        const blob =
-          await htmlToImage.toBlob(
-            card,
-            {
+        await waitForAllBackgroundImages();
 
-              width:
-                1200,
 
-              height:
-                1200,
+        fitAllAnswerCards();
 
-              canvasWidth:
-                1200,
 
-              canvasHeight:
-                1200,
+        await sleep(
+          300
+        );
 
-              pixelRatio:
-                1,
 
-              cacheBust:
-                true,
+        await nextFrame();
 
-              backgroundColor:
-                i === 1
 
-                ? "#f4f1e9"
+        const generated =
+          [];
 
-                : "#101722",
 
-              style:
+        for (
+          let i = 1;
+          i <= 4;
+          i++
+        ) {
+
+          generateButton.textContent =
+            t.generating(
+              i
+            );
+
+
+          const card =
+            document.getElementById(
+              `card-${i}`
+            );
+
+
+          if (
+            !card
+          ) {
+
+            throw new Error(
+              `card-${i} not found`
+            );
+
+          }
+
+
+          await nextFrame();
+
+
+          const blob =
+            await htmlToImage.toBlob(
+              card,
               {
 
-                position:
-                  "relative",
-
-                left:
-                  "0",
-
-                top:
-                  "0",
-
-                transform:
-                  "none",
-
-                transformOrigin:
-                  "top left",
-
                 width:
-                  "1200px",
+                  1200,
 
                 height:
-                  "1200px"
+                  1200,
+
+                canvasWidth:
+                  1200,
+
+                canvasHeight:
+                  1200,
+
+                pixelRatio:
+                  1,
+
+                cacheBust:
+                  false,
+
+                backgroundColor:
+                  i === 1
+
+                  ? "#f4f1e9"
+
+                  : "#101722",
+
+                style:
+                {
+
+                  position:
+                    "relative",
+
+                  left:
+                    "0",
+
+                  top:
+                    "0",
+
+                  transform:
+                    "none",
+
+                  transformOrigin:
+                    "top left",
+
+                  width:
+                    "1200px",
+
+                  height:
+                    "1200px"
+
+                }
 
               }
+            );
+
+
+          if (
+            !blob
+          ) {
+
+            throw new Error(
+              `card-${i} generation failed`
+            );
+
+          }
+
+
+          generated.push(
+            {
+
+              index:
+                i,
+
+              blob:
+                blob,
+
+              filename:
+                `ffxiv-profile-${i}.png`
 
             }
           );
 
 
-        if (
-          !blob
-        ) {
-
-          throw new Error(
-            `card-${i} の生成に失敗しました`
+          await sleep(
+            450
           );
 
         }
 
 
-        generated.push(
-          {
+        if (
+          isIOS
+        ) {
 
-            index:
-              i,
+          showIOSExportResults(
+            generated
+          );
 
-            blob:
-              blob,
 
-            filename:
-              `ffxiv-profile-${i}.png`
+          alert(
+            t.generatedAlert
+          );
+
+        }
+
+        else {
+
+          for (
+            const item of generated
+          ) {
+
+            downloadBlob(
+              item.blob,
+              item.filename
+            );
+
+
+            await sleep(
+              400
+            );
 
           }
-        );
 
-
-        await sleep(
-          350
-        );
+        }
 
       }
 
-
-      /* ==================================================
-         IOS
-      ================================================== */
-
-      if (
-        isIOS
+      catch (
+        error
       ) {
 
-        showIOSExportResults(
-          generated
+        console.error(
+          error
         );
 
 
         alert(
-          "4枚の画像を生成しました。\n下に表示された画像を長押しして保存できます。"
+          t.errorAlert
         );
 
       }
 
-      else {
+      finally {
 
-        /* ==================================================
-           DESKTOP
-        ================================================== */
-
-        for (
-          const item of generated
-        ) {
-
-          downloadBlob(
-            item.blob,
-            item.filename
-          );
+        generateButton.disabled =
+          false;
 
 
-          await sleep(
-            400
-          );
-
-        }
+        generateButton.textContent =
+          translations[
+            currentLanguage
+          ].generate;
 
       }
 
     }
+  );
 
-    catch (
-      error
-    ) {
-
-      console.error(
-        error
-      );
-
-
-      alert(
-        "画像の生成に失敗しました。\nページを再読み込みしてもう一度お試しください。"
-      );
-
-    }
-
-    finally {
-
-      generateButton.disabled =
-        false;
-
-
-      generateButton.textContent =
-        "4枚の画像を書き出す";
-
-    }
-
-  }
-);
+}
 
 
 /* ==================================================
@@ -1686,6 +2612,12 @@ generateButton.addEventListener(
 function showIOSExportResults(
   generated
 ) {
+
+  const t =
+    translations[
+      currentLanguage
+    ];
+
 
   if (
     !mobileExportResults
@@ -1733,7 +2665,7 @@ function showIOSExportResults(
 
 
       title.textContent =
-        `カード ${item.index}`;
+        `${t.card} ${item.index}`;
 
 
       const image =
@@ -1779,7 +2711,7 @@ function showIOSExportResults(
 
 
       openLink.textContent =
-        "画像を開く";
+        t.openImage;
 
 
       actions.appendChild(
@@ -1824,7 +2756,7 @@ function showIOSExportResults(
 
 
         shareButton.textContent =
-          "共有 / 保存";
+          t.shareSave;
 
 
         shareButton.addEventListener(
@@ -2038,11 +2970,20 @@ function sleep(
 
 window.addEventListener(
   "load",
-  () => {
+  async () => {
+
+    setLanguage(
+      currentLanguage
+    );
+
 
     updatePreviewScales();
 
+
     fitAllAnswerCards();
+
+
+    await waitForAllBackgroundImages();
 
   }
 );

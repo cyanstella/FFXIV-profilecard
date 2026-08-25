@@ -57,9 +57,85 @@ body {
   letter-spacing: .14em;
 }
 
+
+/* ==================================================
+   LANGUAGE SWITCH
+================================================== */
+
+.language-switch {
+  display: inline-flex;
+
+  gap: 4px;
+
+  margin:
+    26px auto 2px;
+
+  padding: 4px;
+
+  background: #0d1119;
+
+  border:
+    1px solid #343d4d;
+
+  border-radius: 7px;
+}
+
+.language-button {
+  min-width: 95px;
+
+  padding:
+    9px 17px;
+
+  border: 0;
+
+  border-radius: 4px;
+
+  background: transparent;
+
+  color: #929aa7;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    box-shadow .2s ease;
+}
+
+.language-button:hover {
+  background:
+    rgba(183,154,102,.12);
+
+  color: #fff;
+}
+
+.language-button.active {
+  background:
+    linear-gradient(
+      180deg,
+      #c7aa70,
+      #ad8d52
+    );
+
+  color: #fff;
+
+  box-shadow:
+    0 2px 8px
+    rgba(0,0,0,.25);
+}
+
+
+/* ==================================================
+   HEADER TEXT
+================================================== */
+
 .site-subtitle {
   margin:
-    12px 0 0;
+    16px 0 0;
 
   color: #b79a66;
 
@@ -116,7 +192,8 @@ body {
   text-decoration: none;
 
   border-bottom:
-    1px solid rgba(214,193,154,.45);
+    1px solid
+    rgba(214,193,154,.45);
 }
 
 .hashtag-link:hover {
@@ -127,7 +204,7 @@ body {
 
 
 /* ==================================================
-   COMMON PANEL
+   PANELS
 ================================================== */
 
 .question-preview-section,
@@ -145,7 +222,7 @@ body {
 
 
 /* ==================================================
-   QUESTION CARD SECTION
+   QUESTION SECTION
 ================================================== */
 
 .question-preview-section {
@@ -195,8 +272,7 @@ body {
       680px
     );
 
-  margin:
-    0 auto;
+  margin: 0 auto;
 }
 
 
@@ -308,7 +384,7 @@ body {
 
 
 /* ==================================================
-   CHARACTER COUNT
+   COUNTERS
 ================================================== */
 
 .character-count {
@@ -361,7 +437,7 @@ body {
 
 
 /* ==================================================
-   EDITOR LAYOUT
+   EDITOR
 ================================================== */
 
 .editor-layout {
@@ -394,11 +470,6 @@ body {
 
   padding: 30px;
 }
-
-
-/* ==================================================
-   SETTINGS TITLES
-================================================== */
 
 .settings h2,
 .preview-heading h2 {
@@ -515,7 +586,7 @@ body {
 
 
 /* ==================================================
-   NORMAL BUTTONS
+   BUTTON
 ================================================== */
 
 button {
@@ -618,13 +689,13 @@ button:disabled {
 ================================================== */
 
 .profile-card {
-  --preview-scale: 1;
+  --preview-scale: .5;
 
   position: absolute;
 
-  left: 0;
+  left: 4px;
 
-  top: 0;
+  top: 4px;
 
   width: 1200px;
 
@@ -658,14 +729,15 @@ button:disabled {
   z-index: 5;
 
   border:
-    1px solid rgba(165,139,91,.7);
+    1px solid
+    rgba(165,139,91,.7);
 
   pointer-events: none;
 }
 
 
 /* ==================================================
-   QUESTION CARD FIXED
+   QUESTION CARD
 ================================================== */
 
 .question-card-fixed {
@@ -709,7 +781,7 @@ button:disabled {
 
 
 /* ==================================================
-   ANSWER BACKGROUND
+   CARD BACKGROUND IMAGE
 ================================================== */
 
 .card-background {
@@ -719,27 +791,57 @@ button:disabled {
 
   z-index: 0;
 
+  overflow: hidden;
+
   background:
     linear-gradient(
       135deg,
       #131e31,
       #0c111b
     );
+}
 
-  background-size: cover;
+.card-background-image:not([src]) {
+  display: none;
+}
 
-  background-position:
+.card-background-image {
+  display: block;
+
+  position: absolute;
+
+  left: 0;
+
+  top: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position:
     50% 50%;
-
-  background-repeat:
-    no-repeat;
 
   transform:
     scale(1);
 
   transform-origin:
-    center center;
+    50% 50%;
+
+  max-width: none;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+
+  pointer-events: none;
 }
+
+
+/* ==================================================
+   OVERLAY
+================================================== */
 
 .card-overlay {
   position: absolute;
@@ -783,7 +885,8 @@ button:disabled {
   text-align: center;
 }
 
-.answer-card .card-header {
+.answer-card
+.card-header {
   margin-bottom: 32px;
 }
 
@@ -822,10 +925,6 @@ button:disabled {
   letter-spacing: .08em;
 }
 
-.card-header h2 span {
-  color: #a58b5b;
-}
-
 
 /* ==================================================
    QUESTION CARD HEADER
@@ -845,9 +944,7 @@ button:disabled {
 
 
 /* ==================================================
-   QUESTION CARD LIST
-
-   読みやすさ優先で以前より拡大
+   QUESTION LIST
 ================================================== */
 
 .question-columns {
@@ -887,6 +984,28 @@ button:disabled {
 
 
 /* ==================================================
+   ENGLISH QUESTION CARD
+================================================== */
+
+html[lang="en"]
+#card-1 .card-header h2 {
+  font-size: 52px;
+}
+
+html[lang="en"]
+.question-list {
+  font-size: 22px;
+
+  line-height: 1.4;
+}
+
+html[lang="en"]
+.question-list li {
+  margin-bottom: 15px;
+}
+
+
+/* ==================================================
    ANSWERS
 ================================================== */
 
@@ -896,7 +1015,8 @@ button:disabled {
   padding-bottom: 12px;
 
   border-bottom:
-    1px solid rgba(165,139,91,.45);
+    1px solid
+    rgba(165,139,91,.45);
 }
 
 .question {
@@ -946,7 +1066,7 @@ button:disabled {
 
 
 /* ==================================================
-   COMPACT MODE
+   COMPACT
 ================================================== */
 
 .answer-card.compact-1 {
@@ -1053,9 +1173,11 @@ button:disabled {
    GOLD HEADER
 ================================================== */
 
-.profile-card .small-title,
-.profile-card .card-header h2,
-.profile-card .card-header h2 span {
+.profile-card
+.small-title,
+
+.profile-card
+.card-header h2 {
   color: #a58b5b;
 }
 
@@ -1135,7 +1257,7 @@ button:disabled {
 
 
 /* ==================================================
-   EXPORT AREA
+   EXPORT
 ================================================== */
 
 .export-area-main {
@@ -1156,7 +1278,7 @@ button:disabled {
 
 
 /* ==================================================
-   GOLD GENERATE BUTTON
+   GENERATE BUTTON
 ================================================== */
 
 #generate-button {
@@ -1194,17 +1316,7 @@ button:disabled {
 
     0 4px 14px
       rgba(0,0,0,.22);
-
-  transition:
-    background .2s ease,
-    border-color .2s ease,
-    color .2s ease,
-    box-shadow .2s ease,
-    transform .2s ease;
 }
-
-
-/* hover = 金色のまま発光 */
 
 #generate-button:hover {
   background:
@@ -1214,8 +1326,7 @@ button:disabled {
       #ad8d52
     );
 
-  border-color:
-    #d6bd89;
+  border-color: #d6bd89;
 
   color: #fff;
 
@@ -1234,9 +1345,6 @@ button:disabled {
       rgba(0,0,0,.28);
 }
 
-
-/* click = 黒系 */
-
 #generate-button:active {
   background:
     linear-gradient(
@@ -1245,18 +1353,9 @@ button:disabled {
       #0f1217
     );
 
-  border-color:
-    #7c6538;
+  border-color: #7c6538;
 
   color: #fff;
-
-  box-shadow:
-    0 0 0 1px
-      rgba(255,255,255,.03)
-      inset,
-
-    0 2px 8px
-      rgba(0,0,0,.35);
 
   transform:
     translateY(1px);
@@ -1269,11 +1368,6 @@ button:disabled {
 
   cursor: wait;
 }
-
-
-/* ==================================================
-   EXPORT TEXT
-================================================== */
 
 .export-area-main p {
   color: #868e9c;
@@ -1293,6 +1387,10 @@ button:disabled {
   font-weight: 600;
 }
 
+.export-size {
+  margin-top: 8px;
+}
+
 
 /* ==================================================
    IOS EXPORT
@@ -1306,7 +1404,8 @@ button:disabled {
     rgba(183,154,102,.08);
 
   border:
-    1px solid rgba(183,154,102,.28);
+    1px solid
+    rgba(183,154,102,.28);
 
   border-radius: 6px;
 
@@ -1392,7 +1491,7 @@ button:disabled {
 
 
 /* ==================================================
-   FOOTER
+   SITE FOOTER
 ================================================== */
 
 .site-footer {
@@ -1467,6 +1566,19 @@ button:disabled {
     font-size: 24px;
   }
 
+  .language-switch {
+    margin-top: 22px;
+  }
+
+  .language-button {
+    min-width: 85px;
+
+    padding:
+      8px 12px;
+
+    font-size: 12px;
+  }
+
   .site-subtitle {
     font-size: 12px;
   }
@@ -1482,14 +1594,13 @@ button:disabled {
     font-size: 12px;
   }
 
-  .site-description .mobile-note {
+  .site-description
+  .mobile-note {
     font-size: 11px;
 
     line-height: 1.6;
   }
 
-
-  /* 質問カード */
 
   .question-preview-section {
     width:
@@ -1500,8 +1611,6 @@ button:disabled {
     padding: 18px;
   }
 
-
-  /* 20の質問 */
 
   .input-area {
     width:
@@ -1516,8 +1625,6 @@ button:disabled {
     margin-bottom: 25px;
   }
 
-
-  /* 設定 → プレビュー */
 
   .editor-layout {
     display: block;
@@ -1546,8 +1653,6 @@ button:disabled {
   }
 
 
-  /* 生成ボタン */
-
   .export-area-main {
     width:
       calc(100% - 24px);
@@ -1558,12 +1663,11 @@ button:disabled {
   }
 
   #generate-button {
-    font-size: 16px;
-
     padding:
       17px 15px;
-  }
 
+    font-size: 16px;
+  }
 
   .mobile-export-actions {
     grid-template-columns:
