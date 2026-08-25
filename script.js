@@ -254,7 +254,11 @@ const translations = {
       "4枚の画像を生成しました。\n下に表示された画像を長押しして保存できます。",
 
     errorAlert:
-      "画像の生成に失敗しました。\nページを再読み込みしてもう一度お試しください。",
+      "画像の生成に失敗しました。",
+
+    cardGenerationError:
+      (cardNumber) =>
+        `カード${cardNumber}の画像生成に失敗しました。\nページを再読み込みしてもう一度お試しください。`,
 
     backgroundLoadError:
       "背景画像の読み込みに失敗しました。",
@@ -401,7 +405,11 @@ const translations = {
       "Four images have been generated.\nPress and hold the images below to save them.",
 
     errorAlert:
-      "Image generation failed.\nPlease reload the page and try again.",
+      "Image generation failed.",
+
+    cardGenerationError:
+      (cardNumber) =>
+        `Failed to generate card ${cardNumber}.\nPlease reload the page and try again.`,
 
     backgroundLoadError:
       "Failed to load the background image.",
@@ -443,7 +451,7 @@ if (
 
 
 /* ==================================================
-   VERSION DISPLAY
+   VERSION
 ================================================== */
 
 document
@@ -567,7 +575,9 @@ function setLanguage(
   ) {
 
     const questionText =
-      QUESTIONS[language][i - 1];
+      QUESTIONS[language][
+        i - 1
+      ];
 
 
     document
@@ -714,7 +724,7 @@ document
 
 
 /* ==================================================
-   IOS
+   IOS DETECTION
 ================================================== */
 
 function isIOSDevice() {
@@ -825,7 +835,7 @@ document.body.appendChild(
 
 
 /* ==================================================
-   ANSWER INPUTS
+   ANSWERS
 ================================================== */
 
 for (
@@ -1116,7 +1126,7 @@ function getFittedAnswerFontSize(
 
 
 /* ==================================================
-   FIT ANSWER CARDS
+   FIT CARDS
 ================================================== */
 
 function fitAllAnswerCards() {
@@ -1447,7 +1457,7 @@ function readImageAsDataURL(
 
 
 /* ==================================================
-   IMAGE WAIT
+   WAIT IMAGE
 ================================================== */
 
 async function waitForImage(
@@ -1537,7 +1547,7 @@ async function waitForImage(
 
 
 /* ==================================================
-   WAIT ALL BACKGROUNDS
+   WAIT BACKGROUND IMAGES
 ================================================== */
 
 async function waitForAllBackgroundImages() {
@@ -1565,7 +1575,7 @@ async function waitForAllBackgroundImages() {
 
 
 /* ==================================================
-   FRAME WAIT
+   NEXT FRAME
 ================================================== */
 
 function nextFrame() {
@@ -1712,9 +1722,7 @@ function setupCardSettings(
     );
 
 
-  /* ==================================================
-     SAFETY CHECK
-  ================================================== */
+  /* safety */
 
   if (
     !card ||
@@ -1734,35 +1742,7 @@ function setupCardSettings(
 
     console.error(
       "Card settings initialization failed:",
-      {
-
-        cardId,
-
-        backgroundImageId,
-
-        backgroundUploadId,
-
-        removeButtonId,
-
-        bgXId,
-
-        bgXValueId,
-
-        bgYId,
-
-        bgYValueId,
-
-        bgScaleId,
-
-        bgScaleValueId,
-
-        overlaySelector,
-
-        overlayOpacityId,
-
-        overlayOpacityValueId
-
-      }
+      options
     );
 
 
@@ -1775,9 +1755,7 @@ function setupCardSettings(
     "black";
 
 
-  /* ==================================================
-     UPLOAD
-  ================================================== */
+  /* upload */
 
   backgroundUpload.addEventListener(
     "change",
@@ -1840,20 +1818,9 @@ function setupCardSettings(
   );
 
 
-  /* ==================================================
-     BACKGROUND POSITION
-  ================================================== */
+  /* background */
 
   function updateBackgroundImage() {
-
-    if (
-      !backgroundImage
-    ) {
-
-      return;
-
-    }
-
 
     const x =
       Number(
@@ -1917,9 +1884,7 @@ function setupCardSettings(
   );
 
 
-  /* ==================================================
-     REMOVE
-  ================================================== */
+  /* remove */
 
   removeButton.addEventListener(
     "click",
@@ -1934,18 +1899,6 @@ function setupCardSettings(
       );
 
 
-      backgroundImage.style.objectPosition =
-        "50% 50%";
-
-
-      backgroundImage.style.transform =
-        "scale(1)";
-
-
-      backgroundImage.style.transformOrigin =
-        "50% 50%";
-
-
       bgX.value =
         50;
 
@@ -1958,15 +1911,25 @@ function setupCardSettings(
         100;
 
 
+      backgroundImage.style.objectPosition =
+        "50% 50%";
+
+
+      backgroundImage.style.transform =
+        "scale(1)";
+
+
+      backgroundImage.style.transformOrigin =
+        "50% 50%";
+
+
       updateBackgroundImage();
 
     }
   );
 
 
-  /* ==================================================
-     OVERLAY
-  ================================================== */
+  /* overlay */
 
   function updateOverlay() {
 
@@ -2038,9 +2001,7 @@ function setupCardSettings(
     );
 
 
-  /* ==================================================
-     TEXT COLOR
-  ================================================== */
+  /* text */
 
   document
     .querySelectorAll(
@@ -2094,7 +2055,7 @@ function setupCardSettings(
 
 
 /* ==================================================
-   CARD 1 SETTINGS
+   CARD SETUPS
 ================================================== */
 
 setupCardSettings({
@@ -2147,10 +2108,6 @@ setupCardSettings({
 });
 
 
-/* ==================================================
-   CARD 2 SETTINGS
-================================================== */
-
 setupCardSettings({
 
   cardId:
@@ -2200,10 +2157,6 @@ setupCardSettings({
 
 });
 
-
-/* ==================================================
-   CARD 3 SETTINGS
-================================================== */
 
 setupCardSettings({
 
@@ -2335,6 +2288,210 @@ window.addEventListener(
 
 
 /* ==================================================
+   DATA URL -> BLOB
+================================================== */
+
+function dataURLToBlob(
+  dataUrl
+) {
+
+  const parts =
+    dataUrl.split(
+      ","
+    );
+
+
+  if (
+    parts.length < 2
+  ) {
+
+    throw new Error(
+      "Invalid data URL"
+    );
+
+  }
+
+
+  const mimeMatch =
+    parts[0].match(
+      /:(.*?);/
+    );
+
+
+  const mime =
+    mimeMatch
+      ? mimeMatch[1]
+      : "image/png";
+
+
+  const binary =
+    atob(
+      parts[1]
+    );
+
+
+  const array =
+    new Uint8Array(
+      binary.length
+    );
+
+
+  for (
+    let i = 0;
+    i < binary.length;
+    i++
+  ) {
+
+    array[i] =
+      binary.charCodeAt(
+        i
+      );
+
+  }
+
+
+  return new Blob(
+    [
+      array
+    ],
+    {
+      type:
+        mime
+    }
+  );
+
+}
+
+
+/* ==================================================
+   GENERATE ONE CARD
+================================================== */
+
+async function generateCardImage(
+  card,
+  index
+) {
+
+  const options =
+  {
+
+    width:
+      1200,
+
+    height:
+      1200,
+
+    canvasWidth:
+      1200,
+
+    canvasHeight:
+      1200,
+
+    pixelRatio:
+      1,
+
+    cacheBust:
+      false,
+
+    backgroundColor:
+      index === 1
+
+      ? "#f4f1e9"
+
+      : "#101722",
+
+    style:
+    {
+
+      position:
+        "relative",
+
+      left:
+        "0",
+
+      top:
+        "0",
+
+      transform:
+        "none",
+
+      transformOrigin:
+        "top left",
+
+      width:
+        "1200px",
+
+      height:
+        "1200px"
+
+    }
+
+  };
+
+
+  /* ==================================================
+     IOS / IPADOS
+
+     toBlobよりtoPngを優先
+  ================================================== */
+
+  if (
+    isIOS
+  ) {
+
+    const dataUrl =
+      await htmlToImage.toPng(
+        card,
+        options
+      );
+
+
+    if (
+      !dataUrl
+    ) {
+
+      throw new Error(
+        `card-${index} toPng failed`
+      );
+
+    }
+
+
+    return dataURLToBlob(
+      dataUrl
+    );
+
+  }
+
+
+  /* ==================================================
+     DESKTOP
+  ================================================== */
+
+  const blob =
+    await htmlToImage.toBlob(
+      card,
+      options
+    );
+
+
+  if (
+    !blob
+  ) {
+
+    throw new Error(
+      `card-${index} toBlob failed`
+    );
+
+  }
+
+
+  return blob;
+
+}
+
+
+/* ==================================================
    EXPORT
 ================================================== */
 
@@ -2368,6 +2525,10 @@ if (
         ];
 
 
+      let generatingCardNumber =
+        0;
+
+
       generateButton.disabled =
         true;
 
@@ -2380,6 +2541,20 @@ if (
 
 
       try {
+
+        /* html-to-image確認 */
+
+        if (
+          typeof htmlToImage ===
+          "undefined"
+        ) {
+
+          throw new Error(
+            "html-to-image not loaded"
+          );
+
+        }
+
 
         if (
           document.fonts
@@ -2397,7 +2572,9 @@ if (
 
 
         await sleep(
-          300
+          isIOS
+            ? 700
+            : 300
         );
 
 
@@ -2413,6 +2590,10 @@ if (
           i <= 4;
           i++
         ) {
+
+          generatingCardNumber =
+            i;
+
 
           generateButton.textContent =
             t.generating(
@@ -2437,78 +2618,29 @@ if (
           }
 
 
+          /*
+            iPhoneでは描画更新をしっかり待つ
+          */
+
           await nextFrame();
 
 
-          const blob =
-            await htmlToImage.toBlob(
-              card,
-              {
-
-                width:
-                  1200,
-
-                height:
-                  1200,
-
-                canvasWidth:
-                  1200,
-
-                canvasHeight:
-                  1200,
-
-                pixelRatio:
-                  1,
-
-                cacheBust:
-                  false,
-
-                backgroundColor:
-                  i === 1
-
-                  ? "#f4f1e9"
-
-                  : "#101722",
-
-                style:
-                {
-
-                  position:
-                    "relative",
-
-                  left:
-                    "0",
-
-                  top:
-                    "0",
-
-                  transform:
-                    "none",
-
-                  transformOrigin:
-                    "top left",
-
-                  width:
-                    "1200px",
-
-                  height:
-                    "1200px"
-
-                }
-
-              }
-            );
-
-
           if (
-            !blob
+            isIOS
           ) {
 
-            throw new Error(
-              `card-${i} generation failed`
+            await sleep(
+              250
             );
 
           }
+
+
+          const blob =
+            await generateCardImage(
+              card,
+              i
+            );
 
 
           generated.push(
@@ -2527,12 +2659,22 @@ if (
           );
 
 
+          /*
+            WebKitで連続変換を急がない
+          */
+
           await sleep(
-            450
+            isIOS
+              ? 1000
+              : 450
           );
 
         }
 
+
+        /* ==================================================
+           IOS
+        ================================================== */
 
         if (
           isIOS
@@ -2548,6 +2690,11 @@ if (
           );
 
         }
+
+
+        /* ==================================================
+           DESKTOP
+        ================================================== */
 
         else {
 
@@ -2576,13 +2723,30 @@ if (
       ) {
 
         console.error(
+          "Image generation error:",
           error
         );
 
 
-        alert(
-          t.errorAlert
-        );
+        if (
+          generatingCardNumber > 0
+        ) {
+
+          alert(
+            t.cardGenerationError(
+              generatingCardNumber
+            )
+          );
+
+        }
+
+        else {
+
+          alert(
+            t.errorAlert
+          );
+
+        }
 
       }
 

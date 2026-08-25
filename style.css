@@ -51,7 +51,6 @@ body {
     serif;
 
   font-size: 42px;
-
   font-weight: 400;
 
   letter-spacing: .14em;
@@ -59,7 +58,7 @@ body {
 
 
 /* ==================================================
-   LANGUAGE SWITCH
+   LANGUAGE
 ================================================== */
 
 .language-switch {
@@ -192,8 +191,7 @@ body {
   text-decoration: none;
 
   border-bottom:
-    1px solid
-    rgba(214,193,154,.45);
+    1px solid rgba(214,193,154,.45);
 }
 
 .hashtag-link:hover {
@@ -586,7 +584,7 @@ body {
 
 
 /* ==================================================
-   BUTTON
+   BUTTONS
 ================================================== */
 
 button {
@@ -694,11 +692,9 @@ button:disabled {
   position: absolute;
 
   left: 4px;
-
   top: 4px;
 
   width: 1200px;
-
   height: 1200px;
 
   overflow: hidden;
@@ -729,8 +725,7 @@ button:disabled {
   z-index: 5;
 
   border:
-    1px solid
-    rgba(165,139,91,.7);
+    1px solid rgba(165,139,91,.7);
 
   pointer-events: none;
 }
@@ -781,7 +776,7 @@ button:disabled {
 
 
 /* ==================================================
-   CARD BACKGROUND IMAGE
+   BACKGROUND IMAGE
 ================================================== */
 
 .card-background {
@@ -811,11 +806,9 @@ button:disabled {
   position: absolute;
 
   left: 0;
-
   top: 0;
 
   width: 100%;
-
   height: 100%;
 
   object-fit: cover;
@@ -867,7 +860,6 @@ button:disabled {
   z-index: 2;
 
   width: 100%;
-
   height: 100%;
 
   padding:
@@ -984,7 +976,7 @@ button:disabled {
 
 
 /* ==================================================
-   ENGLISH QUESTION CARD
+   ENGLISH
 ================================================== */
 
 html[lang="en"]
@@ -1015,8 +1007,7 @@ html[lang="en"]
   padding-bottom: 12px;
 
   border-bottom:
-    1px solid
-    rgba(165,139,91,.45);
+    1px solid rgba(165,139,91,.45);
 }
 
 .question {
@@ -1170,7 +1161,7 @@ html[lang="en"]
 
 
 /* ==================================================
-   GOLD HEADER
+   GOLD
 ================================================== */
 
 .profile-card
@@ -1404,8 +1395,7 @@ html[lang="en"]
     rgba(183,154,102,.08);
 
   border:
-    1px solid
-    rgba(183,154,102,.28);
+    1px solid rgba(183,154,102,.28);
 
   border-radius: 6px;
 
@@ -1491,7 +1481,7 @@ html[lang="en"]
 
 
 /* ==================================================
-   SITE FOOTER
+   FOOTER
 ================================================== */
 
 .site-footer {
