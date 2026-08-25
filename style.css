@@ -33,8 +33,11 @@ body {
 
 .site-header {
   max-width: 1100px;
+
   margin: 0 auto;
+
   padding: 60px 20px 38px;
+
   text-align: center;
 }
 
@@ -48,6 +51,7 @@ body {
 
   font-size: 42px;
   font-weight: 400;
+
   letter-spacing: .14em;
 }
 
@@ -57,6 +61,7 @@ body {
   color: #b79a66;
 
   font-size: 15px;
+
   letter-spacing: .18em;
 }
 
@@ -64,6 +69,7 @@ body {
   max-width: 760px;
 
   margin: 32px auto 0;
+
   padding: 24px 30px;
 
   background:
@@ -81,6 +87,7 @@ body {
   color: #aeb5c1;
 
   font-size: 14px;
+
   line-height: 1.8;
 }
 
@@ -115,7 +122,7 @@ body {
 
 
 /* ==================================================
-   COMMON PANEL
+   PANELS
 ================================================== */
 
 .settings,
@@ -132,13 +139,18 @@ body {
 
 
 /* ==================================================
-   QUESTION PREVIEW SECTION
+   QUESTION PREVIEW
 ================================================== */
 
 .question-preview-section {
-  width: min(100% - 48px, 820px);
+  width:
+    min(
+      calc(100% - 48px),
+      820px
+    );
 
-  margin: 0 auto 34px;
+  margin:
+    0 auto 34px;
 
   padding: 28px;
 }
@@ -150,7 +162,8 @@ body {
 }
 
 .section-heading h2 {
-  margin: 0 0 6px;
+  margin:
+    0 0 6px;
 
   font-family:
     Georgia,
@@ -170,14 +183,18 @@ body {
 }
 
 .question-card-wrap {
-  width: min(100%, 680px);
+  width:
+    min(
+      100%,
+      680px
+    );
 
   margin: 0 auto;
 }
 
 
 /* ==================================================
-   MAIN 2 COLUMN
+   MAIN
 ================================================== */
 
 .editor-layout {
@@ -191,11 +208,16 @@ body {
 
   align-items: start;
 
-  width: min(100%, 1600px);
+  width:
+    min(
+      100%,
+      1600px
+    );
 
   margin: 0 auto;
 
-  padding: 0 24px 34px;
+  padding:
+    0 24px 34px;
 }
 
 .settings,
@@ -207,7 +229,7 @@ body {
 
 
 /* ==================================================
-   SETTINGS
+   TITLES
 ================================================== */
 
 .settings h2,
@@ -224,6 +246,11 @@ body {
   letter-spacing: .08em;
 }
 
+
+/* ==================================================
+   SETTINGS
+================================================== */
+
 .setting-group {
   margin-top: 30px;
 
@@ -238,11 +265,13 @@ body {
 }
 
 .setting-group h3 {
-  margin: 0 0 22px;
+  margin:
+    0 0 22px;
 
   color: #d6c19a;
 
   font-size: 18px;
+
   font-weight: 500;
 }
 
@@ -259,6 +288,7 @@ body {
   color: #d6c19a;
 
   font-size: 14px;
+
   font-weight: 600;
 }
 
@@ -268,7 +298,7 @@ body {
 
 
 /* ==================================================
-   RADIO / RANGE
+   RADIO
 ================================================== */
 
 .radio-group {
@@ -288,6 +318,11 @@ body {
 
   cursor: pointer;
 }
+
+
+/* ==================================================
+   RANGE
+================================================== */
 
 .range-row {
   display: flex;
@@ -313,11 +348,12 @@ body {
 
 
 /* ==================================================
-   BUTTON
+   GENERAL BUTTON
 ================================================== */
 
 button {
-  padding: 13px 24px;
+  padding:
+    13px 24px;
 
   border:
     1px solid #b79a66;
@@ -325,11 +361,19 @@ button {
   border-radius: 5px;
 
   background: #171d27;
+
   color: #fff;
 
   font-size: 15px;
 
   cursor: pointer;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    color .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease;
 }
 
 button:hover {
@@ -370,17 +414,19 @@ button:disabled {
 }
 
 .preview-card-label {
-  margin: 0 0 10px;
+  margin:
+    0 0 10px;
 
   color: #d6c19a;
 
   font-size: 13px;
+
   font-weight: 600;
 }
 
 
 /* ==================================================
-   1200 CARD PREVIEW
+   CARD FRAME
 ================================================== */
 
 .card-frame {
@@ -394,6 +440,11 @@ button:disabled {
 
   background: #0a0d13;
 }
+
+
+/* ==================================================
+   CARD
+================================================== */
 
 .profile-card {
   --preview-scale: 1;
@@ -409,12 +460,15 @@ button:disabled {
   overflow: hidden;
 
   transform:
-    scale(var(--preview-scale));
+    scale(
+      var(--preview-scale)
+    );
 
   transform-origin:
     top left;
 
   background: #101722;
+
   color: #fff;
 
   border:
@@ -431,19 +485,26 @@ button:disabled {
   z-index: 5;
 
   border:
-    1px solid rgba(165,139,91,.7);
+    1px solid
+    rgba(
+      165,
+      139,
+      91,
+      .7
+    );
 
   pointer-events: none;
 }
 
 
 /* ==================================================
-   QUESTION CARD FIXED STYLE
+   QUESTION CARD
 ================================================== */
 
 .question-card-fixed {
   background: #f4f1e9;
-  color: #161616;
+
+  color: #171717;
 }
 
 .question-fixed-background {
@@ -455,24 +516,33 @@ button:disabled {
 
   background:
     radial-gradient(
-      circle at 50% 20%,
-      rgba(255,255,255,.95),
-      rgba(246,243,235,.97) 42%,
-      rgba(230,225,214,1) 100%
+      circle at 50% 18%,
+      #ffffff 0%,
+      #f8f5ee 42%,
+      #e7e1d4 100%
     );
 }
 
-.question-card-fixed .question-list,
-.question-card-fixed .question-list li::marker,
-.question-card-fixed .copyright,
-.question-card-fixed .card-version,
-.question-card-fixed .page-number {
+.question-card-fixed
+.question-list,
+
+.question-card-fixed
+.question-list li::marker,
+
+.question-card-fixed
+.copyright,
+
+.question-card-fixed
+.card-version,
+
+.question-card-fixed
+.page-number {
   color: #171717;
 }
 
 
 /* ==================================================
-   ANSWER BACKGROUND
+   ANSWER CARD BACKGROUND
 ================================================== */
 
 .card-background {
@@ -490,11 +560,17 @@ button:disabled {
     );
 
   background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
+
+  background-position:
+    50% 50%;
+
+  background-repeat:
+    no-repeat;
 
   transform: scale(1);
-  transform-origin: center center;
+
+  transform-origin:
+    center center;
 }
 
 .card-overlay {
@@ -505,7 +581,12 @@ button:disabled {
   z-index: 1;
 
   background:
-    rgba(0,0,0,.45);
+    rgba(
+      0,
+      0,
+      0,
+      .45
+    );
 
   pointer-events: none;
 }
@@ -523,12 +604,13 @@ button:disabled {
   width: 100%;
   height: 100%;
 
-  padding: 85px 90px;
+  padding:
+    85px 90px;
 }
 
 
 /* ==================================================
-   CARD HEADER
+   HEADER
 ================================================== */
 
 .card-header {
@@ -537,16 +619,24 @@ button:disabled {
   text-align: center;
 }
 
+
+/*
+  質問カードは文字を大きくした分、
+  以前よりタイトル下の余白を少し縮める
+*/
+
 #card-1 .card-header {
-  margin-bottom: 80px;
+  margin-bottom: 62px;
 }
 
-.answer-card .card-header {
+.answer-card
+.card-header {
   margin-bottom: 32px;
 }
 
 .small-title {
-  margin: 0 0 10px;
+  margin:
+    0 0 10px;
 
   color: #a58b5b;
 
@@ -555,6 +645,7 @@ button:disabled {
     serif;
 
   font-size: 18px;
+
   font-weight: 600;
 
   letter-spacing: .28em;
@@ -583,34 +674,48 @@ button:disabled {
 }
 
 
+/* 質問カードタイトル */
+
+#card-1
+.small-title {
+  font-size: 20px;
+}
+
+#card-1
+.card-header h2 {
+  font-size: 52px;
+}
+
+
 /* ==================================================
-   QUESTION CARD LIST
+   QUESTION LIST
+
+   19px → 23px に拡大
 ================================================== */
 
 .question-columns {
   display: grid;
 
   grid-template-columns:
-    1fr
-    1fr;
+    1fr 1fr;
 
-  column-gap: 70px;
+  column-gap: 56px;
 }
 
 .question-list {
   margin: 0;
 
-  padding-left: 44px;
+  padding-left: 46px;
 
-  font-size: 19px;
+  font-size: 23px;
 
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
 .question-list li {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 
-  padding-left: 7px;
+  padding-left: 8px;
 }
 
 .question-list li::marker {
@@ -618,14 +723,14 @@ button:disabled {
     Georgia,
     serif;
 
-  font-size: 18px;
+  font-size: 21px;
 
   font-weight: bold;
 }
 
 
 /* ==================================================
-   ANSWER CARD
+   ANSWERS
 ================================================== */
 
 .answer-block {
@@ -634,11 +739,18 @@ button:disabled {
   padding-bottom: 12px;
 
   border-bottom:
-    1px solid rgba(165,139,91,.45);
+    1px solid
+    rgba(
+      165,
+      139,
+      91,
+      .45
+    );
 }
 
 .question {
-  margin: 0 0 6px;
+  margin:
+    0 0 6px;
 
   font-size: 16px;
 
@@ -659,8 +771,15 @@ button:disabled {
 
   font-size:
     calc(
-      var(--answer-font-size, 24px)
-      * var(--answer-scale, 1)
+      var(
+        --answer-font-size,
+        24px
+      )
+      *
+      var(
+        --answer-scale,
+        1
+      )
     );
 
   line-height: 1.38;
@@ -668,6 +787,7 @@ button:disabled {
   white-space: pre-wrap;
 
   overflow-wrap: anywhere;
+
   word-break: break-word;
 
   overflow: visible;
@@ -681,7 +801,7 @@ button:disabled {
 
 
 /* ==================================================
-   COMPACT MODE
+   COMPACT
 ================================================== */
 
 .answer-card.compact-1 {
@@ -731,7 +851,7 @@ button:disabled {
 
 
 /* ==================================================
-   TEXT COLORS
+   WHITE TEXT
 ================================================== */
 
 .profile-card.text-white {
@@ -755,9 +875,18 @@ button:disabled {
 .profile-card.text-white
 .copyright {
   color:
-    rgba(255,255,255,.82);
+    rgba(
+      255,
+      255,
+      255,
+      .82
+    );
 }
 
+
+/* ==================================================
+   BLACK TEXT
+================================================== */
 
 .profile-card.text-black {
   color: #111;
@@ -780,7 +909,28 @@ button:disabled {
 .profile-card.text-black
 .copyright {
   color:
-    rgba(0,0,0,.78);
+    rgba(
+      0,
+      0,
+      0,
+      .78
+    );
+}
+
+
+/* ==================================================
+   GOLD HEADER
+================================================== */
+
+.profile-card
+.small-title,
+
+.profile-card
+.card-header h2,
+
+.profile-card
+.card-header h2 span {
+  color: #a58b5b;
 }
 
 
@@ -794,10 +944,14 @@ button:disabled {
   line-height: 1;
 }
 
+
+/* Left */
+
 .copyright {
   position: absolute;
 
   left: 90px;
+
   bottom: 58px;
 
   margin: 0;
@@ -810,10 +964,14 @@ button:disabled {
   font-size: 14px;
 }
 
+
+/* Center */
+
 .card-version {
   position: absolute;
 
   left: 50%;
+
   bottom: 58px;
 
   transform:
@@ -837,10 +995,14 @@ button:disabled {
   opacity: .72;
 }
 
+
+/* Right */
+
 .page-number {
   position: absolute;
 
   right: 90px;
+
   bottom: 58px;
 
   margin: 0;
@@ -860,15 +1022,21 @@ button:disabled {
 ================================================== */
 
 .input-area {
-  width: min(100% - 48px, 1100px);
+  width:
+    min(
+      calc(100% - 48px),
+      1100px
+    );
 
-  margin: 0 auto 60px;
+  margin:
+    0 auto 60px;
 
   padding: 30px;
 }
 
 .input-guide {
-  margin: -5px 0 35px;
+  margin:
+    -5px 0 35px;
 
   color: #858d9a;
 
@@ -887,6 +1055,7 @@ button:disabled {
   color: #d6c19a;
 
   font-size: 15px;
+
   font-weight: 600;
 }
 
@@ -896,7 +1065,8 @@ button:disabled {
 
   width: 100%;
 
-  padding: 12px 15px;
+  padding:
+    12px 15px;
 
   border:
     1px solid #343d4d;
@@ -906,9 +1076,11 @@ button:disabled {
   outline: none;
 
   background: #0d1119;
+
   color: #fff;
 
   font-family: inherit;
+
   font-size: 16px;
 
   line-height: 1.45;
@@ -916,7 +1088,9 @@ button:disabled {
 
 .input-question textarea {
   height: 72px;
+
   min-height: 72px;
+
   max-height: 72px;
 
   resize: none;
@@ -937,6 +1111,11 @@ button:disabled {
   color: #626b78;
 }
 
+
+/* ==================================================
+   CHARACTER COUNT
+================================================== */
+
 .character-count {
   margin-top: 7px;
 
@@ -956,6 +1135,11 @@ button:disabled {
 
   font-weight: bold;
 }
+
+
+/* ==================================================
+   CUSTOM QUESTION
+================================================== */
 
 .custom-question-block {
   margin-top: 42px;
@@ -982,6 +1166,47 @@ button:disabled {
 
 
 /* ==================================================
+   QUESTION BOTTOM GUIDE
+================================================== */
+
+.question-bottom-guide {
+  margin-top: 40px;
+
+  padding:
+    18px 20px;
+
+  background:
+    rgba(
+      183,
+      154,
+      102,
+      .08
+    );
+
+  border:
+    1px solid
+    rgba(
+      183,
+      154,
+      102,
+      .38
+    );
+
+  border-radius: 7px;
+
+  color: #d6c19a;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  line-height: 1.7;
+
+  text-align: center;
+}
+
+
+/* ==================================================
    EXPORT
 ================================================== */
 
@@ -996,13 +1221,164 @@ button:disabled {
   text-align: center;
 }
 
+
+/* ==================================================
+   GOLD GENERATE BUTTON
+================================================== */
+
 #generate-button {
   width: 100%;
 
-  padding: 17px 25px;
+  padding:
+    18px 25px;
+
+  border:
+    1px solid #c5a86a;
+
+  border-radius: 5px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #c7aa70,
+      #ad8d52
+    );
+
+  color: #ffffff;
 
   font-size: 17px;
+
+  font-weight: 700;
+
+  letter-spacing: .04em;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 0 1px
+      rgba(
+        255,
+        255,
+        255,
+        .04
+      )
+      inset,
+
+    0 4px 14px
+      rgba(
+        0,
+        0,
+        0,
+        .22
+      );
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    color .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease;
 }
+
+
+/* Hover：金色のまま少し発光 */
+
+#generate-button:hover {
+  background:
+    linear-gradient(
+      180deg,
+      #c7aa70,
+      #ad8d52
+    );
+
+  border-color: #d6bd89;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 0 0 1px
+      rgba(
+        255,
+        255,
+        255,
+        .08
+      )
+      inset,
+
+    0 0 10px
+      rgba(
+        214,
+        193,
+        154,
+        .25
+      ),
+
+    0 0 18px
+      rgba(
+        214,
+        193,
+        154,
+        .18
+      ),
+
+    0 6px 18px
+      rgba(
+        0,
+        0,
+        0,
+        .28
+      );
+}
+
+
+/* Click：黒系 */
+
+#generate-button:active {
+  background:
+    linear-gradient(
+      180deg,
+      #1f232a,
+      #0f1217
+    );
+
+  border-color: #7c6538;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 0 0 1px
+      rgba(
+        255,
+        255,
+        255,
+        .03
+      )
+      inset,
+
+    0 2px 8px
+      rgba(
+        0,
+        0,
+        0,
+        .35
+      );
+
+  transform:
+    translateY(1px);
+}
+
+#generate-button:disabled {
+  opacity: .6;
+
+  color: #ffffff;
+
+  cursor: wait;
+}
+
+
+/* ==================================================
+   EXPORT TEXT
+================================================== */
 
 .export-area p {
   color: #868e9c;
@@ -1022,17 +1398,29 @@ button:disabled {
 
 
 /* ==================================================
-   iOS EXPORT RESULTS
+   IOS EXPORT
 ================================================== */
 
 .ios-export-guide {
-  padding: 10px 12px;
+  padding:
+    10px 12px;
 
   background:
-    rgba(183,154,102,.08);
+    rgba(
+      183,
+      154,
+      102,
+      .08
+    );
 
   border:
-    1px solid rgba(183,154,102,.28);
+    1px solid
+    rgba(
+      183,
+      154,
+      102,
+      .28
+    );
 
   border-radius: 6px;
 
@@ -1057,7 +1445,8 @@ button:disabled {
 }
 
 .mobile-export-item h4 {
-  margin: 0 0 12px;
+  margin:
+    0 0 12px;
 
   color: #d6c19a;
 
@@ -1068,6 +1457,7 @@ button:disabled {
   display: block;
 
   width: 100%;
+
   height: auto;
 
   border:
@@ -1078,8 +1468,7 @@ button:disabled {
   display: grid;
 
   grid-template-columns:
-    1fr
-    1fr;
+    1fr 1fr;
 
   gap: 8px;
 
@@ -1090,9 +1479,11 @@ button:disabled {
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
-  padding: 11px 8px;
+  padding:
+    11px 8px;
 
   border:
     1px solid #b79a66;
@@ -1107,18 +1498,20 @@ button:disabled {
 }
 
 .mobile-export-actions button {
-  padding: 11px 8px;
+  padding:
+    11px 8px;
 
   font-size: 13px;
 }
 
 
 /* ==================================================
-   SITE FOOTER
+   FOOTER
 ================================================== */
 
 .site-footer {
-  padding: 45px 20px 35px;
+  padding:
+    45px 20px 35px;
 
   text-align: center;
 
@@ -1137,7 +1530,8 @@ button:disabled {
 }
 
 .footer-copyright {
-  margin: 14px 0 0;
+  margin:
+    14px 0 0;
 
   color: #8e939c;
 
@@ -1158,11 +1552,12 @@ button:disabled {
 
   .editor-layout {
     grid-template-columns:
-      minmax(0,1fr)
-      minmax(420px,.95fr);
+      minmax(0, 1fr)
+      minmax(420px, .95fr);
 
     gap: 24px;
   }
+
 
   .settings,
   .preview-panel {
@@ -1179,28 +1574,36 @@ button:disabled {
 @media screen and (max-width: 900px) {
 
   .site-header {
-    padding: 42px 15px 34px;
+    padding:
+      42px 15px 34px;
   }
+
 
   .site-header h1 {
     font-size: 24px;
   }
 
+
   .site-subtitle {
     font-size: 12px;
   }
 
+
   .site-description {
     margin-top: 24px;
 
-    padding: 17px 14px;
+    padding:
+      17px 14px;
   }
+
 
   .site-description p {
     font-size: 12px;
   }
 
-  .site-description .mobile-note {
+
+  .site-description
+  .mobile-note {
     font-size: 11px;
 
     line-height: 1.6;
@@ -1209,7 +1612,9 @@ button:disabled {
 
   .question-preview-section {
     width:
-      calc(100% - 24px);
+      calc(
+        100% - 24px
+      );
 
     margin-bottom: 24px;
 
@@ -1222,7 +1627,8 @@ button:disabled {
 
     width: 100%;
 
-    padding: 0 12px 24px;
+    padding:
+      0 12px 24px;
   }
 
 
@@ -1244,7 +1650,9 @@ button:disabled {
 
   .input-area {
     width:
-      calc(100% - 24px);
+      calc(
+        100% - 24px
+      );
 
     margin-bottom: 40px;
 
@@ -1257,8 +1665,19 @@ button:disabled {
   }
 
 
+  .question-bottom-guide {
+    margin-top: 30px;
+
+    padding:
+      15px 12px;
+
+    font-size: 13px;
+  }
+
+
   .mobile-export-actions {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
   }
 
 }

@@ -2,17 +2,22 @@
    VERSION
 ================================================== */
 
-const APP_VERSION = "Ver.1.0";
+const APP_VERSION =
+  "Ver.1.0";
 
 
 /* ==================================================
    CONSTANTS
 ================================================== */
 
-const MAX_LENGTH = 80;
-const MAX_LINES = 2;
+const MAX_LENGTH =
+  80;
 
-const CUSTOM_QUESTION_MAX_LENGTH = 40;
+const MAX_LINES =
+  2;
+
+const CUSTOM_QUESTION_MAX_LENGTH =
+  40;
 
 
 /* ==================================================
@@ -34,7 +39,7 @@ document
 
 
 /* ==================================================
-   DEVICE DETECTION
+   IOS DETECTION
 ================================================== */
 
 function isIOSDevice() {
@@ -42,12 +47,12 @@ function isIOSDevice() {
   return (
     /iPad|iPhone|iPod/.test(
       navigator.userAgent
-    ) ||
-
+    )
+    ||
     (
       navigator.platform ===
-      "MacIntel" &&
-
+      "MacIntel"
+      &&
       navigator.maxTouchPoints > 1
     )
   );
@@ -95,6 +100,7 @@ answerMeasure.setAttribute(
 Object.assign(
   answerMeasure.style,
   {
+
     position:
       "fixed",
 
@@ -133,6 +139,7 @@ Object.assign(
 
     wordBreak:
       "break-word"
+
   }
 );
 
@@ -180,9 +187,15 @@ for (
   }
 
 
+  /* ==================================================
+     ENTER LIMIT
+  ================================================== */
+
   input.addEventListener(
     "keydown",
-    (event) => {
+    (
+      event
+    ) => {
 
       if (
         event.key !==
@@ -194,10 +207,14 @@ for (
       }
 
 
-      if (
+      const lines =
         input.value
           .split("\n")
-          .length >=
+          .length;
+
+
+      if (
+        lines >=
         MAX_LINES
       ) {
 
@@ -208,6 +225,10 @@ for (
     }
   );
 
+
+  /* ==================================================
+     UPDATE ANSWER
+  ================================================== */
 
   const updateAnswer =
     () => {
@@ -225,7 +246,9 @@ for (
 
 
       let lines =
-        value.split("\n");
+        value.split(
+          "\n"
+        );
 
 
       if (
@@ -239,7 +262,9 @@ for (
               0,
               MAX_LINES
             )
-            .join("\n");
+            .join(
+              "\n"
+            );
 
       }
 
@@ -327,7 +352,7 @@ for (
 
 
 /* ==================================================
-   ANSWER FONT SIZE
+   BASE FONT SIZE
 ================================================== */
 
 function getAnswerBaseFontSize(
@@ -402,18 +427,21 @@ function getFittedAnswerFontSize(
       text;
 
 
-    const twoLineHeight =
+    const maxHeight =
       (
-        size *
-        1.38 *
+        size
+        *
+        1.38
+        *
         2
-      ) +
+      )
+      +
       3;
 
 
     if (
       answerMeasure.scrollHeight <=
-      twoLineHeight
+      maxHeight
     ) {
 
       return size;
@@ -520,12 +548,14 @@ function cardContentFits(
 
 
   const bottom =
-    lastBlock.offsetTop +
+    lastBlock.offsetTop
+    +
     lastBlock.offsetHeight;
 
 
   return (
-    bottom <= 1055
+    bottom <=
+    1045
   );
 
 }
@@ -589,7 +619,7 @@ function updateCounter(
 
 
 /* ==================================================
-   Q20 CUSTOM QUESTION
+   Q20
 ================================================== */
 
 const q20Title =
@@ -654,7 +684,8 @@ function updateQ20Title() {
 
 
   const displayText =
-    value.trim() ||
+    value.trim()
+    ||
     "自由質問";
 
 
@@ -697,7 +728,7 @@ if (
 
 
 /* ==================================================
-   IMAGE FILE → DATA URL
+   IMAGE FILE
 ================================================== */
 
 function readImageAsDataURL(
@@ -753,6 +784,7 @@ function setupCardSettings(
 ) {
 
   const {
+
     cardId,
 
     backgroundSelector,
@@ -762,17 +794,21 @@ function setupCardSettings(
     removeButtonId,
 
     bgXId,
+
     bgXValueId,
 
     bgYId,
+
     bgYValueId,
 
     bgScaleId,
+
     bgScaleValueId,
 
     overlaySelector,
 
     overlayOpacityId,
+
     overlayOpacityValueId,
 
     overlayRadioName,
@@ -864,7 +900,9 @@ function setupCardSettings(
     "black";
 
 
-  /* Background upload */
+  /* ==================================================
+     IMAGE UPLOAD
+  ================================================== */
 
   backgroundUpload.addEventListener(
     "change",
@@ -873,7 +911,9 @@ function setupCardSettings(
     ) => {
 
       const file =
-        event.target.files[0];
+        event.target.files[
+          0
+        ];
 
 
       if (
@@ -920,7 +960,9 @@ function setupCardSettings(
   );
 
 
-  /* Position */
+  /* ==================================================
+     BACKGROUND
+  ================================================== */
 
   function updateBackground() {
 
@@ -936,7 +978,7 @@ function setupCardSettings(
       );
 
 
-    const scalePercent =
+    const scale =
       Number(
         bgScale.value
       );
@@ -947,7 +989,7 @@ function setupCardSettings(
 
 
     background.style.transform =
-      `scale(${scalePercent / 100})`;
+      `scale(${scale / 100})`;
 
 
     background.style.transformOrigin =
@@ -963,7 +1005,7 @@ function setupCardSettings(
 
 
     bgScaleValue.textContent =
-      `${scalePercent}%`;
+      `${scale}%`;
 
   }
 
@@ -986,7 +1028,9 @@ function setupCardSettings(
   );
 
 
-  /* Clear */
+  /* ==================================================
+     CLEAR
+  ================================================== */
 
   removeButton.addEventListener(
     "click",
@@ -1018,7 +1062,9 @@ function setupCardSettings(
   );
 
 
-  /* Overlay */
+  /* ==================================================
+     OVERLAY
+  ================================================== */
 
   function updateOverlay() {
 
@@ -1032,9 +1078,9 @@ function setupCardSettings(
       overlayColor ===
       "white"
 
-        ? "255,255,255"
+      ? "255,255,255"
 
-        : "0,0,0";
+      : "0,0,0";
 
 
     overlay.style.backgroundColor =
@@ -1043,8 +1089,7 @@ function setupCardSettings(
 
     overlayOpacityValue.textContent =
       `${Math.round(
-        opacity *
-        100
+        opacity * 100
       )}%`;
 
   }
@@ -1061,7 +1106,9 @@ function setupCardSettings(
       `input[name="${overlayRadioName}"]`
     )
     .forEach(
-      (radio) => {
+      (
+        radio
+      ) => {
 
         radio.addEventListener(
           "change",
@@ -1089,14 +1136,18 @@ function setupCardSettings(
     );
 
 
-  /* Text */
+  /* ==================================================
+     TEXT COLOR
+  ================================================== */
 
   document
     .querySelectorAll(
       `input[name="${textRadioName}"]`
     )
     .forEach(
-      (radio) => {
+      (
+        radio
+      ) => {
 
         radio.addEventListener(
           "change",
@@ -1121,9 +1172,9 @@ function setupCardSettings(
               radio.value ===
               "black"
 
-                ? "text-black"
+              ? "text-black"
 
-                : "text-white"
+              : "text-white"
             );
 
           }
@@ -1141,7 +1192,7 @@ function setupCardSettings(
 
 
 /* ==================================================
-   CARD SETTINGS
+   CARD 2
 ================================================== */
 
 setupCardSettings({
@@ -1194,6 +1245,10 @@ setupCardSettings({
 });
 
 
+/* ==================================================
+   CARD 3
+================================================== */
+
 setupCardSettings({
 
   cardId:
@@ -1243,6 +1298,10 @@ setupCardSettings({
 
 });
 
+
+/* ==================================================
+   CARD 4
+================================================== */
 
 setupCardSettings({
 
@@ -1305,7 +1364,9 @@ function updatePreviewScales() {
       ".card-frame"
     )
     .forEach(
-      (frame) => {
+      (
+        frame
+      ) => {
 
         const card =
           frame.querySelector(
@@ -1407,7 +1468,7 @@ generateButton.addEventListener(
 
 
       await sleep(
-        200
+        250
       );
 
 
@@ -1456,10 +1517,13 @@ generateButton.addEventListener(
 
               backgroundColor:
                 i === 1
-                  ? "#f4f1e9"
-                  : "#101722",
 
-              style: {
+                ? "#f4f1e9"
+
+                : "#101722",
+
+              style:
+              {
 
                 transform:
                   "none",
@@ -1484,7 +1548,7 @@ generateButton.addEventListener(
         ) {
 
           throw new Error(
-            `card-${i} の画像生成に失敗しました`
+            `card-${i} の生成に失敗しました`
           );
 
         }
@@ -1507,11 +1571,15 @@ generateButton.addEventListener(
 
 
         await sleep(
-          300
+          350
         );
 
       }
 
+
+      /* ==================================================
+         IOS
+      ================================================== */
 
       if (
         isIOS
@@ -1529,6 +1597,10 @@ generateButton.addEventListener(
       }
 
       else {
+
+        /* ==================================================
+           DESKTOP
+        ================================================== */
 
         for (
           const item of generated
@@ -1581,7 +1653,7 @@ generateButton.addEventListener(
 
 
 /* ==================================================
-   iOS RESULT
+   IOS RESULT
 ================================================== */
 
 function showIOSExportResults(
@@ -1602,7 +1674,9 @@ function showIOSExportResults(
 
 
   generated.forEach(
-    (item) => {
+    (
+      item
+    ) => {
 
       const objectUrl =
         URL.createObjectURL(
@@ -1821,7 +1895,9 @@ function showIOSExportResults(
 function clearGeneratedResults() {
 
   generatedObjectUrls.forEach(
-    (url) => {
+    (
+      url
+    ) => {
 
       URL.revokeObjectURL(
         url
@@ -1852,7 +1928,7 @@ function clearGeneratedResults() {
 
 
 /* ==================================================
-   DESKTOP DOWNLOAD
+   DOWNLOAD
 ================================================== */
 
 function downloadBlob(
@@ -1914,7 +1990,9 @@ function sleep(
 ) {
 
   return new Promise(
-    (resolve) => {
+    (
+      resolve
+    ) => {
 
       setTimeout(
         resolve,
