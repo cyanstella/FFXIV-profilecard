@@ -12,9 +12,8 @@ html {
 
 body {
   margin: 0;
-
   background: #0b0e13;
-  color: #ffffff;
+  color: #fff;
 
   font-family:
     -apple-system,
@@ -28,108 +27,70 @@ body {
 
 
 /* ==================================================
-   SITE HEADER
+   HEADER
 ================================================== */
 
 .site-header {
   max-width: 1100px;
-
   margin: 0 auto;
-
   padding: 60px 20px 45px;
-
   text-align: center;
 }
 
 .site-header h1 {
   margin: 0;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
+  font-family: Georgia, "Times New Roman", serif;
   font-size: 42px;
   font-weight: 400;
-
-  letter-spacing: 0.14em;
+  letter-spacing: .14em;
 }
 
 .site-subtitle {
   margin: 12px 0 0;
-
   color: #b79a66;
-
   font-size: 15px;
-
-  letter-spacing: 0.18em;
+  letter-spacing: .18em;
 }
 
 .site-description {
   max-width: 760px;
-
   margin: 32px auto 0;
-
   padding: 24px 30px;
-
-  background:
-    rgba(255, 255, 255, 0.025);
-
-  border:
-    1px solid
-    #292f3b;
-
+  background: rgba(255,255,255,.025);
+  border: 1px solid #292f3b;
   border-radius: 8px;
 }
 
 .site-description p {
   margin: 0;
-
   color: #aeb5c1;
-
   font-size: 14px;
-
   line-height: 1.8;
-
-  letter-spacing: 0.03em;
 }
 
 .site-description .hashtag-guide {
   margin-top: 10px;
 }
 
-
-/* ==================================================
-   HASHTAG
-================================================== */
-
 .hashtag-link {
   color: #d6c19a;
-
   font-weight: 600;
-
-  letter-spacing: 0.04em;
-
   text-decoration: none;
-
-  border-bottom:
-    1px solid
-    rgba(214, 193, 154, 0.45);
-
-  transition:
-    color 0.2s,
-    border-color 0.2s;
+  border-bottom: 1px solid rgba(214,193,154,.45);
 }
 
 .hashtag-link:hover {
-  color: #ffffff;
-
-  border-bottom-color: #ffffff;
+  color: #fff;
+  border-bottom-color: #fff;
 }
 
 
 /* ==================================================
-   2 COLUMN
+   DESKTOP LAYOUT
+
+   左上：設定
+   左下：回答入力
+   右：プレビュー
 ================================================== */
 
 .editor-layout {
@@ -138,6 +99,10 @@ body {
   grid-template-columns:
     minmax(0, 1fr)
     minmax(500px, 1fr);
+
+  grid-template-areas:
+    "settings preview"
+    "input    preview";
 
   gap: 34px;
 
@@ -150,35 +115,45 @@ body {
   padding: 0 24px 100px;
 }
 
-.editor-panel,
+.settings {
+  grid-area: settings;
+}
+
+.input-area {
+  grid-area: input;
+}
+
 .preview-panel {
-  min-width: 0;
+  grid-area: preview;
 }
 
 
 /* ==================================================
-   SETTINGS
+   PANELS
 ================================================== */
 
 .settings,
-.input-area {
-  width: 100%;
-
-  margin: 0 0 34px;
+.input-area,
+.preview-panel {
+  min-width: 0;
 
   padding: 30px;
 
   background: #121722;
 
-  border:
-    1px solid
-    #2b3240;
+  border: 1px solid #2b3240;
 
   border-radius: 12px;
 }
 
+.settings,
+.input-area {
+  margin-bottom: 0;
+}
+
 .settings h2,
-.input-area h2 {
+.input-area h2,
+.preview-heading h2 {
   margin-top: 0;
 
   font-family:
@@ -187,17 +162,19 @@ body {
 
   font-weight: 400;
 
-  letter-spacing: 0.08em;
+  letter-spacing: .08em;
 }
+
+
+/* ==================================================
+   SETTINGS
+================================================== */
 
 .setting-group {
   margin-top: 30px;
-
   padding-top: 28px;
 
-  border-top:
-    1px solid
-    #343d4d;
+  border-top: 1px solid #343d4d;
 }
 
 .setting-group:first-of-type {
@@ -210,7 +187,6 @@ body {
   color: #d6c19a;
 
   font-size: 18px;
-
   font-weight: 500;
 }
 
@@ -227,7 +203,6 @@ body {
   color: #d6c19a;
 
   font-size: 14px;
-
   font-weight: 600;
 }
 
@@ -237,39 +212,25 @@ body {
 
 
 /* ==================================================
-   RADIO
+   RADIO / RANGE
 ================================================== */
 
 .radio-group {
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 25px;
 }
 
 .radio-group label {
   display: flex;
-
   align-items: center;
-
   gap: 7px;
-
-  color: #ffffff;
-
   cursor: pointer;
 }
 
-
-/* ==================================================
-   RANGE
-================================================== */
-
 .range-row {
   display: flex;
-
   align-items: center;
-
   gap: 15px;
 }
 
@@ -279,11 +240,8 @@ body {
 
 .range-row span {
   min-width: 56px;
-
   color: #d6c19a;
-
   font-size: 13px;
-
   text-align: right;
 }
 
@@ -295,41 +253,25 @@ body {
 button {
   padding: 13px 24px;
 
-  border:
-    1px solid
-    #b79a66;
-
+  border: 1px solid #b79a66;
   border-radius: 5px;
 
   background: #171d27;
-
-  color: #ffffff;
+  color: #fff;
 
   font-size: 15px;
 
   cursor: pointer;
-
-  transition:
-    background 0.2s,
-    color 0.2s,
-    transform 0.2s;
 }
 
 button:hover {
   background: #b79a66;
-
-  color: #111111;
-
-  transform:
-    translateY(-1px);
+  color: #111;
 }
 
 button:disabled {
-  opacity: 0.6;
-
+  opacity: .6;
   cursor: wait;
-
-  transform: none;
 }
 
 
@@ -357,7 +299,6 @@ button:disabled {
   color: #d6c19a;
 
   font-size: 15px;
-
   font-weight: 600;
 }
 
@@ -369,20 +310,15 @@ button:disabled {
 
   padding: 12px 15px;
 
-  border:
-    1px solid
-    #343d4d;
-
+  border: 1px solid #343d4d;
   border-radius: 6px;
 
   outline: none;
 
   background: #0d1119;
-
-  color: #ffffff;
+  color: #fff;
 
   font-family: inherit;
-
   font-size: 16px;
 
   line-height: 1.45;
@@ -395,7 +331,7 @@ button:disabled {
 
   resize: none;
 
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .input-question input[type="text"] {
@@ -407,23 +343,34 @@ button:disabled {
   border-color: #b79a66;
 }
 
-.input-question input[type="text"]::placeholder {
+.input-question input::placeholder {
   color: #626b78;
 }
 
+.character-count {
+  margin-top: 7px;
 
-/* ==================================================
-   CUSTOM QUESTION
-================================================== */
+  color: #858d9a;
+
+  font-size: 12px;
+
+  text-align: right;
+}
+
+.character-count.is-warning {
+  color: #d7b06d;
+}
+
+.character-count.is-limit {
+  color: #e07878;
+  font-weight: bold;
+}
 
 .custom-question-block {
   margin-top: 42px;
-
   padding-top: 28px;
 
-  border-top:
-    1px solid
-    #343d4d;
+  border-top: 1px solid #343d4d;
 }
 
 .custom-question-title {
@@ -431,13 +378,7 @@ button:disabled {
 
   color: #d6c19a;
 
-  font-family:
-    Georgia,
-    "Yu Mincho",
-    serif;
-
   font-size: 18px;
-
   font-weight: 600;
 }
 
@@ -447,60 +388,15 @@ button:disabled {
 
 
 /* ==================================================
-   CHARACTER COUNT
-================================================== */
-
-.character-count {
-  margin-top: 7px;
-
-  text-align: right;
-
-  color: #858d9a;
-
-  font-size: 12px;
-}
-
-.character-count.is-warning {
-  color: #d7b06d;
-}
-
-.character-count.is-limit {
-  color: #e07878;
-
-  font-weight: bold;
-}
-
-
-/* ==================================================
    PREVIEW
 ================================================== */
 
-.preview-panel {
-  padding: 22px;
-
-  background: #10151f;
-
-  border:
-    1px solid
-    #292f3b;
-
-  border-radius: 12px;
-}
-
 .preview-heading {
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
 
 .preview-heading h2 {
-  margin: 0 0 6px;
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-weight: 400;
-
-  letter-spacing: 0.08em;
+  margin-bottom: 6px;
 }
 
 .preview-heading p {
@@ -515,42 +411,61 @@ button:disabled {
   margin-bottom: 42px;
 }
 
-.preview-card-block:last-of-type {
-  margin-bottom: 26px;
-}
-
 .preview-card-label {
   margin: 0 0 10px;
 
   color: #d6c19a;
 
   font-size: 13px;
-
   font-weight: 600;
-
-  letter-spacing: 0.05em;
 }
 
 
 /* ==================================================
-   CARD
+   IMPORTANT
+
+   プレビューでは1200pxカードそのものを
+   CSS transformで縮小する。
+
+   これによりPC / iPhone / PNGで
+   文字位置が変わらない。
 ================================================== */
 
-.profile-card {
+.card-frame {
   position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+
+  background: #0a0d13;
+}
+
+.profile-card {
+  --preview-scale: 1;
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
 
   width: 1200px;
   height: 1200px;
 
   overflow: hidden;
 
+  transform:
+    scale(var(--preview-scale));
+
+  transform-origin:
+    top left;
+
   background: #101722;
+  color: #fff;
 
-  color: #ffffff;
-
-  border:
-    2px solid
-    #a58b5b;
+  border: 2px solid #a58b5b;
 }
 
 .profile-card::after {
@@ -564,7 +479,7 @@ button:disabled {
 
   border:
     1px solid
-    rgba(165, 139, 91, 0.7);
+    rgba(165,139,91,.7);
 
   pointer-events: none;
 }
@@ -581,9 +496,7 @@ button:disabled {
 
   z-index: 0;
 
-  background-color: #101722;
-
-  background-image:
+  background:
     linear-gradient(
       135deg,
       #131e31,
@@ -591,24 +504,12 @@ button:disabled {
     );
 
   background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 
-  background-position:
-    50% 50%;
-
-  background-repeat:
-    no-repeat;
-
-  transform:
-    scale(1);
-
-  transform-origin:
-    center center;
+  transform: scale(1);
+  transform-origin: center center;
 }
-
-
-/* ==================================================
-   OVERLAY
-================================================== */
 
 .card-overlay {
   position: absolute;
@@ -617,8 +518,8 @@ button:disabled {
 
   z-index: 1;
 
-  background-color:
-    rgba(0, 0, 0, 0.45);
+  background:
+    rgba(0,0,0,.45);
 
   pointer-events: none;
 }
@@ -641,7 +542,7 @@ button:disabled {
 
 
 /* ==================================================
-   HEADER
+   CARD HEADER
 ================================================== */
 
 .card-header {
@@ -652,6 +553,10 @@ button:disabled {
 
 #card-1 .card-header {
   margin-bottom: 80px;
+}
+
+.answer-card .card-header {
+  margin-bottom: 32px;
 }
 
 .small-title {
@@ -667,7 +572,7 @@ button:disabled {
 
   font-weight: 600;
 
-  letter-spacing: 0.28em;
+  letter-spacing: .28em;
 }
 
 .card-header h2 {
@@ -682,10 +587,9 @@ button:disabled {
     serif;
 
   font-size: 48px;
-
   font-weight: 400;
 
-  letter-spacing: 0.08em;
+  letter-spacing: .08em;
 }
 
 .card-header h2 span {
@@ -694,7 +598,7 @@ button:disabled {
 
 
 /* ==================================================
-   QUESTION LIST
+   QUESTION CARD
 ================================================== */
 
 .question-columns {
@@ -705,8 +609,6 @@ button:disabled {
     1fr;
 
   column-gap: 70px;
-
-  align-items: start;
 }
 
 .question-list {
@@ -737,31 +639,26 @@ button:disabled {
 
 
 /* ==================================================
-   ANSWER
+   ANSWER CARD
 ================================================== */
 
-.answer-card .card-header {
-  margin-bottom: 36px;
-}
-
 .answer-block {
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 
-  padding-bottom: 15px;
+  padding-bottom: 12px;
 
   border-bottom:
     1px solid
-    rgba(165, 139, 91, 0.45);
+    rgba(165,139,91,.45);
 }
 
 .question {
-  margin: 0 0 7px;
+  margin: 0 0 6px;
 
   font-size: 16px;
-
   font-weight: 600;
 
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 .answer-text {
@@ -769,93 +666,148 @@ button:disabled {
 
   min-height: 30px;
 
-  max-height: 74px;
-
-  overflow: hidden;
-
   font-family:
     "Hiragino Mincho ProN",
     "Yu Mincho",
     serif;
 
   font-size:
-    var(--answer-font-size, 24px);
+    calc(
+      var(--answer-font-size, 24px)
+      * var(--answer-scale, 1)
+    );
 
-  line-height: 1.42;
+  line-height: 1.38;
 
   white-space: pre-wrap;
 
   overflow-wrap: anywhere;
-
   word-break: break-word;
+
+  overflow: visible;
 }
 
 .answer-text:empty::before {
   content: "—";
-
-  opacity: 0.55;
+  opacity: .55;
 }
 
 
 /* ==================================================
-   WHITE
+   CARD COMPACT MODE
+
+   長い回答が多い時だけ
+   JSが自動的に適用する。
+================================================== */
+
+.answer-card.compact-1 {
+  --answer-scale: .94;
+}
+
+.answer-card.compact-1
+.card-header {
+  margin-bottom: 26px;
+}
+
+.answer-card.compact-1
+.answer-block {
+  margin-bottom: 10px;
+  padding-bottom: 9px;
+}
+
+.answer-card.compact-1
+.question {
+  font-size: 15px;
+}
+
+
+.answer-card.compact-2 {
+  --answer-scale: .88;
+}
+
+.answer-card.compact-2
+.card-header {
+  margin-bottom: 20px;
+}
+
+.answer-card.compact-2
+.answer-block {
+  margin-bottom: 7px;
+  padding-bottom: 7px;
+}
+
+.answer-card.compact-2
+.question {
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+
+/* ==================================================
+   TEXT COLOR
 ================================================== */
 
 .profile-card.text-white {
-  color: #ffffff;
-}
-
-.profile-card.text-white .question-list,
-.profile-card.text-white .question,
-.profile-card.text-white .answer-text,
-.profile-card.text-white .question-list li::marker,
-.profile-card.text-white .page-number {
-  color: #ffffff;
-}
-
-.profile-card.text-white .copyright {
-  color:
-    rgba(255, 255, 255, 0.82);
+  color: #fff;
 }
 
 .profile-card.text-white
-.answer-text:empty::before {
-  color:
-    rgba(255, 255, 255, 0.55);
+.question-list,
+
+.profile-card.text-white
+.question,
+
+.profile-card.text-white
+.answer-text,
+
+.profile-card.text-white
+.question-list li::marker,
+
+.profile-card.text-white
+.page-number,
+
+.profile-card.text-white
+.card-version {
+  color: #fff;
 }
 
+.profile-card.text-white
+.copyright {
+  color: rgba(255,255,255,.82);
+}
 
-/* ==================================================
-   BLACK
-================================================== */
 
 .profile-card.text-black {
-  color: #111111;
-}
-
-.profile-card.text-black .question-list,
-.profile-card.text-black .question,
-.profile-card.text-black .answer-text,
-.profile-card.text-black .question-list li::marker,
-.profile-card.text-black .page-number {
-  color: #111111;
-}
-
-.profile-card.text-black .copyright {
-  color:
-    rgba(0, 0, 0, 0.78);
+  color: #111;
 }
 
 .profile-card.text-black
-.answer-text:empty::before {
-  color:
-    rgba(0, 0, 0, 0.55);
+.question-list,
+
+.profile-card.text-black
+.question,
+
+.profile-card.text-black
+.answer-text,
+
+.profile-card.text-black
+.question-list li::marker,
+
+.profile-card.text-black
+.page-number,
+
+.profile-card.text-black
+.card-version {
+  color: #111;
+}
+
+.profile-card.text-black
+.copyright {
+  color: rgba(0,0,0,.78);
 }
 
 
-/* ==================================================
-   HEADER ALWAYS GOLD
-================================================== */
+/* 見出しは常に金 */
 
 .profile-card .small-title,
 .profile-card .card-header h2,
@@ -865,15 +817,14 @@ button:disabled {
 
 
 /* ==================================================
-   COPYRIGHT
+   CARD FOOTER
 ================================================== */
 
 .copyright {
   position: absolute;
 
   left: 90px;
-
-  bottom: 70px;
+  bottom: 58px;
 
   margin: 0;
 
@@ -883,21 +834,40 @@ button:disabled {
     sans-serif;
 
   font-size: 14px;
-
-  letter-spacing: 0.04em;
 }
 
+.card-version {
+  position: absolute;
 
-/* ==================================================
-   PAGE NUMBER
-================================================== */
+  left: 50%;
+  bottom: 37px;
+
+  transform:
+    translateX(-50%);
+
+  width: 520px;
+
+  margin: 0;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 11px;
+
+  text-align: center;
+
+  letter-spacing: .04em;
+
+  opacity: .72;
+}
 
 .page-number {
   position: absolute;
 
   right: 90px;
-
-  bottom: 70px;
+  bottom: 58px;
 
   margin: 0;
 
@@ -907,186 +877,7 @@ button:disabled {
 
   font-size: 18px;
 
-  letter-spacing: 0.18em;
-}
-
-
-/* ==================================================
-   RIGHT PREVIEW
-================================================== */
-
-.preview-panel
-.profile-card:not(.exporting) {
-  width: 100%;
-
-  height: auto;
-
-  aspect-ratio: 1 / 1;
-
-  margin: 0;
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)
-.card-content {
-  padding: 7%;
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)::after {
-  inset: 2%;
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)
-.card-header {
-  margin-bottom: 4%;
-}
-
-
-.preview-panel
-#card-1:not(.exporting)
-.card-header {
-  margin-bottom: 7%;
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)
-.small-title {
-  font-size:
-    clamp(
-      7px,
-      0.9vw,
-      13px
-    );
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)
-.card-header h2 {
-  font-size:
-    clamp(
-      16px,
-      2.2vw,
-      34px
-    );
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)
-.question-columns {
-  column-gap: 5%;
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)
-.question-list {
-  padding-left: 5%;
-
-  font-size:
-    clamp(
-      7px,
-      0.95vw,
-      14px
-    );
-
-  line-height: 1.45;
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)
-.question-list li {
-  margin-bottom: 3%;
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)
-.question-list li::marker {
-  font-size:
-    clamp(
-      7px,
-      0.9vw,
-      13px
-    );
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)
-.answer-block {
-  margin-bottom: 1.5%;
-
-  padding-bottom: 1.3%;
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)
-.question {
-  font-size:
-    clamp(
-      7px,
-      0.9vw,
-      13px
-    );
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)
-.answer-text {
-  min-height: 16px;
-
-  max-height: none;
-
-  font-size:
-    calc(
-      var(--answer-font-size, 24px)
-      * 0.55
-    );
-
-  line-height: 1.42;
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)
-.copyright {
-  left: 7%;
-
-  bottom: 5%;
-
-  font-size:
-    clamp(
-      6px,
-      0.8vw,
-      11px
-    );
-}
-
-
-.preview-panel
-.profile-card:not(.exporting)
-.page-number {
-  right: 7%;
-
-  bottom: 5%;
-
-  font-size:
-    clamp(
-      7px,
-      0.9vw,
-      13px
-    );
+  letter-spacing: .18em;
 }
 
 
@@ -1115,16 +906,103 @@ button:disabled {
 }
 
 .export-area p {
-  margin-bottom: 0;
-
   color: #868e9c;
-
   font-size: 12px;
 }
 
 
 /* ==================================================
-   FOOTER
+   iPHONE GENERATED RESULTS
+================================================== */
+
+.ios-export-guide {
+  padding: 10px 12px;
+
+  background: rgba(183,154,102,.08);
+
+  border:
+    1px solid rgba(183,154,102,.28);
+
+  border-radius: 6px;
+
+  line-height: 1.7;
+}
+
+.mobile-export-results {
+  margin-top: 20px;
+}
+
+.mobile-export-item {
+  margin-bottom: 25px;
+
+  padding: 14px;
+
+  background: #0d1119;
+
+  border: 1px solid #2b3240;
+
+  border-radius: 8px;
+}
+
+.mobile-export-item h4 {
+  margin: 0 0 12px;
+
+  color: #d6c19a;
+
+  font-size: 14px;
+}
+
+.mobile-export-item img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  border: 1px solid #a58b5b;
+}
+
+.mobile-export-actions {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap: 8px;
+
+  margin-top: 12px;
+}
+
+.mobile-export-actions a {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 11px 8px;
+
+  border:
+    1px solid
+    #b79a66;
+
+  border-radius: 5px;
+
+  color: #fff;
+
+  text-decoration: none;
+
+  font-size: 13px;
+}
+
+.mobile-export-actions button {
+  padding: 11px 8px;
+
+  font-size: 13px;
+}
+
+
+/* ==================================================
+   SITE FOOTER
 ================================================== */
 
 .site-footer {
@@ -1140,11 +1018,11 @@ button:disabled {
 .footer-title {
   margin: 0;
 
-  color: #686f7b;
+  color: #8e939c;
 
   font-size: 12px;
 
-  letter-spacing: 0.12em;
+  letter-spacing: .08em;
 }
 
 .footer-copyright {
@@ -1158,188 +1036,6 @@ button:disabled {
     sans-serif;
 
   font-size: 12px;
-
-  letter-spacing: 0.05em;
-}
-
-
-/* ==================================================
-   PNG EXPORT
-================================================== */
-
-.profile-card.exporting {
-  position: relative !important;
-
-  left: auto !important;
-  right: auto !important;
-  top: auto !important;
-
-  display: block !important;
-
-  width: 1200px !important;
-  min-width: 1200px !important;
-  max-width: none !important;
-
-  height: 1200px !important;
-  min-height: 1200px !important;
-  max-height: 1200px !important;
-
-  margin: 0 !important;
-
-  padding: 0 !important;
-
-  aspect-ratio: auto !important;
-
-  overflow: hidden !important;
-}
-
-
-.profile-card.exporting
-.card-content {
-  padding:
-    85px
-    90px !important;
-}
-
-
-.profile-card.exporting.answer-card
-.card-header {
-  margin-bottom:
-    36px !important;
-}
-
-
-#card-1.exporting
-.card-header {
-  margin-bottom:
-    80px !important;
-}
-
-
-.profile-card.exporting
-.small-title {
-  color:
-    #a58b5b !important;
-
-  font-size:
-    18px !important;
-}
-
-
-.profile-card.exporting
-.card-header h2,
-.profile-card.exporting
-.card-header h2 span {
-  color:
-    #a58b5b !important;
-
-  font-size:
-    48px !important;
-}
-
-
-.profile-card.exporting
-.question-columns {
-  column-gap:
-    70px !important;
-}
-
-
-.profile-card.exporting
-.question-list {
-  padding-left:
-    44px !important;
-
-  font-size:
-    19px !important;
-
-  line-height:
-    1.55 !important;
-}
-
-
-.profile-card.exporting
-.question-list li {
-  margin-bottom:
-    18px !important;
-}
-
-
-.profile-card.exporting
-.question-list li::marker {
-  font-size:
-    18px !important;
-}
-
-
-.profile-card.exporting
-.answer-block {
-  margin-bottom:
-    18px !important;
-
-  padding-bottom:
-    15px !important;
-}
-
-
-.profile-card.exporting
-.question {
-  font-size:
-    16px !important;
-
-  line-height:
-    1.4 !important;
-}
-
-
-.profile-card.exporting
-.answer-text {
-  min-height:
-    30px !important;
-
-  max-height:
-    74px !important;
-
-  font-size:
-    var(--answer-font-size, 24px) !important;
-
-  line-height:
-    1.42 !important;
-
-  overflow:
-    hidden !important;
-}
-
-
-.profile-card.exporting
-.copyright {
-  left:
-    90px !important;
-
-  bottom:
-    70px !important;
-
-  font-size:
-    14px !important;
-}
-
-
-.profile-card.exporting
-.page-number {
-  right:
-    90px !important;
-
-  bottom:
-    70px !important;
-
-  font-size:
-    18px !important;
-}
-
-
-.profile-card.exporting::after {
-  inset:
-    25px !important;
 }
 
 
@@ -1352,55 +1048,48 @@ button:disabled {
   .editor-layout {
     grid-template-columns:
       minmax(0, 1fr)
-      minmax(420px, 0.9fr);
+      minmax(420px, .95fr);
 
     gap: 24px;
   }
 
-
   .settings,
-  .input-area {
-    padding: 24px;
-  }
-
-
+  .input-area,
   .preview-panel {
-    padding: 18px;
+    padding: 24px;
   }
 
 }
 
 
 /* ==================================================
-   MOBILE
+   MOBILE / iPHONE
+
+   設定
+   ↓
+   プレビュー
+   ↓
+   回答入力
 ================================================== */
 
 @media screen and (max-width: 900px) {
 
   .site-header {
-    padding:
-      45px
-      16px
-      40px;
+    padding: 42px 15px 34px;
   }
-
 
   .site-header h1 {
-    font-size: 25px;
+    font-size: 24px;
   }
-
 
   .site-subtitle {
     font-size: 12px;
   }
 
-
   .site-description {
-    padding:
-      18px
-      16px;
+    margin-top: 24px;
+    padding: 17px 14px;
   }
-
 
   .site-description p {
     font-size: 12px;
@@ -1408,43 +1097,53 @@ button:disabled {
 
 
   .editor-layout {
-    display: block;
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      "settings"
+      "preview"
+      "input";
+
+    gap: 24px;
 
     width: 100%;
 
-    padding:
-      0
-      12px
-      80px;
+    padding: 0 12px 70px;
   }
 
 
   .settings,
+  .preview-panel,
   .input-area {
-    padding: 22px;
-  }
-
-
-  .preview-panel {
-    margin-top: 30px;
-
-    padding: 16px;
+    padding: 18px;
   }
 
 
   .preview-card-block {
-    margin-bottom: 35px;
+    margin-bottom: 30px;
   }
 
 
-  .preview-panel
-  .profile-card:not(.exporting)
-  .answer-text {
-    font-size:
-      calc(
-        var(--answer-font-size, 24px)
-        * 0.30
-      );
+  /*
+    iPhoneで画像調整後に
+    プレビューへ移動しやすいよう
+    プレビューを設定直後に置く。
+  */
+
+  .preview-heading {
+    margin-bottom: 20px;
+  }
+
+
+  .input-question {
+    margin-bottom: 25px;
+  }
+
+
+  .mobile-export-actions {
+    grid-template-columns: 1fr;
   }
 
 }

@@ -1,5 +1,15 @@
 /* ==================================================
-   基本設定
+   VERSION
+
+   今後の改訂ではここだけ変更すれば、
+   サイト下部と4枚の画像に自動反映される。
+================================================== */
+
+const APP_VERSION = "Ver.1.00";
+
+
+/* ==================================================
+   CONSTANTS
 ================================================== */
 
 const MAX_LENGTH = 80;
@@ -9,7 +19,64 @@ const CUSTOM_QUESTION_MAX_LENGTH = 40;
 
 
 /* ==================================================
-   回答文字測定用
+   VERSION DISPLAY
+================================================== */
+
+document
+  .querySelectorAll(".version-text")
+  .forEach((element) => {
+
+    element.textContent =
+      APP_VERSION;
+
+  });
+
+
+/* ==================================================
+   DEVICE DETECTION
+================================================== */
+
+function isIOSDevice() {
+
+  return (
+    /iPad|iPhone|iPod/.test(
+      navigator.userAgent
+    ) ||
+
+    (
+      navigator.platform ===
+      "MacIntel" &&
+
+      navigator.maxTouchPoints > 1
+    )
+  );
+
+}
+
+
+const isIOS =
+  isIOSDevice();
+
+
+const iosGuide =
+  document.getElementById(
+    "ios-export-guide"
+  );
+
+
+if (
+  isIOS &&
+  iosGuide
+) {
+
+  iosGuide.hidden =
+    false;
+
+}
+
+
+/* ==================================================
+   ANSWER MEASURE ELEMENT
 ================================================== */
 
 const answerMeasure =
@@ -25,30 +92,44 @@ answerMeasure.setAttribute(
 Object.assign(
   answerMeasure.style,
   {
-    position: "fixed",
-    left: "-99999px",
-    top: "0",
-    visibility: "hidden",
-    pointerEvents: "none",
+    position:
+      "fixed",
 
-    width: "1020px",
+    left:
+      "-99999px",
 
-    margin: "0",
-    padding: "0",
-    border: "0",
+    top:
+      "0",
+
+    visibility:
+      "hidden",
+
+    width:
+      "1020px",
+
+    margin:
+      "0",
+
+    padding:
+      "0",
 
     fontFamily:
       '"Hiragino Mincho ProN", "Yu Mincho", serif',
 
-    fontWeight: "400",
+    fontWeight:
+      "400",
 
-    lineHeight: "1.42",
+    lineHeight:
+      "1.38",
 
-    whiteSpace: "pre-wrap",
+    whiteSpace:
+      "pre-wrap",
 
-    overflowWrap: "anywhere",
+    overflowWrap:
+      "anywhere",
 
-    wordBreak: "break-word"
+    wordBreak:
+      "break-word"
   }
 );
 
@@ -59,7 +140,7 @@ document.body.appendChild(
 
 
 /* ==================================================
-   回答入力
+   ANSWER INPUT
 ================================================== */
 
 for (
@@ -90,13 +171,13 @@ for (
     !input ||
     !answer
   ) {
+
     continue;
+
   }
 
 
-  /* ==================================================
-     ENTER制限
-  ================================================== */
+  /* Enterは最大2行 */
 
   input.addEventListener(
     "keydown",
@@ -105,53 +186,40 @@ for (
       if (
         event.key !== "Enter"
       ) {
+
         return;
+
       }
 
 
-      const currentLines =
+      if (
         input.value
           .split("\n")
-          .length;
-
-
-      if (
-        currentLines >=
+          .length >=
         MAX_LINES
       ) {
+
         event.preventDefault();
+
       }
 
     }
   );
 
 
-  /* ==================================================
-     回答更新
-  ================================================== */
-
   const updateAnswer =
     () => {
 
       let value =
-        input.value;
+        input.value
+          .replace(/\r\n/g, "\n")
+          .replace(/\r/g, "\n");
 
 
-      value =
-        value.replace(
-          /\r\n/g,
-          "\n"
-        );
-
-
-      value =
-        value.replace(
-          /\r/g,
-          "\n"
-        );
-
-
-      /* 最大2行 */
+      /*
+        明示的な改行は
+        2行まで
+      */
 
       let lines =
         value.split("\n");
@@ -162,20 +230,20 @@ for (
         MAX_LINES
       ) {
 
-        lines =
-          lines.slice(
-            0,
-            MAX_LINES
-          );
-
-
         value =
-          lines.join("\n");
+          lines
+            .slice(
+              0,
+              MAX_LINES
+            )
+            .join("\n");
 
       }
 
 
-      /* 最大80文字 */
+      /*
+        最大80文字
+      */
 
       if (
         value.length >
@@ -214,6 +282,11 @@ for (
         text;
 
 
+      /*
+        回答単体が
+        2行以内になるフォントを計算
+      */
+
       const baseSize =
         getAnswerBaseFontSize(
           length
@@ -233,44 +306,22 @@ for (
       );
 
 
-      if (count) {
-
-        count.textContent =
-          length;
-
-
-        const counter =
-          count.parentElement;
+      updateCounter(
+        count,
+        length,
+        MAX_LENGTH,
+        60
+      );
 
 
-        counter.classList.remove(
-          "is-warning",
-          "is-limit"
-        );
+      /*
+        回答更新後、
+        カード全体も収まるか確認
+      */
 
-
-        if (
-          length >=
-          MAX_LENGTH
-        ) {
-
-          counter.classList.add(
-            "is-limit"
-          );
-
-        }
-
-        else if (
-          length >= 60
-        ) {
-
-          counter.classList.add(
-            "is-warning"
-          );
-
-        }
-
-      }
+      requestAnimationFrame(
+        fitAllAnswerCards
+      );
 
     };
 
@@ -287,162 +338,7 @@ for (
 
 
 /* ==================================================
-   Q20 自由質問
-================================================== */
-
-const q20Title =
-  document.getElementById(
-    "q20-title"
-  );
-
-
-const q20TitleCount =
-  document.getElementById(
-    "count-q20-title"
-  );
-
-
-const question20Preview =
-  document.getElementById(
-    "question-20-preview"
-  );
-
-
-const answerQuestion20 =
-  document.getElementById(
-    "answer-question-20"
-  );
-
-
-function updateQ20Title() {
-
-  if (
-    !q20Title ||
-    !question20Preview ||
-    !answerQuestion20
-  ) {
-    return;
-  }
-
-
-  let value =
-    q20Title.value;
-
-
-  /*
-    改行を含ませない
-  */
-
-  value =
-    value.replace(
-      /[\r\n]/g,
-      ""
-    );
-
-
-  if (
-    value.length >
-    CUSTOM_QUESTION_MAX_LENGTH
-  ) {
-
-    value =
-      value.slice(
-        0,
-        CUSTOM_QUESTION_MAX_LENGTH
-      );
-
-  }
-
-
-  if (
-    q20Title.value !==
-    value
-  ) {
-
-    q20Title.value =
-      value;
-
-  }
-
-
-  const trimmedValue =
-    value.trim();
-
-
-  const displayText =
-    trimmedValue ||
-    "自由質問";
-
-
-  question20Preview.textContent =
-    displayText;
-
-
-  answerQuestion20.textContent =
-    `20. ${displayText}`;
-
-
-  if (
-    q20TitleCount
-  ) {
-
-    q20TitleCount.textContent =
-      value.length;
-
-
-    const counter =
-      q20TitleCount.parentElement;
-
-
-    counter.classList.remove(
-      "is-warning",
-      "is-limit"
-    );
-
-
-    if (
-      value.length >=
-      CUSTOM_QUESTION_MAX_LENGTH
-    ) {
-
-      counter.classList.add(
-        "is-limit"
-      );
-
-    }
-
-    else if (
-      value.length >= 32
-    ) {
-
-      counter.classList.add(
-        "is-warning"
-      );
-
-    }
-
-  }
-
-}
-
-
-if (
-  q20Title
-) {
-
-  q20Title.addEventListener(
-    "input",
-    updateQ20Title
-  );
-
-
-  updateQ20Title();
-
-}
-
-
-/* ==================================================
-   基準フォントサイズ
+   FONT SIZE
 ================================================== */
 
 function getAnswerBaseFontSize(
@@ -476,7 +372,7 @@ function getAnswerBaseFontSize(
 
 
 /* ==================================================
-   2行に収まるサイズを計算
+   回答単体を2行に収める
 ================================================== */
 
 function getFittedAnswerFontSize(
@@ -508,9 +404,11 @@ function getFittedAnswerFontSize(
 
 
     const twoLineHeight =
-      size *
-      1.42 *
-      2 +
+      (
+        size *
+        1.38 *
+        2
+      ) +
       3;
 
 
@@ -532,7 +430,279 @@ function getFittedAnswerFontSize(
 
 
 /* ==================================================
-   FILE → DATA URL
+   CARD TOTAL HEIGHT FIT
+
+   Q7 / Q14 が下にはみ出す問題対策。
+================================================== */
+
+function fitAllAnswerCards() {
+
+  document
+    .querySelectorAll(
+      ".answer-card"
+    )
+    .forEach(
+      fitAnswerCard
+    );
+
+}
+
+
+function fitAnswerCard(
+  card
+) {
+
+  card.classList.remove(
+    "compact-1",
+    "compact-2"
+  );
+
+
+  if (
+    cardContentFits(card)
+  ) {
+
+    return;
+
+  }
+
+
+  card.classList.add(
+    "compact-1"
+  );
+
+
+  if (
+    cardContentFits(card)
+  ) {
+
+    return;
+
+  }
+
+
+  card.classList.remove(
+    "compact-1"
+  );
+
+
+  card.classList.add(
+    "compact-2"
+  );
+
+}
+
+
+function cardContentFits(
+  card
+) {
+
+  const blocks =
+    card.querySelectorAll(
+      ".answer-block"
+    );
+
+
+  if (
+    !blocks.length
+  ) {
+
+    return true;
+
+  }
+
+
+  const lastBlock =
+    blocks[
+      blocks.length - 1
+    ];
+
+
+  /*
+    1200pxカード内で、
+    1055pxより下へ来ると
+    フッターと重なる可能性がある。
+  */
+
+  const bottom =
+    lastBlock.offsetTop +
+    lastBlock.offsetHeight;
+
+
+  return (
+    bottom <= 1055
+  );
+
+}
+
+
+/* ==================================================
+   COUNTER
+================================================== */
+
+function updateCounter(
+  countElement,
+  length,
+  max,
+  warning
+) {
+
+  if (
+    !countElement
+  ) {
+
+    return;
+
+  }
+
+
+  countElement.textContent =
+    length;
+
+
+  const counter =
+    countElement.parentElement;
+
+
+  counter.classList.remove(
+    "is-warning",
+    "is-limit"
+  );
+
+
+  if (
+    length >= max
+  ) {
+
+    counter.classList.add(
+      "is-limit"
+    );
+
+  }
+
+  else if (
+    length >= warning
+  ) {
+
+    counter.classList.add(
+      "is-warning"
+    );
+
+  }
+
+}
+
+
+/* ==================================================
+   Q20 CUSTOM QUESTION
+================================================== */
+
+const q20Title =
+  document.getElementById(
+    "q20-title"
+  );
+
+
+const q20TitleCount =
+  document.getElementById(
+    "count-q20-title"
+  );
+
+
+const question20Preview =
+  document.getElementById(
+    "question-20-preview"
+  );
+
+
+const answerQuestion20 =
+  document.getElementById(
+    "answer-question-20"
+  );
+
+
+function updateQ20Title() {
+
+  if (
+    !q20Title
+  ) {
+
+    return;
+
+  }
+
+
+  let value =
+    q20Title.value
+      .replace(
+        /[\r\n]/g,
+        ""
+      );
+
+
+  if (
+    value.length >
+    CUSTOM_QUESTION_MAX_LENGTH
+  ) {
+
+    value =
+      value.slice(
+        0,
+        CUSTOM_QUESTION_MAX_LENGTH
+      );
+
+  }
+
+
+  q20Title.value =
+    value;
+
+
+  const displayText =
+    value.trim() ||
+    "自由質問";
+
+
+  question20Preview.textContent =
+    displayText;
+
+
+  answerQuestion20.textContent =
+    `20. ${displayText}`;
+
+
+  updateCounter(
+    q20TitleCount,
+    value.length,
+    CUSTOM_QUESTION_MAX_LENGTH,
+    32
+  );
+
+
+  requestAnimationFrame(
+    fitAllAnswerCards
+  );
+
+}
+
+
+if (
+  q20Title
+) {
+
+  q20Title.addEventListener(
+    "input",
+    updateQ20Title
+  );
+
+
+  updateQ20Title();
+
+}
+
+
+/* ==================================================
+   IMAGE FILE → DATA URL
 ================================================== */
 
 function readImageAsDataURL(
@@ -580,7 +750,7 @@ function readImageAsDataURL(
 
 
 /* ==================================================
-   カード設定共通
+   CARD SETTINGS
 ================================================== */
 
 function setupCardSettings(
@@ -597,25 +767,20 @@ function setupCardSettings(
     removeButtonId,
 
     bgXId,
-
     bgXValueId,
 
     bgYId,
-
     bgYValueId,
 
     bgScaleId,
-
     bgScaleValueId,
 
     overlaySelector,
 
     overlayOpacityId,
-
     overlayOpacityValueId,
 
     overlayRadioName,
-
     textRadioName
 
   } = options;
@@ -703,9 +868,7 @@ function setupCardSettings(
     "black";
 
 
-  /* ==================================================
-     背景画像
-  ================================================== */
+  /* 背景画像 */
 
   backgroundUpload.addEventListener(
     "change",
@@ -717,8 +880,12 @@ function setupCardSettings(
         event.target.files[0];
 
 
-      if (!file) {
+      if (
+        !file
+      ) {
+
         return;
+
       }
 
 
@@ -734,7 +901,7 @@ function setupCardSettings(
           `url("${dataUrl}")`;
 
 
-        updateBackgroundTransform();
+        updateBackground();
 
       }
 
@@ -757,11 +924,7 @@ function setupCardSettings(
   );
 
 
-  /* ==================================================
-     背景位置・拡大率
-  ================================================== */
-
-  function updateBackgroundTransform() {
+  function updateBackground() {
 
     const x =
       Number(
@@ -781,17 +944,12 @@ function setupCardSettings(
       );
 
 
-    const scale =
-      scalePercent /
-      100;
-
-
     background.style.backgroundPosition =
       `${x}% ${y}%`;
 
 
     background.style.transform =
-      `scale(${scale})`;
+      `scale(${scalePercent / 100})`;
 
 
     background.style.transformOrigin =
@@ -814,25 +972,21 @@ function setupCardSettings(
 
   bgX.addEventListener(
     "input",
-    updateBackgroundTransform
+    updateBackground
   );
 
 
   bgY.addEventListener(
     "input",
-    updateBackgroundTransform
+    updateBackground
   );
 
 
   bgScale.addEventListener(
     "input",
-    updateBackgroundTransform
+    updateBackground
   );
 
-
-  /* ==================================================
-     背景解除
-  ================================================== */
 
   removeButton.addEventListener(
     "click",
@@ -858,15 +1012,13 @@ function setupCardSettings(
         100;
 
 
-      updateBackgroundTransform();
+      updateBackground();
 
     }
   );
 
 
-  /* ==================================================
-     OVERLAY
-  ================================================== */
+  /* Overlay */
 
   function updateOverlay() {
 
@@ -879,18 +1031,19 @@ function setupCardSettings(
     const rgb =
       overlayColor ===
       "white"
-        ? "255, 255, 255"
-        : "0, 0, 0";
+
+        ? "255,255,255"
+
+        : "0,0,0";
 
 
     overlay.style.backgroundColor =
-      `rgba(${rgb}, ${opacity})`;
+      `rgba(${rgb},${opacity})`;
 
 
     overlayOpacityValue.textContent =
       `${Math.round(
-        opacity *
-        100
+        opacity * 100
       )}%`;
 
   }
@@ -907,9 +1060,7 @@ function setupCardSettings(
       `input[name="${overlayRadioName}"]`
     )
     .forEach(
-      (
-        radio
-      ) => {
+      (radio) => {
 
         radio.addEventListener(
           "change",
@@ -918,7 +1069,9 @@ function setupCardSettings(
             if (
               !radio.checked
             ) {
+
               return;
+
             }
 
 
@@ -935,18 +1088,14 @@ function setupCardSettings(
     );
 
 
-  /* ==================================================
-     文字色
-  ================================================== */
+  /* Text color */
 
   document
     .querySelectorAll(
       `input[name="${textRadioName}"]`
     )
     .forEach(
-      (
-        radio
-      ) => {
+      (radio) => {
 
         radio.addEventListener(
           "change",
@@ -955,7 +1104,9 @@ function setupCardSettings(
             if (
               !radio.checked
             ) {
+
               return;
+
             }
 
 
@@ -968,7 +1119,9 @@ function setupCardSettings(
             card.classList.add(
               radio.value ===
               "black"
+
                 ? "text-black"
+
                 : "text-white"
             );
 
@@ -979,7 +1132,7 @@ function setupCardSettings(
     );
 
 
-  updateBackgroundTransform();
+  updateBackground();
 
   updateOverlay();
 
@@ -987,7 +1140,7 @@ function setupCardSettings(
 
 
 /* ==================================================
-   質問カード
+   CARD SETTINGS INSTANCES
 ================================================== */
 
 setupCardSettings({
@@ -1040,10 +1193,6 @@ setupCardSettings({
 });
 
 
-/* ==================================================
-   回答カード1
-================================================== */
-
 setupCardSettings({
 
   cardId:
@@ -1094,10 +1243,6 @@ setupCardSettings({
 });
 
 
-/* ==================================================
-   回答カード2
-================================================== */
-
 setupCardSettings({
 
   cardId:
@@ -1147,10 +1292,6 @@ setupCardSettings({
 
 });
 
-
-/* ==================================================
-   回答カード3
-================================================== */
 
 setupCardSettings({
 
@@ -1203,6 +1344,75 @@ setupCardSettings({
 
 
 /* ==================================================
+   PREVIEW SCALE
+
+   1200pxのカードを、
+   frameの横幅に合わせて縮小する。
+
+   中のフォントサイズや配置は
+   一切変更しない。
+================================================== */
+
+function updatePreviewScales() {
+
+  document
+    .querySelectorAll(
+      ".card-frame"
+    )
+    .forEach(
+      (frame) => {
+
+        const card =
+          frame.querySelector(
+            ".profile-card"
+          );
+
+
+        if (
+          !card
+        ) {
+
+          return;
+
+        }
+
+
+        const width =
+          frame.clientWidth;
+
+
+        const scale =
+          width /
+          1200;
+
+
+        card.style.setProperty(
+          "--preview-scale",
+          scale
+        );
+
+      }
+    );
+
+}
+
+
+window.addEventListener(
+  "resize",
+  () => {
+
+    requestAnimationFrame(
+      updatePreviewScales
+    );
+
+  }
+);
+
+
+updatePreviewScales();
+
+
+/* ==================================================
    EXPORT
 ================================================== */
 
@@ -1210,6 +1420,16 @@ const generateButton =
   document.getElementById(
     "generate-button"
   );
+
+
+const mobileExportResults =
+  document.getElementById(
+    "mobile-export-results"
+  );
+
+
+let generatedObjectUrls =
+  [];
 
 
 generateButton.addEventListener(
@@ -1224,6 +1444,9 @@ generateButton.addEventListener(
       "画像を生成しています…";
 
 
+    clearGeneratedResults();
+
+
     try {
 
       if (
@@ -1235,9 +1458,16 @@ generateButton.addEventListener(
       }
 
 
+      fitAllAnswerCards();
+
+
       await sleep(
-        250
+        200
       );
+
+
+      const generated =
+        [];
 
 
       for (
@@ -1246,27 +1476,26 @@ generateButton.addEventListener(
         i++
       ) {
 
+        generateButton.textContent =
+          `${i} / 4 枚目を生成しています…`;
+
+
         const card =
           document.getElementById(
             `card-${i}`
           );
 
 
-        card.classList.add(
-          "exporting"
-        );
+        /*
+          プレビューではtransformで縮小しているため、
+          html-to-image側だけtransform:noneにして
+          1200pxそのまま取得する。
+        */
 
-
-        await nextFrame();
-
-        await nextFrame();
-
-
-        const dataUrl =
-          await htmlToImage.toPng(
+        const blob =
+          await htmlToImage.toBlob(
             card,
             {
-
               width:
                 1200,
 
@@ -1289,39 +1518,101 @@ generateButton.addEventListener(
                 "#101722",
 
               style: {
+                transform:
+                  "none",
+
+                transformOrigin:
+                  "top left",
 
                 width:
                   "1200px",
 
                 height:
-                  "1200px",
-
-                maxWidth:
-                  "none",
-
-                margin:
-                  "0"
-
+                  "1200px"
               }
-
             }
           );
 
 
-        card.classList.remove(
-          "exporting"
+        if (
+          !blob
+        ) {
+
+          throw new Error(
+            `card-${i} の画像生成に失敗しました`
+          );
+
+        }
+
+
+        generated.push(
+          {
+            index:
+              i,
+
+            blob:
+              blob,
+
+            filename:
+              `ffxiv-profile-${i}.png`
+          }
         );
 
 
-        downloadImage(
-          dataUrl,
-          `ffxiv-profile-${i}.png`
-        );
-
+        /*
+          iPhoneのメモリ負荷対策
+        */
 
         await sleep(
-          400
+          300
         );
+
+      }
+
+
+      /*
+        iPhone / iPad
+
+        自動ダウンロードではなく、
+        ページ内に画像を表示。
+      */
+
+      if (
+        isIOS
+      ) {
+
+        showIOSExportResults(
+          generated
+        );
+
+
+        alert(
+          "4枚の画像を生成しました。\n下に表示された画像を長押しして保存できます。"
+        );
+
+      }
+
+      else {
+
+        /*
+          PC / Android等
+        */
+
+        for (
+          const item of generated
+        ) {
+
+          downloadBlob(
+            item.blob,
+            item.filename
+          );
+
+
+          await sleep(
+            400
+          );
+
+        }
 
       }
 
@@ -1336,25 +1627,8 @@ generateButton.addEventListener(
       );
 
 
-      document
-        .querySelectorAll(
-          ".profile-card"
-        )
-        .forEach(
-          (
-            card
-          ) => {
-
-            card.classList.remove(
-              "exporting"
-            );
-
-          }
-        );
-
-
       alert(
-        "画像の生成に失敗しました。"
+        "画像の生成に失敗しました。\nページを再読み込みしてもう一度お試しください。"
       );
 
     }
@@ -1375,13 +1649,304 @@ generateButton.addEventListener(
 
 
 /* ==================================================
-   DOWNLOAD
+   iOS RESULT VIEW
 ================================================== */
 
-function downloadImage(
-  dataUrl,
+function showIOSExportResults(
+  generated
+) {
+
+  if (
+    !mobileExportResults
+  ) {
+
+    return;
+
+  }
+
+
+  mobileExportResults.hidden =
+    false;
+
+
+  generated.forEach(
+    (item) => {
+
+      const objectUrl =
+        URL.createObjectURL(
+          item.blob
+        );
+
+
+      generatedObjectUrls.push(
+        objectUrl
+      );
+
+
+      const wrapper =
+        document.createElement(
+          "div"
+        );
+
+
+      wrapper.className =
+        "mobile-export-item";
+
+
+      const title =
+        document.createElement(
+          "h4"
+        );
+
+
+      title.textContent =
+        `カード ${item.index}`;
+
+
+      const image =
+        document.createElement(
+          "img"
+        );
+
+
+      image.src =
+        objectUrl;
+
+
+      image.alt =
+        `FFXIV Character Profile Card ${item.index}`;
+
+
+      const actions =
+        document.createElement(
+          "div"
+        );
+
+
+      actions.className =
+        "mobile-export-actions";
+
+
+      /*
+        新しい画面で画像を開く
+      */
+
+      const openLink =
+        document.createElement(
+          "a"
+        );
+
+
+      openLink.href =
+        objectUrl;
+
+
+      openLink.target =
+        "_blank";
+
+
+      openLink.rel =
+        "noopener";
+
+
+      openLink.textContent =
+        "画像を開く";
+
+
+      actions.appendChild(
+        openLink
+      );
+
+
+      /*
+        Web Share API対応端末なら
+        共有ボタンを追加
+      */
+
+      const file =
+        new File(
+          [
+            item.blob
+          ],
+          item.filename,
+          {
+            type:
+              "image/png"
+          }
+        );
+
+
+      if (
+        navigator.share &&
+        navigator.canShare &&
+        navigator.canShare(
+          {
+            files:
+              [
+                file
+              ]
+          }
+        )
+      ) {
+
+        const shareButton =
+          document.createElement(
+            "button"
+          );
+
+
+        shareButton.type =
+          "button";
+
+
+        shareButton.textContent =
+          "共有 / 保存";
+
+
+        shareButton.addEventListener(
+          "click",
+          async () => {
+
+            try {
+
+              await navigator.share(
+                {
+                  files:
+                    [
+                      file
+                    ],
+
+                  title:
+                    `FFXIV Character Profile Card ${item.index}`
+                }
+              );
+
+            }
+
+            catch (
+              error
+            ) {
+
+              /*
+                ユーザーが共有を閉じただけなら
+                エラー表示しない
+              */
+
+              if (
+                error.name !==
+                "AbortError"
+              ) {
+
+                console.error(
+                  error
+                );
+
+              }
+
+            }
+
+          }
+        );
+
+
+        actions.appendChild(
+          shareButton
+        );
+
+      }
+
+
+      wrapper.appendChild(
+        title
+      );
+
+
+      wrapper.appendChild(
+        image
+      );
+
+
+      wrapper.appendChild(
+        actions
+      );
+
+
+      mobileExportResults.appendChild(
+        wrapper
+      );
+
+    }
+  );
+
+
+  /*
+    生成結果の位置へ移動
+  */
+
+  mobileExportResults.scrollIntoView(
+    {
+      behavior:
+        "smooth",
+
+      block:
+        "start"
+    }
+  );
+
+}
+
+
+/* ==================================================
+   CLEAR OLD GENERATED IMAGES
+================================================== */
+
+function clearGeneratedResults() {
+
+  generatedObjectUrls.forEach(
+    (url) => {
+
+      URL.revokeObjectURL(
+        url
+      );
+
+    }
+  );
+
+
+  generatedObjectUrls =
+    [];
+
+
+  if (
+    mobileExportResults
+  ) {
+
+    mobileExportResults.innerHTML =
+      "";
+
+
+    mobileExportResults.hidden =
+      true;
+
+  }
+
+}
+
+
+/* ==================================================
+   DESKTOP DOWNLOAD
+================================================== */
+
+function downloadBlob(
+  blob,
   filename
 ) {
+
+  const url =
+    URL.createObjectURL(
+      blob
+    );
+
 
   const link =
     document.createElement(
@@ -1389,12 +1954,12 @@ function downloadImage(
     );
 
 
+  link.href =
+    url;
+
+
   link.download =
     filename;
-
-
-  link.href =
-    dataUrl;
 
 
   document.body.appendChild(
@@ -1407,36 +1972,23 @@ function downloadImage(
 
   link.remove();
 
-}
 
+  setTimeout(
+    () => {
 
-/* ==================================================
-   NEXT FRAME
-================================================== */
-
-function nextFrame() {
-
-  return new Promise(
-    (
-      resolve
-    ) => {
-
-      requestAnimationFrame(
-        () => {
-
-          resolve();
-
-        }
+      URL.revokeObjectURL(
+        url
       );
 
-    }
+    },
+    2000
   );
 
 }
 
 
 /* ==================================================
-   WAIT
+   SLEEP
 ================================================== */
 
 function sleep(
@@ -1457,3 +2009,19 @@ function sleep(
   );
 
 }
+
+
+/* ==================================================
+   INITIAL LAYOUT
+================================================== */
+
+window.addEventListener(
+  "load",
+  () => {
+
+    updatePreviewScales();
+
+    fitAllAnswerCards();
+
+  }
+);
