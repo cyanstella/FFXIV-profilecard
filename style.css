@@ -36,7 +36,8 @@ body {
 
   margin: 0 auto;
 
-  padding: 60px 20px 38px;
+  padding:
+    60px 20px 38px;
 
   text-align: center;
 }
@@ -50,13 +51,15 @@ body {
     serif;
 
   font-size: 42px;
+
   font-weight: 400;
 
   letter-spacing: .14em;
 }
 
 .site-subtitle {
-  margin: 12px 0 0;
+  margin:
+    12px 0 0;
 
   color: #b79a66;
 
@@ -68,9 +71,11 @@ body {
 .site-description {
   max-width: 760px;
 
-  margin: 32px auto 0;
+  margin:
+    32px auto 0;
 
-  padding: 24px 30px;
+  padding:
+    24px 30px;
 
   background:
     rgba(255,255,255,.025);
@@ -122,13 +127,14 @@ body {
 
 
 /* ==================================================
-   PANELS
+   COMMON PANEL
 ================================================== */
 
+.question-preview-section,
+.input-area,
 .settings,
 .preview-panel,
-.input-area,
-.question-preview-section {
+.export-area-main {
   background: #121722;
 
   border:
@@ -139,7 +145,7 @@ body {
 
 
 /* ==================================================
-   QUESTION PREVIEW
+   QUESTION CARD SECTION
 ================================================== */
 
 .question-preview-section {
@@ -189,831 +195,8 @@ body {
       680px
     );
 
-  margin: 0 auto;
-}
-
-
-/* ==================================================
-   MAIN
-================================================== */
-
-.editor-layout {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(500px, 1fr);
-
-  gap: 34px;
-
-  align-items: start;
-
-  width:
-    min(
-      100%,
-      1600px
-    );
-
-  margin: 0 auto;
-
-  padding:
-    0 24px 34px;
-}
-
-.settings,
-.preview-panel {
-  min-width: 0;
-
-  padding: 30px;
-}
-
-
-/* ==================================================
-   TITLES
-================================================== */
-
-.settings h2,
-.preview-heading h2,
-.input-area h2 {
-  margin-top: 0;
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-weight: 400;
-
-  letter-spacing: .08em;
-}
-
-
-/* ==================================================
-   SETTINGS
-================================================== */
-
-.setting-group {
-  margin-top: 30px;
-
-  padding-top: 28px;
-
-  border-top:
-    1px solid #343d4d;
-}
-
-.setting-group:first-of-type {
-  margin-top: 10px;
-}
-
-.setting-group h3 {
   margin:
-    0 0 22px;
-
-  color: #d6c19a;
-
-  font-size: 18px;
-
-  font-weight: 500;
-}
-
-.setting-item {
-  margin-bottom: 25px;
-}
-
-.setting-item > label,
-.setting-label {
-  display: block;
-
-  margin-bottom: 10px;
-
-  color: #d6c19a;
-
-  font-size: 14px;
-
-  font-weight: 600;
-}
-
-.setting-item input[type="file"] {
-  width: 100%;
-}
-
-
-/* ==================================================
-   RADIO
-================================================== */
-
-.radio-group {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 25px;
-}
-
-.radio-group label {
-  display: flex;
-
-  align-items: center;
-
-  gap: 7px;
-
-  cursor: pointer;
-}
-
-
-/* ==================================================
-   RANGE
-================================================== */
-
-.range-row {
-  display: flex;
-
-  align-items: center;
-
-  gap: 15px;
-}
-
-.range-row input[type="range"] {
-  width: 100%;
-}
-
-.range-row span {
-  min-width: 56px;
-
-  color: #d6c19a;
-
-  font-size: 13px;
-
-  text-align: right;
-}
-
-
-/* ==================================================
-   GENERAL BUTTON
-================================================== */
-
-button {
-  padding:
-    13px 24px;
-
-  border:
-    1px solid #b79a66;
-
-  border-radius: 5px;
-
-  background: #171d27;
-
-  color: #fff;
-
-  font-size: 15px;
-
-  cursor: pointer;
-
-  transition:
-    background .2s ease,
-    border-color .2s ease,
-    color .2s ease,
-    box-shadow .2s ease,
-    transform .2s ease;
-}
-
-button:hover {
-  background: #b79a66;
-
-  color: #111;
-}
-
-button:disabled {
-  opacity: .6;
-
-  cursor: wait;
-}
-
-
-/* ==================================================
-   PREVIEW
-================================================== */
-
-.preview-heading {
-  margin-bottom: 26px;
-}
-
-.preview-heading h2 {
-  margin-bottom: 6px;
-}
-
-.preview-heading p {
-  margin: 0;
-
-  color: #818996;
-
-  font-size: 12px;
-}
-
-.preview-card-block {
-  margin-bottom: 42px;
-}
-
-.preview-card-label {
-  margin:
-    0 0 10px;
-
-  color: #d6c19a;
-
-  font-size: 13px;
-
-  font-weight: 600;
-}
-
-
-/* ==================================================
-   CARD FRAME
-================================================== */
-
-.card-frame {
-  position: relative;
-
-  width: 100%;
-
-  aspect-ratio: 1 / 1;
-
-  overflow: hidden;
-
-  background: #0a0d13;
-}
-
-
-/* ==================================================
-   CARD
-================================================== */
-
-.profile-card {
-  --preview-scale: 1;
-
-  position: absolute;
-
-  left: 0;
-  top: 0;
-
-  width: 1200px;
-  height: 1200px;
-
-  overflow: hidden;
-
-  transform:
-    scale(
-      var(--preview-scale)
-    );
-
-  transform-origin:
-    top left;
-
-  background: #101722;
-
-  color: #fff;
-
-  border:
-    2px solid #a58b5b;
-}
-
-.profile-card::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 25px;
-
-  z-index: 5;
-
-  border:
-    1px solid
-    rgba(
-      165,
-      139,
-      91,
-      .7
-    );
-
-  pointer-events: none;
-}
-
-
-/* ==================================================
-   QUESTION CARD
-================================================== */
-
-.question-card-fixed {
-  background: #f4f1e9;
-
-  color: #171717;
-}
-
-.question-fixed-background {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 0;
-
-  background:
-    radial-gradient(
-      circle at 50% 18%,
-      #ffffff 0%,
-      #f8f5ee 42%,
-      #e7e1d4 100%
-    );
-}
-
-.question-card-fixed
-.question-list,
-
-.question-card-fixed
-.question-list li::marker,
-
-.question-card-fixed
-.copyright,
-
-.question-card-fixed
-.card-version,
-
-.question-card-fixed
-.page-number {
-  color: #171717;
-}
-
-
-/* ==================================================
-   ANSWER CARD BACKGROUND
-================================================== */
-
-.card-background {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 0;
-
-  background:
-    linear-gradient(
-      135deg,
-      #131e31,
-      #0c111b
-    );
-
-  background-size: cover;
-
-  background-position:
-    50% 50%;
-
-  background-repeat:
-    no-repeat;
-
-  transform: scale(1);
-
-  transform-origin:
-    center center;
-}
-
-.card-overlay {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 1;
-
-  background:
-    rgba(
-      0,
-      0,
-      0,
-      .45
-    );
-
-  pointer-events: none;
-}
-
-
-/* ==================================================
-   CARD CONTENT
-================================================== */
-
-.card-content {
-  position: relative;
-
-  z-index: 2;
-
-  width: 100%;
-  height: 100%;
-
-  padding:
-    85px 90px;
-}
-
-
-/* ==================================================
-   HEADER
-================================================== */
-
-.card-header {
-  margin-bottom: 50px;
-
-  text-align: center;
-}
-
-
-/*
-  質問カードは文字を大きくした分、
-  以前よりタイトル下の余白を少し縮める
-*/
-
-#card-1 .card-header {
-  margin-bottom: 62px;
-}
-
-.answer-card
-.card-header {
-  margin-bottom: 32px;
-}
-
-.small-title {
-  margin:
-    0 0 10px;
-
-  color: #a58b5b;
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-size: 18px;
-
-  font-weight: 600;
-
-  letter-spacing: .28em;
-}
-
-.card-header h2 {
-  margin: 0;
-
-  color: #a58b5b;
-
-  font-family:
-    Georgia,
-    "Hiragino Mincho ProN",
-    "Yu Mincho",
-    serif;
-
-  font-size: 48px;
-
-  font-weight: 400;
-
-  letter-spacing: .08em;
-}
-
-.card-header h2 span {
-  color: #a58b5b;
-}
-
-
-/* 質問カードタイトル */
-
-#card-1
-.small-title {
-  font-size: 20px;
-}
-
-#card-1
-.card-header h2 {
-  font-size: 52px;
-}
-
-
-/* ==================================================
-   QUESTION LIST
-
-   19px → 23px に拡大
-================================================== */
-
-.question-columns {
-  display: grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  column-gap: 56px;
-}
-
-.question-list {
-  margin: 0;
-
-  padding-left: 46px;
-
-  font-size: 23px;
-
-  line-height: 1.5;
-}
-
-.question-list li {
-  margin-bottom: 20px;
-
-  padding-left: 8px;
-}
-
-.question-list li::marker {
-  font-family:
-    Georgia,
-    serif;
-
-  font-size: 21px;
-
-  font-weight: bold;
-}
-
-
-/* ==================================================
-   ANSWERS
-================================================== */
-
-.answer-block {
-  margin-bottom: 14px;
-
-  padding-bottom: 12px;
-
-  border-bottom:
-    1px solid
-    rgba(
-      165,
-      139,
-      91,
-      .45
-    );
-}
-
-.question {
-  margin:
-    0 0 6px;
-
-  font-size: 16px;
-
-  font-weight: 600;
-
-  line-height: 1.35;
-}
-
-.answer-text {
-  margin: 0;
-
-  min-height: 30px;
-
-  font-family:
-    "Hiragino Mincho ProN",
-    "Yu Mincho",
-    serif;
-
-  font-size:
-    calc(
-      var(
-        --answer-font-size,
-        24px
-      )
-      *
-      var(
-        --answer-scale,
-        1
-      )
-    );
-
-  line-height: 1.38;
-
-  white-space: pre-wrap;
-
-  overflow-wrap: anywhere;
-
-  word-break: break-word;
-
-  overflow: visible;
-}
-
-.answer-text:empty::before {
-  content: "—";
-
-  opacity: .55;
-}
-
-
-/* ==================================================
-   COMPACT
-================================================== */
-
-.answer-card.compact-1 {
-  --answer-scale: .94;
-}
-
-.answer-card.compact-1
-.card-header {
-  margin-bottom: 26px;
-}
-
-.answer-card.compact-1
-.answer-block {
-  margin-bottom: 10px;
-
-  padding-bottom: 9px;
-}
-
-.answer-card.compact-1
-.question {
-  font-size: 15px;
-}
-
-
-.answer-card.compact-2 {
-  --answer-scale: .88;
-}
-
-.answer-card.compact-2
-.card-header {
-  margin-bottom: 20px;
-}
-
-.answer-card.compact-2
-.answer-block {
-  margin-bottom: 7px;
-
-  padding-bottom: 7px;
-}
-
-.answer-card.compact-2
-.question {
-  font-size: 14px;
-
-  line-height: 1.3;
-}
-
-
-/* ==================================================
-   WHITE TEXT
-================================================== */
-
-.profile-card.text-white {
-  color: #fff;
-}
-
-.profile-card.text-white
-.question,
-
-.profile-card.text-white
-.answer-text,
-
-.profile-card.text-white
-.page-number,
-
-.profile-card.text-white
-.card-version {
-  color: #fff;
-}
-
-.profile-card.text-white
-.copyright {
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      .82
-    );
-}
-
-
-/* ==================================================
-   BLACK TEXT
-================================================== */
-
-.profile-card.text-black {
-  color: #111;
-}
-
-.profile-card.text-black
-.question,
-
-.profile-card.text-black
-.answer-text,
-
-.profile-card.text-black
-.page-number,
-
-.profile-card.text-black
-.card-version {
-  color: #111;
-}
-
-.profile-card.text-black
-.copyright {
-  color:
-    rgba(
-      0,
-      0,
-      0,
-      .78
-    );
-}
-
-
-/* ==================================================
-   GOLD HEADER
-================================================== */
-
-.profile-card
-.small-title,
-
-.profile-card
-.card-header h2,
-
-.profile-card
-.card-header h2 span {
-  color: #a58b5b;
-}
-
-
-/* ==================================================
-   CARD FOOTER
-================================================== */
-
-.copyright,
-.card-version,
-.page-number {
-  line-height: 1;
-}
-
-
-/* Left */
-
-.copyright {
-  position: absolute;
-
-  left: 90px;
-
-  bottom: 58px;
-
-  margin: 0;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  font-size: 14px;
-}
-
-
-/* Center */
-
-.card-version {
-  position: absolute;
-
-  left: 50%;
-
-  bottom: 58px;
-
-  transform:
-    translateX(-50%);
-
-  width: 520px;
-
-  margin: 0;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  font-size: 11px;
-
-  text-align: center;
-
-  letter-spacing: .04em;
-
-  opacity: .72;
-}
-
-
-/* Right */
-
-.page-number {
-  position: absolute;
-
-  right: 90px;
-
-  bottom: 58px;
-
-  margin: 0;
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-size: 18px;
-
-  letter-spacing: .18em;
+    0 auto;
 }
 
 
@@ -1029,9 +212,21 @@ button:disabled {
     );
 
   margin:
-    0 auto 60px;
+    0 auto 34px;
 
   padding: 30px;
+}
+
+.input-area h2 {
+  margin-top: 0;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-weight: 400;
+
+  letter-spacing: .08em;
 }
 
 .input-guide {
@@ -1166,57 +361,795 @@ button:disabled {
 
 
 /* ==================================================
-   QUESTION BOTTOM GUIDE
+   EDITOR LAYOUT
 ================================================== */
 
-.question-bottom-guide {
-  margin-top: 40px;
+.editor-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(500px,1fr);
+
+  gap: 34px;
+
+  align-items: start;
+
+  width:
+    min(
+      100%,
+      1600px
+    );
+
+  margin:
+    0 auto;
 
   padding:
-    18px 20px;
+    0 24px 34px;
+}
 
-  background:
-    rgba(
-      183,
-      154,
-      102,
-      .08
-    );
+.settings,
+.preview-panel {
+  min-width: 0;
 
-  border:
-    1px solid
-    rgba(
-      183,
-      154,
-      102,
-      .38
-    );
+  padding: 30px;
+}
 
-  border-radius: 7px;
+
+/* ==================================================
+   SETTINGS TITLES
+================================================== */
+
+.settings h2,
+.preview-heading h2 {
+  margin-top: 0;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-weight: 400;
+
+  letter-spacing: .08em;
+}
+
+
+/* ==================================================
+   SETTINGS
+================================================== */
+
+.setting-group {
+  margin-top: 30px;
+
+  padding-top: 28px;
+
+  border-top:
+    1px solid #343d4d;
+}
+
+.setting-group:first-of-type {
+  margin-top: 10px;
+}
+
+.setting-group h3 {
+  margin:
+    0 0 22px;
+
+  color: #d6c19a;
+
+  font-size: 18px;
+
+  font-weight: 500;
+}
+
+.setting-item {
+  margin-bottom: 25px;
+}
+
+.setting-item > label,
+.setting-label {
+  display: block;
+
+  margin-bottom: 10px;
 
   color: #d6c19a;
 
   font-size: 14px;
 
   font-weight: 600;
+}
 
-  line-height: 1.7;
-
-  text-align: center;
+.setting-item input[type="file"] {
+  width: 100%;
 }
 
 
 /* ==================================================
-   EXPORT
+   RADIO
 ================================================== */
 
-.export-area {
-  margin-top: 20px;
+.radio-group {
+  display: flex;
 
-  padding-top: 22px;
+  flex-wrap: wrap;
 
-  border-top:
-    1px solid #292f3b;
+  gap: 25px;
+}
+
+.radio-group label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  cursor: pointer;
+}
+
+
+/* ==================================================
+   RANGE
+================================================== */
+
+.range-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+.range-row input[type="range"] {
+  width: 100%;
+}
+
+.range-row span {
+  min-width: 56px;
+
+  color: #d6c19a;
+
+  font-size: 13px;
+
+  text-align: right;
+}
+
+
+/* ==================================================
+   NORMAL BUTTONS
+================================================== */
+
+button {
+  padding:
+    13px 24px;
+
+  border:
+    1px solid #b79a66;
+
+  border-radius: 5px;
+
+  background: #171d27;
+
+  color: #fff;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    color .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease;
+}
+
+button:hover {
+  background: #b79a66;
+
+  color: #111;
+}
+
+button:disabled {
+  opacity: .6;
+
+  cursor: wait;
+}
+
+
+/* ==================================================
+   PREVIEW
+================================================== */
+
+.preview-heading {
+  margin-bottom: 26px;
+}
+
+.preview-heading h2 {
+  margin-bottom: 6px;
+}
+
+.preview-heading p {
+  margin: 0;
+
+  color: #818996;
+
+  font-size: 12px;
+}
+
+.preview-card-block {
+  margin-bottom: 42px;
+}
+
+.preview-card-block:last-of-type {
+  margin-bottom: 0;
+}
+
+.preview-card-label {
+  margin:
+    0 0 10px;
+
+  color: #d6c19a;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+/* ==================================================
+   CARD FRAME
+================================================== */
+
+.card-frame {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+
+  background: #0a0d13;
+}
+
+
+/* ==================================================
+   PROFILE CARD
+================================================== */
+
+.profile-card {
+  --preview-scale: 1;
+
+  position: absolute;
+
+  left: 0;
+
+  top: 0;
+
+  width: 1200px;
+
+  height: 1200px;
+
+  overflow: hidden;
+
+  transform:
+    scale(
+      var(--preview-scale)
+    );
+
+  transform-origin:
+    top left;
+
+  background: #101722;
+
+  color: #fff;
+
+  border:
+    2px solid #a58b5b;
+}
+
+.profile-card::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 25px;
+
+  z-index: 5;
+
+  border:
+    1px solid rgba(165,139,91,.7);
+
+  pointer-events: none;
+}
+
+
+/* ==================================================
+   QUESTION CARD FIXED
+================================================== */
+
+.question-card-fixed {
+  background: #f4f1e9;
+
+  color: #171717;
+}
+
+.question-fixed-background {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 18%,
+      #ffffff 0%,
+      #f8f5ee 42%,
+      #e7e1d4 100%
+    );
+}
+
+.question-card-fixed
+.question-list,
+
+.question-card-fixed
+.question-list li::marker,
+
+.question-card-fixed
+.copyright,
+
+.question-card-fixed
+.card-version,
+
+.question-card-fixed
+.page-number {
+  color: #171717;
+}
+
+
+/* ==================================================
+   ANSWER BACKGROUND
+================================================== */
+
+.card-background {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #131e31,
+      #0c111b
+    );
+
+  background-size: cover;
+
+  background-position:
+    50% 50%;
+
+  background-repeat:
+    no-repeat;
+
+  transform:
+    scale(1);
+
+  transform-origin:
+    center center;
+}
+
+.card-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    rgba(0,0,0,.45);
+
+  pointer-events: none;
+}
+
+
+/* ==================================================
+   CARD CONTENT
+================================================== */
+
+.card-content {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  height: 100%;
+
+  padding:
+    85px 90px;
+}
+
+
+/* ==================================================
+   CARD HEADER
+================================================== */
+
+.card-header {
+  margin-bottom: 50px;
+
+  text-align: center;
+}
+
+.answer-card .card-header {
+  margin-bottom: 32px;
+}
+
+.small-title {
+  margin:
+    0 0 10px;
+
+  color: #a58b5b;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  letter-spacing: .28em;
+}
+
+.card-header h2 {
+  margin: 0;
+
+  color: #a58b5b;
+
+  font-family:
+    Georgia,
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 48px;
+
+  font-weight: 400;
+
+  letter-spacing: .08em;
+}
+
+.card-header h2 span {
+  color: #a58b5b;
+}
+
+
+/* ==================================================
+   QUESTION CARD HEADER
+================================================== */
+
+#card-1 .card-header {
+  margin-bottom: 52px;
+}
+
+#card-1 .small-title {
+  font-size: 22px;
+}
+
+#card-1 .card-header h2 {
+  font-size: 56px;
+}
+
+
+/* ==================================================
+   QUESTION CARD LIST
+
+   読みやすさ優先で以前より拡大
+================================================== */
+
+.question-columns {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  column-gap: 44px;
+}
+
+.question-list {
+  margin: 0;
+
+  padding-left: 48px;
+
+  font-size: 26px;
+
+  line-height: 1.46;
+}
+
+.question-list li {
+  margin-bottom: 18px;
+
+  padding-left: 8px;
+}
+
+.question-list li::marker {
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 24px;
+
+  font-weight: bold;
+}
+
+
+/* ==================================================
+   ANSWERS
+================================================== */
+
+.answer-block {
+  margin-bottom: 14px;
+
+  padding-bottom: 12px;
+
+  border-bottom:
+    1px solid rgba(165,139,91,.45);
+}
+
+.question {
+  margin:
+    0 0 6px;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  line-height: 1.35;
+}
+
+.answer-text {
+  margin: 0;
+
+  min-height: 30px;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size:
+    calc(
+      var(--answer-font-size,24px)
+      *
+      var(--answer-scale,1)
+    );
+
+  line-height: 1.38;
+
+  white-space: pre-wrap;
+
+  overflow-wrap: anywhere;
+
+  word-break: break-word;
+
+  overflow: visible;
+}
+
+.answer-text:empty::before {
+  content: "—";
+
+  opacity: .55;
+}
+
+
+/* ==================================================
+   COMPACT MODE
+================================================== */
+
+.answer-card.compact-1 {
+  --answer-scale: .94;
+}
+
+.answer-card.compact-1
+.card-header {
+  margin-bottom: 26px;
+}
+
+.answer-card.compact-1
+.answer-block {
+  margin-bottom: 10px;
+
+  padding-bottom: 9px;
+}
+
+.answer-card.compact-1
+.question {
+  font-size: 15px;
+}
+
+
+.answer-card.compact-2 {
+  --answer-scale: .88;
+}
+
+.answer-card.compact-2
+.card-header {
+  margin-bottom: 20px;
+}
+
+.answer-card.compact-2
+.answer-block {
+  margin-bottom: 7px;
+
+  padding-bottom: 7px;
+}
+
+.answer-card.compact-2
+.question {
+  font-size: 14px;
+
+  line-height: 1.3;
+}
+
+
+/* ==================================================
+   TEXT COLORS
+================================================== */
+
+.profile-card.text-white {
+  color: #fff;
+}
+
+.profile-card.text-white
+.question,
+
+.profile-card.text-white
+.answer-text,
+
+.profile-card.text-white
+.page-number,
+
+.profile-card.text-white
+.card-version {
+  color: #fff;
+}
+
+.profile-card.text-white
+.copyright {
+  color:
+    rgba(255,255,255,.82);
+}
+
+
+.profile-card.text-black {
+  color: #111;
+}
+
+.profile-card.text-black
+.question,
+
+.profile-card.text-black
+.answer-text,
+
+.profile-card.text-black
+.page-number,
+
+.profile-card.text-black
+.card-version {
+  color: #111;
+}
+
+.profile-card.text-black
+.copyright {
+  color:
+    rgba(0,0,0,.78);
+}
+
+
+/* ==================================================
+   GOLD HEADER
+================================================== */
+
+.profile-card .small-title,
+.profile-card .card-header h2,
+.profile-card .card-header h2 span {
+  color: #a58b5b;
+}
+
+
+/* ==================================================
+   CARD FOOTER
+================================================== */
+
+.copyright,
+.card-version,
+.page-number {
+  line-height: 1;
+}
+
+.copyright {
+  position: absolute;
+
+  left: 90px;
+
+  bottom: 58px;
+
+  margin: 0;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 14px;
+}
+
+.card-version {
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 58px;
+
+  transform:
+    translateX(-50%);
+
+  width: 520px;
+
+  margin: 0;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 11px;
+
+  text-align: center;
+
+  letter-spacing: .04em;
+
+  opacity: .72;
+}
+
+.page-number {
+  position: absolute;
+
+  right: 90px;
+
+  bottom: 58px;
+
+  margin: 0;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 18px;
+
+  letter-spacing: .18em;
+}
+
+
+/* ==================================================
+   EXPORT AREA
+================================================== */
+
+.export-area-main {
+  width:
+    min(
+      calc(100% - 48px),
+      1100px
+    );
+
+  margin:
+    0 auto 60px;
+
+  padding:
+    26px 30px;
 
   text-align: center;
 }
@@ -1230,7 +1163,7 @@ button:disabled {
   width: 100%;
 
   padding:
-    18px 25px;
+    19px 25px;
 
   border:
     1px solid #c5a86a;
@@ -1244,9 +1177,9 @@ button:disabled {
       #ad8d52
     );
 
-  color: #ffffff;
+  color: #fff;
 
-  font-size: 17px;
+  font-size: 18px;
 
   font-weight: 700;
 
@@ -1256,21 +1189,11 @@ button:disabled {
 
   box-shadow:
     0 0 0 1px
-      rgba(
-        255,
-        255,
-        255,
-        .04
-      )
+      rgba(255,255,255,.04)
       inset,
 
     0 4px 14px
-      rgba(
-        0,
-        0,
-        0,
-        .22
-      );
+      rgba(0,0,0,.22);
 
   transition:
     background .2s ease,
@@ -1281,7 +1204,7 @@ button:disabled {
 }
 
 
-/* Hover：金色のまま少し発光 */
+/* hover = 金色のまま発光 */
 
 #generate-button:hover {
   background:
@@ -1291,47 +1214,28 @@ button:disabled {
       #ad8d52
     );
 
-  border-color: #d6bd89;
+  border-color:
+    #d6bd89;
 
-  color: #ffffff;
+  color: #fff;
 
   box-shadow:
     0 0 0 1px
-      rgba(
-        255,
-        255,
-        255,
-        .08
-      )
+      rgba(255,255,255,.08)
       inset,
 
     0 0 10px
-      rgba(
-        214,
-        193,
-        154,
-        .25
-      ),
+      rgba(214,193,154,.25),
 
     0 0 18px
-      rgba(
-        214,
-        193,
-        154,
-        .18
-      ),
+      rgba(214,193,154,.18),
 
     0 6px 18px
-      rgba(
-        0,
-        0,
-        0,
-        .28
-      );
+      rgba(0,0,0,.28);
 }
 
 
-/* Click：黒系 */
+/* click = 黒系 */
 
 #generate-button:active {
   background:
@@ -1341,27 +1245,18 @@ button:disabled {
       #0f1217
     );
 
-  border-color: #7c6538;
+  border-color:
+    #7c6538;
 
-  color: #ffffff;
+  color: #fff;
 
   box-shadow:
     0 0 0 1px
-      rgba(
-        255,
-        255,
-        255,
-        .03
-      )
+      rgba(255,255,255,.03)
       inset,
 
     0 2px 8px
-      rgba(
-        0,
-        0,
-        0,
-        .35
-      );
+      rgba(0,0,0,.35);
 
   transform:
     translateY(1px);
@@ -1370,7 +1265,7 @@ button:disabled {
 #generate-button:disabled {
   opacity: .6;
 
-  color: #ffffff;
+  color: #fff;
 
   cursor: wait;
 }
@@ -1380,7 +1275,7 @@ button:disabled {
    EXPORT TEXT
 ================================================== */
 
-.export-area p {
+.export-area-main p {
   color: #868e9c;
 
   font-size: 12px;
@@ -1389,9 +1284,11 @@ button:disabled {
 .export-note {
   margin-bottom: 4px;
 
-  color: #d6c19a !important;
+  color:
+    #d6c19a !important;
 
-  font-size: 13px !important;
+  font-size:
+    13px !important;
 
   font-weight: 600;
 }
@@ -1406,21 +1303,10 @@ button:disabled {
     10px 12px;
 
   background:
-    rgba(
-      183,
-      154,
-      102,
-      .08
-    );
+    rgba(183,154,102,.08);
 
   border:
-    1px solid
-    rgba(
-      183,
-      154,
-      102,
-      .28
-    );
+    1px solid rgba(183,154,102,.28);
 
   border-radius: 6px;
 
@@ -1552,12 +1438,11 @@ button:disabled {
 
   .editor-layout {
     grid-template-columns:
-      minmax(0, 1fr)
-      minmax(420px, .95fr);
+      minmax(0,1fr)
+      minmax(420px,.95fr);
 
     gap: 24px;
   }
-
 
   .settings,
   .preview-panel {
@@ -1578,16 +1463,13 @@ button:disabled {
       42px 15px 34px;
   }
 
-
   .site-header h1 {
     font-size: 24px;
   }
 
-
   .site-subtitle {
     font-size: 12px;
   }
-
 
   .site-description {
     margin-top: 24px;
@@ -1596,31 +1478,46 @@ button:disabled {
       17px 14px;
   }
 
-
   .site-description p {
     font-size: 12px;
   }
 
-
-  .site-description
-  .mobile-note {
+  .site-description .mobile-note {
     font-size: 11px;
 
     line-height: 1.6;
   }
 
 
+  /* 質問カード */
+
   .question-preview-section {
     width:
-      calc(
-        100% - 24px
-      );
+      calc(100% - 24px);
 
     margin-bottom: 24px;
 
     padding: 18px;
   }
 
+
+  /* 20の質問 */
+
+  .input-area {
+    width:
+      calc(100% - 24px);
+
+    margin-bottom: 24px;
+
+    padding: 18px;
+  }
+
+  .input-question {
+    margin-bottom: 25px;
+  }
+
+
+  /* 設定 → プレビュー */
 
   .editor-layout {
     display: block;
@@ -1631,47 +1528,40 @@ button:disabled {
       0 12px 24px;
   }
 
-
   .settings,
   .preview-panel {
     padding: 18px;
   }
 
-
-  .preview-panel {
-    margin-top: 24px;
+  .settings {
+    margin-bottom: 24px;
   }
 
+  .preview-panel {
+    margin-top: 0;
+  }
 
   .preview-card-block {
     margin-bottom: 30px;
   }
 
 
-  .input-area {
+  /* 生成ボタン */
+
+  .export-area-main {
     width:
-      calc(
-        100% - 24px
-      );
+      calc(100% - 24px);
 
     margin-bottom: 40px;
 
     padding: 18px;
   }
 
-
-  .input-question {
-    margin-bottom: 25px;
-  }
-
-
-  .question-bottom-guide {
-    margin-top: 30px;
+  #generate-button {
+    font-size: 16px;
 
     padding:
-      15px 12px;
-
-    font-size: 13px;
+      17px 15px;
   }
 
 

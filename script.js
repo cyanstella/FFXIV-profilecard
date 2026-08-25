@@ -187,10 +187,6 @@ for (
   }
 
 
-  /* ==================================================
-     ENTER LIMIT
-  ================================================== */
-
   input.addEventListener(
     "keydown",
     (
@@ -225,10 +221,6 @@ for (
     }
   );
 
-
-  /* ==================================================
-     UPDATE ANSWER
-  ================================================== */
 
   const updateAnswer =
     () => {
@@ -961,7 +953,7 @@ function setupCardSettings(
 
 
   /* ==================================================
-     BACKGROUND
+     BACKGROUND POSITION / SCALE
   ================================================== */
 
   function updateBackground() {
@@ -1355,6 +1347,8 @@ setupCardSettings({
 
 /* ==================================================
    PREVIEW SCALE
+
+   枠切れ防止のため4px内側へ配置
 ================================================== */
 
 function updatePreviewScales() {
@@ -1387,8 +1381,20 @@ function updatePreviewScales() {
           frame.clientWidth;
 
 
+        const previewPadding =
+          4;
+
+
+        const availableWidth =
+          Math.max(
+            0,
+            width -
+            previewPadding * 2
+          );
+
+
         const scale =
-          width /
+          availableWidth /
           1200;
 
 
@@ -1397,11 +1403,23 @@ function updatePreviewScales() {
           scale
         );
 
+
+        card.style.left =
+          `${previewPadding}px`;
+
+
+        card.style.top =
+          `${previewPadding}px`;
+
       }
     );
 
 }
 
+
+/* ==================================================
+   RESIZE
+================================================== */
 
 window.addEventListener(
   "resize",
@@ -1524,6 +1542,15 @@ generateButton.addEventListener(
 
               style:
               {
+
+                position:
+                  "relative",
+
+                left:
+                  "0",
+
+                top:
+                  "0",
 
                 transform:
                   "none",

@@ -25,12 +25,12 @@
   <div class="site-description">
 
     <p>
-      左側のカード背景画像、文字色などを設定し、FFXIVのキャラクターの設定などを記入すると<br>
-      右側のプレビュー画面にある、カード画像4枚に出力できます
+      FFXIVのキャラクター設定などを20の質問に記入し、<br>
+      背景画像・文字色などを設定すると、プロフィールカード4枚に出力できます
     </p>
 
     <p class="mobile-note">
-      （スマホ表示だと、縦長表示で、20の質問は最下部にあります）
+      （スマホ表示では縦長表示になります）
     </p>
 
     <p class="hashtag-guide">
@@ -104,23 +104,14 @@
             >
 
               <li>キャラクター名と、その名前の由来は？</li>
-
               <li>出身地はどこ？</li>
-
               <li>年齢・誕生日は？</li>
-
               <li>性格を一言で表すと？</li>
-
               <li>得意なこと・苦手なことは？</li>
-
               <li>好きな食べ物・嫌いな食べ物は？</li>
-
               <li>普段はどんな仕事や生活をしている？</li>
-
               <li>戦う理由、冒険を続ける理由は？</li>
-
               <li>大切にしている人・場所・物は？</li>
-
               <li>密かに抱えている夢や目標は？</li>
 
             </ol>
@@ -132,21 +123,13 @@
             >
 
               <li>一番信頼している相手は？</li>
-
               <li>苦手なタイプの人は？</li>
-
               <li>怒るとどうなる？</li>
-
               <li>落ち込んだときはどう過ごす？</li>
-
               <li>恋愛には積極的？それとも慎重？</li>
-
               <li>休日があったら何をして過ごす？</li>
-
               <li>一番怖いものは？</li>
-
               <li>過去に後悔していることは？</li>
-
               <li>誰にも言っていない秘密は？</li>
 
               <li id="question-20-preview">
@@ -162,12 +145,10 @@
             © SQUARE ENIX
           </p>
 
-
           <p class="card-version">
             FFXIV Character Profile Card
             <span class="version-text"></span>
           </p>
-
 
           <p class="page-number">
             1 / 4
@@ -185,1038 +166,7 @@
 
 
 <!-- ==================================================
-     回答カード設定 ＋ プレビュー
-================================================== -->
-
-<main class="editor-layout">
-
-
-  <!-- ==================================================
-       左：設定
-  ================================================== -->
-
-  <section class="settings">
-
-    <h2>
-      回答カード設定
-    </h2>
-
-
-    <!-- ==================================================
-         ANSWER CARD 1
-    ================================================== -->
-
-    <div class="setting-group">
-
-      <h3>
-        回答カード1（Q01 - Q07）
-      </h3>
-
-
-      <div class="setting-item">
-
-        <label for="answer1-background-upload">
-          背景画像
-        </label>
-
-        <input
-          type="file"
-          id="answer1-background-upload"
-          accept="image/png, image/jpeg, image/webp"
-        >
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <label for="answer1-bg-x">
-          背景画像の横位置
-        </label>
-
-        <div class="range-row">
-
-          <input
-            type="range"
-            id="answer1-bg-x"
-            min="0"
-            max="100"
-            value="50"
-          >
-
-          <span id="answer1-bg-x-value">
-            50%
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <label for="answer1-bg-y">
-          背景画像の縦位置
-        </label>
-
-        <div class="range-row">
-
-          <input
-            type="range"
-            id="answer1-bg-y"
-            min="0"
-            max="100"
-            value="50"
-          >
-
-          <span id="answer1-bg-y-value">
-            50%
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <label for="answer1-bg-scale">
-          背景画像の拡大率
-        </label>
-
-        <div class="range-row">
-
-          <input
-            type="range"
-            id="answer1-bg-scale"
-            min="100"
-            max="200"
-            value="100"
-          >
-
-          <span id="answer1-bg-scale-value">
-            100%
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <span class="setting-label">
-          文字色
-        </span>
-
-        <div class="radio-group">
-
-          <label>
-            <input
-              type="radio"
-              name="answer1-text-color"
-              value="white"
-              checked
-            >
-            白
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="answer1-text-color"
-              value="black"
-            >
-            黒
-          </label>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <span class="setting-label">
-          背景カバー色
-        </span>
-
-        <div class="radio-group">
-
-          <label>
-            <input
-              type="radio"
-              name="answer1-overlay-color"
-              value="black"
-              checked
-            >
-            黒
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="answer1-overlay-color"
-              value="white"
-            >
-            白
-          </label>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <label for="answer1-overlay-opacity">
-          背景カバーの濃さ
-        </label>
-
-        <div class="range-row">
-
-          <input
-            type="range"
-            id="answer1-overlay-opacity"
-            min="0"
-            max="0.9"
-            step="0.05"
-            value="0.45"
-          >
-
-          <span id="answer1-opacity-value">
-            45%
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <button
-        type="button"
-        id="remove-answer1-background"
-      >
-        回答1背景を解除
-      </button>
-
-    </div>
-
-
-    <!-- ==================================================
-         ANSWER CARD 2
-    ================================================== -->
-
-    <div class="setting-group">
-
-      <h3>
-        回答カード2（Q08 - Q14）
-      </h3>
-
-
-      <div class="setting-item">
-
-        <label for="answer2-background-upload">
-          背景画像
-        </label>
-
-        <input
-          type="file"
-          id="answer2-background-upload"
-          accept="image/png, image/jpeg, image/webp"
-        >
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <label for="answer2-bg-x">
-          背景画像の横位置
-        </label>
-
-        <div class="range-row">
-
-          <input
-            type="range"
-            id="answer2-bg-x"
-            min="0"
-            max="100"
-            value="50"
-          >
-
-          <span id="answer2-bg-x-value">
-            50%
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <label for="answer2-bg-y">
-          背景画像の縦位置
-        </label>
-
-        <div class="range-row">
-
-          <input
-            type="range"
-            id="answer2-bg-y"
-            min="0"
-            max="100"
-            value="50"
-          >
-
-          <span id="answer2-bg-y-value">
-            50%
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <label for="answer2-bg-scale">
-          背景画像の拡大率
-        </label>
-
-        <div class="range-row">
-
-          <input
-            type="range"
-            id="answer2-bg-scale"
-            min="100"
-            max="200"
-            value="100"
-          >
-
-          <span id="answer2-bg-scale-value">
-            100%
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <span class="setting-label">
-          文字色
-        </span>
-
-        <div class="radio-group">
-
-          <label>
-            <input
-              type="radio"
-              name="answer2-text-color"
-              value="white"
-              checked
-            >
-            白
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="answer2-text-color"
-              value="black"
-            >
-            黒
-          </label>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <span class="setting-label">
-          背景カバー色
-        </span>
-
-        <div class="radio-group">
-
-          <label>
-            <input
-              type="radio"
-              name="answer2-overlay-color"
-              value="black"
-              checked
-            >
-            黒
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="answer2-overlay-color"
-              value="white"
-            >
-            白
-          </label>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <label for="answer2-overlay-opacity">
-          背景カバーの濃さ
-        </label>
-
-        <div class="range-row">
-
-          <input
-            type="range"
-            id="answer2-overlay-opacity"
-            min="0"
-            max="0.9"
-            step="0.05"
-            value="0.45"
-          >
-
-          <span id="answer2-opacity-value">
-            45%
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <button
-        type="button"
-        id="remove-answer2-background"
-      >
-        回答2背景を解除
-      </button>
-
-    </div>
-
-
-    <!-- ==================================================
-         ANSWER CARD 3
-    ================================================== -->
-
-    <div class="setting-group">
-
-      <h3>
-        回答カード3（Q15 - Q20）
-      </h3>
-
-
-      <div class="setting-item">
-
-        <label for="answer3-background-upload">
-          背景画像
-        </label>
-
-        <input
-          type="file"
-          id="answer3-background-upload"
-          accept="image/png, image/jpeg, image/webp"
-        >
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <label for="answer3-bg-x">
-          背景画像の横位置
-        </label>
-
-        <div class="range-row">
-
-          <input
-            type="range"
-            id="answer3-bg-x"
-            min="0"
-            max="100"
-            value="50"
-          >
-
-          <span id="answer3-bg-x-value">
-            50%
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <label for="answer3-bg-y">
-          背景画像の縦位置
-        </label>
-
-        <div class="range-row">
-
-          <input
-            type="range"
-            id="answer3-bg-y"
-            min="0"
-            max="100"
-            value="50"
-          >
-
-          <span id="answer3-bg-y-value">
-            50%
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <label for="answer3-bg-scale">
-          背景画像の拡大率
-        </label>
-
-        <div class="range-row">
-
-          <input
-            type="range"
-            id="answer3-bg-scale"
-            min="100"
-            max="200"
-            value="100"
-          >
-
-          <span id="answer3-bg-scale-value">
-            100%
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <span class="setting-label">
-          文字色
-        </span>
-
-        <div class="radio-group">
-
-          <label>
-            <input
-              type="radio"
-              name="answer3-text-color"
-              value="white"
-              checked
-            >
-            白
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="answer3-text-color"
-              value="black"
-            >
-            黒
-          </label>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <span class="setting-label">
-          背景カバー色
-        </span>
-
-        <div class="radio-group">
-
-          <label>
-            <input
-              type="radio"
-              name="answer3-overlay-color"
-              value="black"
-              checked
-            >
-            黒
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="answer3-overlay-color"
-              value="white"
-            >
-            白
-          </label>
-
-        </div>
-
-      </div>
-
-
-      <div class="setting-item">
-
-        <label for="answer3-overlay-opacity">
-          背景カバーの濃さ
-        </label>
-
-        <div class="range-row">
-
-          <input
-            type="range"
-            id="answer3-overlay-opacity"
-            min="0"
-            max="0.9"
-            step="0.05"
-            value="0.45"
-          >
-
-          <span id="answer3-opacity-value">
-            45%
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <button
-        type="button"
-        id="remove-answer3-background"
-      >
-        回答3背景を解除
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- ==================================================
-       右：プレビュー
-  ================================================== -->
-
-  <aside class="preview-panel">
-
-    <div class="preview-heading">
-
-      <h2>
-        回答カードプレビュー
-      </h2>
-
-      <p>
-        実際の1200 × 1200pxカードを縮小表示しています
-      </p>
-
-    </div>
-
-
-    <!-- CARD 2 -->
-
-    <div class="preview-card-block">
-
-      <p class="preview-card-label">
-        回答カード1
-      </p>
-
-
-      <div class="card-frame">
-
-        <section
-          class="profile-card answer-card text-white"
-          id="card-2"
-        >
-
-          <div class="card-background answer1-background"></div>
-
-          <div class="card-overlay answer1-overlay"></div>
-
-
-          <div class="card-content">
-
-            <header class="card-header">
-
-              <p class="small-title">
-                CHARACTER PROFILE
-              </p>
-
-              <h2>
-                Q01 - Q07
-              </h2>
-
-            </header>
-
-
-            <div class="answer-block">
-              <p class="question">
-                01. キャラクター名と、その名前の由来は？
-              </p>
-              <p class="answer-text" id="answer-1"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                02. 出身地はどこ？
-              </p>
-              <p class="answer-text" id="answer-2"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                03. 年齢・誕生日は？
-              </p>
-              <p class="answer-text" id="answer-3"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                04. 性格を一言で表すと？
-              </p>
-              <p class="answer-text" id="answer-4"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                05. 得意なこと・苦手なことは？
-              </p>
-              <p class="answer-text" id="answer-5"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                06. 好きな食べ物・嫌いな食べ物は？
-              </p>
-              <p class="answer-text" id="answer-6"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                07. 普段はどんな仕事や生活をしている？
-              </p>
-              <p class="answer-text" id="answer-7"></p>
-            </div>
-
-
-            <p class="copyright">
-              © SQUARE ENIX
-            </p>
-
-            <p class="card-version">
-              FFXIV Character Profile Card
-              <span class="version-text"></span>
-            </p>
-
-            <p class="page-number">
-              2 / 4
-            </p>
-
-          </div>
-
-        </section>
-
-      </div>
-
-    </div>
-
-
-    <!-- CARD 3 -->
-
-    <div class="preview-card-block">
-
-      <p class="preview-card-label">
-        回答カード2
-      </p>
-
-
-      <div class="card-frame">
-
-        <section
-          class="profile-card answer-card text-white"
-          id="card-3"
-        >
-
-          <div class="card-background answer2-background"></div>
-
-          <div class="card-overlay answer2-overlay"></div>
-
-
-          <div class="card-content">
-
-            <header class="card-header">
-
-              <p class="small-title">
-                CHARACTER PROFILE
-              </p>
-
-              <h2>
-                Q08 - Q14
-              </h2>
-
-            </header>
-
-
-            <div class="answer-block">
-              <p class="question">
-                08. 戦う理由、冒険を続ける理由は？
-              </p>
-              <p class="answer-text" id="answer-8"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                09. 大切にしている人・場所・物は？
-              </p>
-              <p class="answer-text" id="answer-9"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                10. 密かに抱えている夢や目標は？
-              </p>
-              <p class="answer-text" id="answer-10"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                11. 一番信頼している相手は？
-              </p>
-              <p class="answer-text" id="answer-11"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                12. 苦手なタイプの人は？
-              </p>
-              <p class="answer-text" id="answer-12"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                13. 怒るとどうなる？
-              </p>
-              <p class="answer-text" id="answer-13"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                14. 落ち込んだときはどう過ごす？
-              </p>
-              <p class="answer-text" id="answer-14"></p>
-            </div>
-
-
-            <p class="copyright">
-              © SQUARE ENIX
-            </p>
-
-            <p class="card-version">
-              FFXIV Character Profile Card
-              <span class="version-text"></span>
-            </p>
-
-            <p class="page-number">
-              3 / 4
-            </p>
-
-          </div>
-
-        </section>
-
-      </div>
-
-    </div>
-
-
-    <!-- CARD 4 -->
-
-    <div class="preview-card-block">
-
-      <p class="preview-card-label">
-        回答カード3
-      </p>
-
-
-      <div class="card-frame">
-
-        <section
-          class="profile-card answer-card text-white"
-          id="card-4"
-        >
-
-          <div class="card-background answer3-background"></div>
-
-          <div class="card-overlay answer3-overlay"></div>
-
-
-          <div class="card-content">
-
-            <header class="card-header">
-
-              <p class="small-title">
-                CHARACTER PROFILE
-              </p>
-
-              <h2>
-                Q15 - Q20
-              </h2>
-
-            </header>
-
-
-            <div class="answer-block">
-              <p class="question">
-                15. 恋愛には積極的？それとも慎重？
-              </p>
-              <p class="answer-text" id="answer-15"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                16. 休日があったら何をして過ごす？
-              </p>
-              <p class="answer-text" id="answer-16"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                17. 一番怖いものは？
-              </p>
-              <p class="answer-text" id="answer-17"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                18. 過去に後悔していることは？
-              </p>
-              <p class="answer-text" id="answer-18"></p>
-            </div>
-
-
-            <div class="answer-block">
-              <p class="question">
-                19. 誰にも言っていない秘密は？
-              </p>
-              <p class="answer-text" id="answer-19"></p>
-            </div>
-
-
-            <div class="answer-block">
-
-              <p
-                class="question"
-                id="answer-question-20"
-              >
-                20. 自由質問
-              </p>
-
-              <p
-                class="answer-text"
-                id="answer-20"
-              ></p>
-
-            </div>
-
-
-            <p class="copyright">
-              © SQUARE ENIX
-            </p>
-
-            <p class="card-version">
-              FFXIV Character Profile Card
-              <span class="version-text"></span>
-            </p>
-
-            <p class="page-number">
-              4 / 4
-            </p>
-
-          </div>
-
-        </section>
-
-      </div>
-
-    </div>
-
-
-    <!-- ==================================================
-         EXPORT
-    ================================================== -->
-
-    <section class="export-area">
-
-      <button
-        type="button"
-        id="generate-button"
-      >
-        4枚の画像を書き出す
-      </button>
-
-
-      <p class="export-note">
-        質問カードとあわせて4枚生成されます
-      </p>
-
-
-      <p>
-        PNG形式・1200 × 1200px
-      </p>
-
-
-      <p
-        class="ios-export-guide"
-        id="ios-export-guide"
-        hidden
-      >
-        iPhoneでは生成された画像を長押しして「写真に保存」できます。
-      </p>
-
-
-      <div
-        id="mobile-export-results"
-        class="mobile-export-results"
-        hidden
-      ></div>
-
-    </section>
-
-  </aside>
-
-</main>
-
-
-<!-- ==================================================
-     20 QUESTIONS
+     20の質問
 ================================================== -->
 
 <section class="input-area">
@@ -1224,7 +174,6 @@
   <h2>
     20の質問
   </h2>
-
 
   <p class="input-guide">
     各回答は最大80文字・2行まで入力できます。20番のみ質問文を自由に設定できます。
@@ -1448,11 +397,9 @@
       20. 自由質問
     </div>
 
-
     <label for="q20-title">
       質問文
     </label>
-
 
     <input
       type="text"
@@ -1460,7 +407,6 @@
       maxlength="40"
       placeholder="例：このキャラクターが一番幸せな時は？"
     >
-
 
     <div class="character-count">
       <span id="count-q20-title">0</span> / 40
@@ -1474,12 +420,10 @@
       回答
     </label>
 
-
     <textarea
       id="q20"
       maxlength="80"
     ></textarea>
-
 
     <div class="character-count">
       <span id="count-q20">0</span> / 80
@@ -1487,10 +431,1003 @@
 
   </div>
 
+</section>
 
-  <div class="question-bottom-guide">
-    上部にある金色の画像生成ボタンから、画像生成してください
-  </div>
+
+<!-- ==================================================
+     画像設定 + プレビュー
+================================================== -->
+
+<main class="editor-layout">
+
+
+  <!-- ==================================================
+       左：画像設定
+  ================================================== -->
+
+  <section class="settings">
+
+    <h2>
+      回答カード設定
+    </h2>
+
+
+    <!-- CARD 1 -->
+
+    <div class="setting-group">
+
+      <h3>
+        回答カード1（Q01 - Q07）
+      </h3>
+
+      <div class="setting-item">
+
+        <label for="answer1-background-upload">
+          背景画像
+        </label>
+
+        <input
+          type="file"
+          id="answer1-background-upload"
+          accept="image/png, image/jpeg, image/webp"
+        >
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer1-bg-x">
+          背景画像の横位置
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer1-bg-x"
+            min="0"
+            max="100"
+            value="50"
+          >
+
+          <span id="answer1-bg-x-value">
+            50%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer1-bg-y">
+          背景画像の縦位置
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer1-bg-y"
+            min="0"
+            max="100"
+            value="50"
+          >
+
+          <span id="answer1-bg-y-value">
+            50%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer1-bg-scale">
+          背景画像の拡大率
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer1-bg-scale"
+            min="100"
+            max="200"
+            value="100"
+          >
+
+          <span id="answer1-bg-scale-value">
+            100%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <span class="setting-label">
+          文字色
+        </span>
+
+        <div class="radio-group">
+
+          <label>
+            <input
+              type="radio"
+              name="answer1-text-color"
+              value="white"
+              checked
+            >
+            白
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="answer1-text-color"
+              value="black"
+            >
+            黒
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <span class="setting-label">
+          背景カバー色
+        </span>
+
+        <div class="radio-group">
+
+          <label>
+            <input
+              type="radio"
+              name="answer1-overlay-color"
+              value="black"
+              checked
+            >
+            黒
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="answer1-overlay-color"
+              value="white"
+            >
+            白
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer1-overlay-opacity">
+          背景カバーの濃さ
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer1-overlay-opacity"
+            min="0"
+            max="0.9"
+            step="0.05"
+            value="0.45"
+          >
+
+          <span id="answer1-opacity-value">
+            45%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="remove-answer1-background"
+      >
+        回答1背景を解除
+      </button>
+
+    </div>
+
+
+    <!-- CARD 2 -->
+
+    <div class="setting-group">
+
+      <h3>
+        回答カード2（Q08 - Q14）
+      </h3>
+
+      <div class="setting-item">
+
+        <label for="answer2-background-upload">
+          背景画像
+        </label>
+
+        <input
+          type="file"
+          id="answer2-background-upload"
+          accept="image/png, image/jpeg, image/webp"
+        >
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer2-bg-x">
+          背景画像の横位置
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer2-bg-x"
+            min="0"
+            max="100"
+            value="50"
+          >
+
+          <span id="answer2-bg-x-value">
+            50%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer2-bg-y">
+          背景画像の縦位置
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer2-bg-y"
+            min="0"
+            max="100"
+            value="50"
+          >
+
+          <span id="answer2-bg-y-value">
+            50%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer2-bg-scale">
+          背景画像の拡大率
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer2-bg-scale"
+            min="100"
+            max="200"
+            value="100"
+          >
+
+          <span id="answer2-bg-scale-value">
+            100%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <span class="setting-label">
+          文字色
+        </span>
+
+        <div class="radio-group">
+
+          <label>
+            <input
+              type="radio"
+              name="answer2-text-color"
+              value="white"
+              checked
+            >
+            白
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="answer2-text-color"
+              value="black"
+            >
+            黒
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <span class="setting-label">
+          背景カバー色
+        </span>
+
+        <div class="radio-group">
+
+          <label>
+            <input
+              type="radio"
+              name="answer2-overlay-color"
+              value="black"
+              checked
+            >
+            黒
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="answer2-overlay-color"
+              value="white"
+            >
+            白
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer2-overlay-opacity">
+          背景カバーの濃さ
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer2-overlay-opacity"
+            min="0"
+            max="0.9"
+            step="0.05"
+            value="0.45"
+          >
+
+          <span id="answer2-opacity-value">
+            45%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="remove-answer2-background"
+      >
+        回答2背景を解除
+      </button>
+
+    </div>
+
+
+    <!-- CARD 3 -->
+
+    <div class="setting-group">
+
+      <h3>
+        回答カード3（Q15 - Q20）
+      </h3>
+
+      <div class="setting-item">
+
+        <label for="answer3-background-upload">
+          背景画像
+        </label>
+
+        <input
+          type="file"
+          id="answer3-background-upload"
+          accept="image/png, image/jpeg, image/webp"
+        >
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer3-bg-x">
+          背景画像の横位置
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer3-bg-x"
+            min="0"
+            max="100"
+            value="50"
+          >
+
+          <span id="answer3-bg-x-value">
+            50%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer3-bg-y">
+          背景画像の縦位置
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer3-bg-y"
+            min="0"
+            max="100"
+            value="50"
+          >
+
+          <span id="answer3-bg-y-value">
+            50%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer3-bg-scale">
+          背景画像の拡大率
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer3-bg-scale"
+            min="100"
+            max="200"
+            value="100"
+          >
+
+          <span id="answer3-bg-scale-value">
+            100%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <span class="setting-label">
+          文字色
+        </span>
+
+        <div class="radio-group">
+
+          <label>
+            <input
+              type="radio"
+              name="answer3-text-color"
+              value="white"
+              checked
+            >
+            白
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="answer3-text-color"
+              value="black"
+            >
+            黒
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <span class="setting-label">
+          背景カバー色
+        </span>
+
+        <div class="radio-group">
+
+          <label>
+            <input
+              type="radio"
+              name="answer3-overlay-color"
+              value="black"
+              checked
+            >
+            黒
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="answer3-overlay-color"
+              value="white"
+            >
+            白
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <label for="answer3-overlay-opacity">
+          背景カバーの濃さ
+        </label>
+
+        <div class="range-row">
+
+          <input
+            type="range"
+            id="answer3-overlay-opacity"
+            min="0"
+            max="0.9"
+            step="0.05"
+            value="0.45"
+          >
+
+          <span id="answer3-opacity-value">
+            45%
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="remove-answer3-background"
+      >
+        回答3背景を解除
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==================================================
+       右：プレビュー
+  ================================================== -->
+
+  <aside class="preview-panel">
+
+    <div class="preview-heading">
+
+      <h2>
+        回答カードプレビュー
+      </h2>
+
+      <p>
+        実際の1200 × 1200pxカードを縮小表示しています
+      </p>
+
+    </div>
+
+
+    <!-- CARD 2 -->
+
+    <div class="preview-card-block">
+
+      <p class="preview-card-label">
+        回答カード1
+      </p>
+
+      <div class="card-frame">
+
+        <section
+          class="profile-card answer-card text-white"
+          id="card-2"
+        >
+
+          <div class="card-background answer1-background"></div>
+
+          <div class="card-overlay answer1-overlay"></div>
+
+
+          <div class="card-content">
+
+            <header class="card-header">
+
+              <p class="small-title">
+                CHARACTER PROFILE
+              </p>
+
+              <h2>
+                Q01 - Q07
+              </h2>
+
+            </header>
+
+
+            <div class="answer-block">
+              <p class="question">
+                01. キャラクター名と、その名前の由来は？
+              </p>
+              <p class="answer-text" id="answer-1"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                02. 出身地はどこ？
+              </p>
+              <p class="answer-text" id="answer-2"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                03. 年齢・誕生日は？
+              </p>
+              <p class="answer-text" id="answer-3"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                04. 性格を一言で表すと？
+              </p>
+              <p class="answer-text" id="answer-4"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                05. 得意なこと・苦手なことは？
+              </p>
+              <p class="answer-text" id="answer-5"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                06. 好きな食べ物・嫌いな食べ物は？
+              </p>
+              <p class="answer-text" id="answer-6"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                07. 普段はどんな仕事や生活をしている？
+              </p>
+              <p class="answer-text" id="answer-7"></p>
+            </div>
+
+
+            <p class="copyright">
+              © SQUARE ENIX
+            </p>
+
+            <p class="card-version">
+              FFXIV Character Profile Card
+              <span class="version-text"></span>
+            </p>
+
+            <p class="page-number">
+              2 / 4
+            </p>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+
+
+    <!-- CARD 3 -->
+
+    <div class="preview-card-block">
+
+      <p class="preview-card-label">
+        回答カード2
+      </p>
+
+      <div class="card-frame">
+
+        <section
+          class="profile-card answer-card text-white"
+          id="card-3"
+        >
+
+          <div class="card-background answer2-background"></div>
+
+          <div class="card-overlay answer2-overlay"></div>
+
+
+          <div class="card-content">
+
+            <header class="card-header">
+
+              <p class="small-title">
+                CHARACTER PROFILE
+              </p>
+
+              <h2>
+                Q08 - Q14
+              </h2>
+
+            </header>
+
+
+            <div class="answer-block">
+              <p class="question">
+                08. 戦う理由、冒険を続ける理由は？
+              </p>
+              <p class="answer-text" id="answer-8"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                09. 大切にしている人・場所・物は？
+              </p>
+              <p class="answer-text" id="answer-9"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                10. 密かに抱えている夢や目標は？
+              </p>
+              <p class="answer-text" id="answer-10"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                11. 一番信頼している相手は？
+              </p>
+              <p class="answer-text" id="answer-11"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                12. 苦手なタイプの人は？
+              </p>
+              <p class="answer-text" id="answer-12"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                13. 怒るとどうなる？
+              </p>
+              <p class="answer-text" id="answer-13"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                14. 落ち込んだときはどう過ごす？
+              </p>
+              <p class="answer-text" id="answer-14"></p>
+            </div>
+
+
+            <p class="copyright">
+              © SQUARE ENIX
+            </p>
+
+            <p class="card-version">
+              FFXIV Character Profile Card
+              <span class="version-text"></span>
+            </p>
+
+            <p class="page-number">
+              3 / 4
+            </p>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+
+
+    <!-- CARD 4 -->
+
+    <div class="preview-card-block">
+
+      <p class="preview-card-label">
+        回答カード3
+      </p>
+
+      <div class="card-frame">
+
+        <section
+          class="profile-card answer-card text-white"
+          id="card-4"
+        >
+
+          <div class="card-background answer3-background"></div>
+
+          <div class="card-overlay answer3-overlay"></div>
+
+
+          <div class="card-content">
+
+            <header class="card-header">
+
+              <p class="small-title">
+                CHARACTER PROFILE
+              </p>
+
+              <h2>
+                Q15 - Q20
+              </h2>
+
+            </header>
+
+
+            <div class="answer-block">
+              <p class="question">
+                15. 恋愛には積極的？それとも慎重？
+              </p>
+              <p class="answer-text" id="answer-15"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                16. 休日があったら何をして過ごす？
+              </p>
+              <p class="answer-text" id="answer-16"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                17. 一番怖いものは？
+              </p>
+              <p class="answer-text" id="answer-17"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                18. 過去に後悔していることは？
+              </p>
+              <p class="answer-text" id="answer-18"></p>
+            </div>
+
+            <div class="answer-block">
+              <p class="question">
+                19. 誰にも言っていない秘密は？
+              </p>
+              <p class="answer-text" id="answer-19"></p>
+            </div>
+
+            <div class="answer-block">
+
+              <p
+                class="question"
+                id="answer-question-20"
+              >
+                20. 自由質問
+              </p>
+
+              <p
+                class="answer-text"
+                id="answer-20"
+              ></p>
+
+            </div>
+
+
+            <p class="copyright">
+              © SQUARE ENIX
+            </p>
+
+            <p class="card-version">
+              FFXIV Character Profile Card
+              <span class="version-text"></span>
+            </p>
+
+            <p class="page-number">
+              4 / 4
+            </p>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+
+  </aside>
+
+</main>
+
+
+<!-- ==================================================
+     画像生成
+================================================== -->
+
+<section class="export-area export-area-main">
+
+  <button
+    type="button"
+    id="generate-button"
+  >
+    4枚の画像を書き出す
+  </button>
+
+  <p class="export-note">
+    質問カードとあわせて4枚生成されます
+  </p>
+
+  <p>
+    PNG形式・1200 × 1200px
+  </p>
+
+  <p
+    class="ios-export-guide"
+    id="ios-export-guide"
+    hidden
+  >
+    iPhoneでは生成された画像を長押しして「写真に保存」できます。
+  </p>
+
+  <div
+    id="mobile-export-results"
+    class="mobile-export-results"
+    hidden
+  ></div>
 
 </section>
 
@@ -1512,5 +1449,4 @@
 <script src="./script.js"></script>
 
 </body>
-
 </html>
