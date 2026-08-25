@@ -59,14 +59,11 @@ const translations = {
     rights1:
       "本サイトで使用する画像や文章については、第三者の著作権、肖像権、その他の権利を侵害しないよう、利用者自身の責任でご確認ください。",
 
-    creatorTitle:
-      "制作者・連絡先",
-
-    creatorLabel:
-      "制作者：",
+    contactTitle:
+      "連絡先",
 
     contactText:
-      "不具合の報告やご連絡は、X（旧Twitter）までお願いいたします。",
+      "ご連絡は、X（旧Twitter）までお願いいたします。",
 
     back:
       "← FFXIV Character Profile Cardへ戻る"
@@ -121,14 +118,11 @@ const translations = {
     rights1:
       "Users are responsible for ensuring that images and text used with this website do not infringe copyrights, portrait rights, or any other rights belonging to third parties.",
 
-    creatorTitle:
-      "Creator / Contact",
-
-    creatorLabel:
-      "Creator:",
+    contactTitle:
+      "Contact",
 
     contactText:
-      "For bug reports or other inquiries, please contact the creator via X (formerly Twitter).",
+      "Please contact me via X (formerly Twitter).",
 
     back:
       "← Back to FFXIV Character Profile Card"
@@ -139,7 +133,7 @@ const translations = {
 
 
 /* ==================================================
-   LANGUAGE
+   LANGUAGE STATE
 ================================================== */
 
 let currentLanguage =
@@ -193,7 +187,7 @@ if (
 
 
 /* ==================================================
-   LANGUAGE
+   SET LANGUAGE
 ================================================== */
 
 function setLanguage(
@@ -252,16 +246,12 @@ function setLanguage(
 
 
         if (
-          typeof t[
-            key
-          ] ===
+          typeof t[key] ===
           "string"
         ) {
 
           element.textContent =
-            t[
-              key
-            ];
+            t[key];
 
         }
 

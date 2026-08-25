@@ -280,7 +280,7 @@
 
 
 <!-- ==================================================
-     20 QUESTIONS
+     QUESTIONS
 ================================================== -->
 
 <section class="input-area">
@@ -288,7 +288,6 @@
   <h2 data-i18n="questionsInputTitle">
     20の質問
   </h2>
-
 
   <p
     class="input-guide"
@@ -298,119 +297,7 @@
   </p>
 
 
-  <div class="input-question">
-    <label for="q1" data-input-question="1"></label>
-    <textarea id="q1" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q1">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q2" data-input-question="2"></label>
-    <textarea id="q2" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q2">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q3" data-input-question="3"></label>
-    <textarea id="q3" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q3">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q4" data-input-question="4"></label>
-    <textarea id="q4" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q4">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q5" data-input-question="5"></label>
-    <textarea id="q5" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q5">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q6" data-input-question="6"></label>
-    <textarea id="q6" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q6">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q7" data-input-question="7"></label>
-    <textarea id="q7" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q7">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q8" data-input-question="8"></label>
-    <textarea id="q8" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q8">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q9" data-input-question="9"></label>
-    <textarea id="q9" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q9">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q10" data-input-question="10"></label>
-    <textarea id="q10" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q10">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q11" data-input-question="11"></label>
-    <textarea id="q11" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q11">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q12" data-input-question="12"></label>
-    <textarea id="q12" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q12">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q13" data-input-question="13"></label>
-    <textarea id="q13" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q13">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q14" data-input-question="14"></label>
-    <textarea id="q14" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q14">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q15" data-input-question="15"></label>
-    <textarea id="q15" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q15">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q16" data-input-question="16"></label>
-    <textarea id="q16" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q16">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q17" data-input-question="17"></label>
-    <textarea id="q17" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q17">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q18" data-input-question="18"></label>
-    <textarea id="q18" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q18">0</span> / 80</div>
-  </div>
-
-  <div class="input-question">
-    <label for="q19" data-input-question="19"></label>
-    <textarea id="q19" maxlength="80"></textarea>
-    <div class="character-count"><span id="count-q19">0</span> / 80</div>
-  </div>
+  <div id="question-inputs"></div>
 
 
   <div class="input-question custom-question-block">
@@ -438,6 +325,7 @@
     <div class="character-count">
       <span id="count-q20-title">0</span> / 40
     </div>
+
 
     <label
       for="q20"
@@ -469,10 +357,6 @@
 <section class="editor-layout">
 
 
-<!-- ==================================================
-     SETTINGS
-================================================== -->
-
 <section class="settings">
 
   <h2 data-i18n="settingsTitle">
@@ -487,7 +371,6 @@
     <h3 data-i18n="answerCard1Settings">
       回答カード1（Q01 - Q07）
     </h3>
-
 
     <div class="setting-item">
       <label
@@ -569,11 +452,13 @@
 
 
     <div class="setting-item">
+
       <span class="setting-label" data-i18n="textColor">
         文字色
       </span>
 
       <div class="radio-group">
+
         <label>
           <input
             type="radio"
@@ -592,16 +477,20 @@
           >
           <span data-i18n="black">黒</span>
         </label>
+
       </div>
+
     </div>
 
 
     <div class="setting-item">
+
       <span class="setting-label" data-i18n="overlayColor">
         背景カバー色
       </span>
 
       <div class="radio-group">
+
         <label>
           <input
             type="radio"
@@ -620,11 +509,14 @@
           >
           <span data-i18n="white">白</span>
         </label>
+
       </div>
+
     </div>
 
 
     <div class="setting-item">
+
       <label
         for="answer1-overlay-opacity"
         data-i18n="overlayOpacity"
@@ -633,6 +525,7 @@
       </label>
 
       <div class="range-row">
+
         <input
           type="range"
           id="answer1-overlay-opacity"
@@ -642,8 +535,12 @@
           value="0.45"
         >
 
-        <span id="answer1-opacity-value">45%</span>
+        <span id="answer1-opacity-value">
+          45%
+        </span>
+
       </div>
+
     </div>
 
 
@@ -667,8 +564,8 @@
       回答カード2（Q08 - Q14）
     </h3>
 
-
     <div class="setting-item">
+
       <label
         for="answer2-background-upload"
         data-i18n="backgroundImage"
@@ -681,11 +578,16 @@
         id="answer2-background-upload"
         accept="image/png,image/jpeg,image/webp"
       >
+
     </div>
 
 
     <div class="setting-item">
-      <label for="answer2-bg-x" data-i18n="backgroundX">
+
+      <label
+        for="answer2-bg-x"
+        data-i18n="backgroundX"
+      >
         背景画像の横位置
       </label>
 
@@ -699,11 +601,16 @@
         >
         <span id="answer2-bg-x-value">50%</span>
       </div>
+
     </div>
 
 
     <div class="setting-item">
-      <label for="answer2-bg-y" data-i18n="backgroundY">
+
+      <label
+        for="answer2-bg-y"
+        data-i18n="backgroundY"
+      >
         背景画像の縦位置
       </label>
 
@@ -717,11 +624,16 @@
         >
         <span id="answer2-bg-y-value">50%</span>
       </div>
+
     </div>
 
 
     <div class="setting-item">
-      <label for="answer2-bg-scale" data-i18n="backgroundScale">
+
+      <label
+        for="answer2-bg-scale"
+        data-i18n="backgroundScale"
+      >
         背景画像の拡大率
       </label>
 
@@ -735,15 +647,18 @@
         >
         <span id="answer2-bg-scale-value">100%</span>
       </div>
+
     </div>
 
 
     <div class="setting-item">
+
       <span class="setting-label" data-i18n="textColor">
         文字色
       </span>
 
       <div class="radio-group">
+
         <label>
           <input
             type="radio"
@@ -762,16 +677,20 @@
           >
           <span data-i18n="black">黒</span>
         </label>
+
       </div>
+
     </div>
 
 
     <div class="setting-item">
+
       <span class="setting-label" data-i18n="overlayColor">
         背景カバー色
       </span>
 
       <div class="radio-group">
+
         <label>
           <input
             type="radio"
@@ -790,11 +709,14 @@
           >
           <span data-i18n="white">白</span>
         </label>
+
       </div>
+
     </div>
 
 
     <div class="setting-item">
+
       <label
         for="answer2-overlay-opacity"
         data-i18n="overlayOpacity"
@@ -803,6 +725,7 @@
       </label>
 
       <div class="range-row">
+
         <input
           type="range"
           id="answer2-overlay-opacity"
@@ -812,8 +735,12 @@
           value="0.45"
         >
 
-        <span id="answer2-opacity-value">45%</span>
+        <span id="answer2-opacity-value">
+          45%
+        </span>
+
       </div>
+
     </div>
 
 
@@ -837,8 +764,8 @@
       回答カード3（Q15 - Q20）
     </h3>
 
-
     <div class="setting-item">
+
       <label
         for="answer3-background-upload"
         data-i18n="backgroundImage"
@@ -851,11 +778,16 @@
         id="answer3-background-upload"
         accept="image/png,image/jpeg,image/webp"
       >
+
     </div>
 
 
     <div class="setting-item">
-      <label for="answer3-bg-x" data-i18n="backgroundX">
+
+      <label
+        for="answer3-bg-x"
+        data-i18n="backgroundX"
+      >
         背景画像の横位置
       </label>
 
@@ -869,11 +801,16 @@
         >
         <span id="answer3-bg-x-value">50%</span>
       </div>
+
     </div>
 
 
     <div class="setting-item">
-      <label for="answer3-bg-y" data-i18n="backgroundY">
+
+      <label
+        for="answer3-bg-y"
+        data-i18n="backgroundY"
+      >
         背景画像の縦位置
       </label>
 
@@ -887,11 +824,16 @@
         >
         <span id="answer3-bg-y-value">50%</span>
       </div>
+
     </div>
 
 
     <div class="setting-item">
-      <label for="answer3-bg-scale" data-i18n="backgroundScale">
+
+      <label
+        for="answer3-bg-scale"
+        data-i18n="backgroundScale"
+      >
         背景画像の拡大率
       </label>
 
@@ -905,15 +847,18 @@
         >
         <span id="answer3-bg-scale-value">100%</span>
       </div>
+
     </div>
 
 
     <div class="setting-item">
+
       <span class="setting-label" data-i18n="textColor">
         文字色
       </span>
 
       <div class="radio-group">
+
         <label>
           <input
             type="radio"
@@ -932,16 +877,20 @@
           >
           <span data-i18n="black">黒</span>
         </label>
+
       </div>
+
     </div>
 
 
     <div class="setting-item">
+
       <span class="setting-label" data-i18n="overlayColor">
         背景カバー色
       </span>
 
       <div class="radio-group">
+
         <label>
           <input
             type="radio"
@@ -960,11 +909,14 @@
           >
           <span data-i18n="white">白</span>
         </label>
+
       </div>
+
     </div>
 
 
     <div class="setting-item">
+
       <label
         for="answer3-overlay-opacity"
         data-i18n="overlayOpacity"
@@ -973,6 +925,7 @@
       </label>
 
       <div class="range-row">
+
         <input
           type="range"
           id="answer3-overlay-opacity"
@@ -982,8 +935,12 @@
           value="0.45"
         >
 
-        <span id="answer3-opacity-value">45%</span>
+        <span id="answer3-opacity-value">
+          45%
+        </span>
+
       </div>
+
     </div>
 
 
@@ -1020,12 +977,14 @@
   </div>
 
 
-
   <!-- CARD 2 -->
 
   <div class="preview-card-block">
 
-    <p class="preview-card-label" data-i18n="answerCard1">
+    <p
+      class="preview-card-label"
+      data-i18n="answerCard1"
+    >
       回答カード1
     </p>
 
@@ -1049,44 +1008,20 @@
         <div class="card-content">
 
           <header class="card-header">
-            <p class="small-title">CHARACTER PROFILE</p>
-            <h2>Q01 - Q07</h2>
+
+            <p class="small-title">
+              CHARACTER PROFILE
+            </p>
+
+            <h2>
+              Q01 - Q07
+            </h2>
+
           </header>
 
-          <div class="answer-block">
-            <p class="question" data-answer-question="1"></p>
-            <p class="answer-text" id="answer-1"></p>
-          </div>
 
-          <div class="answer-block">
-            <p class="question" data-answer-question="2"></p>
-            <p class="answer-text" id="answer-2"></p>
-          </div>
+          <div class="answer-list" data-answer-range="1-7"></div>
 
-          <div class="answer-block">
-            <p class="question" data-answer-question="3"></p>
-            <p class="answer-text" id="answer-3"></p>
-          </div>
-
-          <div class="answer-block">
-            <p class="question" data-answer-question="4"></p>
-            <p class="answer-text" id="answer-4"></p>
-          </div>
-
-          <div class="answer-block">
-            <p class="question" data-answer-question="5"></p>
-            <p class="answer-text" id="answer-5"></p>
-          </div>
-
-          <div class="answer-block">
-            <p class="question" data-answer-question="6"></p>
-            <p class="answer-text" id="answer-6"></p>
-          </div>
-
-          <div class="answer-block">
-            <p class="question" data-answer-question="7"></p>
-            <p class="answer-text" id="answer-7"></p>
-          </div>
 
           <p class="copyright">
             © SQUARE ENIX
@@ -1110,12 +1045,14 @@
   </div>
 
 
-
   <!-- CARD 3 -->
 
   <div class="preview-card-block">
 
-    <p class="preview-card-label" data-i18n="answerCard2">
+    <p
+      class="preview-card-label"
+      data-i18n="answerCard2"
+    >
       回答カード2
     </p>
 
@@ -1139,44 +1076,20 @@
         <div class="card-content">
 
           <header class="card-header">
-            <p class="small-title">CHARACTER PROFILE</p>
-            <h2>Q08 - Q14</h2>
+
+            <p class="small-title">
+              CHARACTER PROFILE
+            </p>
+
+            <h2>
+              Q08 - Q14
+            </h2>
+
           </header>
 
-          <div class="answer-block">
-            <p class="question" data-answer-question="8"></p>
-            <p class="answer-text" id="answer-8"></p>
-          </div>
 
-          <div class="answer-block">
-            <p class="question" data-answer-question="9"></p>
-            <p class="answer-text" id="answer-9"></p>
-          </div>
+          <div class="answer-list" data-answer-range="8-14"></div>
 
-          <div class="answer-block">
-            <p class="question" data-answer-question="10"></p>
-            <p class="answer-text" id="answer-10"></p>
-          </div>
-
-          <div class="answer-block">
-            <p class="question" data-answer-question="11"></p>
-            <p class="answer-text" id="answer-11"></p>
-          </div>
-
-          <div class="answer-block">
-            <p class="question" data-answer-question="12"></p>
-            <p class="answer-text" id="answer-12"></p>
-          </div>
-
-          <div class="answer-block">
-            <p class="question" data-answer-question="13"></p>
-            <p class="answer-text" id="answer-13"></p>
-          </div>
-
-          <div class="answer-block">
-            <p class="question" data-answer-question="14"></p>
-            <p class="answer-text" id="answer-14"></p>
-          </div>
 
           <p class="copyright">
             © SQUARE ENIX
@@ -1200,12 +1113,14 @@
   </div>
 
 
-
   <!-- CARD 4 -->
 
   <div class="preview-card-block">
 
-    <p class="preview-card-label" data-i18n="answerCard3">
+    <p
+      class="preview-card-label"
+      data-i18n="answerCard3"
+    >
       回答カード3
     </p>
 
@@ -1229,48 +1144,20 @@
         <div class="card-content">
 
           <header class="card-header">
-            <p class="small-title">CHARACTER PROFILE</p>
-            <h2>Q15 - Q20</h2>
-          </header>
 
-          <div class="answer-block">
-            <p class="question" data-answer-question="15"></p>
-            <p class="answer-text" id="answer-15"></p>
-          </div>
-
-          <div class="answer-block">
-            <p class="question" data-answer-question="16"></p>
-            <p class="answer-text" id="answer-16"></p>
-          </div>
-
-          <div class="answer-block">
-            <p class="question" data-answer-question="17"></p>
-            <p class="answer-text" id="answer-17"></p>
-          </div>
-
-          <div class="answer-block">
-            <p class="question" data-answer-question="18"></p>
-            <p class="answer-text" id="answer-18"></p>
-          </div>
-
-          <div class="answer-block">
-            <p class="question" data-answer-question="19"></p>
-            <p class="answer-text" id="answer-19"></p>
-          </div>
-
-          <div class="answer-block">
-            <p
-              class="question"
-              id="answer-question-20"
-            >
-              20. 自由質問
+            <p class="small-title">
+              CHARACTER PROFILE
             </p>
 
-            <p
-              class="answer-text"
-              id="answer-20"
-            ></p>
-          </div>
+            <h2>
+              Q15 - Q20
+            </h2>
+
+          </header>
+
+
+          <div class="answer-list" data-answer-range="15-20"></div>
+
 
           <p class="copyright">
             © SQUARE ENIX
@@ -1346,10 +1233,6 @@
 
 
 
-<!-- ==================================================
-     EXPORT WORKSPACE
-================================================== -->
-
 <div
   id="export-workspace"
   aria-hidden="true"
@@ -1376,6 +1259,18 @@
       data-i18n="disclaimerLink"
     >
       免責事項
+    </a>
+
+    <span class="footer-link-separator">
+      /
+    </span>
+
+    <a
+      href="https://x.com/cyan_stella"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      @cyan_stella
     </a>
 
   </p>
