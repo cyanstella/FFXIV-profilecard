@@ -1,11 +1,8 @@
 /* ==================================================
    VERSION
-
-   今後の改訂ではここだけ変更すれば、
-   サイト下部と4枚の画像に自動反映される。
 ================================================== */
 
-const APP_VERSION = "Ver.1.00";
+const APP_VERSION = "Ver.1.0";
 
 
 /* ==================================================
@@ -23,13 +20,17 @@ const CUSTOM_QUESTION_MAX_LENGTH = 40;
 ================================================== */
 
 document
-  .querySelectorAll(".version-text")
-  .forEach((element) => {
+  .querySelectorAll(
+    ".version-text"
+  )
+  .forEach(
+    (element) => {
 
-    element.textContent =
-      APP_VERSION;
+      element.textContent =
+        APP_VERSION;
 
-  });
+    }
+  );
 
 
 /* ==================================================
@@ -76,11 +77,13 @@ if (
 
 
 /* ==================================================
-   ANSWER MEASURE ELEMENT
+   ANSWER MEASURE
 ================================================== */
 
 const answerMeasure =
-  document.createElement("div");
+  document.createElement(
+    "div"
+  );
 
 
 answerMeasure.setAttribute(
@@ -177,14 +180,13 @@ for (
   }
 
 
-  /* Enterは最大2行 */
-
   input.addEventListener(
     "keydown",
     (event) => {
 
       if (
-        event.key !== "Enter"
+        event.key !==
+        "Enter"
       ) {
 
         return;
@@ -212,14 +214,15 @@ for (
 
       let value =
         input.value
-          .replace(/\r\n/g, "\n")
-          .replace(/\r/g, "\n");
+          .replace(
+            /\r\n/g,
+            "\n"
+          )
+          .replace(
+            /\r/g,
+            "\n"
+          );
 
-
-      /*
-        明示的な改行は
-        2行まで
-      */
 
       let lines =
         value.split("\n");
@@ -240,10 +243,6 @@ for (
 
       }
 
-
-      /*
-        最大80文字
-      */
 
       if (
         value.length >
@@ -282,11 +281,6 @@ for (
         text;
 
 
-      /*
-        回答単体が
-        2行以内になるフォントを計算
-      */
-
       const baseSize =
         getAnswerBaseFontSize(
           length
@@ -314,11 +308,6 @@ for (
       );
 
 
-      /*
-        回答更新後、
-        カード全体も収まるか確認
-      */
-
       requestAnimationFrame(
         fitAllAnswerCards
       );
@@ -338,7 +327,7 @@ for (
 
 
 /* ==================================================
-   FONT SIZE
+   ANSWER FONT SIZE
 ================================================== */
 
 function getAnswerBaseFontSize(
@@ -348,21 +337,27 @@ function getAnswerBaseFontSize(
   if (
     length <= 25
   ) {
+
     return 24;
+
   }
 
 
   if (
     length <= 45
   ) {
+
     return 22;
+
   }
 
 
   if (
     length <= 60
   ) {
+
     return 20;
+
   }
 
 
@@ -372,7 +367,7 @@ function getAnswerBaseFontSize(
 
 
 /* ==================================================
-   回答単体を2行に収める
+   FIT ANSWER TO 2 LINES
 ================================================== */
 
 function getFittedAnswerFontSize(
@@ -380,8 +375,12 @@ function getFittedAnswerFontSize(
   baseSize
 ) {
 
-  if (!text) {
+  if (
+    !text
+  ) {
+
     return baseSize;
+
   }
 
 
@@ -430,9 +429,7 @@ function getFittedAnswerFontSize(
 
 
 /* ==================================================
-   CARD TOTAL HEIGHT FIT
-
-   Q7 / Q14 が下にはみ出す問題対策。
+   CARD HEIGHT FIT
 ================================================== */
 
 function fitAllAnswerCards() {
@@ -459,7 +456,9 @@ function fitAnswerCard(
 
 
   if (
-    cardContentFits(card)
+    cardContentFits(
+      card
+    )
   ) {
 
     return;
@@ -473,7 +472,9 @@ function fitAnswerCard(
 
 
   if (
-    cardContentFits(card)
+    cardContentFits(
+      card
+    )
   ) {
 
     return;
@@ -517,12 +518,6 @@ function cardContentFits(
       blocks.length - 1
     ];
 
-
-  /*
-    1200pxカード内で、
-    1055pxより下へ来ると
-    フッターと重なる可能性がある。
-  */
 
   const bottom =
     lastBlock.offsetTop +
@@ -750,7 +745,7 @@ function readImageAsDataURL(
 
 
 /* ==================================================
-   CARD SETTINGS
+   ANSWER CARD SETTINGS
 ================================================== */
 
 function setupCardSettings(
@@ -781,6 +776,7 @@ function setupCardSettings(
     overlayOpacityValueId,
 
     overlayRadioName,
+
     textRadioName
 
   } = options;
@@ -868,7 +864,7 @@ function setupCardSettings(
     "black";
 
 
-  /* 背景画像 */
+  /* Background upload */
 
   backgroundUpload.addEventListener(
     "change",
@@ -923,6 +919,8 @@ function setupCardSettings(
     }
   );
 
+
+  /* Position */
 
   function updateBackground() {
 
@@ -988,6 +986,8 @@ function setupCardSettings(
   );
 
 
+  /* Clear */
+
   removeButton.addEventListener(
     "click",
     () => {
@@ -1043,7 +1043,8 @@ function setupCardSettings(
 
     overlayOpacityValue.textContent =
       `${Math.round(
-        opacity * 100
+        opacity *
+        100
       )}%`;
 
   }
@@ -1088,7 +1089,7 @@ function setupCardSettings(
     );
 
 
-  /* Text color */
+  /* Text */
 
   document
     .querySelectorAll(
@@ -1140,58 +1141,8 @@ function setupCardSettings(
 
 
 /* ==================================================
-   CARD SETTINGS INSTANCES
+   CARD SETTINGS
 ================================================== */
-
-setupCardSettings({
-
-  cardId:
-    "card-1",
-
-  backgroundSelector:
-    ".question-background",
-
-  backgroundUploadId:
-    "question-background-upload",
-
-  removeButtonId:
-    "remove-question-background",
-
-  bgXId:
-    "question-bg-x",
-
-  bgXValueId:
-    "question-bg-x-value",
-
-  bgYId:
-    "question-bg-y",
-
-  bgYValueId:
-    "question-bg-y-value",
-
-  bgScaleId:
-    "question-bg-scale",
-
-  bgScaleValueId:
-    "question-bg-scale-value",
-
-  overlaySelector:
-    ".question-overlay",
-
-  overlayOpacityId:
-    "question-overlay-opacity",
-
-  overlayOpacityValueId:
-    "question-opacity-value",
-
-  overlayRadioName:
-    "question-overlay-color",
-
-  textRadioName:
-    "question-text-color"
-
-});
-
 
 setupCardSettings({
 
@@ -1345,12 +1296,6 @@ setupCardSettings({
 
 /* ==================================================
    PREVIEW SCALE
-
-   1200pxのカードを、
-   frameの横幅に合わせて縮小する。
-
-   中のフォントサイズや配置は
-   一切変更しない。
 ================================================== */
 
 function updatePreviewScales() {
@@ -1486,16 +1431,11 @@ generateButton.addEventListener(
           );
 
 
-        /*
-          プレビューではtransformで縮小しているため、
-          html-to-image側だけtransform:noneにして
-          1200pxそのまま取得する。
-        */
-
         const blob =
           await htmlToImage.toBlob(
             card,
             {
+
               width:
                 1200,
 
@@ -1515,9 +1455,12 @@ generateButton.addEventListener(
                 true,
 
               backgroundColor:
-                "#101722",
+                i === 1
+                  ? "#f4f1e9"
+                  : "#101722",
 
               style: {
+
                 transform:
                   "none",
 
@@ -1529,7 +1472,9 @@ generateButton.addEventListener(
 
                 height:
                   "1200px"
+
               }
+
             }
           );
 
@@ -1547,6 +1492,7 @@ generateButton.addEventListener(
 
         generated.push(
           {
+
             index:
               i,
 
@@ -1555,13 +1501,10 @@ generateButton.addEventListener(
 
             filename:
               `ffxiv-profile-${i}.png`
+
           }
         );
 
-
-        /*
-          iPhoneのメモリ負荷対策
-        */
 
         await sleep(
           300
@@ -1569,13 +1512,6 @@ generateButton.addEventListener(
 
       }
 
-
-      /*
-        iPhone / iPad
-
-        自動ダウンロードではなく、
-        ページ内に画像を表示。
-      */
 
       if (
         isIOS
@@ -1593,10 +1529,6 @@ generateButton.addEventListener(
       }
 
       else {
-
-        /*
-          PC / Android等
-        */
 
         for (
           const item of generated
@@ -1649,7 +1581,7 @@ generateButton.addEventListener(
 
 
 /* ==================================================
-   iOS RESULT VIEW
+   iOS RESULT
 ================================================== */
 
 function showIOSExportResults(
@@ -1727,10 +1659,6 @@ function showIOSExportResults(
         "mobile-export-actions";
 
 
-      /*
-        新しい画面で画像を開く
-      */
-
       const openLink =
         document.createElement(
           "a"
@@ -1757,11 +1685,6 @@ function showIOSExportResults(
         openLink
       );
 
-
-      /*
-        Web Share API対応端末なら
-        共有ボタンを追加
-      */
 
       const file =
         new File(
@@ -1811,6 +1734,7 @@ function showIOSExportResults(
 
               await navigator.share(
                 {
+
                   files:
                     [
                       file
@@ -1818,6 +1742,7 @@ function showIOSExportResults(
 
                   title:
                     `FFXIV Character Profile Card ${item.index}`
+
                 }
               );
 
@@ -1826,11 +1751,6 @@ function showIOSExportResults(
             catch (
               error
             ) {
-
-              /*
-                ユーザーが共有を閉じただけなら
-                エラー表示しない
-              */
 
               if (
                 error.name !==
@@ -1879,17 +1799,15 @@ function showIOSExportResults(
   );
 
 
-  /*
-    生成結果の位置へ移動
-  */
-
   mobileExportResults.scrollIntoView(
     {
+
       behavior:
         "smooth",
 
       block:
         "start"
+
     }
   );
 
@@ -1897,7 +1815,7 @@ function showIOSExportResults(
 
 
 /* ==================================================
-   CLEAR OLD GENERATED IMAGES
+   CLEAR RESULTS
 ================================================== */
 
 function clearGeneratedResults() {
@@ -1996,9 +1914,7 @@ function sleep(
 ) {
 
   return new Promise(
-    (
-      resolve
-    ) => {
+    (resolve) => {
 
       setTimeout(
         resolve,
@@ -2012,7 +1928,7 @@ function sleep(
 
 
 /* ==================================================
-   INITIAL LAYOUT
+   INITIAL
 ================================================== */
 
 window.addEventListener(
