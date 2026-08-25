@@ -187,7 +187,7 @@ if (
 
 
 /* ==================================================
-   SET LANGUAGE
+   LANGUAGE
 ================================================== */
 
 function setLanguage(
@@ -246,12 +246,16 @@ function setLanguage(
 
 
         if (
-          typeof t[key] ===
+          typeof t[
+            key
+          ] ===
           "string"
         ) {
 
           element.textContent =
-            t[key];
+            t[
+              key
+            ];
 
         }
 
@@ -297,7 +301,7 @@ function setLanguage(
 
 
 /* ==================================================
-   LANGUAGE BUTTONS
+   LANGUAGE BUTTON
 ================================================== */
 
 document

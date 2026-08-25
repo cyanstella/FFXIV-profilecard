@@ -426,154 +426,10 @@ const translations = {
 
 
 /* ==================================================
-   CREATE INPUTS / ANSWER BLOCKS
-================================================== */
-
-function buildQuestionInputs() {
-
-  const container =
-    document.getElementById(
-      "question-inputs"
-    );
-
-  if (!container) return;
-
-
-  for (
-    let i = 1;
-    i <= 19;
-    i++
-  ) {
-
-    const wrapper =
-      document.createElement(
-        "div"
-      );
-
-
-    wrapper.className =
-      "input-question";
-
-
-    wrapper.innerHTML = `
-      <label
-        for="q${i}"
-        data-input-question="${i}"
-      ></label>
-
-      <textarea
-        id="q${i}"
-        maxlength="${MAX_LENGTH}"
-      ></textarea>
-
-      <div class="character-count">
-        <span id="count-q${i}">0</span> / ${MAX_LENGTH}
-      </div>
-    `;
-
-
-    container.appendChild(
-      wrapper
-    );
-
-  }
-
-}
-
-
-function buildAnswerBlocks() {
-
-  document
-    .querySelectorAll(
-      "[data-answer-range]"
-    )
-    .forEach(
-      container => {
-
-        const [
-          start,
-          end
-        ] =
-          container.dataset.answerRange
-            .split("-")
-            .map(Number);
-
-
-        for (
-          let i = start;
-          i <= end;
-          i++
-        ) {
-
-          const block =
-            document.createElement(
-              "div"
-            );
-
-
-          block.className =
-            "answer-block";
-
-
-          if (
-            i === 20
-          ) {
-
-            block.innerHTML = `
-              <p
-                class="question"
-                id="answer-question-20"
-              >
-                20. 自由質問
-              </p>
-
-              <p
-                class="answer-text"
-                id="answer-20"
-              ></p>
-            `;
-
-          }
-
-          else {
-
-            block.innerHTML = `
-              <p
-                class="question"
-                data-answer-question="${i}"
-              ></p>
-
-              <p
-                class="answer-text"
-                id="answer-${i}"
-              ></p>
-            `;
-
-          }
-
-
-          container.appendChild(
-            block
-          );
-
-        }
-
-      }
-    );
-
-}
-
-
-buildQuestionInputs();
-buildAnswerBlocks();
-
-
-/* ==================================================
    LANGUAGE STATE
 ================================================== */
 
-let currentLanguage =
-  "ja";
+let currentLanguage = "ja";
 
 
 try {
@@ -914,6 +770,7 @@ function setLanguage(
     () => {
 
       updatePreviewScales();
+
       fitAllAnswerCards();
 
     }
@@ -923,7 +780,7 @@ function setLanguage(
 
 
 /* ==================================================
-   LANGUAGE BUTTONS
+   LANGUAGE BUTTON
 ================================================== */
 
 document
@@ -1000,11 +857,14 @@ for (
       }
 
 
-      if (
+      const currentLines =
         input.value
           .split("\n")
-          .length
-        >=
+          .length;
+
+
+      if (
+        currentLines >=
         MAX_LINES
       ) {
 
@@ -1021,12 +881,20 @@ for (
 
       let value =
         input.value
-          .replace(/\r\n/g,"\n")
-          .replace(/\r/g,"\n");
+          .replace(
+            /\r\n/g,
+            "\n"
+          )
+          .replace(
+            /\r/g,
+            "\n"
+          );
 
 
       const lines =
-        value.split("\n");
+        value.split(
+          "\n"
+        );
 
 
       if (
@@ -1040,7 +908,9 @@ for (
               0,
               MAX_LINES
             )
-            .join("\n");
+            .join(
+              "\n"
+            );
 
       }
 
@@ -1081,43 +951,11 @@ for (
           value.length;
 
 
-        const countBox =
-          counter.parentElement;
-
-
-        if (
-          countBox
-        ) {
-
-          countBox.classList.remove(
-            "is-warning",
-            "is-limit"
-          );
-
-
-          if (
-            value.length >=
-            MAX_LENGTH
-          ) {
-
-            countBox.classList.add(
-              "is-limit"
-            );
-
-          }
-
-          else if (
-            value.length >=
-            60
-          ) {
-
-            countBox.classList.add(
-              "is-warning"
-            );
-
-          }
-
-        }
+        updateCounterState(
+          counter,
+          value.length,
+          MAX_LENGTH
+        );
 
       }
 
@@ -1136,6 +974,65 @@ for (
 
 
   update();
+
+}
+
+
+/* ==================================================
+   COUNTER
+================================================== */
+
+function updateCounterState(
+  counter,
+  value,
+  max
+) {
+
+  const wrapper =
+    counter.parentElement;
+
+
+  if (
+    !wrapper
+  ) {
+
+    return;
+
+  }
+
+
+  wrapper.classList.remove(
+    "is-warning",
+    "is-limit"
+  );
+
+
+  if (
+    value >=
+    max
+  ) {
+
+    wrapper.classList.add(
+      "is-limit"
+    );
+
+    return;
+
+  }
+
+
+  if (
+    value >=
+    Math.floor(
+      max * .8
+    )
+  ) {
+
+    wrapper.classList.add(
+      "is-warning"
+    );
+
+  }
 
 }
 
@@ -1200,7 +1097,9 @@ function fitAllAnswerCards() {
 
 
         if (
-          cardFits(card)
+          cardFits(
+            card
+          )
         ) {
 
           return;
@@ -1214,7 +1113,9 @@ function fitAllAnswerCards() {
 
 
         if (
-          cardFits(card)
+          cardFits(
+            card
+          )
         ) {
 
           return;
@@ -1363,6 +1264,13 @@ function updateQ20Title() {
     counter.textContent =
       value.length;
 
+
+    updateCounterState(
+      counter,
+      value.length,
+      CUSTOM_QUESTION_MAX_LENGTH
+    );
+
   }
 
 
@@ -1386,7 +1294,7 @@ if (
 
 
 /* ==================================================
-   FILE / IMAGE
+   FILE / IMAGE HELPERS
 ================================================== */
 
 function readImageAsDataURL(
@@ -1444,7 +1352,9 @@ function loadImage(
       image.onload =
         () => {
 
-          resolve(image);
+          resolve(
+            image
+          );
 
         };
 
@@ -1589,15 +1499,21 @@ function setupCardSettings(
   function updateBackground() {
 
     state.x =
-      Number(x.value);
+      Number(
+        x.value
+      );
 
 
     state.y =
-      Number(y.value);
+      Number(
+        y.value
+      );
 
 
     state.scale =
-      Number(scale.value);
+      Number(
+        scale.value
+      );
 
 
     previewImage.style.objectPosition =
@@ -1718,7 +1634,9 @@ function setupCardSettings(
     async event => {
 
       const file =
-        event.target.files[0];
+        event.target.files[
+          0
+        ];
 
 
       if (
@@ -1785,20 +1703,40 @@ function setupCardSettings(
     "click",
     () => {
 
-      upload.value = "";
+      upload.value =
+        "";
 
 
-      state.image = null;
-      state.dataUrl = null;
-
-      state.x = 50;
-      state.y = 50;
-      state.scale = 100;
+      state.image =
+        null;
 
 
-      x.value = 50;
-      y.value = 50;
-      scale.value = 100;
+      state.dataUrl =
+        null;
+
+
+      state.x =
+        50;
+
+
+      state.y =
+        50;
+
+
+      state.scale =
+        100;
+
+
+      x.value =
+        50;
+
+
+      y.value =
+        50;
+
+
+      scale.value =
+        100;
 
 
       previewImage.src =
@@ -1868,7 +1806,9 @@ function setupCardSettings(
 
 
   updateBackground();
+
   updateOverlay();
+
   updateTextColor();
 
 }
@@ -2062,7 +2002,8 @@ function updatePreviewScales() {
         }
 
 
-        const padding = 4;
+        const padding =
+          4;
 
 
         const availableWidth =
@@ -2155,7 +2096,7 @@ function sleep(
 
 
 /* ==================================================
-   ANSWER BACKGROUND CANVAS
+   BACKGROUND CANVAS
 ================================================== */
 
 function createBackgroundCanvas(
@@ -2319,8 +2260,11 @@ function drawBackgroundImage(
 
   const coverScale =
     Math.max(
-      CARD_SIZE / imageWidth,
-      CARD_SIZE / imageHeight
+      CARD_SIZE /
+      imageWidth,
+
+      CARD_SIZE /
+      imageHeight
     );
 
 
@@ -2335,11 +2279,13 @@ function drawBackgroundImage(
 
 
   const px =
-    state.x / 100;
+    state.x /
+    100;
 
 
   const py =
-    state.y / 100;
+    state.y /
+    100;
 
 
   const drawX =
@@ -2370,8 +2316,9 @@ function drawBackgroundImage(
     py;
 
 
-  const additionalScale =
-    state.scale / 100;
+  const extraScale =
+    state.scale /
+    100;
 
 
   ctx.save();
@@ -2384,8 +2331,8 @@ function drawBackgroundImage(
 
 
   ctx.scale(
-    additionalScale,
-    additionalScale
+    extraScale,
+    extraScale
   );
 
 
@@ -2410,7 +2357,7 @@ function drawBackgroundImage(
 
 
 /* ==================================================
-   EXPORT CLONE
+   EXPORT CONTENT CLONE
 ================================================== */
 
 function createTransparentContentClone(
@@ -2434,11 +2381,14 @@ function createTransparentContentClone(
   }
 
 
-  workspace.innerHTML = "";
+  workspace.innerHTML =
+    "";
 
 
   const clone =
-    sourceCard.cloneNode(true);
+    sourceCard.cloneNode(
+      true
+    );
 
 
   clone.removeAttribute(
@@ -2510,8 +2460,12 @@ function createTransparentContentClone(
     "relative";
 
 
-  clone.style.left = "0";
-  clone.style.top = "0";
+  clone.style.left =
+    "0";
+
+
+  clone.style.top =
+    "0";
 
 
   clone.style.width =
@@ -2557,7 +2511,9 @@ async function createContentLayer(
     isIOS
   ) {
 
-    await sleep(250);
+    await sleep(
+      250
+    );
 
   }
 
@@ -2567,15 +2523,23 @@ async function createContentLayer(
       clone,
       {
 
-        width: CARD_SIZE,
-        height: CARD_SIZE,
+        width:
+          CARD_SIZE,
 
-        canvasWidth: CARD_SIZE,
-        canvasHeight: CARD_SIZE,
+        height:
+          CARD_SIZE,
 
-        pixelRatio: 1,
+        canvasWidth:
+          CARD_SIZE,
 
-        cacheBust: false,
+        canvasHeight:
+          CARD_SIZE,
+
+        pixelRatio:
+          1,
+
+        cacheBust:
+          false,
 
         backgroundColor:
           "rgba(0,0,0,0)",
@@ -2619,7 +2583,8 @@ async function createContentLayer(
     workspace
   ) {
 
-    workspace.innerHTML = "";
+    workspace.innerHTML =
+      "";
 
   }
 
@@ -2654,11 +2619,14 @@ async function generateQuestionCard(
   }
 
 
-  workspace.innerHTML = "";
+  workspace.innerHTML =
+    "";
 
 
   const clone =
-    sourceCard.cloneNode(true);
+    sourceCard.cloneNode(
+      true
+    );
 
 
   clone.removeAttribute(
@@ -2702,7 +2670,9 @@ async function generateQuestionCard(
     isIOS
   ) {
 
-    await sleep(200);
+    await sleep(
+      200
+    );
 
   }
 
@@ -2712,15 +2682,23 @@ async function generateQuestionCard(
       clone,
       {
 
-        width: CARD_SIZE,
-        height: CARD_SIZE,
+        width:
+          CARD_SIZE,
 
-        canvasWidth: CARD_SIZE,
-        canvasHeight: CARD_SIZE,
+        height:
+          CARD_SIZE,
 
-        pixelRatio: 1,
+        canvasWidth:
+          CARD_SIZE,
 
-        cacheBust: false,
+        canvasHeight:
+          CARD_SIZE,
+
+        pixelRatio:
+          1,
+
+        cacheBust:
+          false,
 
         backgroundColor:
           "#f4f1e9"
@@ -2729,7 +2707,8 @@ async function generateQuestionCard(
     );
 
 
-  workspace.innerHTML = "";
+  workspace.innerHTML =
+    "";
 
 
   return dataURLToBlob(
@@ -2740,7 +2719,7 @@ async function generateQuestionCard(
 
 
 /* ==================================================
-   ANSWER EXPORT
+   ANSWER CARD EXPORT
 ================================================== */
 
 async function generateAnswerCard(
@@ -2800,7 +2779,7 @@ async function generateAnswerCard(
 
 
 /* ==================================================
-   BLOB HELPERS
+   CANVAS -> BLOB
 ================================================== */
 
 function canvasToBlob(
@@ -2824,7 +2803,9 @@ function canvasToBlob(
               blob
             ) {
 
-              resolve(blob);
+              resolve(
+                blob
+              );
 
             }
 
@@ -2868,7 +2849,9 @@ function canvasToBlob(
         error
       ) {
 
-        reject(error);
+        reject(
+          error
+        );
 
       }
 
@@ -2878,12 +2861,18 @@ function canvasToBlob(
 }
 
 
+/* ==================================================
+   DATA URL -> BLOB
+================================================== */
+
 function dataURLToBlob(
   dataUrl
 ) {
 
   const parts =
-    dataUrl.split(",");
+    dataUrl.split(
+      ","
+    );
 
 
   const mime =
@@ -2896,7 +2885,9 @@ function dataURLToBlob(
 
 
   const binary =
-    atob(parts[1]);
+    atob(
+      parts[1]
+    );
 
 
   const bytes =
@@ -2912,15 +2903,20 @@ function dataURLToBlob(
   ) {
 
     bytes[i] =
-      binary.charCodeAt(i);
+      binary.charCodeAt(
+        i
+      );
 
   }
 
 
   return new Blob(
-    [bytes],
+    [
+      bytes
+    ],
     {
-      type: mime
+      type:
+        mime
     }
   );
 
@@ -2943,7 +2939,8 @@ const mobileExportResults =
   );
 
 
-let generatedObjectUrls = [];
+let generatedObjectUrls =
+  [];
 
 
 if (
@@ -2960,10 +2957,12 @@ if (
         ];
 
 
-      let currentCard = 0;
+      let currentCard =
+        0;
 
 
-      generateButton.disabled = true;
+      generateButton.disabled =
+        true;
 
 
       generateButton.textContent =
@@ -3002,7 +3001,9 @@ if (
 
           }
 
-          catch (error) {}
+          catch (
+            error
+          ) {}
 
         }
 
@@ -3013,7 +3014,8 @@ if (
         await nextFrame();
 
 
-        const generated = [];
+        const generated =
+          [];
 
 
         for (
@@ -3022,11 +3024,14 @@ if (
           i++
         ) {
 
-          currentCard = i;
+          currentCard =
+            i;
 
 
           generateButton.textContent =
-            t.preparingCard(i);
+            t.preparingCard(
+              i
+            );
 
 
           await nextFrame();
@@ -3036,7 +3041,9 @@ if (
             isIOS
           ) {
 
-            await sleep(250);
+            await sleep(
+              250
+            );
 
           }
 
@@ -3059,7 +3066,9 @@ if (
 
 
           generateButton.textContent =
-            t.generating(i);
+            t.generating(
+              i
+            );
 
 
           await nextFrame();
@@ -3093,9 +3102,11 @@ if (
           generated.push(
             {
 
-              index: i,
+              index:
+                i,
 
-              blob,
+              blob:
+                blob,
 
               filename:
                 `ffxiv-profile-${i}.png`
@@ -3145,7 +3156,9 @@ if (
             );
 
 
-            await sleep(350);
+            await sleep(
+              350
+            );
 
           }
 
@@ -3202,12 +3215,14 @@ if (
           workspace
         ) {
 
-          workspace.innerHTML = "";
+          workspace.innerHTML =
+            "";
 
         }
 
 
-        generateButton.disabled = false;
+        generateButton.disabled =
+          false;
 
 
         generateButton.textContent =
@@ -3290,7 +3305,8 @@ function showIOSExportResults(
         );
 
 
-      image.src = url;
+      image.src =
+        url;
 
 
       image.alt =
@@ -3313,9 +3329,17 @@ function showIOSExportResults(
         );
 
 
-      open.href = url;
-      open.target = "_blank";
-      open.rel = "noopener";
+      open.href =
+        url;
+
+
+      open.target =
+        "_blank";
+
+
+      open.rel =
+        "noopener";
+
 
       open.textContent =
         t.openImage;
@@ -3330,7 +3354,9 @@ function showIOSExportResults(
 
         const file =
           new File(
-            [item.blob],
+            [
+              item.blob
+            ],
             item.filename,
             {
               type:
@@ -3344,7 +3370,10 @@ function showIOSExportResults(
           navigator.canShare &&
           navigator.canShare(
             {
-              files: [file]
+              files:
+                [
+                  file
+                ]
             }
           )
         ) {
@@ -3372,7 +3401,10 @@ function showIOSExportResults(
                 await navigator.share(
                   {
 
-                    files: [file],
+                    files:
+                      [
+                        file
+                      ],
 
                     title:
                       `FFXIV Character Profile Card ${item.index}`
@@ -3477,16 +3509,20 @@ function clearGeneratedResults() {
   );
 
 
-  generatedObjectUrls = [];
+  generatedObjectUrls =
+    [];
 
 
   if (
     mobileExportResults
   ) {
 
-    mobileExportResults.innerHTML = "";
+    mobileExportResults.innerHTML =
+      "";
 
-    mobileExportResults.hidden = true;
+
+    mobileExportResults.hidden =
+      true;
 
   }
 
@@ -3494,7 +3530,7 @@ function clearGeneratedResults() {
 
 
 /* ==================================================
-   DESKTOP DOWNLOAD
+   DOWNLOAD
 ================================================== */
 
 function downloadBlob(
@@ -3514,7 +3550,9 @@ function downloadBlob(
     );
 
 
-  anchor.href = url;
+  anchor.href =
+    url;
+
 
   anchor.download =
     filename;
@@ -3559,6 +3597,7 @@ window.addEventListener(
 
 
     updatePreviewScales();
+
 
     fitAllAnswerCards();
 

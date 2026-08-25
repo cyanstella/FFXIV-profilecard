@@ -1,18 +1,25 @@
 * {
-  box-sizing: border-box;
+  box-sizing:
+    border-box;
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior:
+    smooth;
 }
 
 body {
-  margin: 0;
+  margin:
+    0;
 
-  min-height: 100vh;
+  min-height:
+    100vh;
 
-  background: #0b0e13;
-  color: #ffffff;
+  background:
+    #0b0e13;
+
+  color:
+    #ffffff;
 
   font-family:
     -apple-system,
@@ -33,27 +40,35 @@ body {
   padding:
     58px 20px 34px;
 
-  text-align: center;
+  text-align:
+    center;
 }
 
 .site-name {
-  margin: 0 0 14px;
+  margin:
+    0 0 14px;
 
-  color: #b79a66;
+  color:
+    #b79a66;
 
   font-family:
     Georgia,
     "Times New Roman",
     serif;
 
-  font-size: 14px;
-  letter-spacing: .22em;
+  font-size:
+    14px;
+
+  letter-spacing:
+    .22em;
 }
 
 .page-header h1 {
-  margin: 0;
+  margin:
+    0;
 
-  color: #ffffff;
+  color:
+    #ffffff;
 
   font-family:
     Georgia,
@@ -61,8 +76,11 @@ body {
     "Yu Mincho",
     serif;
 
-  font-size: 36px;
-  font-weight: 400;
+  font-size:
+    36px;
+
+  font-weight:
+    400;
 }
 
 
@@ -71,37 +89,55 @@ body {
 ================================================== */
 
 .language-switch {
-  display: inline-flex;
+  display:
+    inline-flex;
 
-  gap: 4px;
+  gap:
+    4px;
 
-  margin-top: 24px;
-  padding: 4px;
+  margin-top:
+    24px;
 
-  background: #0d1119;
+  padding:
+    4px;
+
+  background:
+    #0d1119;
 
   border:
     1px solid #343d4d;
 
-  border-radius: 7px;
+  border-radius:
+    7px;
 }
 
 .language-button {
-  min-width: 90px;
+  min-width:
+    90px;
 
-  padding: 9px 16px;
+  padding:
+    9px 16px;
 
-  border: 0;
-  border-radius: 4px;
+  border:
+    0;
 
-  background: transparent;
+  border-radius:
+    4px;
 
-  color: #929aa7;
+  background:
+    transparent;
 
-  font-size: 13px;
-  font-weight: 600;
+  color:
+    #929aa7;
 
-  cursor: pointer;
+  font-size:
+    13px;
+
+  font-weight:
+    600;
+
+  cursor:
+    pointer;
 
   transition:
     background .2s ease,
@@ -112,7 +148,8 @@ body {
   background:
     rgba(183,154,102,.12);
 
-  color: #ffffff;
+  color:
+    #ffffff;
 }
 
 .language-button.active {
@@ -123,7 +160,8 @@ body {
       #ad8d52
     );
 
-  color: #ffffff;
+  color:
+    #ffffff;
 }
 
 
