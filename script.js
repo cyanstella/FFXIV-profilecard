@@ -10,6 +10,9 @@ const APP_VERSION =
    CONSTANTS
 ================================================== */
 
+const CARD_SIZE =
+  1200;
+
 const MAX_LENGTH =
   80;
 
@@ -19,49 +22,95 @@ const MAX_LINES =
 const CUSTOM_QUESTION_MAX_LENGTH =
   40;
 
-const CARD_SIZE =
-  1200;
-
-
-/* ==================================================
-   TRANSPARENT PIXEL
-================================================== */
 
 const TRANSPARENT_PIXEL =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjYGBg+A8AAQQBAHAgZQsAAAAASUVORK5CYII=";
 
 
 /* ==================================================
-   BACKGROUND STATE
+   BACKGROUND STATES
 
-   プレビューのimgだけに頼らず、
-   実際の画像データをJS側にも保持する。
+   iPhone用書き出しではDOMのimgを使わず、
+   ここに保持している元画像をCanvasへ直接描画する。
 ================================================== */
 
 const backgroundStates = {
 
   2: {
-    dataUrl: null,
-    image: null,
-    x: 50,
-    y: 50,
-    scale: 100
+
+    image:
+      null,
+
+    dataUrl:
+      null,
+
+    x:
+      50,
+
+    y:
+      50,
+
+    scale:
+      100,
+
+    overlayColor:
+      "black",
+
+    overlayOpacity:
+      0.45
+
   },
+
 
   3: {
-    dataUrl: null,
-    image: null,
-    x: 50,
-    y: 50,
-    scale: 100
+
+    image:
+      null,
+
+    dataUrl:
+      null,
+
+    x:
+      50,
+
+    y:
+      50,
+
+    scale:
+      100,
+
+    overlayColor:
+      "black",
+
+    overlayOpacity:
+      0.45
+
   },
 
+
   4: {
-    dataUrl: null,
-    image: null,
-    x: 50,
-    y: 50,
-    scale: 100
+
+    image:
+      null,
+
+    dataUrl:
+      null,
+
+    x:
+      50,
+
+    y:
+      50,
+
+    scale:
+      100,
+
+    overlayColor:
+      "black",
+
+    overlayOpacity:
+      0.45
+
   }
 
 };
@@ -261,16 +310,16 @@ const translations = {
       "PNG形式・1200 × 1200px",
 
     iosGuide:
-      "iPhone / iPadでは生成された画像を長押しして保存できます。",
+      "iPhone / iPadでは生成された画像を長押しして「写真に保存」できます。",
 
-    generatedAlert:
+    generated:
       "4枚の画像を生成しました。",
 
-    cardGenerationError:
+    errorCard:
       number =>
         `カード${number}の画像生成に失敗しました。`,
 
-    backgroundLoadError:
+    loadBackgroundError:
       "背景画像の読み込みに失敗しました。",
 
     openImage:
@@ -415,14 +464,14 @@ const translations = {
     iosGuide:
       "On iPhone / iPad, press and hold a generated image to save it.",
 
-    generatedAlert:
+    generated:
       "Four images have been generated.",
 
-    cardGenerationError:
+    errorCard:
       number =>
         `Failed to generate card ${number}.`,
 
-    backgroundLoadError:
+    loadBackgroundError:
       "Failed to load the background image.",
 
     openImage:
@@ -440,7 +489,7 @@ const translations = {
 
 
 /* ==================================================
-   LANGUAGE STATE
+   LANGUAGE
 ================================================== */
 
 let currentLanguage =
@@ -466,7 +515,9 @@ try {
 
 }
 
-catch (error) {}
+catch (
+  error
+) {}
 
 
 /* ==================================================
@@ -506,7 +557,7 @@ document
 
 
 /* ==================================================
-   IOS DETECT
+   IOS
 ================================================== */
 
 function isIOSDevice() {
@@ -549,7 +600,7 @@ if (
 
 
 /* ==================================================
-   LANGUAGE
+   SET LANGUAGE
 ================================================== */
 
 function setLanguage(
@@ -557,7 +608,9 @@ function setLanguage(
 ) {
 
   if (
-    !translations[language]
+    !translations[
+      language
+    ]
   ) {
 
     language =
@@ -579,7 +632,9 @@ function setLanguage(
 
   }
 
-  catch (error) {}
+  catch (
+    error
+  ) {}
 
 
   document.documentElement.lang =
@@ -809,13 +864,13 @@ for (
     );
 
 
-  const answer =
+  const output =
     document.getElementById(
       `answer-${i}`
     );
 
 
-  const count =
+  const counter =
     document.getElementById(
       `count-q${i}`
     );
@@ -823,7 +878,7 @@ for (
 
   if (
     !input ||
-    !answer
+    !output
   ) {
 
     continue;
@@ -861,7 +916,7 @@ for (
   );
 
 
-  const updateAnswer =
+  const update =
     () => {
 
       let value =
@@ -918,61 +973,22 @@ for (
         value;
 
 
-      answer.textContent =
+      output.textContent =
         value;
 
 
-      answer.style.setProperty(
+      output.style.setProperty(
         "--answer-font-size",
         `${getAnswerFontSize(value.length)}px`
       );
 
 
       if (
-        count
+        counter
       ) {
 
-        count.textContent =
+        counter.textContent =
           value.length;
-
-
-        const parent =
-          count.parentElement;
-
-
-        if (
-          parent
-        ) {
-
-          parent.classList.remove(
-            "is-warning",
-            "is-limit"
-          );
-
-
-          if (
-            value.length >=
-            MAX_LENGTH
-          ) {
-
-            parent.classList.add(
-              "is-limit"
-            );
-
-          }
-
-          else if (
-            value.length >=
-            60
-          ) {
-
-            parent.classList.add(
-              "is-warning"
-            );
-
-          }
-
-        }
 
       }
 
@@ -986,11 +1002,11 @@ for (
 
   input.addEventListener(
     "input",
-    updateAnswer
+    update
   );
 
 
-  updateAnswer();
+  update();
 
 }
 
@@ -1036,7 +1052,7 @@ function getAnswerFontSize(
 
 
 /* ==================================================
-   CARD FIT
+   FIT CARDS
 ================================================== */
 
 function fitAllAnswerCards() {
@@ -1222,43 +1238,6 @@ function updateQ20Title() {
     counter.textContent =
       value.length;
 
-
-    const parent =
-      counter.parentElement;
-
-
-    if (
-      parent
-    ) {
-
-      parent.classList.remove(
-        "is-warning",
-        "is-limit"
-      );
-
-
-      if (
-        value.length >= 40
-      ) {
-
-        parent.classList.add(
-          "is-limit"
-        );
-
-      }
-
-      else if (
-        value.length >= 32
-      ) {
-
-        parent.classList.add(
-          "is-warning"
-        );
-
-      }
-
-    }
-
   }
 
 
@@ -1282,7 +1261,7 @@ if (
 
 
 /* ==================================================
-   FILE READER
+   FILE -> DATAURL
 ================================================== */
 
 function readImageAsDataURL(
@@ -1324,11 +1303,11 @@ function readImageAsDataURL(
 
 
 /* ==================================================
-   CREATE IMAGE FROM DATA URL
+   LOAD IMAGE
 ================================================== */
 
-function loadDataUrlImage(
-  dataUrl
+function loadImage(
+  src
 ) {
 
   return new Promise(
@@ -1356,7 +1335,7 @@ function loadDataUrlImage(
 
 
       image.src =
-        dataUrl;
+        src;
 
     }
   );
@@ -1365,7 +1344,7 @@ function loadDataUrlImage(
 
 
 /* ==================================================
-   SETTINGS
+   CARD SETTINGS
 ================================================== */
 
 function setupCardSettings(
@@ -1390,7 +1369,7 @@ function setupCardSettings(
     );
 
 
-  const removeButton =
+  const clear =
     document.getElementById(
       options.removeButtonId
     );
@@ -1460,7 +1439,7 @@ function setupCardSettings(
     !card ||
     !previewImage ||
     !upload ||
-    !removeButton ||
+    !clear ||
     !x ||
     !y ||
     !scale ||
@@ -1470,7 +1449,7 @@ function setupCardSettings(
   ) {
 
     console.error(
-      "Card setting element missing:",
+      "Card settings missing",
       options
     );
 
@@ -1482,14 +1461,6 @@ function setupCardSettings(
 
   previewImage.src =
     TRANSPARENT_PIXEL;
-
-
-  let overlayColor =
-    document.querySelector(
-      `input[name="${options.overlayRadioName}"]:checked`
-    )?.value
-    ||
-    "black";
 
 
   function updateBackground() {
@@ -1524,48 +1495,44 @@ function setupCardSettings(
       `${state.x}% ${state.y}%`;
 
 
-    if (
-      xValue
-    ) {
-
-      xValue.textContent =
-        `${state.x}%`;
-
-    }
+    xValue.textContent =
+      `${state.x}%`;
 
 
-    if (
-      yValue
-    ) {
-
-      yValue.textContent =
-        `${state.y}%`;
-
-    }
+    yValue.textContent =
+      `${state.y}%`;
 
 
-    if (
-      scaleValue
-    ) {
-
-      scaleValue.textContent =
-        `${state.scale}%`;
-
-    }
+    scaleValue.textContent =
+      `${state.scale}%`;
 
   }
 
 
   function updateOverlay() {
 
-    const value =
+    const checked =
+      document.querySelector(
+        `input[name="${options.overlayRadioName}"]:checked`
+      );
+
+
+    state.overlayColor =
+      checked
+      ?
+      checked.value
+      :
+      "black";
+
+
+    state.overlayOpacity =
       Number(
         opacity.value
       );
 
 
     const rgb =
-      overlayColor ===
+      state.overlayColor ===
       "white"
       ?
       "255,255,255"
@@ -1574,24 +1541,30 @@ function setupCardSettings(
 
 
     overlay.style.background =
-      `rgba(${rgb},${value})`;
+      `rgba(${rgb},${state.overlayOpacity})`;
 
 
-    if (
-      opacityValue
-    ) {
-
-      opacityValue.textContent =
-        `${Math.round(value * 100)}%`;
-
-    }
+    opacityValue.textContent =
+      `${Math.round(state.overlayOpacity * 100)}%`;
 
   }
 
 
-  function applyTextTheme(
-    color
-  ) {
+  function updateTextColor() {
+
+    const checked =
+      document.querySelector(
+        `input[name="${options.textRadioName}"]:checked`
+      );
+
+
+    const color =
+      checked
+      ?
+      checked.value
+      :
+      "white";
+
 
     card.classList.remove(
       "text-white",
@@ -1651,12 +1624,15 @@ function setupCardSettings(
 
 
         /*
-          画像生成用の元画像を
-          JSのstateに保持する。
+          ★重要
+
+          書き出し時にはDOM imgを使わず、
+          このImageオブジェクトから直接
+          CanvasへdrawImageする。
         */
 
-        const loadedImage =
-          await loadDataUrlImage(
+        const image =
+          await loadImage(
             dataUrl
           );
 
@@ -1666,12 +1642,8 @@ function setupCardSettings(
 
 
         state.image =
-          loadedImage;
+          image;
 
-
-        /*
-          画面プレビューにも表示
-        */
 
         previewImage.src =
           dataUrl;
@@ -1693,7 +1665,7 @@ function setupCardSettings(
         alert(
           translations[
             currentLanguage
-          ].backgroundLoadError
+          ].loadBackgroundError
         );
 
       }
@@ -1702,7 +1674,7 @@ function setupCardSettings(
   );
 
 
-  removeButton.addEventListener(
+  clear.addEventListener(
     "click",
     () => {
 
@@ -1710,28 +1682,12 @@ function setupCardSettings(
         "";
 
 
-      state.dataUrl =
-        null;
-
-
       state.image =
         null;
 
 
-      state.x =
-        50;
-
-
-      state.y =
-        50;
-
-
-      state.scale =
-        100;
-
-
-      previewImage.src =
-        TRANSPARENT_PIXEL;
+      state.dataUrl =
+        null;
 
 
       x.value =
@@ -1744,6 +1700,10 @@ function setupCardSettings(
 
       scale.value =
         100;
+
+
+      previewImage.src =
+        TRANSPARENT_PIXEL;
 
 
       updateBackground();
@@ -1785,24 +1745,7 @@ function setupCardSettings(
 
         radio.addEventListener(
           "change",
-          () => {
-
-            if (
-              !radio.checked
-            ) {
-
-              return;
-
-            }
-
-
-            overlayColor =
-              radio.value;
-
-
-            updateOverlay();
-
-          }
+          updateOverlay
         );
 
       }
@@ -1818,52 +1761,24 @@ function setupCardSettings(
 
         radio.addEventListener(
           "change",
-          () => {
-
-            if (
-              !radio.checked
-            ) {
-
-              return;
-
-            }
-
-
-            applyTextTheme(
-              radio.value
-            );
-
-          }
+          updateTextColor
         );
 
       }
     );
 
 
-  const checked =
-    document.querySelector(
-      `input[name="${options.textRadioName}"]:checked`
-    );
-
-
-  applyTextTheme(
-    checked
-      ?
-      checked.value
-      :
-      "white"
-  );
-
-
   updateBackground();
 
   updateOverlay();
+
+  updateTextColor();
 
 }
 
 
 /* ==================================================
-   CARD SETTINGS
+   SETUP
 ================================================== */
 
 setupCardSettings({
@@ -2057,7 +1972,7 @@ function updatePreviewScales() {
           4;
 
 
-        const availableWidth =
+        const available =
           Math.max(
             0,
             frame.clientWidth -
@@ -2066,7 +1981,7 @@ function updatePreviewScales() {
 
 
         const scale =
-          availableWidth /
+          available /
           CARD_SIZE;
 
 
@@ -2149,56 +2064,14 @@ function sleep(
 
 
 /* ==================================================
-   FLATTEN BACKGROUND TO CANVAS
+   CREATE FINAL BACKGROUND CANVAS
 
-   ★今回の重要修正★
-
-   object-fit:cover
-   object-position
-   追加scale
-
-   をすべて1200×1200 Canvasへ焼き込む。
+   ★背景画像はここで直接描画する。
 ================================================== */
 
-function createFlattenedBackground(
-  state
+function createBackgroundCanvas(
+  cardNumber
 ) {
-
-  if (
-    !state ||
-    !state.image
-  ) {
-
-    return null;
-
-  }
-
-
-  const source =
-    state.image;
-
-
-  const sourceWidth =
-    source.naturalWidth
-    ||
-    source.width;
-
-
-  const sourceHeight =
-    source.naturalHeight
-    ||
-    source.height;
-
-
-  if (
-    !sourceWidth ||
-    !sourceHeight
-  ) {
-
-    return null;
-
-  }
-
 
   const canvas =
     document.createElement(
@@ -2216,10 +2089,7 @@ function createFlattenedBackground(
 
   const ctx =
     canvas.getContext(
-      "2d",
-      {
-        alpha: true
-      }
+      "2d"
     );
 
 
@@ -2228,91 +2098,227 @@ function createFlattenedBackground(
   ) {
 
     throw new Error(
-      "Canvas context unavailable"
+      "Canvas unavailable"
+    );
+
+  }
+
+
+  const state =
+    backgroundStates[
+      cardNumber
+    ];
+
+
+  /*
+    まず標準の青黒背景を描画。
+  */
+
+  const gradient =
+    ctx.createLinearGradient(
+      0,
+      0,
+      CARD_SIZE,
+      CARD_SIZE
+    );
+
+
+  gradient.addColorStop(
+    0,
+    "#131e31"
+  );
+
+
+  gradient.addColorStop(
+    1,
+    "#0c111b"
+  );
+
+
+  ctx.fillStyle =
+    gradient;
+
+
+  ctx.fillRect(
+    0,
+    0,
+    CARD_SIZE,
+    CARD_SIZE
+  );
+
+
+  /*
+    背景画像がある場合
+  */
+
+  if (
+    state &&
+    state.image
+  ) {
+
+    drawBackgroundImage(
+      ctx,
+      state
     );
 
   }
 
 
   /*
-    object-fit: cover
-
-    1200×1200を完全に覆うサイズを求める
+    背景カバーもCanvas上で直接合成。
   */
 
-  const coverScale =
+  if (
+    state
+  ) {
+
+    if (
+      state.overlayColor ===
+      "white"
+    ) {
+
+      ctx.fillStyle =
+        `rgba(255,255,255,${state.overlayOpacity})`;
+
+    }
+
+    else {
+
+      ctx.fillStyle =
+        `rgba(0,0,0,${state.overlayOpacity})`;
+
+    }
+
+
+    ctx.fillRect(
+      0,
+      0,
+      CARD_SIZE,
+      CARD_SIZE
+    );
+
+  }
+
+
+  return canvas;
+
+}
+
+
+/* ==================================================
+   DRAW BACKGROUND
+
+   object-fit:cover
+   object-position
+   transform:scale
+
+   をCanvas上で再現。
+================================================== */
+
+function drawBackgroundImage(
+  ctx,
+  state
+) {
+
+  const image =
+    state.image;
+
+
+  const imageWidth =
+    image.naturalWidth
+    ||
+    image.width;
+
+
+  const imageHeight =
+    image.naturalHeight
+    ||
+    image.height;
+
+
+  if (
+    !imageWidth ||
+    !imageHeight
+  ) {
+
+    return;
+
+  }
+
+
+  /*
+    object-fit: cover
+  */
+
+  const baseScale =
     Math.max(
       CARD_SIZE /
-      sourceWidth,
+      imageWidth,
 
       CARD_SIZE /
-      sourceHeight
+      imageHeight
     );
 
 
-  const drawWidth =
-    sourceWidth *
-    coverScale;
+  const baseWidth =
+    imageWidth *
+    baseScale;
 
 
-  const drawHeight =
-    sourceHeight *
-    coverScale;
+  const baseHeight =
+    imageHeight *
+    baseScale;
 
 
-  const positionX =
+  const px =
     state.x /
     100;
 
 
-  const positionY =
+  const py =
     state.y /
     100;
 
 
   /*
-    object-positionと同等の位置
+    object-position
   */
 
-  const drawX =
+  const x =
     (
       CARD_SIZE -
-      drawWidth
+      baseWidth
     )
     *
-    positionX;
+    px;
 
 
-  const drawY =
+  const y =
     (
       CARD_SIZE -
-      drawHeight
+      baseHeight
     )
     *
-    positionY;
+    py;
 
 
   /*
-    CSS:
-    transform:scale(...)
-    transform-origin:x% y%
-
-    をCanvas上で再現
+    CSS transform-origin
   */
-
-  const extraScale =
-    state.scale /
-    100;
-
 
   const originX =
     CARD_SIZE *
-    positionX;
+    px;
 
 
   const originY =
     CARD_SIZE *
-    positionY;
+    py;
+
+
+  const extraScale =
+    state.scale /
+    100;
 
 
   ctx.save();
@@ -2337,34 +2343,26 @@ function createFlattenedBackground(
 
 
   ctx.drawImage(
-    source,
-    drawX,
-    drawY,
-    drawWidth,
-    drawHeight
+    image,
+    x,
+    y,
+    baseWidth,
+    baseHeight
   );
 
 
   ctx.restore();
 
-
-  /*
-    最終的に1枚のPNGへする。
-  */
-
-  return canvas.toDataURL(
-    "image/png",
-    1
-  );
-
 }
 
 
 /* ==================================================
-   EXPORT CLONE
+   CREATE TRANSPARENT CONTENT CLONE
+
+   背景画像とカバーをcloneから削除する。
 ================================================== */
 
-function createExportClone(
+function createTransparentContentClone(
   sourceCard
 ) {
 
@@ -2379,7 +2377,7 @@ function createExportClone(
   ) {
 
     throw new Error(
-      "Export workspace not found"
+      "Export workspace missing"
     );
 
   }
@@ -2394,10 +2392,6 @@ function createExportClone(
       true
     );
 
-
-  /*
-    同一ページ内に同じidを作らない
-  */
 
   clone.removeAttribute(
     "id"
@@ -2424,6 +2418,50 @@ function createExportClone(
   );
 
 
+  /*
+    背景画像と背景カバーを
+    html-to-imageへ渡さない。
+  */
+
+  const background =
+    clone.querySelector(
+      ".card-background"
+    );
+
+
+  if (
+    background
+  ) {
+
+    background.remove();
+
+  }
+
+
+  const overlay =
+    clone.querySelector(
+      ".card-overlay"
+    );
+
+
+  if (
+    overlay
+  ) {
+
+    overlay.remove();
+
+  }
+
+
+  /*
+    カード自身も透明化。
+    金枠・内枠・文字だけ残す。
+  */
+
+  clone.style.background =
+    "transparent";
+
+
   clone.style.setProperty(
     "--preview-scale",
     "1"
@@ -2442,16 +2480,16 @@ function createExportClone(
     "0";
 
 
-  clone.style.transform =
-    "none";
-
-
   clone.style.width =
     `${CARD_SIZE}px`;
 
 
   clone.style.height =
     `${CARD_SIZE}px`;
+
+
+  clone.style.transform =
+    "none";
 
 
   workspace.appendChild(
@@ -2465,122 +2503,390 @@ function createExportClone(
 
 
 /* ==================================================
-   APPLY FLATTENED BACKGROUND TO CLONE
+   CREATE TEXT/FRAME PNG
 ================================================== */
 
-function applyFlattenedBackground(
-  clone,
-  cardNumber
+async function createContentLayer(
+  sourceCard
 ) {
 
+  const clone =
+    createTransparentContentClone(
+      sourceCard
+    );
+
+
+  await nextFrame();
+
+
   if (
-    cardNumber === 1
+    isIOS
   ) {
 
-    return;
+    await sleep(
+      250
+    );
 
   }
 
 
-  const state =
-    backgroundStates[
-      cardNumber
-    ];
+  const dataUrl =
+    await htmlToImage.toPng(
+      clone,
+      {
+
+        width:
+          CARD_SIZE,
+
+        height:
+          CARD_SIZE,
+
+        canvasWidth:
+          CARD_SIZE,
+
+        canvasHeight:
+          CARD_SIZE,
+
+        pixelRatio:
+          1,
+
+        cacheBust:
+          false,
+
+        backgroundColor:
+          "rgba(0,0,0,0)",
+
+        style: {
+
+          width:
+            `${CARD_SIZE}px`,
+
+          height:
+            `${CARD_SIZE}px`,
+
+          position:
+            "relative",
+
+          left:
+            "0",
+
+          top:
+            "0",
+
+          background:
+            "transparent",
+
+          transform:
+            "none"
+
+        }
+
+      }
+    );
 
 
-  const background =
-    clone.querySelector(
-      ".card-background"
+  const workspace =
+    document.getElementById(
+      "export-workspace"
     );
 
 
   if (
-    !background
+    workspace
   ) {
 
-    return;
+    workspace.innerHTML =
+      "";
 
   }
 
 
-  /*
-    clone側に残っている元imgを削除。
+  return dataUrl;
 
-    html-to-imageへ
-    アップロード画像を直接渡さない。
+}
+
+
+/* ==================================================
+   QUESTION CARD EXPORT
+================================================== */
+
+async function generateQuestionCard(
+  sourceCard
+) {
+
+  /*
+    質問カードにはアップロード画像がないので、
+    従来方式で問題なし。
   */
 
-  const originalImage =
-    background.querySelector(
-      ".card-background-image"
+  const workspace =
+    document.getElementById(
+      "export-workspace"
     );
 
 
-  if (
-    originalImage
-  ) {
-
-    originalImage.remove();
-
-  }
+  workspace.innerHTML =
+    "";
 
 
-  /*
-    背景画像未設定なら
-    元の青黒グラデーションだけ残す。
-  */
-
-  if (
-    !state ||
-    !state.image
-  ) {
-
-    return;
-
-  }
-
-
-  const flattened =
-    createFlattenedBackground(
-      state
+  const clone =
+    sourceCard.cloneNode(
+      true
     );
 
 
-  if (
-    !flattened
-  ) {
-
-    return;
-
-  }
-
-
-  /*
-    1200×1200へ焼き込んだPNGを
-    CSS background-imageとしてセット。
-
-    位置調整やscaleはすでに画像に反映済み。
-  */
-
-  background.classList.add(
-    "export-flat-background"
+  clone.removeAttribute(
+    "id"
   );
 
 
-  background.style.backgroundImage =
-    `url("${flattened}")`;
+  clone
+    .querySelectorAll(
+      "[id]"
+    )
+    .forEach(
+      element => {
+
+        element.removeAttribute(
+          "id"
+        );
+
+      }
+    );
 
 
-  background.style.backgroundSize =
-    `${CARD_SIZE}px ${CARD_SIZE}px`;
+  clone.classList.add(
+    "export-clone"
+  );
 
 
-  background.style.backgroundPosition =
-    "0 0";
+  clone.style.background =
+    "#f4f1e9";
 
 
-  background.style.backgroundRepeat =
-    "no-repeat";
+  workspace.appendChild(
+    clone
+  );
+
+
+  await nextFrame();
+
+
+  const dataUrl =
+    await htmlToImage.toPng(
+      clone,
+      {
+
+        width:
+          CARD_SIZE,
+
+        height:
+          CARD_SIZE,
+
+        canvasWidth:
+          CARD_SIZE,
+
+        canvasHeight:
+          CARD_SIZE,
+
+        pixelRatio:
+          1,
+
+        cacheBust:
+          false,
+
+        backgroundColor:
+          "#f4f1e9"
+
+      }
+    );
+
+
+  workspace.innerHTML =
+    "";
+
+
+  return dataURLToBlob(
+    dataUrl
+  );
+
+}
+
+
+/* ==================================================
+   ANSWER CARD EXPORT
+
+   ★今回の本命
+================================================== */
+
+async function generateAnswerCard(
+  sourceCard,
+  cardNumber
+) {
+
+  /*
+    1.
+    背景＋背景カバーをCanvasに描く。
+  */
+
+  const finalCanvas =
+    createBackgroundCanvas(
+      cardNumber
+    );
+
+
+  const ctx =
+    finalCanvas.getContext(
+      "2d"
+    );
+
+
+  if (
+    !ctx
+  ) {
+
+    throw new Error(
+      "Canvas unavailable"
+    );
+
+  }
+
+
+  /*
+    2.
+    文字・枠だけ透明PNG化。
+  */
+
+  const contentDataUrl =
+    await createContentLayer(
+      sourceCard
+    );
+
+
+  /*
+    3.
+    透明PNGを画像として読み込む。
+  */
+
+  const contentImage =
+    await loadImage(
+      contentDataUrl
+    );
+
+
+  /*
+    4.
+    背景Canvasの上へ文字・枠を重ねる。
+  */
+
+  ctx.drawImage(
+    contentImage,
+    0,
+    0,
+    CARD_SIZE,
+    CARD_SIZE
+  );
+
+
+  /*
+    5.
+    最終CanvasをBlobへ。
+  */
+
+  return canvasToBlob(
+    finalCanvas
+  );
+
+}
+
+
+/* ==================================================
+   CANVAS -> BLOB
+================================================== */
+
+function canvasToBlob(
+  canvas
+) {
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      /*
+        iOSでもcanvas.toBlobは利用可能。
+      */
+
+      if (
+        canvas.toBlob
+      ) {
+
+        canvas.toBlob(
+          blob => {
+
+            if (
+              blob
+            ) {
+
+              resolve(
+                blob
+              );
+
+            }
+
+            else {
+
+              reject(
+                new Error(
+                  "Canvas Blob is null"
+                )
+              );
+
+            }
+
+          },
+          "image/png"
+        );
+
+
+        return;
+
+      }
+
+
+      /*
+        古い環境用。
+      */
+
+      try {
+
+        const dataUrl =
+          canvas.toDataURL(
+            "image/png"
+          );
+
+
+        resolve(
+          dataURLToBlob(
+            dataUrl
+          )
+        );
+
+      }
+
+      catch (
+        error
+      ) {
+
+        reject(
+          error
+        );
+
+      }
+
+    }
+  );
 
 }
 
@@ -2597,17 +2903,6 @@ function dataURLToBlob(
     dataUrl.split(
       ","
     );
-
-
-  if (
-    parts.length < 2
-  ) {
-
-    throw new Error(
-      "Invalid Data URL"
-    );
-
-  }
 
 
   const mime =
@@ -2654,178 +2949,6 @@ function dataURLToBlob(
         mime
     }
   );
-
-}
-
-
-/* ==================================================
-   GENERATE ONE CARD
-================================================== */
-
-async function generateCardImage(
-  sourceCard,
-  cardNumber
-) {
-
-  const clone =
-    createExportClone(
-      sourceCard
-    );
-
-
-  try {
-
-    /*
-      回答カードの場合、
-      背景をCanvasで焼き込む。
-    */
-
-    applyFlattenedBackground(
-      clone,
-      cardNumber
-    );
-
-
-    /*
-      DOM更新をWebKitへ反映
-    */
-
-    await nextFrame();
-
-
-    if (
-      isIOS
-    ) {
-
-      await sleep(
-        400
-      );
-
-    }
-
-
-    const options = {
-
-      width:
-        CARD_SIZE,
-
-      height:
-        CARD_SIZE,
-
-      canvasWidth:
-        CARD_SIZE,
-
-      canvasHeight:
-        CARD_SIZE,
-
-      pixelRatio:
-        1,
-
-      cacheBust:
-        false,
-
-      backgroundColor:
-        cardNumber === 1
-        ?
-        "#f4f1e9"
-        :
-        "#101722",
-
-      style: {
-
-        width:
-          `${CARD_SIZE}px`,
-
-        height:
-          `${CARD_SIZE}px`,
-
-        position:
-          "relative",
-
-        left:
-          "0",
-
-        top:
-          "0",
-
-        transform:
-          "none",
-
-        transformOrigin:
-          "top left"
-
-      }
-
-    };
-
-
-    /*
-      iPhone / iPadは
-      toPng → Blob変換方式
-    */
-
-    if (
-      isIOS
-    ) {
-
-      const dataUrl =
-        await htmlToImage.toPng(
-          clone,
-          options
-        );
-
-
-      return dataURLToBlob(
-        dataUrl
-      );
-
-    }
-
-
-    /*
-      PC
-    */
-
-    const blob =
-      await htmlToImage.toBlob(
-        clone,
-        options
-      );
-
-
-    if (
-      !blob
-    ) {
-
-      throw new Error(
-        `Card ${cardNumber}: Blob is null`
-      );
-
-    }
-
-
-    return blob;
-
-  }
-
-  finally {
-
-    const workspace =
-      document.getElementById(
-        "export-workspace"
-      );
-
-
-    if (
-      workspace
-    ) {
-
-      workspace.innerHTML =
-        "";
-
-    }
-
-  }
 
 }
 
@@ -2894,10 +3017,7 @@ if (
 
 
         /*
-          フォント準備。
-
-          フォント側が止まっても
-          3秒で先へ進む。
+          フォント待機。
         */
 
         if (
@@ -2956,17 +3076,12 @@ if (
           await nextFrame();
 
 
-          /*
-            iPhone / iPadへ
-            描画処理を返す
-          */
-
           if (
             isIOS
           ) {
 
             await sleep(
-              300
+              250
             );
 
           }
@@ -2983,7 +3098,7 @@ if (
           ) {
 
             throw new Error(
-              `Card ${i} not found`
+              `Card ${i} missing`
             );
 
           }
@@ -2998,11 +3113,40 @@ if (
           await nextFrame();
 
 
-          const blob =
-            await generateCardImage(
-              sourceCard,
-              i
-            );
+          let blob;
+
+
+          /*
+            質問カード
+          */
+
+          if (
+            i === 1
+          ) {
+
+            blob =
+              await generateQuestionCard(
+                sourceCard
+              );
+
+          }
+
+
+          /*
+            回答カード
+
+            背景Canvas＋文字Layer方式
+          */
+
+          else {
+
+            blob =
+              await generateAnswerCard(
+                sourceCard,
+                i
+              );
+
+          }
 
 
           generated.push(
@@ -3022,16 +3166,15 @@ if (
 
 
           /*
-            1枚終わるごとに
-            メモリ開放時間を作る
+            WebKitのメモリ負荷を下げる。
           */
 
           await sleep(
             isIOS
             ?
-            1000
+            900
             :
-            300
+            250
           );
 
 
@@ -3054,7 +3197,7 @@ if (
 
 
           alert(
-            t.generatedAlert
+            t.generated
           );
 
         }
@@ -3097,11 +3240,11 @@ if (
 
 
         if (
-          currentCard > 0
+          currentCard
         ) {
 
           alert(
-            t.cardGenerationError(
+            t.errorCard(
               currentCard
             )
           );
@@ -3111,7 +3254,8 @@ if (
         else {
 
           alert(
-            currentLanguage === "ja"
+            currentLanguage ===
+            "ja"
             ?
             "画像生成の準備に失敗しました。"
             :
@@ -3242,35 +3386,35 @@ function showIOSExportResults(
         "mobile-export-actions";
 
 
-      const openLink =
+      const open =
         document.createElement(
           "a"
         );
 
 
-      openLink.href =
+      open.href =
         url;
 
 
-      openLink.target =
+      open.target =
         "_blank";
 
 
-      openLink.rel =
+      open.rel =
         "noopener";
 
 
-      openLink.textContent =
+      open.textContent =
         t.openImage;
 
 
       actions.appendChild(
-        openLink
+        open
       );
 
 
       /*
-        Share API対応端末
+        Share API
       */
 
       try {
@@ -3301,21 +3445,21 @@ function showIOSExportResults(
           )
         ) {
 
-          const shareButton =
+          const share =
             document.createElement(
               "button"
             );
 
 
-          shareButton.type =
+          share.type =
             "button";
 
 
-          shareButton.textContent =
+          share.textContent =
             t.shareSave;
 
 
-          shareButton.addEventListener(
+          share.addEventListener(
             "click",
             async () => {
 
@@ -3359,7 +3503,7 @@ function showIOSExportResults(
 
 
           actions.appendChild(
-            shareButton
+            share
           );
 
         }
@@ -3402,11 +3546,13 @@ function showIOSExportResults(
 
   mobileExportResults.scrollIntoView(
     {
+
       behavior:
         "smooth",
 
       block:
         "start"
+
     }
   );
 
@@ -3414,7 +3560,7 @@ function showIOSExportResults(
 
 
 /* ==================================================
-   CLEAR GENERATED
+   CLEAR RESULTS
 ================================================== */
 
 function clearGeneratedResults() {
@@ -3451,7 +3597,7 @@ function clearGeneratedResults() {
 
 
 /* ==================================================
-   DOWNLOAD PC
+   DOWNLOAD
 ================================================== */
 
 function downloadBlob(
@@ -3465,29 +3611,29 @@ function downloadBlob(
     );
 
 
-  const link =
+  const anchor =
     document.createElement(
       "a"
     );
 
 
-  link.href =
+  anchor.href =
     url;
 
 
-  link.download =
+  anchor.download =
     filename;
 
 
   document.body.appendChild(
-    link
+    anchor
   );
 
 
-  link.click();
+  anchor.click();
 
 
-  link.remove();
+  anchor.remove();
 
 
   setTimeout(

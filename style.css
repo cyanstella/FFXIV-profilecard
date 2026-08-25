@@ -29,8 +29,11 @@ body {
 
 .site-header {
   max-width: 1100px;
+
   margin: 0 auto;
+
   padding: 60px 20px 38px;
+
   text-align: center;
 }
 
@@ -43,7 +46,9 @@ body {
     serif;
 
   font-size: 42px;
+
   font-weight: 400;
+
   letter-spacing: .14em;
 }
 
@@ -54,14 +59,17 @@ body {
 
 .language-switch {
   display: inline-flex;
+
   gap: 4px;
 
   margin: 26px auto 2px;
+
   padding: 4px;
 
   background: #0d1119;
 
   border: 1px solid #343d4d;
+
   border-radius: 7px;
 }
 
@@ -71,12 +79,15 @@ body {
   padding: 9px 17px;
 
   border: 0;
+
   border-radius: 4px;
 
   background: transparent;
+
   color: #929aa7;
 
   font-size: 13px;
+
   font-weight: 600;
 
   cursor: pointer;
@@ -87,7 +98,9 @@ body {
 }
 
 .language-button:hover {
-  background: rgba(183,154,102,.12);
+  background:
+    rgba(183,154,102,.12);
+
   color: #fff;
 }
 
@@ -121,11 +134,15 @@ body {
   max-width: 760px;
 
   margin: 32px auto 0;
+
   padding: 24px 30px;
 
-  background: rgba(255,255,255,.025);
+  background:
+    rgba(255,255,255,.025);
 
-  border: 1px solid #292f3b;
+  border:
+    1px solid #292f3b;
+
   border-radius: 8px;
 }
 
@@ -135,6 +152,7 @@ body {
   color: #aeb5c1;
 
   font-size: 14px;
+
   line-height: 1.8;
 }
 
@@ -173,13 +191,15 @@ body {
 .export-area-main {
   background: #121722;
 
-  border: 1px solid #2b3240;
+  border:
+    1px solid #2b3240;
+
   border-radius: 12px;
 }
 
 
 /* ==================================================
-   QUESTION CARD PANEL
+   QUESTION PANEL
 ================================================== */
 
 .question-preview-section {
@@ -219,7 +239,11 @@ body {
 }
 
 .question-card-wrap {
-  width: min(100%, 680px);
+  width:
+    min(
+      100%,
+      680px
+    );
 
   margin: 0 auto;
 }
@@ -271,6 +295,7 @@ body {
   color: #d6c19a;
 
   font-size: 15px;
+
   font-weight: 600;
 }
 
@@ -282,12 +307,15 @@ body {
 
   padding: 12px 15px;
 
-  border: 1px solid #343d4d;
+  border:
+    1px solid #343d4d;
+
   border-radius: 6px;
 
   outline: none;
 
   background: #0d1119;
+
   color: #fff;
 
   font-family: inherit;
@@ -301,6 +329,7 @@ body {
   height: 72px;
 
   min-height: 72px;
+
   max-height: 72px;
 
   resize: none;
@@ -352,7 +381,8 @@ body {
 
   padding-top: 28px;
 
-  border-top: 1px solid #343d4d;
+  border-top:
+    1px solid #343d4d;
 }
 
 .custom-question-title {
@@ -361,6 +391,7 @@ body {
   color: #d6c19a;
 
   font-size: 18px;
+
   font-weight: 600;
 }
 
@@ -384,11 +415,16 @@ body {
 
   align-items: start;
 
-  width: min(100%, 1600px);
+  width:
+    min(
+      100%,
+      1600px
+    );
 
   margin: 0 auto;
 
-  padding: 0 24px 34px;
+  padding:
+    0 24px 34px;
 }
 
 .settings,
@@ -419,15 +455,18 @@ body {
 
   padding-top: 28px;
 
-  border-top: 1px solid #343d4d;
+  border-top:
+    1px solid #343d4d;
 }
 
 .setting-group h3 {
-  margin: 0 0 22px;
+  margin:
+    0 0 22px;
 
   color: #d6c19a;
 
   font-size: 18px;
+
   font-weight: 500;
 }
 
@@ -444,6 +483,7 @@ body {
   color: #d6c19a;
 
   font-size: 14px;
+
   font-weight: 600;
 }
 
@@ -493,10 +533,13 @@ body {
 button {
   padding: 13px 24px;
 
-  border: 1px solid #b79a66;
+  border:
+    1px solid #b79a66;
+
   border-radius: 5px;
 
   background: #171d27;
+
   color: #fff;
 
   font-size: 15px;
@@ -527,6 +570,7 @@ button {
   color: #d6c19a;
 
   font-size: 13px;
+
   font-weight: 600;
 }
 
@@ -554,14 +598,17 @@ button {
 
 .profile-card {
   --preview-scale: .5;
+
   --answer-scale: 1;
 
   position: absolute;
 
   left: 4px;
+
   top: 4px;
 
   width: 1200px;
+
   height: 1200px;
 
   overflow: hidden;
@@ -571,13 +618,15 @@ button {
       var(--preview-scale)
     );
 
-  transform-origin: top left;
+  transform-origin:
+    top left;
 
   background: #101722;
 
   color: #fff;
 
-  border: 2px solid #a58b5b;
+  border:
+    2px solid #a58b5b;
 }
 
 .profile-card::after {
@@ -598,11 +647,12 @@ button {
 
 
 /* ==================================================
-   BLACK TEXT GOLD
+   LIGHT THEME
 ================================================== */
 
 .profile-card.light-theme {
-  border-color: #7f6537;
+  border-color:
+    #7f6537;
 }
 
 .profile-card.light-theme::after {
@@ -610,12 +660,17 @@ button {
     rgba(127,101,55,.85);
 }
 
-.profile-card.light-theme .small-title,
-.profile-card.light-theme .card-header h2 {
-  color: #7f6537;
+.profile-card.light-theme
+.small-title,
+
+.profile-card.light-theme
+.card-header h2 {
+  color:
+    #7f6537;
 }
 
-.profile-card.light-theme .answer-block {
+.profile-card.light-theme
+.answer-block {
   border-bottom-color:
     rgba(127,101,55,.58);
 }
@@ -626,8 +681,11 @@ button {
 ================================================== */
 
 .question-card-fixed {
-  background: #f4f1e9;
-  color: #171717;
+  background:
+    #f4f1e9;
+
+  color:
+    #171717;
 }
 
 .question-fixed-background {
@@ -651,7 +709,8 @@ button {
 .question-card-fixed .copyright,
 .question-card-fixed .card-version,
 .question-card-fixed .page-number {
-  color: #171717;
+  color:
+    #171717;
 }
 
 
@@ -680,45 +739,26 @@ button {
   position: absolute;
 
   left: 0;
+
   top: 0;
 
   display: block;
 
   width: 100%;
+
   height: 100%;
 
   object-fit: cover;
+
   object-position: 50% 50%;
 
   transform: scale(1);
+
   transform-origin: 50% 50%;
 
   max-width: none;
 
   pointer-events: none;
-}
-
-
-/*
-  書き出し時にCanvasで作った
-  1200×1200背景を配置する専用レイヤー
-*/
-
-.export-flat-background {
-  position: absolute !important;
-
-  inset: 0 !important;
-
-  width: 1200px !important;
-  height: 1200px !important;
-
-  background-repeat: no-repeat !important;
-
-  background-position: center !important;
-
-  background-size: 1200px 1200px !important;
-
-  transform: none !important;
 }
 
 
@@ -750,9 +790,11 @@ button {
   z-index: 2;
 
   width: 100%;
+
   height: 100%;
 
-  padding: 85px 90px;
+  padding:
+    85px 90px;
 }
 
 
@@ -771,25 +813,31 @@ button {
 }
 
 .small-title {
-  margin: 0 0 10px;
+  margin:
+    0 0 10px;
 
-  color: #a58b5b;
+  color:
+    #a58b5b;
 
   font-family:
     Georgia,
     serif;
 
-  font-size: 18px;
+  font-size:
+    18px;
 
-  font-weight: 600;
+  font-weight:
+    600;
 
-  letter-spacing: .28em;
+  letter-spacing:
+    .28em;
 }
 
 .card-header h2 {
   margin: 0;
 
-  color: #a58b5b;
+  color:
+    #a58b5b;
 
   font-family:
     Georgia,
@@ -797,11 +845,14 @@ button {
     "Yu Mincho",
     serif;
 
-  font-size: 48px;
+  font-size:
+    48px;
 
-  font-weight: 400;
+  font-weight:
+    400;
 
-  letter-spacing: .08em;
+  letter-spacing:
+    .08em;
 }
 
 
@@ -810,15 +861,18 @@ button {
 ================================================== */
 
 #card-1 .card-header {
-  margin-bottom: 52px;
+  margin-bottom:
+    52px;
 }
 
 #card-1 .small-title {
-  font-size: 22px;
+  font-size:
+    22px;
 }
 
 #card-1 .card-header h2 {
-  font-size: 56px;
+  font-size:
+    56px;
 }
 
 
@@ -832,23 +886,29 @@ button {
   grid-template-columns:
     1fr 1fr;
 
-  column-gap: 44px;
+  column-gap:
+    44px;
 }
 
 .question-list {
   margin: 0;
 
-  padding-left: 48px;
+  padding-left:
+    48px;
 
-  font-size: 26px;
+  font-size:
+    26px;
 
-  line-height: 1.46;
+  line-height:
+    1.46;
 }
 
 .question-list li {
-  margin-bottom: 18px;
+  margin-bottom:
+    18px;
 
-  padding-left: 8px;
+  padding-left:
+    8px;
 }
 
 .question-list li::marker {
@@ -856,28 +916,38 @@ button {
     Georgia,
     serif;
 
-  font-size: 24px;
+  font-size:
+    24px;
 
-  font-weight: 600;
+  font-weight:
+    600;
 }
 
 
 /* ==================================================
-   ENGLISH QUESTION CARD
+   ENGLISH
 ================================================== */
 
-html[lang="en"] #card-1 .card-header h2 {
-  font-size: 52px;
+html[lang="en"]
+#card-1
+.card-header h2 {
+  font-size:
+    52px;
 }
 
-html[lang="en"] .question-list {
-  font-size: 22px;
+html[lang="en"]
+.question-list {
+  font-size:
+    22px;
 
-  line-height: 1.4;
+  line-height:
+    1.4;
 }
 
-html[lang="en"] .question-list li {
-  margin-bottom: 15px;
+html[lang="en"]
+.question-list li {
+  margin-bottom:
+    15px;
 }
 
 
@@ -886,9 +956,11 @@ html[lang="en"] .question-list li {
 ================================================== */
 
 .answer-block {
-  margin-bottom: 14px;
+  margin-bottom:
+    14px;
 
-  padding-bottom: 12px;
+  padding-bottom:
+    12px;
 
   border-bottom:
     1px solid
@@ -896,19 +968,24 @@ html[lang="en"] .question-list li {
 }
 
 .question {
-  margin: 0 0 6px;
+  margin:
+    0 0 6px;
 
-  font-size: 16px;
+  font-size:
+    16px;
 
-  font-weight: 600;
+  font-weight:
+    600;
 
-  line-height: 1.35;
+  line-height:
+    1.35;
 }
 
 .answer-text {
   margin: 0;
 
-  min-height: 30px;
+  min-height:
+    30px;
 
   font-family:
     "Hiragino Mincho ProN",
@@ -922,19 +999,24 @@ html[lang="en"] .question-list li {
       var(--answer-scale,1)
     );
 
-  line-height: 1.38;
+  line-height:
+    1.38;
 
-  white-space: pre-wrap;
+  white-space:
+    pre-wrap;
 
-  overflow-wrap: anywhere;
+  overflow-wrap:
+    anywhere;
 
-  word-break: break-word;
+  word-break:
+    break-word;
 }
 
 .answer-text:empty::before {
   content: "—";
 
-  opacity: .55;
+  opacity:
+    .55;
 }
 
 
@@ -943,49 +1025,66 @@ html[lang="en"] .question-list li {
 ================================================== */
 
 .answer-card.compact-1 {
-  --answer-scale: .94;
+  --answer-scale:
+    .94;
 }
 
-.answer-card.compact-1 .card-header {
-  margin-bottom: 26px;
+.answer-card.compact-1
+.card-header {
+  margin-bottom:
+    26px;
 }
 
-.answer-card.compact-1 .answer-block {
-  margin-bottom: 10px;
+.answer-card.compact-1
+.answer-block {
+  margin-bottom:
+    10px;
 
-  padding-bottom: 9px;
+  padding-bottom:
+    9px;
 }
 
-.answer-card.compact-1 .question {
-  font-size: 15px;
+.answer-card.compact-1
+.question {
+  font-size:
+    15px;
 }
 
 
 .answer-card.compact-2 {
-  --answer-scale: .88;
+  --answer-scale:
+    .88;
 }
 
-.answer-card.compact-2 .card-header {
-  margin-bottom: 20px;
+.answer-card.compact-2
+.card-header {
+  margin-bottom:
+    20px;
 }
 
-.answer-card.compact-2 .answer-block {
-  margin-bottom: 7px;
+.answer-card.compact-2
+.answer-block {
+  margin-bottom:
+    7px;
 
-  padding-bottom: 7px;
+  padding-bottom:
+    7px;
 }
 
-.answer-card.compact-2 .question {
-  font-size: 14px;
+.answer-card.compact-2
+.question {
+  font-size:
+    14px;
 }
 
 
 /* ==================================================
-   WHITE TEXT
+   TEXT COLORS
 ================================================== */
 
 .text-white {
-  color: #fff;
+  color:
+    #fff;
 }
 
 .text-white .question,
@@ -993,16 +1092,14 @@ html[lang="en"] .question-list li {
 .text-white .copyright,
 .text-white .card-version,
 .text-white .page-number {
-  color: #fff;
+  color:
+    #fff;
 }
 
 
-/* ==================================================
-   BLACK TEXT
-================================================== */
-
 .text-black {
-  color: #111;
+  color:
+    #111;
 }
 
 .text-black .question,
@@ -1010,7 +1107,8 @@ html[lang="en"] .question-list li {
 .text-black .copyright,
 .text-black .card-version,
 .text-black .page-number {
-  color: #111;
+  color:
+    #111;
 }
 
 
@@ -1021,63 +1119,82 @@ html[lang="en"] .question-list li {
 .copyright,
 .card-version,
 .page-number {
-  line-height: 1;
+  line-height:
+    1;
 }
 
 .copyright {
   position: absolute;
 
-  left: 90px;
-  bottom: 58px;
+  left:
+    90px;
 
-  margin: 0;
+  bottom:
+    58px;
+
+  margin:
+    0;
 
   font-family:
     Arial,
     Helvetica,
     sans-serif;
 
-  font-size: 14px;
+  font-size:
+    14px;
 }
 
 .card-version {
   position: absolute;
 
-  left: 50%;
-  bottom: 58px;
+  left:
+    50%;
+
+  bottom:
+    58px;
 
   transform:
     translateX(-50%);
 
-  width: 520px;
+  width:
+    520px;
 
-  margin: 0;
+  margin:
+    0;
 
   font-family:
     Arial,
     Helvetica,
     sans-serif;
 
-  font-size: 11px;
+  font-size:
+    11px;
 
-  text-align: center;
+  text-align:
+    center;
 
-  opacity: .72;
+  opacity:
+    .72;
 }
 
 .page-number {
   position: absolute;
 
-  right: 90px;
-  bottom: 58px;
+  right:
+    90px;
 
-  margin: 0;
+  bottom:
+    58px;
+
+  margin:
+    0;
 
   font-family:
     Georgia,
     serif;
 
-  font-size: 18px;
+  font-size:
+    18px;
 }
 
 
@@ -1092,12 +1209,14 @@ html[lang="en"] .question-list li {
       1100px
     );
 
-  margin: 0 auto 60px;
+  margin:
+    0 auto 60px;
 
   padding:
     26px 30px 20px;
 
-  text-align: center;
+  text-align:
+    center;
 }
 
 
@@ -1106,14 +1225,17 @@ html[lang="en"] .question-list li {
 ================================================== */
 
 #generate-button {
-  width: 100%;
+  width:
+    100%;
 
-  padding: 19px 25px;
+  padding:
+    19px 25px;
 
   border:
     1px solid #c5a86a;
 
-  border-radius: 5px;
+  border-radius:
+    5px;
 
   background:
     linear-gradient(
@@ -1122,13 +1244,17 @@ html[lang="en"] .question-list li {
       #ad8d52
     );
 
-  color: #fff;
+  color:
+    #fff;
 
-  font-size: 18px;
+  font-size:
+    18px;
 
-  font-weight: 700;
+  font-weight:
+    700;
 
-  letter-spacing: .04em;
+  letter-spacing:
+    .04em;
 
   box-shadow:
     0 4px 14px
@@ -1141,14 +1267,8 @@ html[lang="en"] .question-list li {
 }
 
 #generate-button:hover {
-  color: #fff;
-
-  background:
-    linear-gradient(
-      180deg,
-      #c7aa70,
-      #ad8d52
-    );
+  color:
+    #fff;
 
   box-shadow:
     0 0 10px
@@ -1162,7 +1282,8 @@ html[lang="en"] .question-list li {
 }
 
 #generate-button:active {
-  color: #fff;
+  color:
+    #fff;
 
   background:
     linear-gradient(
@@ -1176,115 +1297,156 @@ html[lang="en"] .question-list li {
 }
 
 #generate-button:disabled {
-  color: #fff;
+  color:
+    #fff;
 
-  opacity: .65;
+  opacity:
+    .65;
 
-  cursor: wait;
+  cursor:
+    wait;
 }
 
 .export-note {
   margin:
     12px 0 0;
 
-  color: #d6c19a;
+  color:
+    #d6c19a;
 
-  font-size: 13px;
+  font-size:
+    13px;
 
-  font-weight: 600;
+  font-weight:
+    600;
 }
 
 .export-size {
   margin:
     8px 0 0;
 
-  color: #868e9c;
+  color:
+    #868e9c;
 
-  font-size: 12px;
+  font-size:
+    12px;
 }
 
 
 /* ==================================================
-   IOS
+   IOS RESULT
 ================================================== */
 
 .ios-export-guide {
-  margin-top: 12px;
+  margin-top:
+    12px;
 
-  padding: 10px 12px;
+  padding:
+    10px 12px;
 
   border:
     1px solid
     rgba(183,154,102,.28);
 
-  border-radius: 6px;
+  border-radius:
+    6px;
 
   background:
     rgba(183,154,102,.05);
 
-  color: #969daa;
+  color:
+    #969daa;
 
-  font-size: 12px;
+  font-size:
+    12px;
 }
 
 .mobile-export-results {
-  margin-top: 20px;
+  margin-top:
+    20px;
 }
 
 .mobile-export-item {
-  margin-bottom: 24px;
+  margin-bottom:
+    24px;
 
-  padding: 14px;
+  padding:
+    14px;
 
-  background: #0d1119;
+  background:
+    #0d1119;
 
-  border: 1px solid #2b3240;
-  border-radius: 8px;
+  border:
+    1px solid #2b3240;
+
+  border-radius:
+    8px;
 }
 
 .mobile-export-item h4 {
-  margin: 0 0 12px;
+  margin:
+    0 0 12px;
 
-  color: #d6c19a;
+  color:
+    #d6c19a;
 }
 
 .mobile-export-item img {
-  display: block;
+  display:
+    block;
 
-  width: 100%;
+  width:
+    100%;
 
-  height: auto;
+  height:
+    auto;
 }
 
 .mobile-export-actions {
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
     1fr 1fr;
 
-  gap: 8px;
+  gap:
+    8px;
 
-  margin-top: 12px;
+  margin-top:
+    12px;
 }
 
 .mobile-export-actions a,
 .mobile-export-actions button {
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
-  justify-content: center;
+  align-items:
+    center;
 
-  padding: 11px 8px;
+  justify-content:
+    center;
 
-  border: 1px solid #b79a66;
-  border-radius: 5px;
+  padding:
+    11px 8px;
 
-  background: #171d27;
-  color: #fff;
+  border:
+    1px solid #b79a66;
 
-  text-decoration: none;
+  border-radius:
+    5px;
 
-  font-size: 13px;
+  background:
+    #171d27;
+
+  color:
+    #fff;
+
+  text-decoration:
+    none;
+
+  font-size:
+    13px;
 }
 
 
@@ -1293,35 +1455,64 @@ html[lang="en"] .question-list li {
 ================================================== */
 
 #export-workspace {
-  position: fixed;
+  position:
+    fixed;
 
-  left: -20000px;
-  top: 0;
+  left:
+    -20000px;
 
-  width: 1200px;
-  height: 1200px;
+  top:
+    0;
 
-  overflow: hidden;
+  width:
+    1200px;
 
-  pointer-events: none;
+  height:
+    1200px;
 
-  z-index: -999999;
+  overflow:
+    hidden;
+
+  pointer-events:
+    none;
+
+  z-index:
+    -999999;
 }
 
+
+/*
+  html-to-imageで生成するのは
+  文字・枠などだけ。
+*/
+
 .export-clone {
-  --preview-scale: 1 !important;
+  --preview-scale:
+    1 !important;
 
-  position: relative !important;
+  position:
+    relative !important;
 
-  left: 0 !important;
-  top: 0 !important;
+  left:
+    0 !important;
 
-  width: 1200px !important;
-  height: 1200px !important;
+  top:
+    0 !important;
 
-  margin: 0 !important;
+  width:
+    1200px !important;
 
-  transform: none !important;
+  height:
+    1200px !important;
+
+  margin:
+    0 !important;
+
+  background:
+    transparent !important;
+
+  transform:
+    none !important;
 
   transform-origin:
     top left !important;
@@ -1355,15 +1546,19 @@ html[lang="en"] .question-list li {
   border-top:
     1px solid #202631;
 
-  color: #8e939c;
+  color:
+    #8e939c;
 
-  font-size: 12px;
+  font-size:
+    12px;
 
-  text-align: center;
+  text-align:
+    center;
 }
 
 .site-footer p {
-  margin: 0 0 12px;
+  margin:
+    0 0 12px;
 }
 
 
@@ -1379,13 +1574,16 @@ html[lang="en"] .question-list li {
   }
 
   .site-header h1 {
-    font-size: 24px;
+    font-size:
+      24px;
   }
 
   .language-button {
-    min-width: 85px;
+    min-width:
+      85px;
 
-    font-size: 12px;
+    font-size:
+      12px;
   }
 
   .question-preview-section,
@@ -1397,23 +1595,27 @@ html[lang="en"] .question-list li {
 
   .question-preview-section,
   .input-area {
-    padding: 18px;
+    padding:
+      18px;
   }
 
   .editor-layout {
-    display: block;
+    display:
+      block;
 
     padding:
       0 12px 24px;
   }
 
   .settings {
-    margin-bottom: 24px;
+    margin-bottom:
+      24px;
   }
 
   .settings,
   .preview-panel {
-    padding: 18px;
+    padding:
+      18px;
   }
 
   .export-area-main {
@@ -1422,11 +1624,13 @@ html[lang="en"] .question-list li {
   }
 
   #generate-button {
-    font-size: 16px;
+    font-size:
+      16px;
   }
 
   .mobile-export-actions {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
   }
 
 }
