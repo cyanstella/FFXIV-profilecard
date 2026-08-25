@@ -21,6 +21,16 @@ const CUSTOM_QUESTION_MAX_LENGTH =
 
 
 /* ==================================================
+   TRANSPARENT BACKGROUND IMAGE
+
+   html-to-image対策
+================================================== */
+
+const TRANSPARENT_PIXEL =
+  "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+
+
+/* ==================================================
    QUESTIONS
 ================================================== */
 
@@ -119,7 +129,7 @@ const QUESTIONS = {
 
 
 /* ==================================================
-   TRANSLATIONS
+   TRANSLATION
 ================================================== */
 
 const translations = {
@@ -254,7 +264,7 @@ const translations = {
       "4枚の画像を生成しました。\n下に表示された画像を長押しして保存できます。",
 
     errorAlert:
-      "画像の生成に失敗しました。",
+      "画像の生成に失敗しました。\nページを再読み込みしてもう一度お試しください。",
 
     cardGenerationError:
       (cardNumber) =>
@@ -405,7 +415,7 @@ const translations = {
       "Four images have been generated.\nPress and hold the images below to save them.",
 
     errorAlert:
-      "Image generation failed.",
+      "Image generation failed.\nPlease reload the page and try again.",
 
     cardGenerationError:
       (cardNumber) =>
@@ -429,13 +439,59 @@ const translations = {
 
 
 /* ==================================================
+   STORAGE
+================================================== */
+
+function getSavedLanguage() {
+
+  try {
+
+    return localStorage.getItem(
+      "ffxiv-profile-language"
+    );
+
+  }
+
+  catch (error) {
+
+    return null;
+
+  }
+
+}
+
+
+function saveLanguage(
+  language
+) {
+
+  try {
+
+    localStorage.setItem(
+      "ffxiv-profile-language",
+      language
+    );
+
+  }
+
+  catch (error) {
+
+    console.warn(
+      "Could not save language.",
+      error
+    );
+
+  }
+
+}
+
+
+/* ==================================================
    CURRENT LANGUAGE
 ================================================== */
 
 let currentLanguage =
-  localStorage.getItem(
-    "ffxiv-profile-language"
-  )
+  getSavedLanguage()
   ||
   "ja";
 
@@ -469,6 +525,32 @@ document
 
 
 /* ==================================================
+   BACKGROUND IMAGE INITIALIZATION
+================================================== */
+
+document
+  .querySelectorAll(
+    ".card-background-image"
+  )
+  .forEach(
+    (image) => {
+
+      if (
+        !image.getAttribute(
+          "src"
+        )
+      ) {
+
+        image.src =
+          TRANSPARENT_PIXEL;
+
+      }
+
+    }
+  );
+
+
+/* ==================================================
    LANGUAGE
 ================================================== */
 
@@ -490,8 +572,7 @@ function setLanguage(
     language;
 
 
-  localStorage.setItem(
-    "ffxiv-profile-language",
+  saveLanguage(
     language
   );
 
@@ -511,9 +592,7 @@ function setLanguage(
       "[data-i18n]"
     )
     .forEach(
-      (
-        element
-      ) => {
+      (element) => {
 
         const key =
           element.dataset.i18n;
@@ -538,9 +617,7 @@ function setLanguage(
       ".language-button"
     )
     .forEach(
-      (
-        button
-      ) => {
+      (button) => {
 
         button.classList.toggle(
           "active",
@@ -552,17 +629,17 @@ function setLanguage(
     );
 
 
-  const questionCardMainTitle =
+  const mainTitle =
     document.getElementById(
       "question-card-main-title"
     );
 
 
   if (
-    questionCardMainTitle
+    mainTitle
   ) {
 
-    questionCardMainTitle.textContent =
+    mainTitle.textContent =
       t.questionCardMainTitle;
 
   }
@@ -585,9 +662,7 @@ function setLanguage(
         `[data-question="${i}"]`
       )
       .forEach(
-        (
-          element
-        ) => {
+        (element) => {
 
           element.textContent =
             questionText;
@@ -601,9 +676,7 @@ function setLanguage(
         `[data-input-question="${i}"]`
       )
       .forEach(
-        (
-          element
-        ) => {
+        (element) => {
 
           element.textContent =
             `${String(i).padStart(2,"0")}. ${questionText}`;
@@ -617,9 +690,7 @@ function setLanguage(
         `[data-answer-question="${i}"]`
       )
       .forEach(
-        (
-          element
-        ) => {
+        (element) => {
 
           element.textContent =
             `${String(i).padStart(2,"0")}. ${questionText}`;
@@ -633,17 +704,17 @@ function setLanguage(
   updateQ20Title();
 
 
-  const q20TitleInput =
+  const q20Input =
     document.getElementById(
       "q20-title"
     );
 
 
   if (
-    q20TitleInput
+    q20Input
   ) {
 
-    q20TitleInput.placeholder =
+    q20Input.placeholder =
       t.customQuestionPlaceholder;
 
   }
@@ -665,18 +736,18 @@ function setLanguage(
   }
 
 
-  const generateButton =
+  const button =
     document.getElementById(
       "generate-button"
     );
 
 
   if (
-    generateButton &&
-    !generateButton.disabled
+    button &&
+    !button.disabled
   ) {
 
-    generateButton.textContent =
+    button.textContent =
       t.generate;
 
   }
@@ -704,9 +775,7 @@ document
     ".language-button"
   )
   .forEach(
-    (
-      button
-    ) => {
+    (button) => {
 
       button.addEventListener(
         "click",
@@ -724,7 +793,7 @@ document
 
 
 /* ==================================================
-   IOS DETECTION
+   IOS
 ================================================== */
 
 function isIOSDevice() {
@@ -835,7 +904,7 @@ document.body.appendChild(
 
 
 /* ==================================================
-   ANSWERS
+   ANSWER INPUT
 ================================================== */
 
 for (
@@ -874,9 +943,7 @@ for (
 
   input.addEventListener(
     "keydown",
-    (
-      event
-    ) => {
+    (event) => {
 
       if (
         event.key !==
@@ -888,14 +955,11 @@ for (
       }
 
 
-      const lines =
+      if (
         input.value
           .split("\n")
-          .length;
-
-
-      if (
-        lines >=
+          .length
+        >=
         MAX_LINES
       ) {
 
@@ -922,7 +986,7 @@ for (
           );
 
 
-      let lines =
+      const lines =
         value.split(
           "\n"
         );
@@ -971,23 +1035,19 @@ for (
       }
 
 
-      const text =
-        input.value;
-
-
       answer.textContent =
-        text;
+        value;
 
 
       const baseSize =
         getAnswerBaseFontSize(
-          text.length
+          value.length
         );
 
 
       const fittedSize =
         getFittedAnswerFontSize(
-          text,
+          value,
           baseSize
         );
 
@@ -1000,7 +1060,7 @@ for (
 
       updateCounter(
         count,
-        text.length,
+        value.length,
         MAX_LENGTH,
         60
       );
@@ -1126,7 +1186,7 @@ function getFittedAnswerFontSize(
 
 
 /* ==================================================
-   FIT CARDS
+   CARD FIT
 ================================================== */
 
 function fitAllAnswerCards() {
@@ -1210,16 +1270,16 @@ function cardContentFits(
   }
 
 
-  const lastBlock =
+  const last =
     blocks[
       blocks.length - 1
     ];
 
 
   return (
-    lastBlock.offsetTop
+    last.offsetTop
     +
-    lastBlock.offsetHeight
+    last.offsetHeight
     <=
     1045
   );
@@ -1253,6 +1313,15 @@ function updateCounter(
 
   const counter =
     countElement.parentElement;
+
+
+  if (
+    !counter
+  ) {
+
+    return;
+
+  }
 
 
   counter.classList.remove(
@@ -1349,16 +1418,12 @@ function updateQ20Title() {
     value;
 
 
-  const defaultText =
-    QUESTIONS[
-      currentLanguage
-    ][19];
-
-
   const displayText =
     value.trim()
     ||
-    defaultText;
+    QUESTIONS[
+      currentLanguage
+    ][19];
 
 
   if (
@@ -1457,7 +1522,7 @@ function readImageAsDataURL(
 
 
 /* ==================================================
-   WAIT IMAGE
+   IMAGE WAIT
 ================================================== */
 
 async function waitForImage(
@@ -1465,10 +1530,17 @@ async function waitForImage(
 ) {
 
   if (
-    !image ||
-    !image.getAttribute(
-      "src"
-    )
+    !image
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    image.complete &&
+    image.naturalWidth > 0
   ) {
 
     return;
@@ -1489,29 +1561,15 @@ async function waitForImage(
 
     }
 
-    catch (
-      error
-    ) {
+    catch (error) {
 
     }
 
   }
 
 
-  if (
-    image.complete &&
-    image.naturalWidth > 0
-  ) {
-
-    return;
-
-  }
-
-
   await new Promise(
-    (
-      resolve
-    ) => {
+    (resolve) => {
 
       const finish =
         () => {
@@ -1525,8 +1583,7 @@ async function waitForImage(
         "load",
         finish,
         {
-          once:
-            true
+          once: true
         }
       );
 
@@ -1535,8 +1592,7 @@ async function waitForImage(
         "error",
         finish,
         {
-          once:
-            true
+          once: true
         }
       );
 
@@ -1547,7 +1603,7 @@ async function waitForImage(
 
 
 /* ==================================================
-   WAIT BACKGROUND IMAGES
+   BACKGROUND WAIT
 ================================================== */
 
 async function waitForAllBackgroundImages() {
@@ -1555,7 +1611,7 @@ async function waitForAllBackgroundImages() {
   const images =
     Array.from(
       document.querySelectorAll(
-        ".card-background-image[src]"
+        ".card-background-image"
       )
     );
 
@@ -1569,8 +1625,6 @@ async function waitForAllBackgroundImages() {
 
   await nextFrame();
 
-  await nextFrame();
-
 }
 
 
@@ -1581,9 +1635,7 @@ async function waitForAllBackgroundImages() {
 function nextFrame() {
 
   return new Promise(
-    (
-      resolve
-    ) => {
+    (resolve) => {
 
       requestAnimationFrame(
         () => {
@@ -1602,7 +1654,7 @@ function nextFrame() {
 
 
 /* ==================================================
-   CARD SETTINGS
+   SETTINGS
 ================================================== */
 
 function setupCardSettings(
@@ -1722,8 +1774,6 @@ function setupCardSettings(
     );
 
 
-  /* safety */
-
   if (
     !card ||
     !backgroundImage ||
@@ -1751,74 +1801,27 @@ function setupCardSettings(
   }
 
 
+  if (
+    !backgroundImage.src
+  ) {
+
+    backgroundImage.src =
+      TRANSPARENT_PIXEL;
+
+  }
+
+
   let overlayColor =
+    document.querySelector(
+      `input[name="${overlayRadioName}"]:checked`
+    )?.value
+    ||
     "black";
 
 
-  /* upload */
-
-  backgroundUpload.addEventListener(
-    "change",
-    async (
-      event
-    ) => {
-
-      const file =
-        event.target.files[0];
-
-
-      if (
-        !file
-      ) {
-
-        return;
-
-      }
-
-
-      try {
-
-        const dataUrl =
-          await readImageAsDataURL(
-            file
-          );
-
-
-        backgroundImage.src =
-          dataUrl;
-
-
-        await waitForImage(
-          backgroundImage
-        );
-
-
-        updateBackgroundImage();
-
-      }
-
-      catch (
-        error
-      ) {
-
-        console.error(
-          error
-        );
-
-
-        alert(
-          translations[
-            currentLanguage
-          ].backgroundLoadError
-        );
-
-      }
-
-    }
-  );
-
-
-  /* background */
+  /* ==================================================
+     BACKGROUND
+  ================================================== */
 
   function updateBackgroundImage() {
 
@@ -1866,6 +1869,69 @@ function setupCardSettings(
   }
 
 
+  /* ==================================================
+     UPLOAD
+  ================================================== */
+
+  backgroundUpload.addEventListener(
+    "change",
+    async (event) => {
+
+      const file =
+        event.target.files[
+          0
+        ];
+
+
+      if (
+        !file
+      ) {
+
+        return;
+
+      }
+
+
+      try {
+
+        const dataUrl =
+          await readImageAsDataURL(
+            file
+          );
+
+
+        backgroundImage.src =
+          dataUrl;
+
+
+        await waitForImage(
+          backgroundImage
+        );
+
+
+        updateBackgroundImage();
+
+      }
+
+      catch (error) {
+
+        console.error(
+          error
+        );
+
+
+        alert(
+          translations[
+            currentLanguage
+          ].backgroundLoadError
+        );
+
+      }
+
+    }
+  );
+
+
   bgX.addEventListener(
     "input",
     updateBackgroundImage
@@ -1884,19 +1950,20 @@ function setupCardSettings(
   );
 
 
-  /* remove */
+  /* ==================================================
+     REMOVE BACKGROUND
+  ================================================== */
 
   removeButton.addEventListener(
     "click",
-    () => {
+    async () => {
 
       backgroundUpload.value =
         "";
 
 
-      backgroundImage.removeAttribute(
-        "src"
-      );
+      backgroundImage.src =
+        TRANSPARENT_PIXEL;
 
 
       bgX.value =
@@ -1911,25 +1978,20 @@ function setupCardSettings(
         100;
 
 
-      backgroundImage.style.objectPosition =
-        "50% 50%";
-
-
-      backgroundImage.style.transform =
-        "scale(1)";
-
-
-      backgroundImage.style.transformOrigin =
-        "50% 50%";
-
-
       updateBackgroundImage();
+
+
+      await waitForImage(
+        backgroundImage
+      );
 
     }
   );
 
 
-  /* overlay */
+  /* ==================================================
+     OVERLAY
+  ================================================== */
 
   function updateOverlay() {
 
@@ -1971,9 +2033,7 @@ function setupCardSettings(
       `input[name="${overlayRadioName}"]`
     )
     .forEach(
-      (
-        radio
-      ) => {
+      (radio) => {
 
         radio.addEventListener(
           "change",
@@ -2001,16 +2061,53 @@ function setupCardSettings(
     );
 
 
-  /* text */
+  /* ==================================================
+     TEXT COLOR + GOLD THEME
+
+     黒文字の場合：
+     light-themeを自動ON
+  ================================================== */
+
+  function applyTextTheme(
+    color
+  ) {
+
+    card.classList.remove(
+      "text-white",
+      "text-black",
+      "light-theme"
+    );
+
+
+    if (
+      color ===
+      "black"
+    ) {
+
+      card.classList.add(
+        "text-black",
+        "light-theme"
+      );
+
+    }
+
+    else {
+
+      card.classList.add(
+        "text-white"
+      );
+
+    }
+
+  }
+
 
   document
     .querySelectorAll(
       `input[name="${textRadioName}"]`
     )
     .forEach(
-      (
-        radio
-      ) => {
+      (radio) => {
 
         radio.addEventListener(
           "change",
@@ -2025,19 +2122,8 @@ function setupCardSettings(
             }
 
 
-            card.classList.remove(
-              "text-white",
-              "text-black"
-            );
-
-
-            card.classList.add(
-              radio.value ===
-              "black"
-
-              ? "text-black"
-
-              : "text-white"
+            applyTextTheme(
+              radio.value
             );
 
           }
@@ -2045,6 +2131,19 @@ function setupCardSettings(
 
       }
     );
+
+
+  const checkedTextRadio =
+    document.querySelector(
+      `input[name="${textRadioName}"]:checked`
+    );
+
+
+  applyTextTheme(
+    checkedTextRadio
+      ? checkedTextRadio.value
+      : "white"
+  );
 
 
   updateBackgroundImage();
@@ -2055,7 +2154,7 @@ function setupCardSettings(
 
 
 /* ==================================================
-   CARD SETUPS
+   CARD 2
 ================================================== */
 
 setupCardSettings({
@@ -2108,6 +2207,10 @@ setupCardSettings({
 });
 
 
+/* ==================================================
+   CARD 3
+================================================== */
+
 setupCardSettings({
 
   cardId:
@@ -2157,6 +2260,10 @@ setupCardSettings({
 
 });
 
+
+/* ==================================================
+   CARD 4
+================================================== */
 
 setupCardSettings({
 
@@ -2219,9 +2326,7 @@ function updatePreviewScales() {
       ".card-frame"
     )
     .forEach(
-      (
-        frame
-      ) => {
+      (frame) => {
 
         const card =
           frame.querySelector(
@@ -2288,7 +2393,7 @@ window.addEventListener(
 
 
 /* ==================================================
-   DATA URL -> BLOB
+   DATA URL TO BLOB
 ================================================== */
 
 function dataURLToBlob(
@@ -2364,7 +2469,7 @@ function dataURLToBlob(
 
 
 /* ==================================================
-   GENERATE ONE CARD
+   GENERATE CARD
 ================================================== */
 
 async function generateCardImage(
@@ -2429,12 +2534,6 @@ async function generateCardImage(
   };
 
 
-  /* ==================================================
-     IOS / IPADOS
-
-     toBlobよりtoPngを優先
-  ================================================== */
-
   if (
     isIOS
   ) {
@@ -2463,10 +2562,6 @@ async function generateCardImage(
 
   }
 
-
-  /* ==================================================
-     DESKTOP
-  ================================================== */
 
   const blob =
     await htmlToImage.toBlob(
@@ -2542,15 +2637,13 @@ if (
 
       try {
 
-        /* html-to-image確認 */
-
         if (
           typeof htmlToImage ===
           "undefined"
         ) {
 
           throw new Error(
-            "html-to-image not loaded"
+            "html-to-image was not loaded"
           );
 
         }
@@ -2571,14 +2664,14 @@ if (
         fitAllAnswerCards();
 
 
+        await nextFrame();
+
+
         await sleep(
           isIOS
-            ? 700
-            : 300
+            ? 500
+            : 150
         );
-
-
-        await nextFrame();
 
 
         const generated =
@@ -2618,22 +2711,7 @@ if (
           }
 
 
-          /*
-            iPhoneでは描画更新をしっかり待つ
-          */
-
           await nextFrame();
-
-
-          if (
-            isIOS
-          ) {
-
-            await sleep(
-              250
-            );
-
-          }
 
 
           const blob =
@@ -2659,22 +2737,14 @@ if (
           );
 
 
-          /*
-            WebKitで連続変換を急がない
-          */
-
           await sleep(
             isIOS
-              ? 1000
-              : 450
+              ? 900
+              : 300
           );
 
         }
 
-
-        /* ==================================================
-           IOS
-        ================================================== */
 
         if (
           isIOS
@@ -2691,11 +2761,6 @@ if (
 
         }
 
-
-        /* ==================================================
-           DESKTOP
-        ================================================== */
-
         else {
 
           for (
@@ -2709,7 +2774,7 @@ if (
 
 
             await sleep(
-              400
+              350
             );
 
           }
@@ -2729,7 +2794,8 @@ if (
 
 
         if (
-          generatingCardNumber > 0
+          generatingCardNumber >
+          0
         ) {
 
           alert(
@@ -2770,7 +2836,7 @@ if (
 
 
 /* ==================================================
-   IOS RESULT
+   IOS RESULTS
 ================================================== */
 
 function showIOSExportResults(
@@ -2797,9 +2863,7 @@ function showIOSExportResults(
 
 
   generated.forEach(
-    (
-      item
-    ) => {
+    (item) => {
 
       const objectUrl =
         URL.createObjectURL(
@@ -3018,9 +3082,7 @@ function showIOSExportResults(
 function clearGeneratedResults() {
 
   generatedObjectUrls.forEach(
-    (
-      url
-    ) => {
+    (url) => {
 
       URL.revokeObjectURL(
         url
@@ -3113,9 +3175,7 @@ function sleep(
 ) {
 
   return new Promise(
-    (
-      resolve
-    ) => {
+    (resolve) => {
 
       setTimeout(
         resolve,
