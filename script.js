@@ -19,6 +19,9 @@ const MAX_LINES =
 const CUSTOM_QUESTION_MAX_LENGTH =
   40;
 
+const CARD_SIZE =
+  1200;
+
 
 /* ==================================================
    TRANSPARENT PIXEL
@@ -26,6 +29,42 @@ const CUSTOM_QUESTION_MAX_LENGTH =
 
 const TRANSPARENT_PIXEL =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjYGBg+A8AAQQBAHAgZQsAAAAASUVORK5CYII=";
+
+
+/* ==================================================
+   BACKGROUND STATE
+
+   プレビューのimgだけに頼らず、
+   実際の画像データをJS側にも保持する。
+================================================== */
+
+const backgroundStates = {
+
+  2: {
+    dataUrl: null,
+    image: null,
+    x: 50,
+    y: 50,
+    scale: 100
+  },
+
+  3: {
+    dataUrl: null,
+    image: null,
+    x: 50,
+    y: 50,
+    scale: 100
+  },
+
+  4: {
+    dataUrl: null,
+    image: null,
+    x: 50,
+    y: 50,
+    scale: 100
+  }
+
+};
 
 
 /* ==================================================
@@ -207,13 +246,13 @@ const translations = {
     preparing:
       "画像を準備しています…",
 
-    cloning:
-      current =>
-        `${current} / 4 枚目を準備しています…`,
+    preparingCard:
+      number =>
+        `${number} / 4 枚目を準備しています…`,
 
     generating:
-      current =>
-        `${current} / 4 枚目を生成しています…`,
+      number =>
+        `${number} / 4 枚目を生成しています…`,
 
     exportNote:
       "質問カードとあわせて4枚生成されます",
@@ -359,13 +398,13 @@ const translations = {
     preparing:
       "Preparing images…",
 
-    cloning:
-      current =>
-        `Preparing card ${current} / 4…`,
+    preparingCard:
+      number =>
+        `Preparing card ${number} / 4…`,
 
     generating:
-      current =>
-        `Generating image ${current} / 4…`,
+      number =>
+        `Generating image ${number} / 4…`,
 
     exportNote:
       "Four images, including the question card, will be generated.",
@@ -410,26 +449,24 @@ let currentLanguage =
 
 try {
 
-  const savedLanguage =
+  const saved =
     localStorage.getItem(
       "ffxiv-profile-language"
     );
 
 
   if (
-    translations[savedLanguage]
+    translations[saved]
   ) {
 
     currentLanguage =
-      savedLanguage;
+      saved;
 
   }
 
 }
 
-catch (error) {
-
-}
+catch (error) {}
 
 
 /* ==================================================
@@ -451,7 +488,7 @@ document
 
 
 /* ==================================================
-   INITIAL BACKGROUNDS
+   INITIAL BACKGROUND
 ================================================== */
 
 document
@@ -466,6 +503,49 @@ document
 
     }
   );
+
+
+/* ==================================================
+   IOS DETECT
+================================================== */
+
+function isIOSDevice() {
+
+  return (
+    /iPad|iPhone|iPod/.test(
+      navigator.userAgent
+    )
+    ||
+    (
+      navigator.platform ===
+      "MacIntel"
+      &&
+      navigator.maxTouchPoints > 1
+    )
+  );
+
+}
+
+
+const isIOS =
+  isIOSDevice();
+
+
+const iosGuide =
+  document.getElementById(
+    "ios-export-guide"
+  );
+
+
+if (
+  isIOS &&
+  iosGuide
+) {
+
+  iosGuide.hidden =
+    false;
+
+}
 
 
 /* ==================================================
@@ -499,9 +579,7 @@ function setLanguage(
 
   }
 
-  catch (error) {
-
-  }
+  catch (error) {}
 
 
   document.documentElement.lang =
@@ -649,35 +727,29 @@ function setLanguage(
   }
 
 
-  const generateButton =
-    document.getElementById(
-      "generate-button"
-    );
-
-
-  if (
-    generateButton &&
-    !generateButton.disabled
-  ) {
-
-    generateButton.textContent =
-      t.generate;
-
-  }
-
-
-  const iosGuide =
-    document.getElementById(
-      "ios-export-guide"
-    );
-
-
   if (
     iosGuide
   ) {
 
     iosGuide.textContent =
       t.iosGuide;
+
+  }
+
+
+  const button =
+    document.getElementById(
+      "generate-button"
+    );
+
+
+  if (
+    button &&
+    !button.disabled
+  ) {
+
+    button.textContent =
+      t.generate;
 
   }
 
@@ -696,7 +768,7 @@ function setLanguage(
 
 
 /* ==================================================
-   LANGUAGE BUTTONS
+   LANGUAGE BUTTON
 ================================================== */
 
 document
@@ -722,49 +794,6 @@ document
 
 
 /* ==================================================
-   IOS / IPADOS
-================================================== */
-
-function isIOSDevice() {
-
-  return (
-    /iPad|iPhone|iPod/.test(
-      navigator.userAgent
-    )
-    ||
-    (
-      navigator.platform ===
-      "MacIntel"
-      &&
-      navigator.maxTouchPoints > 1
-    )
-  );
-
-}
-
-
-const isIOS =
-  isIOSDevice();
-
-
-const iosGuide =
-  document.getElementById(
-    "ios-export-guide"
-  );
-
-
-if (
-  isIOS &&
-  iosGuide
-) {
-
-  iosGuide.hidden =
-    false;
-
-}
-
-
-/* ==================================================
    ANSWERS
 ================================================== */
 
@@ -780,13 +809,13 @@ for (
     );
 
 
-  const output =
+  const answer =
     document.getElementById(
       `answer-${i}`
     );
 
 
-  const counter =
+  const count =
     document.getElementById(
       `count-q${i}`
     );
@@ -794,7 +823,7 @@ for (
 
   if (
     !input ||
-    !output
+    !answer
   ) {
 
     continue;
@@ -832,7 +861,7 @@ for (
   );
 
 
-  const update =
+  const updateAnswer =
     () => {
 
       let value =
@@ -889,22 +918,61 @@ for (
         value;
 
 
-      output.textContent =
+      answer.textContent =
         value;
 
 
-      output.style.setProperty(
+      answer.style.setProperty(
         "--answer-font-size",
         `${getAnswerFontSize(value.length)}px`
       );
 
 
       if (
-        counter
+        count
       ) {
 
-        counter.textContent =
+        count.textContent =
           value.length;
+
+
+        const parent =
+          count.parentElement;
+
+
+        if (
+          parent
+        ) {
+
+          parent.classList.remove(
+            "is-warning",
+            "is-limit"
+          );
+
+
+          if (
+            value.length >=
+            MAX_LENGTH
+          ) {
+
+            parent.classList.add(
+              "is-limit"
+            );
+
+          }
+
+          else if (
+            value.length >=
+            60
+          ) {
+
+            parent.classList.add(
+              "is-warning"
+            );
+
+          }
+
+        }
 
       }
 
@@ -918,11 +986,11 @@ for (
 
   input.addEventListener(
     "input",
-    update
+    updateAnswer
   );
 
 
-  update();
+  updateAnswer();
 
 }
 
@@ -943,6 +1011,7 @@ function getAnswerFontSize(
 
   }
 
+
   if (
     length <= 45
   ) {
@@ -950,6 +1019,7 @@ function getAnswerFontSize(
     return 22;
 
   }
+
 
   if (
     length <= 60
@@ -966,7 +1036,7 @@ function getAnswerFontSize(
 
 
 /* ==================================================
-   FIT
+   CARD FIT
 ================================================== */
 
 function fitAllAnswerCards() {
@@ -1152,7 +1222,49 @@ function updateQ20Title() {
     counter.textContent =
       value.length;
 
+
+    const parent =
+      counter.parentElement;
+
+
+    if (
+      parent
+    ) {
+
+      parent.classList.remove(
+        "is-warning",
+        "is-limit"
+      );
+
+
+      if (
+        value.length >= 40
+      ) {
+
+        parent.classList.add(
+          "is-limit"
+        );
+
+      }
+
+      else if (
+        value.length >= 32
+      ) {
+
+        parent.classList.add(
+          "is-warning"
+        );
+
+      }
+
+    }
+
   }
+
+
+  requestAnimationFrame(
+    fitAllAnswerCards
+  );
 
 }
 
@@ -1212,169 +1324,39 @@ function readImageAsDataURL(
 
 
 /* ==================================================
-   WAIT IMAGE
+   CREATE IMAGE FROM DATA URL
 ================================================== */
 
-function waitForImage(
-  image
+function loadDataUrlImage(
+  dataUrl
 ) {
 
   return new Promise(
-    resolve => {
+    (
+      resolve,
+      reject
+    ) => {
 
-      if (
-        !image
-      ) {
-
-        resolve();
-
-        return;
-
-      }
+      const image =
+        new Image();
 
 
-      const src =
-        image.getAttribute(
-          "src"
-        );
-
-
-      if (
-        !src ||
-        src === TRANSPARENT_PIXEL ||
-        image.complete
-      ) {
-
-        resolve();
-
-        return;
-
-      }
-
-
-      let finished =
-        false;
-
-
-      const finish =
+      image.onload =
         () => {
 
-          if (
-            finished
-          ) {
-
-            return;
-
-          }
-
-
-          finished =
-            true;
-
-
-          clearTimeout(
-            timeout
+          resolve(
+            image
           );
-
-
-          resolve();
 
         };
 
 
-      const timeout =
-        setTimeout(
-          finish,
-          3000
-        );
+      image.onerror =
+        reject;
 
 
-      image.addEventListener(
-        "load",
-        finish,
-        {
-          once: true
-        }
-      );
-
-
-      image.addEventListener(
-        "error",
-        finish,
-        {
-          once: true
-        }
-      );
-
-    }
-  );
-
-}
-
-
-/* ==================================================
-   WAIT BACKGROUNDS
-================================================== */
-
-async function waitForAllBackgroundImages() {
-
-  const images =
-    Array.from(
-      document.querySelectorAll(
-        ".card-background-image"
-      )
-    );
-
-
-  const realImages =
-    images.filter(
-      image => {
-
-        const src =
-          image.getAttribute(
-            "src"
-          );
-
-
-        return (
-          src &&
-          src !== TRANSPARENT_PIXEL
-        );
-
-      }
-    );
-
-
-  await Promise.all(
-    realImages.map(
-      waitForImage
-    )
-  );
-
-
-  await nextFrame();
-
-}
-
-
-/* ==================================================
-   NEXT FRAME
-================================================== */
-
-function nextFrame() {
-
-  return new Promise(
-    resolve => {
-
-      requestAnimationFrame(
-        () => {
-
-          requestAnimationFrame(
-            resolve
-          );
-
-        }
-      );
+      image.src =
+        dataUrl;
 
     }
   );
@@ -1396,7 +1378,7 @@ function setupCardSettings(
     );
 
 
-  const image =
+  const previewImage =
     document.getElementById(
       options.backgroundImageId
     );
@@ -1468,20 +1450,27 @@ function setupCardSettings(
     );
 
 
+  const state =
+    backgroundStates[
+      options.cardNumber
+    ];
+
+
   if (
     !card ||
-    !image ||
+    !previewImage ||
     !upload ||
     !removeButton ||
     !x ||
     !y ||
     !scale ||
     !overlay ||
-    !opacity
+    !opacity ||
+    !state
   ) {
 
     console.error(
-      "Missing card settings:",
+      "Card setting element missing:",
       options
     );
 
@@ -1491,7 +1480,7 @@ function setupCardSettings(
   }
 
 
-  image.src =
+  previewImage.src =
     TRANSPARENT_PIXEL;
 
 
@@ -1505,34 +1494,34 @@ function setupCardSettings(
 
   function updateBackground() {
 
-    const xNumber =
+    state.x =
       Number(
         x.value
       );
 
 
-    const yNumber =
+    state.y =
       Number(
         y.value
       );
 
 
-    const scaleNumber =
+    state.scale =
       Number(
         scale.value
       );
 
 
-    image.style.objectPosition =
-      `${xNumber}% ${yNumber}%`;
+    previewImage.style.objectPosition =
+      `${state.x}% ${state.y}%`;
 
 
-    image.style.transform =
-      `scale(${scaleNumber / 100})`;
+    previewImage.style.transform =
+      `scale(${state.scale / 100})`;
 
 
-    image.style.transformOrigin =
-      `${xNumber}% ${yNumber}%`;
+    previewImage.style.transformOrigin =
+      `${state.x}% ${state.y}%`;
 
 
     if (
@@ -1540,7 +1529,7 @@ function setupCardSettings(
     ) {
 
       xValue.textContent =
-        `${xNumber}%`;
+        `${state.x}%`;
 
     }
 
@@ -1550,7 +1539,7 @@ function setupCardSettings(
     ) {
 
       yValue.textContent =
-        `${yNumber}%`;
+        `${state.y}%`;
 
     }
 
@@ -1560,7 +1549,7 @@ function setupCardSettings(
     ) {
 
       scaleValue.textContent =
-        `${scaleNumber}%`;
+        `${state.scale}%`;
 
     }
 
@@ -1584,7 +1573,7 @@ function setupCardSettings(
       "0,0,0";
 
 
-    overlay.style.backgroundColor =
+    overlay.style.background =
       `rgba(${rgb},${value})`;
 
 
@@ -1661,20 +1650,40 @@ function setupCardSettings(
           );
 
 
-        image.src =
+        /*
+          画像生成用の元画像を
+          JSのstateに保持する。
+        */
+
+        const loadedImage =
+          await loadDataUrlImage(
+            dataUrl
+          );
+
+
+        state.dataUrl =
           dataUrl;
 
 
-        await waitForImage(
-          image
-        );
+        state.image =
+          loadedImage;
+
+
+        /*
+          画面プレビューにも表示
+        */
+
+        previewImage.src =
+          dataUrl;
 
 
         updateBackground();
 
       }
 
-      catch (error) {
+      catch (
+        error
+      ) {
 
         console.error(
           error
@@ -1701,7 +1710,27 @@ function setupCardSettings(
         "";
 
 
-      image.src =
+      state.dataUrl =
+        null;
+
+
+      state.image =
+        null;
+
+
+      state.x =
+        50;
+
+
+      state.y =
+        50;
+
+
+      state.scale =
+        100;
+
+
+      previewImage.src =
         TRANSPARENT_PIXEL;
 
 
@@ -1759,16 +1788,19 @@ function setupCardSettings(
           () => {
 
             if (
-              radio.checked
+              !radio.checked
             ) {
 
-              overlayColor =
-                radio.value;
-
-
-              updateOverlay();
+              return;
 
             }
+
+
+            overlayColor =
+              radio.value;
+
+
+            updateOverlay();
 
           }
         );
@@ -1789,14 +1821,17 @@ function setupCardSettings(
           () => {
 
             if (
-              radio.checked
+              !radio.checked
             ) {
 
-              applyTextTheme(
-                radio.value
-              );
+              return;
 
             }
+
+
+            applyTextTheme(
+              radio.value
+            );
 
           }
         );
@@ -1805,16 +1840,16 @@ function setupCardSettings(
     );
 
 
-  const checkedText =
+  const checked =
     document.querySelector(
       `input[name="${options.textRadioName}"]:checked`
     );
 
 
   applyTextTheme(
-    checkedText
+    checked
       ?
-      checkedText.value
+      checked.value
       :
       "white"
   );
@@ -1828,10 +1863,13 @@ function setupCardSettings(
 
 
 /* ==================================================
-   SETUPS
+   CARD SETTINGS
 ================================================== */
 
 setupCardSettings({
+
+  cardNumber:
+    2,
 
   cardId:
     "card-2",
@@ -1883,6 +1921,9 @@ setupCardSettings({
 
 setupCardSettings({
 
+  cardNumber:
+    3,
+
   cardId:
     "card-3",
 
@@ -1932,6 +1973,9 @@ setupCardSettings({
 
 
 setupCardSettings({
+
+  cardNumber:
+    4,
 
   cardId:
     "card-4",
@@ -2013,7 +2057,7 @@ function updatePreviewScales() {
           4;
 
 
-        const width =
+        const availableWidth =
           Math.max(
             0,
             frame.clientWidth -
@@ -2022,8 +2066,8 @@ function updatePreviewScales() {
 
 
         const scale =
-          width /
-          1200;
+          availableWidth /
+          CARD_SIZE;
 
 
         card.style.setProperty(
@@ -2058,7 +2102,491 @@ window.addEventListener(
 
 
 /* ==================================================
-   DATA URL -> BLOB
+   NEXT FRAME
+================================================== */
+
+function nextFrame() {
+
+  return new Promise(
+    resolve => {
+
+      requestAnimationFrame(
+        () => {
+
+          requestAnimationFrame(
+            resolve
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================================
+   SLEEP
+================================================== */
+
+function sleep(
+  milliseconds
+) {
+
+  return new Promise(
+    resolve => {
+
+      setTimeout(
+        resolve,
+        milliseconds
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================================
+   FLATTEN BACKGROUND TO CANVAS
+
+   ★今回の重要修正★
+
+   object-fit:cover
+   object-position
+   追加scale
+
+   をすべて1200×1200 Canvasへ焼き込む。
+================================================== */
+
+function createFlattenedBackground(
+  state
+) {
+
+  if (
+    !state ||
+    !state.image
+  ) {
+
+    return null;
+
+  }
+
+
+  const source =
+    state.image;
+
+
+  const sourceWidth =
+    source.naturalWidth
+    ||
+    source.width;
+
+
+  const sourceHeight =
+    source.naturalHeight
+    ||
+    source.height;
+
+
+  if (
+    !sourceWidth ||
+    !sourceHeight
+  ) {
+
+    return null;
+
+  }
+
+
+  const canvas =
+    document.createElement(
+      "canvas"
+    );
+
+
+  canvas.width =
+    CARD_SIZE;
+
+
+  canvas.height =
+    CARD_SIZE;
+
+
+  const ctx =
+    canvas.getContext(
+      "2d",
+      {
+        alpha: true
+      }
+    );
+
+
+  if (
+    !ctx
+  ) {
+
+    throw new Error(
+      "Canvas context unavailable"
+    );
+
+  }
+
+
+  /*
+    object-fit: cover
+
+    1200×1200を完全に覆うサイズを求める
+  */
+
+  const coverScale =
+    Math.max(
+      CARD_SIZE /
+      sourceWidth,
+
+      CARD_SIZE /
+      sourceHeight
+    );
+
+
+  const drawWidth =
+    sourceWidth *
+    coverScale;
+
+
+  const drawHeight =
+    sourceHeight *
+    coverScale;
+
+
+  const positionX =
+    state.x /
+    100;
+
+
+  const positionY =
+    state.y /
+    100;
+
+
+  /*
+    object-positionと同等の位置
+  */
+
+  const drawX =
+    (
+      CARD_SIZE -
+      drawWidth
+    )
+    *
+    positionX;
+
+
+  const drawY =
+    (
+      CARD_SIZE -
+      drawHeight
+    )
+    *
+    positionY;
+
+
+  /*
+    CSS:
+    transform:scale(...)
+    transform-origin:x% y%
+
+    をCanvas上で再現
+  */
+
+  const extraScale =
+    state.scale /
+    100;
+
+
+  const originX =
+    CARD_SIZE *
+    positionX;
+
+
+  const originY =
+    CARD_SIZE *
+    positionY;
+
+
+  ctx.save();
+
+
+  ctx.translate(
+    originX,
+    originY
+  );
+
+
+  ctx.scale(
+    extraScale,
+    extraScale
+  );
+
+
+  ctx.translate(
+    -originX,
+    -originY
+  );
+
+
+  ctx.drawImage(
+    source,
+    drawX,
+    drawY,
+    drawWidth,
+    drawHeight
+  );
+
+
+  ctx.restore();
+
+
+  /*
+    最終的に1枚のPNGへする。
+  */
+
+  return canvas.toDataURL(
+    "image/png",
+    1
+  );
+
+}
+
+
+/* ==================================================
+   EXPORT CLONE
+================================================== */
+
+function createExportClone(
+  sourceCard
+) {
+
+  const workspace =
+    document.getElementById(
+      "export-workspace"
+    );
+
+
+  if (
+    !workspace
+  ) {
+
+    throw new Error(
+      "Export workspace not found"
+    );
+
+  }
+
+
+  workspace.innerHTML =
+    "";
+
+
+  const clone =
+    sourceCard.cloneNode(
+      true
+    );
+
+
+  /*
+    同一ページ内に同じidを作らない
+  */
+
+  clone.removeAttribute(
+    "id"
+  );
+
+
+  clone
+    .querySelectorAll(
+      "[id]"
+    )
+    .forEach(
+      element => {
+
+        element.removeAttribute(
+          "id"
+        );
+
+      }
+    );
+
+
+  clone.classList.add(
+    "export-clone"
+  );
+
+
+  clone.style.setProperty(
+    "--preview-scale",
+    "1"
+  );
+
+
+  clone.style.position =
+    "relative";
+
+
+  clone.style.left =
+    "0";
+
+
+  clone.style.top =
+    "0";
+
+
+  clone.style.transform =
+    "none";
+
+
+  clone.style.width =
+    `${CARD_SIZE}px`;
+
+
+  clone.style.height =
+    `${CARD_SIZE}px`;
+
+
+  workspace.appendChild(
+    clone
+  );
+
+
+  return clone;
+
+}
+
+
+/* ==================================================
+   APPLY FLATTENED BACKGROUND TO CLONE
+================================================== */
+
+function applyFlattenedBackground(
+  clone,
+  cardNumber
+) {
+
+  if (
+    cardNumber === 1
+  ) {
+
+    return;
+
+  }
+
+
+  const state =
+    backgroundStates[
+      cardNumber
+    ];
+
+
+  const background =
+    clone.querySelector(
+      ".card-background"
+    );
+
+
+  if (
+    !background
+  ) {
+
+    return;
+
+  }
+
+
+  /*
+    clone側に残っている元imgを削除。
+
+    html-to-imageへ
+    アップロード画像を直接渡さない。
+  */
+
+  const originalImage =
+    background.querySelector(
+      ".card-background-image"
+    );
+
+
+  if (
+    originalImage
+  ) {
+
+    originalImage.remove();
+
+  }
+
+
+  /*
+    背景画像未設定なら
+    元の青黒グラデーションだけ残す。
+  */
+
+  if (
+    !state ||
+    !state.image
+  ) {
+
+    return;
+
+  }
+
+
+  const flattened =
+    createFlattenedBackground(
+      state
+    );
+
+
+  if (
+    !flattened
+  ) {
+
+    return;
+
+  }
+
+
+  /*
+    1200×1200へ焼き込んだPNGを
+    CSS background-imageとしてセット。
+
+    位置調整やscaleはすでに画像に反映済み。
+  */
+
+  background.classList.add(
+    "export-flat-background"
+  );
+
+
+  background.style.backgroundImage =
+    `url("${flattened}")`;
+
+
+  background.style.backgroundSize =
+    `${CARD_SIZE}px ${CARD_SIZE}px`;
+
+
+  background.style.backgroundPosition =
+    "0 0";
+
+
+  background.style.backgroundRepeat =
+    "no-repeat";
+
+}
+
+
+/* ==================================================
+   DATAURL -> BLOB
 ================================================== */
 
 function dataURLToBlob(
@@ -2071,13 +2599,24 @@ function dataURLToBlob(
     );
 
 
+  if (
+    parts.length < 2
+  ) {
+
+    throw new Error(
+      "Invalid Data URL"
+    );
+
+  }
+
+
   const mime =
     parts[0]
       .match(
         /:(.*?);/
       )?.[1]
-      ||
-      "image/png";
+    ||
+    "image/png";
 
 
   const binary =
@@ -2120,159 +2659,12 @@ function dataURLToBlob(
 
 
 /* ==================================================
-   EXPORT CLONE
-================================================== */
-
-function createExportClone(
-  sourceCard
-) {
-
-  const workspace =
-    document.getElementById(
-      "export-workspace"
-    );
-
-
-  if (
-    !workspace
-  ) {
-
-    throw new Error(
-      "export workspace missing"
-    );
-
-  }
-
-
-  workspace.innerHTML =
-    "";
-
-
-  const clone =
-    sourceCard.cloneNode(
-      true
-    );
-
-
-  /*
-    clone内で重複IDを作らない
-  */
-
-  clone.removeAttribute(
-    "id"
-  );
-
-
-  clone.querySelectorAll(
-    "[id]"
-  )
-  .forEach(
-    element => {
-
-      element.removeAttribute(
-        "id"
-      );
-
-    }
-  );
-
-
-  clone.classList.add(
-    "export-clone"
-  );
-
-
-  clone.style.setProperty(
-    "--preview-scale",
-    "1"
-  );
-
-
-  clone.style.transform =
-    "none";
-
-
-  clone.style.left =
-    "0";
-
-
-  clone.style.top =
-    "0";
-
-
-  clone.style.width =
-    "1200px";
-
-
-  clone.style.height =
-    "1200px";
-
-
-  workspace.appendChild(
-    clone
-  );
-
-
-  return clone;
-
-}
-
-
-/* ==================================================
-   PREPARE CLONE IMAGES
-================================================== */
-
-async function prepareCloneImages(
-  clone
-) {
-
-  const images =
-    Array.from(
-      clone.querySelectorAll(
-        "img"
-      )
-    );
-
-
-  for (
-    const image of images
-  ) {
-
-    const src =
-      image.getAttribute(
-        "src"
-      );
-
-
-    if (
-      !src
-    ) {
-
-      image.src =
-        TRANSPARENT_PIXEL;
-
-    }
-
-
-    await waitForImage(
-      image
-    );
-
-  }
-
-
-  await nextFrame();
-
-}
-
-
-/* ==================================================
-   GENERATE CLONE
+   GENERATE ONE CARD
 ================================================== */
 
 async function generateCardImage(
   sourceCard,
-  index
+  cardNumber
 ) {
 
   const clone =
@@ -2283,24 +2675,30 @@ async function generateCardImage(
 
   try {
 
-    await prepareCloneImages(
-      clone
+    /*
+      回答カードの場合、
+      背景をCanvasで焼き込む。
+    */
+
+    applyFlattenedBackground(
+      clone,
+      cardNumber
     );
 
 
+    /*
+      DOM更新をWebKitへ反映
+    */
+
     await nextFrame();
 
-
-    /*
-      WebKitに描画時間を返す
-    */
 
     if (
       isIOS
     ) {
 
       await sleep(
-        350
+        400
       );
 
     }
@@ -2309,16 +2707,16 @@ async function generateCardImage(
     const options = {
 
       width:
-        1200,
+        CARD_SIZE,
 
       height:
-        1200,
+        CARD_SIZE,
 
       canvasWidth:
-        1200,
+        CARD_SIZE,
 
       canvasHeight:
-        1200,
+        CARD_SIZE,
 
       pixelRatio:
         1,
@@ -2327,13 +2725,19 @@ async function generateCardImage(
         false,
 
       backgroundColor:
-        index === 1
-          ?
-          "#f4f1e9"
-          :
-          "#101722",
+        cardNumber === 1
+        ?
+        "#f4f1e9"
+        :
+        "#101722",
 
       style: {
+
+        width:
+          `${CARD_SIZE}px`,
+
+        height:
+          `${CARD_SIZE}px`,
 
         position:
           "relative",
@@ -2348,13 +2752,7 @@ async function generateCardImage(
           "none",
 
         transformOrigin:
-          "top left",
-
-        width:
-          "1200px",
-
-        height:
-          "1200px"
+          "top left"
 
       }
 
@@ -2362,9 +2760,8 @@ async function generateCardImage(
 
 
     /*
-      iPhone / iPad
-
-      cloneに対してのみtoPng
+      iPhone / iPadは
+      toPng → Blob変換方式
     */
 
     if (
@@ -2401,7 +2798,7 @@ async function generateCardImage(
     ) {
 
       throw new Error(
-        `card-${index} blob is null`
+        `Card ${cardNumber}: Blob is null`
       );
 
     }
@@ -2497,7 +2894,10 @@ if (
 
 
         /*
-          フォント待機
+          フォント準備。
+
+          フォント側が止まっても
+          3秒で先へ進む。
         */
 
         if (
@@ -2520,14 +2920,11 @@ if (
 
           }
 
-          catch (error) {
-
-          }
+          catch (
+            error
+          ) {}
 
         }
-
-
-        await waitForAllBackgroundImages();
 
 
         fitAllAnswerCards();
@@ -2551,9 +2948,28 @@ if (
 
 
           generateButton.textContent =
-            t.cloning(
+            t.preparingCard(
               i
             );
+
+
+          await nextFrame();
+
+
+          /*
+            iPhone / iPadへ
+            描画処理を返す
+          */
+
+          if (
+            isIOS
+          ) {
+
+            await sleep(
+              300
+            );
+
+          }
 
 
           const sourceCard =
@@ -2567,25 +2983,7 @@ if (
           ) {
 
             throw new Error(
-              `card-${i} missing`
-            );
-
-          }
-
-
-          /*
-            ボタン表示更新を確実に反映
-          */
-
-          await nextFrame();
-
-
-          if (
-            isIOS
-          ) {
-
-            await sleep(
-              250
+              `Card ${i} not found`
             );
 
           }
@@ -2624,16 +3022,16 @@ if (
 
 
           /*
-            各カード処理後に
-            WebKitへ処理を返す
+            1枚終わるごとに
+            メモリ開放時間を作る
           */
 
           await sleep(
             isIOS
-              ?
-              1000
-              :
-              300
+            ?
+            1000
+            :
+            300
           );
 
 
@@ -2642,9 +3040,9 @@ if (
         }
 
 
-        /* ==================================================
-           IOS / IPAD
-        ================================================== */
+        /*
+          IOS
+        */
 
         if (
           isIOS
@@ -2662,9 +3060,9 @@ if (
         }
 
 
-        /* ==================================================
-           PC
-        ================================================== */
+        /*
+          PC
+        */
 
         else {
 
@@ -2679,7 +3077,7 @@ if (
 
 
             await sleep(
-              300
+              350
             );
 
           }
@@ -2713,12 +3111,9 @@ if (
         else {
 
           alert(
-            currentLanguage ===
-            "ja"
-
+            currentLanguage === "ja"
             ?
             "画像生成の準備に失敗しました。"
-
             :
             "Failed to prepare image generation."
           );
@@ -2728,10 +3123,6 @@ if (
       }
 
       finally {
-
-        /*
-          cloneを必ず消す
-        */
 
         const workspace =
           document.getElementById(
@@ -2878,6 +3269,10 @@ function showIOSExportResults(
       );
 
 
+      /*
+        Share API対応端末
+      */
+
       try {
 
         const file =
@@ -2942,7 +3337,9 @@ function showIOSExportResults(
 
               }
 
-              catch (error) {
+              catch (
+                error
+              ) {
 
                 if (
                   error.name !==
@@ -2969,7 +3366,9 @@ function showIOSExportResults(
 
       }
 
-      catch (error) {
+      catch (
+        error
+      ) {
 
         console.warn(
           error
@@ -3003,13 +3402,11 @@ function showIOSExportResults(
 
   mobileExportResults.scrollIntoView(
     {
-
       behavior:
         "smooth",
 
       block:
         "start"
-
     }
   );
 
@@ -3017,7 +3414,7 @@ function showIOSExportResults(
 
 
 /* ==================================================
-   CLEAR GENERATED RESULTS
+   CLEAR GENERATED
 ================================================== */
 
 function clearGeneratedResults() {
@@ -3054,7 +3451,7 @@ function clearGeneratedResults() {
 
 
 /* ==================================================
-   DOWNLOAD
+   DOWNLOAD PC
 ================================================== */
 
 function downloadBlob(
@@ -3101,36 +3498,14 @@ function downloadBlob(
       );
 
     },
-    2000
+    2500
   );
 
 }
 
 
 /* ==================================================
-   SLEEP
-================================================== */
-
-function sleep(
-  milliseconds
-) {
-
-  return new Promise(
-    resolve => {
-
-      setTimeout(
-        resolve,
-        milliseconds
-      );
-
-    }
-  );
-
-}
-
-
-/* ==================================================
-   INITIAL
+   INITIALIZE
 ================================================== */
 
 window.addEventListener(
@@ -3148,19 +3523,7 @@ window.addEventListener(
     fitAllAnswerCards();
 
 
-    try {
-
-      await waitForAllBackgroundImages();
-
-    }
-
-    catch (error) {
-
-      console.warn(
-        error
-      );
-
-    }
+    await nextFrame();
 
   }
 );
