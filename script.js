@@ -28,89 +28,39 @@ const TRANSPARENT_PIXEL =
 
 
 /* ==================================================
-   BACKGROUND STATES
-
-   iPhone用書き出しではDOMのimgを使わず、
-   ここに保持している元画像をCanvasへ直接描画する。
+   BACKGROUND STATE
 ================================================== */
 
 const backgroundStates = {
 
   2: {
-
-    image:
-      null,
-
-    dataUrl:
-      null,
-
-    x:
-      50,
-
-    y:
-      50,
-
-    scale:
-      100,
-
-    overlayColor:
-      "black",
-
-    overlayOpacity:
-      0.45
-
+    image: null,
+    dataUrl: null,
+    x: 50,
+    y: 50,
+    scale: 100,
+    overlayColor: "black",
+    overlayOpacity: 0.45
   },
-
 
   3: {
-
-    image:
-      null,
-
-    dataUrl:
-      null,
-
-    x:
-      50,
-
-    y:
-      50,
-
-    scale:
-      100,
-
-    overlayColor:
-      "black",
-
-    overlayOpacity:
-      0.45
-
+    image: null,
+    dataUrl: null,
+    x: 50,
+    y: 50,
+    scale: 100,
+    overlayColor: "black",
+    overlayOpacity: 0.45
   },
 
-
   4: {
-
-    image:
-      null,
-
-    dataUrl:
-      null,
-
-    x:
-      50,
-
-    y:
-      50,
-
-    scale:
-      100,
-
-    overlayColor:
-      "black",
-
-    overlayOpacity:
-      0.45
-
+    image: null,
+    dataUrl: null,
+    x: 50,
+    y: 50,
+    scale: 100,
+    overlayColor: "black",
+    overlayOpacity: 0.45
   }
 
 };
@@ -123,8 +73,7 @@ const backgroundStates = {
 const QUESTIONS = {
 
   ja: [
-
-    "キャラクター名と、その名前の由来は？",
+    "名前と、その名前の由来は？",
     "出身地はどこ？",
     "年齢・誕生日は？",
     "性格を一言で表すと？",
@@ -144,13 +93,10 @@ const QUESTIONS = {
     "過去に後悔していることは？",
     "誰にも言っていない秘密は？",
     "自由質問"
-
   ],
 
-
   en: [
-
-    "What is your character's name, and where did it come from?",
+    "What is their name, and where did it come from?",
     "Where are they from?",
     "How old are they, and when is their birthday?",
     "How would you describe their personality in one phrase?",
@@ -170,7 +116,6 @@ const QUESTIONS = {
     "What do they regret about their past?",
     "What is a secret they have never told anyone?",
     "Custom Question"
-
   ]
 
 };
@@ -188,7 +133,7 @@ const translations = {
       "キャラクター設定 20の質問",
 
     siteDescription:
-      "FFXIVのキャラクター設定などを20の質問に記入し、背景画像・文字色などを設定すると、プロフィールカード4枚に出力できます",
+      'FFXIVの<strong>キャラクター設定</strong>などを20の質問に記入し、背景画像・文字色などを設定すると、プロフィールカード4枚に出力できます',
 
     mobileNote:
       "（スマホ表示では縦長表示になります）",
@@ -329,7 +274,10 @@ const translations = {
       "共有 / 保存",
 
     card:
-      "カード"
+      "カード",
+
+    disclaimerLink:
+      "免責事項"
 
   },
 
@@ -340,7 +288,7 @@ const translations = {
       "20 Questions for Your Character",
 
     siteDescription:
-      "Answer 20 questions about your FFXIV character, customize the background images and text colors, and export four profile cards.",
+      'Answer 20 questions about your FFXIV <strong>character profile</strong>, customize the background images and text colors, and export four profile cards.',
 
     mobileNote:
       "On smartphones, the page is displayed in a vertical layout.",
@@ -481,7 +429,10 @@ const translations = {
       "Share / Save",
 
     card:
-      "Card"
+      "Card",
+
+    disclaimerLink:
+      "Disclaimer"
 
   }
 
@@ -489,7 +440,7 @@ const translations = {
 
 
 /* ==================================================
-   LANGUAGE
+   LANGUAGE STATE
 ================================================== */
 
 let currentLanguage =
@@ -600,7 +551,7 @@ if (
 
 
 /* ==================================================
-   SET LANGUAGE
+   LANGUAGE
 ================================================== */
 
 function setLanguage(
@@ -664,6 +615,31 @@ function setLanguage(
         ) {
 
           element.textContent =
+            t[key];
+
+        }
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      "[data-i18n-html]"
+    )
+    .forEach(
+      element => {
+
+        const key =
+          element.dataset.i18nHtml;
+
+
+        if (
+          typeof t[key] ===
+          "string"
+        ) {
+
+          element.innerHTML =
             t[key];
 
         }
@@ -792,18 +768,18 @@ function setLanguage(
   }
 
 
-  const button =
+  const generateButton =
     document.getElementById(
       "generate-button"
     );
 
 
   if (
-    button &&
-    !button.disabled
+    generateButton &&
+    !generateButton.disabled
   ) {
 
-    button.textContent =
+    generateButton.textContent =
       t.generate;
 
   }
@@ -823,7 +799,7 @@ function setLanguage(
 
 
 /* ==================================================
-   LANGUAGE BUTTON
+   LANGUAGE BUTTONS
 ================================================== */
 
 document
@@ -990,6 +966,45 @@ for (
         counter.textContent =
           value.length;
 
+
+        const countBox =
+          counter.parentElement;
+
+
+        if (
+          countBox
+        ) {
+
+          countBox.classList.remove(
+            "is-warning",
+            "is-limit"
+          );
+
+
+          if (
+            value.length >=
+            MAX_LENGTH
+          ) {
+
+            countBox.classList.add(
+              "is-limit"
+            );
+
+          }
+
+          else if (
+            value.length >=
+            60
+          ) {
+
+            countBox.classList.add(
+              "is-warning"
+            );
+
+          }
+
+        }
+
       }
 
 
@@ -1012,7 +1027,7 @@ for (
 
 
 /* ==================================================
-   FONT SIZE
+   ANSWER FONT SIZE
 ================================================== */
 
 function getAnswerFontSize(
@@ -1052,7 +1067,7 @@ function getAnswerFontSize(
 
 
 /* ==================================================
-   FIT CARDS
+   FIT
 ================================================== */
 
 function fitAllAnswerCards() {
@@ -1238,6 +1253,45 @@ function updateQ20Title() {
     counter.textContent =
       value.length;
 
+
+    const countBox =
+      counter.parentElement;
+
+
+    if (
+      countBox
+    ) {
+
+      countBox.classList.remove(
+        "is-warning",
+        "is-limit"
+      );
+
+
+      if (
+        value.length >=
+        CUSTOM_QUESTION_MAX_LENGTH
+      ) {
+
+        countBox.classList.add(
+          "is-limit"
+        );
+
+      }
+
+      else if (
+        value.length >=
+        32
+      ) {
+
+        countBox.classList.add(
+          "is-warning"
+        );
+
+      }
+
+    }
+
   }
 
 
@@ -1261,7 +1315,7 @@ if (
 
 
 /* ==================================================
-   FILE -> DATAURL
+   FILE READER
 ================================================== */
 
 function readImageAsDataURL(
@@ -1344,7 +1398,7 @@ function loadImage(
 
 
 /* ==================================================
-   CARD SETTINGS
+   SETTINGS
 ================================================== */
 
 function setupCardSettings(
@@ -1369,7 +1423,7 @@ function setupCardSettings(
     );
 
 
-  const clear =
+  const clearButton =
     document.getElementById(
       options.removeButtonId
     );
@@ -1439,17 +1493,21 @@ function setupCardSettings(
     !card ||
     !previewImage ||
     !upload ||
-    !clear ||
+    !clearButton ||
     !x ||
+    !xValue ||
     !y ||
+    !yValue ||
     !scale ||
+    !scaleValue ||
     !overlay ||
     !opacity ||
+    !opacityValue ||
     !state
   ) {
 
     console.error(
-      "Card settings missing",
+      "Card settings missing:",
       options
     );
 
@@ -1623,19 +1681,16 @@ function setupCardSettings(
           );
 
 
-        /*
-          ★重要
-
-          書き出し時にはDOM imgを使わず、
-          このImageオブジェクトから直接
-          CanvasへdrawImageする。
-        */
-
         const image =
           await loadImage(
             dataUrl
           );
 
+
+        /*
+          プレビューとは別に
+          Canvas書き出し用Imageを保持
+        */
 
         state.dataUrl =
           dataUrl;
@@ -1674,7 +1729,7 @@ function setupCardSettings(
   );
 
 
-  clear.addEventListener(
+  clearButton.addEventListener(
     "click",
     () => {
 
@@ -1688,6 +1743,18 @@ function setupCardSettings(
 
       state.dataUrl =
         null;
+
+
+      state.x =
+        50;
+
+
+      state.y =
+        50;
+
+
+      state.scale =
+        100;
 
 
       x.value =
@@ -1783,8 +1850,7 @@ function setupCardSettings(
 
 setupCardSettings({
 
-  cardNumber:
-    2,
+  cardNumber: 2,
 
   cardId:
     "card-2",
@@ -1836,8 +1902,7 @@ setupCardSettings({
 
 setupCardSettings({
 
-  cardNumber:
-    3,
+  cardNumber: 3,
 
   cardId:
     "card-3",
@@ -1889,8 +1954,7 @@ setupCardSettings({
 
 setupCardSettings({
 
-  cardNumber:
-    4,
+  cardNumber: 4,
 
   cardId:
     "card-4",
@@ -1972,7 +2036,7 @@ function updatePreviewScales() {
           4;
 
 
-        const available =
+        const availableWidth =
           Math.max(
             0,
             frame.clientWidth -
@@ -1981,7 +2045,7 @@ function updatePreviewScales() {
 
 
         const scale =
-          available /
+          availableWidth /
           CARD_SIZE;
 
 
@@ -2017,7 +2081,7 @@ window.addEventListener(
 
 
 /* ==================================================
-   NEXT FRAME
+   FRAME / SLEEP
 ================================================== */
 
 function nextFrame() {
@@ -2041,10 +2105,6 @@ function nextFrame() {
 }
 
 
-/* ==================================================
-   SLEEP
-================================================== */
-
 function sleep(
   milliseconds
 ) {
@@ -2064,9 +2124,7 @@ function sleep(
 
 
 /* ==================================================
-   CREATE FINAL BACKGROUND CANVAS
-
-   ★背景画像はここで直接描画する。
+   ANSWER BACKGROUND CANVAS
 ================================================== */
 
 function createBackgroundCanvas(
@@ -2111,7 +2169,7 @@ function createBackgroundCanvas(
 
 
   /*
-    まず標準の青黒背景を描画。
+    標準背景
   */
 
   const gradient =
@@ -2148,7 +2206,7 @@ function createBackgroundCanvas(
 
 
   /*
-    背景画像がある場合
+    アップロード背景
   */
 
   if (
@@ -2165,7 +2223,7 @@ function createBackgroundCanvas(
 
 
   /*
-    背景カバーもCanvas上で直接合成。
+    白 / 黒オーバーレイ
   */
 
   if (
@@ -2206,13 +2264,7 @@ function createBackgroundCanvas(
 
 
 /* ==================================================
-   DRAW BACKGROUND
-
-   object-fit:cover
-   object-position
-   transform:scale
-
-   をCanvas上で再現。
+   DRAW BACKGROUND IMAGE
 ================================================== */
 
 function drawBackgroundImage(
@@ -2250,7 +2302,7 @@ function drawBackgroundImage(
     object-fit: cover
   */
 
-  const baseScale =
+  const coverScale =
     Math.max(
       CARD_SIZE /
       imageWidth,
@@ -2262,12 +2314,12 @@ function drawBackgroundImage(
 
   const baseWidth =
     imageWidth *
-    baseScale;
+    coverScale;
 
 
   const baseHeight =
     imageHeight *
-    baseScale;
+    coverScale;
 
 
   const px =
@@ -2284,7 +2336,7 @@ function drawBackgroundImage(
     object-position
   */
 
-  const x =
+  const drawX =
     (
       CARD_SIZE -
       baseWidth
@@ -2293,7 +2345,7 @@ function drawBackgroundImage(
     px;
 
 
-  const y =
+  const drawY =
     (
       CARD_SIZE -
       baseHeight
@@ -2303,7 +2355,7 @@ function drawBackgroundImage(
 
 
   /*
-    CSS transform-origin
+    transform-origin
   */
 
   const originX =
@@ -2316,7 +2368,7 @@ function drawBackgroundImage(
     py;
 
 
-  const extraScale =
+  const additionalScale =
     state.scale /
     100;
 
@@ -2331,8 +2383,8 @@ function drawBackgroundImage(
 
 
   ctx.scale(
-    extraScale,
-    extraScale
+    additionalScale,
+    additionalScale
   );
 
 
@@ -2344,8 +2396,8 @@ function drawBackgroundImage(
 
   ctx.drawImage(
     image,
-    x,
-    y,
+    drawX,
+    drawY,
     baseWidth,
     baseHeight
   );
@@ -2357,9 +2409,7 @@ function drawBackgroundImage(
 
 
 /* ==================================================
-   CREATE TRANSPARENT CONTENT CLONE
-
-   背景画像とカバーをcloneから削除する。
+   TRANSPARENT CONTENT CLONE
 ================================================== */
 
 function createTransparentContentClone(
@@ -2419,8 +2469,7 @@ function createTransparentContentClone(
 
 
   /*
-    背景画像と背景カバーを
-    html-to-imageへ渡さない。
+    html-to-imageに背景を渡さない
   */
 
   const background =
@@ -2452,11 +2501,6 @@ function createTransparentContentClone(
 
   }
 
-
-  /*
-    カード自身も透明化。
-    金枠・内枠・文字だけ残す。
-  */
 
   clone.style.background =
     "transparent";
@@ -2503,7 +2547,7 @@ function createTransparentContentClone(
 
 
 /* ==================================================
-   CREATE TEXT/FRAME PNG
+   CONTENT LAYER
 ================================================== */
 
 async function createContentLayer(
@@ -2607,22 +2651,28 @@ async function createContentLayer(
 
 
 /* ==================================================
-   QUESTION CARD EXPORT
+   QUESTION CARD
 ================================================== */
 
 async function generateQuestionCard(
   sourceCard
 ) {
 
-  /*
-    質問カードにはアップロード画像がないので、
-    従来方式で問題なし。
-  */
-
   const workspace =
     document.getElementById(
       "export-workspace"
     );
+
+
+  if (
+    !workspace
+  ) {
+
+    throw new Error(
+      "Export workspace missing"
+    );
+
+  }
 
 
   workspace.innerHTML =
@@ -2672,6 +2722,17 @@ async function generateQuestionCard(
   await nextFrame();
 
 
+  if (
+    isIOS
+  ) {
+
+    await sleep(
+      200
+    );
+
+  }
+
+
   const dataUrl =
     await htmlToImage.toPng(
       clone,
@@ -2714,9 +2775,7 @@ async function generateQuestionCard(
 
 
 /* ==================================================
-   ANSWER CARD EXPORT
-
-   ★今回の本命
+   ANSWER CARD
 ================================================== */
 
 async function generateAnswerCard(
@@ -2725,8 +2784,8 @@ async function generateAnswerCard(
 ) {
 
   /*
-    1.
-    背景＋背景カバーをCanvasに描く。
+    背景画像 + オーバーレイを
+    Canvasへ直接描画
   */
 
   const finalCanvas =
@@ -2753,8 +2812,8 @@ async function generateAnswerCard(
 
 
   /*
-    2.
-    文字・枠だけ透明PNG化。
+    HTML-to-imageには
+    文字・罫線・金枠だけを生成させる
   */
 
   const contentDataUrl =
@@ -2763,11 +2822,6 @@ async function generateAnswerCard(
     );
 
 
-  /*
-    3.
-    透明PNGを画像として読み込む。
-  */
-
   const contentImage =
     await loadImage(
       contentDataUrl
@@ -2775,8 +2829,7 @@ async function generateAnswerCard(
 
 
   /*
-    4.
-    背景Canvasの上へ文字・枠を重ねる。
+    背景の上へ文字レイヤーを合成
   */
 
   ctx.drawImage(
@@ -2787,11 +2840,6 @@ async function generateAnswerCard(
     CARD_SIZE
   );
 
-
-  /*
-    5.
-    最終CanvasをBlobへ。
-  */
 
   return canvasToBlob(
     finalCanvas
@@ -2813,10 +2861,6 @@ function canvasToBlob(
       resolve,
       reject
     ) => {
-
-      /*
-        iOSでもcanvas.toBlobは利用可能。
-      */
 
       if (
         canvas.toBlob
@@ -2855,10 +2899,6 @@ function canvasToBlob(
       }
 
 
-      /*
-        古い環境用。
-      */
-
       try {
 
         const dataUrl =
@@ -2892,7 +2932,7 @@ function canvasToBlob(
 
 
 /* ==================================================
-   DATAURL -> BLOB
+   DATA URL -> BLOB
 ================================================== */
 
 function dataURLToBlob(
@@ -3017,7 +3057,8 @@ if (
 
 
         /*
-          フォント待機。
+          フォントが読み込み完了しなくても
+          3秒で続行
         */
 
         if (
@@ -3116,10 +3157,6 @@ if (
           let blob;
 
 
-          /*
-            質問カード
-          */
-
           if (
             i === 1
           ) {
@@ -3130,13 +3167,6 @@ if (
               );
 
           }
-
-
-          /*
-            回答カード
-
-            背景Canvas＋文字Layer方式
-          */
 
           else {
 
@@ -3166,7 +3196,7 @@ if (
 
 
           /*
-            WebKitのメモリ負荷を下げる。
+            iOS WebKitのメモリ負荷対策
           */
 
           await sleep(
@@ -3183,10 +3213,6 @@ if (
         }
 
 
-        /*
-          IOS
-        */
-
         if (
           isIOS
         ) {
@@ -3201,11 +3227,6 @@ if (
           );
 
         }
-
-
-        /*
-          PC
-        */
 
         else {
 
@@ -3414,7 +3435,7 @@ function showIOSExportResults(
 
 
       /*
-        Share API
+        iOS共有シート
       */
 
       try {
@@ -3597,7 +3618,7 @@ function clearGeneratedResults() {
 
 
 /* ==================================================
-   DOWNLOAD
+   DESKTOP DOWNLOAD
 ================================================== */
 
 function downloadBlob(

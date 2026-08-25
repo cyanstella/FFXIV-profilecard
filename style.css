@@ -68,7 +68,8 @@ body {
 
   background: #0d1119;
 
-  border: 1px solid #343d4d;
+  border:
+    1px solid #343d4d;
 
   border-radius: 7px;
 }
@@ -156,6 +157,12 @@ body {
   line-height: 1.8;
 }
 
+.site-description strong {
+  color: #fff;
+
+  font-weight: 700;
+}
+
 .site-description .mobile-note {
   margin-top: 8px;
 
@@ -209,7 +216,8 @@ body {
       820px
     );
 
-  margin: 0 auto 34px;
+  margin:
+    0 auto 34px;
 
   padding: 28px;
 }
@@ -221,7 +229,8 @@ body {
 }
 
 .section-heading h2 {
-  margin: 0 0 6px;
+  margin:
+    0 0 6px;
 
   font-family:
     Georgia,
@@ -260,7 +269,8 @@ body {
       1100px
     );
 
-  margin: 0 auto 34px;
+  margin:
+    0 auto 34px;
 
   padding: 30px;
 }
@@ -276,7 +286,8 @@ body {
 }
 
 .input-guide {
-  margin: -5px 0 35px;
+  margin:
+    -5px 0 35px;
 
   color: #858d9a;
 
@@ -305,7 +316,8 @@ body {
 
   width: 100%;
 
-  padding: 12px 15px;
+  padding:
+    12px 15px;
 
   border:
     1px solid #343d4d;
@@ -527,11 +539,12 @@ body {
 
 
 /* ==================================================
-   BUTTONS
+   BUTTON
 ================================================== */
 
 button {
-  padding: 13px 24px;
+  padding:
+    13px 24px;
 
   border:
     1px solid #b79a66;
@@ -584,7 +597,8 @@ button {
 
   width: 100%;
 
-  aspect-ratio: 1 / 1;
+  aspect-ratio:
+    1 / 1;
 
   overflow: hidden;
 
@@ -598,7 +612,6 @@ button {
 
 .profile-card {
   --preview-scale: .5;
-
   --answer-scale: 1;
 
   position: absolute;
@@ -660,17 +673,13 @@ button {
     rgba(127,101,55,.85);
 }
 
-.profile-card.light-theme
-.small-title,
-
-.profile-card.light-theme
-.card-header h2 {
+.profile-card.light-theme .small-title,
+.profile-card.light-theme .card-header h2 {
   color:
     #7f6537;
 }
 
-.profile-card.light-theme
-.answer-block {
+.profile-card.light-theme .answer-block {
   border-bottom-color:
     rgba(127,101,55,.58);
 }
@@ -715,7 +724,7 @@ button {
 
 
 /* ==================================================
-   BACKGROUND IMAGE
+   BACKGROUND
 ================================================== */
 
 .card-background {
@@ -750,11 +759,14 @@ button {
 
   object-fit: cover;
 
-  object-position: 50% 50%;
+  object-position:
+    50% 50%;
 
-  transform: scale(1);
+  transform:
+    scale(1);
 
-  transform-origin: 50% 50%;
+  transform-origin:
+    50% 50%;
 
   max-width: none;
 
@@ -816,28 +828,23 @@ button {
   margin:
     0 0 10px;
 
-  color:
-    #a58b5b;
+  color: #a58b5b;
 
   font-family:
     Georgia,
     serif;
 
-  font-size:
-    18px;
+  font-size: 18px;
 
-  font-weight:
-    600;
+  font-weight: 600;
 
-  letter-spacing:
-    .28em;
+  letter-spacing: .28em;
 }
 
 .card-header h2 {
   margin: 0;
 
-  color:
-    #a58b5b;
+  color: #a58b5b;
 
   font-family:
     Georgia,
@@ -845,14 +852,11 @@ button {
     "Yu Mincho",
     serif;
 
-  font-size:
-    48px;
+  font-size: 48px;
 
-  font-weight:
-    400;
+  font-weight: 400;
 
-  letter-spacing:
-    .08em;
+  letter-spacing: .08em;
 }
 
 
@@ -925,18 +929,15 @@ button {
 
 
 /* ==================================================
-   ENGLISH
+   ENGLISH QUESTION CARD
 ================================================== */
 
-html[lang="en"]
-#card-1
-.card-header h2 {
+html[lang="en"] #card-1 .card-header h2 {
   font-size:
     52px;
 }
 
-html[lang="en"]
-.question-list {
+html[lang="en"] .question-list {
   font-size:
     22px;
 
@@ -944,8 +945,7 @@ html[lang="en"]
     1.4;
 }
 
-html[lang="en"]
-.question-list li {
+html[lang="en"] .question-list li {
   margin-bottom:
     15px;
 }
@@ -1015,8 +1015,7 @@ html[lang="en"]
 .answer-text:empty::before {
   content: "—";
 
-  opacity:
-    .55;
+  opacity: .55;
 }
 
 
@@ -1029,14 +1028,12 @@ html[lang="en"]
     .94;
 }
 
-.answer-card.compact-1
-.card-header {
+.answer-card.compact-1 .card-header {
   margin-bottom:
     26px;
 }
 
-.answer-card.compact-1
-.answer-block {
+.answer-card.compact-1 .answer-block {
   margin-bottom:
     10px;
 
@@ -1044,8 +1041,7 @@ html[lang="en"]
     9px;
 }
 
-.answer-card.compact-1
-.question {
+.answer-card.compact-1 .question {
   font-size:
     15px;
 }
@@ -1056,14 +1052,12 @@ html[lang="en"]
     .88;
 }
 
-.answer-card.compact-2
-.card-header {
+.answer-card.compact-2 .card-header {
   margin-bottom:
     20px;
 }
 
-.answer-card.compact-2
-.answer-block {
+.answer-card.compact-2 .answer-block {
   margin-bottom:
     7px;
 
@@ -1071,8 +1065,7 @@ html[lang="en"]
     7px;
 }
 
-.answer-card.compact-2
-.question {
+.answer-card.compact-2 .question {
   font-size:
     14px;
 }
@@ -1083,8 +1076,7 @@ html[lang="en"]
 ================================================== */
 
 .text-white {
-  color:
-    #fff;
+  color: #fff;
 }
 
 .text-white .question,
@@ -1092,14 +1084,12 @@ html[lang="en"]
 .text-white .copyright,
 .text-white .card-version,
 .text-white .page-number {
-  color:
-    #fff;
+  color: #fff;
 }
 
 
 .text-black {
-  color:
-    #111;
+  color: #111;
 }
 
 .text-black .question,
@@ -1107,8 +1097,7 @@ html[lang="en"]
 .text-black .copyright,
 .text-black .card-version,
 .text-black .page-number {
-  color:
-    #111;
+  color: #111;
 }
 
 
@@ -1119,87 +1108,71 @@ html[lang="en"]
 .copyright,
 .card-version,
 .page-number {
-  line-height:
-    1;
+  line-height: 1;
 }
 
 .copyright {
   position: absolute;
 
-  left:
-    90px;
+  left: 90px;
 
-  bottom:
-    58px;
+  bottom: 58px;
 
-  margin:
-    0;
+  margin: 0;
 
   font-family:
     Arial,
     Helvetica,
     sans-serif;
 
-  font-size:
-    14px;
+  font-size: 14px;
 }
 
 .card-version {
   position: absolute;
 
-  left:
-    50%;
+  left: 50%;
 
-  bottom:
-    58px;
+  bottom: 58px;
 
   transform:
     translateX(-50%);
 
-  width:
-    520px;
+  width: 520px;
 
-  margin:
-    0;
+  margin: 0;
 
   font-family:
     Arial,
     Helvetica,
     sans-serif;
 
-  font-size:
-    11px;
+  font-size: 11px;
 
-  text-align:
-    center;
+  text-align: center;
 
-  opacity:
-    .72;
+  opacity: .72;
 }
 
 .page-number {
   position: absolute;
 
-  right:
-    90px;
+  right: 90px;
 
-  bottom:
-    58px;
+  bottom: 58px;
 
-  margin:
-    0;
+  margin: 0;
 
   font-family:
     Georgia,
     serif;
 
-  font-size:
-    18px;
+  font-size: 18px;
 }
 
 
 /* ==================================================
-   EXPORT AREA
+   EXPORT
 ================================================== */
 
 .export-area-main {
@@ -1210,32 +1183,22 @@ html[lang="en"]
     );
 
   margin:
-    0 auto 60px;
+    0 auto 50px;
 
   padding:
     26px 30px 20px;
 
-  text-align:
-    center;
+  text-align: center;
 }
 
-
-/* ==================================================
-   GOLD BUTTON
-================================================== */
-
 #generate-button {
-  width:
-    100%;
+  width: 100%;
 
   padding:
     19px 25px;
 
   border:
     1px solid #c5a86a;
-
-  border-radius:
-    5px;
 
   background:
     linear-gradient(
@@ -1244,32 +1207,20 @@ html[lang="en"]
       #ad8d52
     );
 
-  color:
-    #fff;
+  color: #fff;
 
-  font-size:
-    18px;
+  font-size: 18px;
 
-  font-weight:
-    700;
+  font-weight: 700;
 
-  letter-spacing:
-    .04em;
+  letter-spacing: .04em;
 
   box-shadow:
     0 4px 14px
     rgba(0,0,0,.22);
-
-  transition:
-    box-shadow .2s ease,
-    background .15s ease,
-    transform .15s ease;
 }
 
 #generate-button:hover {
-  color:
-    #fff;
-
   box-shadow:
     0 0 10px
       rgba(214,193,154,.30),
@@ -1282,9 +1233,6 @@ html[lang="en"]
 }
 
 #generate-button:active {
-  color:
-    #fff;
-
   background:
     linear-gradient(
       180deg,
@@ -1297,39 +1245,29 @@ html[lang="en"]
 }
 
 #generate-button:disabled {
-  color:
-    #fff;
+  opacity: .65;
 
-  opacity:
-    .65;
-
-  cursor:
-    wait;
+  cursor: wait;
 }
 
 .export-note {
   margin:
     12px 0 0;
 
-  color:
-    #d6c19a;
+  color: #d6c19a;
 
-  font-size:
-    13px;
+  font-size: 13px;
 
-  font-weight:
-    600;
+  font-weight: 600;
 }
 
 .export-size {
   margin:
     8px 0 0;
 
-  color:
-    #868e9c;
+  color: #868e9c;
 
-  font-size:
-    12px;
+  font-size: 12px;
 }
 
 
@@ -1354,11 +1292,9 @@ html[lang="en"]
   background:
     rgba(183,154,102,.05);
 
-  color:
-    #969daa;
+  color: #969daa;
 
-  font-size:
-    12px;
+  font-size: 12px;
 }
 
 .mobile-export-results {
@@ -1392,40 +1328,31 @@ html[lang="en"]
 }
 
 .mobile-export-item img {
-  display:
-    block;
+  display: block;
 
-  width:
-    100%;
+  width: 100%;
 
-  height:
-    auto;
+  height: auto;
 }
 
 .mobile-export-actions {
-  display:
-    grid;
+  display: grid;
 
   grid-template-columns:
     1fr 1fr;
 
-  gap:
-    8px;
+  gap: 8px;
 
-  margin-top:
-    12px;
+  margin-top: 12px;
 }
 
 .mobile-export-actions a,
 .mobile-export-actions button {
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: center;
 
-  justify-content:
-    center;
+  justify-content: center;
 
   padding:
     11px 8px;
@@ -1436,17 +1363,13 @@ html[lang="en"]
   border-radius:
     5px;
 
-  background:
-    #171d27;
+  background: #171d27;
 
-  color:
-    #fff;
+  color: #fff;
 
-  text-decoration:
-    none;
+  text-decoration: none;
 
-  font-size:
-    13px;
+  font-size: 13px;
 }
 
 
@@ -1455,36 +1378,22 @@ html[lang="en"]
 ================================================== */
 
 #export-workspace {
-  position:
-    fixed;
+  position: fixed;
 
-  left:
-    -20000px;
+  left: -20000px;
 
-  top:
-    0;
+  top: 0;
 
-  width:
-    1200px;
+  width: 1200px;
 
-  height:
-    1200px;
+  height: 1200px;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  pointer-events:
-    none;
+  pointer-events: none;
 
-  z-index:
-    -999999;
+  z-index: -999999;
 }
-
-
-/*
-  html-to-imageで生成するのは
-  文字・枠などだけ。
-*/
 
 .export-clone {
   --preview-scale:
@@ -1536,29 +1445,54 @@ html[lang="en"]
 
 
 /* ==================================================
-   SITE FOOTER
+   FOOTER
 ================================================== */
 
 .site-footer {
   padding:
-    45px 20px 35px;
+    38px 20px 35px;
 
   border-top:
     1px solid #202631;
 
-  color:
-    #8e939c;
+  color: #8e939c;
 
-  font-size:
-    12px;
+  font-size: 12px;
 
-  text-align:
-    center;
+  text-align: center;
 }
 
 .site-footer p {
   margin:
     0 0 12px;
+}
+
+.footer-links {
+  margin:
+    14px 0;
+}
+
+.footer-links a {
+  color: #b79a66;
+
+  font-size: 12px;
+
+  text-decoration: none;
+
+  border-bottom:
+    1px solid
+    rgba(183,154,102,.4);
+
+  transition:
+    color .2s ease,
+    border-color .2s ease;
+}
+
+.footer-links a:hover {
+  color: #d6c19a;
+
+  border-bottom-color:
+    #d6c19a;
 }
 
 
@@ -1574,16 +1508,13 @@ html[lang="en"]
   }
 
   .site-header h1 {
-    font-size:
-      24px;
+    font-size: 24px;
   }
 
   .language-button {
-    min-width:
-      85px;
+    min-width: 85px;
 
-    font-size:
-      12px;
+    font-size: 12px;
   }
 
   .question-preview-section,
@@ -1595,13 +1526,11 @@ html[lang="en"]
 
   .question-preview-section,
   .input-area {
-    padding:
-      18px;
+    padding: 18px;
   }
 
   .editor-layout {
-    display:
-      block;
+    display: block;
 
     padding:
       0 12px 24px;
@@ -1624,8 +1553,7 @@ html[lang="en"]
   }
 
   #generate-button {
-    font-size:
-      16px;
+    font-size: 16px;
   }
 
   .mobile-export-actions {

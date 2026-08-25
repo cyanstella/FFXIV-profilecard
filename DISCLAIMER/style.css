@@ -1,0 +1,428 @@
+* {
+  box-sizing:
+    border-box;
+}
+
+html {
+  scroll-behavior:
+    smooth;
+}
+
+body {
+  margin:
+    0;
+
+  min-height:
+    100vh;
+
+  background:
+    #0b0e13;
+
+  color:
+    #ffffff;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    "Meiryo",
+    sans-serif;
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.page-header {
+  padding:
+    58px 20px 34px;
+
+  text-align:
+    center;
+}
+
+.site-name {
+  margin:
+    0 0 14px;
+
+  color:
+    #b79a66;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    14px;
+
+  letter-spacing:
+    .22em;
+}
+
+.page-header h1 {
+  margin:
+    0;
+
+  color:
+    #ffffff;
+
+  font-family:
+    Georgia,
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size:
+    36px;
+
+  font-weight:
+    400;
+}
+
+
+/* ==================================================
+   LANGUAGE
+================================================== */
+
+.language-switch {
+  display:
+    inline-flex;
+
+  gap:
+    4px;
+
+  margin-top:
+    24px;
+
+  padding:
+    4px;
+
+  background:
+    #0d1119;
+
+  border:
+    1px solid #343d4d;
+
+  border-radius:
+    7px;
+}
+
+.language-button {
+  min-width:
+    90px;
+
+  padding:
+    9px 16px;
+
+  border:
+    0;
+
+  border-radius:
+    4px;
+
+  background:
+    transparent;
+
+  color:
+    #929aa7;
+
+  font-size:
+    13px;
+
+  font-weight:
+    600;
+
+  cursor:
+    pointer;
+
+  transition:
+    background .2s ease,
+    color .2s ease;
+}
+
+.language-button:hover {
+  background:
+    rgba(183,154,102,.12);
+
+  color:
+    #ffffff;
+}
+
+.language-button.active {
+  background:
+    linear-gradient(
+      180deg,
+      #c7aa70,
+      #ad8d52
+    );
+
+  color:
+    #ffffff;
+}
+
+
+/* ==================================================
+   MAIN
+================================================== */
+
+.page-main {
+  width:
+    min(
+      calc(100% - 48px),
+      900px
+    );
+
+  margin:
+    0 auto 54px;
+}
+
+
+/* ==================================================
+   CARD
+================================================== */
+
+.disclaimer-card {
+  padding:
+    38px 44px;
+
+  background:
+    #121722;
+
+  border:
+    1px solid #2b3240;
+
+  border-radius:
+    12px;
+
+  box-shadow:
+    0 12px 40px
+    rgba(0,0,0,.18);
+}
+
+
+/* ==================================================
+   BLOCK
+================================================== */
+
+.disclaimer-block {
+  margin-bottom:
+    32px;
+
+  padding-bottom:
+    30px;
+
+  border-bottom:
+    1px solid
+    rgba(183,154,102,.18);
+}
+
+.disclaimer-block h2 {
+  margin:
+    0 0 16px;
+
+  color:
+    #d6c19a;
+
+  font-size:
+    17px;
+
+  font-weight:
+    600;
+}
+
+.disclaimer-block p {
+  margin:
+    0 0 12px;
+
+  color:
+    #a3abb7;
+
+  font-size:
+    13px;
+
+  line-height:
+    1.95;
+}
+
+
+/* ==================================================
+   CREATOR
+================================================== */
+
+.creator-block strong {
+  color:
+    #ffffff;
+
+  font-weight:
+    700;
+}
+
+.creator-link {
+  display:
+    inline-block;
+
+  color:
+    #d6c19a;
+
+  font-size:
+    14px;
+
+  font-weight:
+    700;
+
+  text-decoration:
+    none;
+
+  border-bottom:
+    1px solid
+    rgba(214,193,154,.48);
+
+  transition:
+    color .2s ease,
+    border-color .2s ease;
+}
+
+.creator-link:hover {
+  color:
+    #ffffff;
+
+  border-bottom-color:
+    #ffffff;
+}
+
+
+/* ==================================================
+   BACK
+================================================== */
+
+.back-area {
+  padding-top:
+    4px;
+
+  text-align:
+    center;
+}
+
+.back-area a {
+  color:
+    #b79a66;
+
+  font-size:
+    13px;
+
+  text-decoration:
+    none;
+
+  transition:
+    color .2s ease;
+}
+
+.back-area a:hover {
+  color:
+    #d6c19a;
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+.page-footer {
+  padding:
+    34px 20px;
+
+  border-top:
+    1px solid #202631;
+
+  color:
+    #858d99;
+
+  font-size:
+    12px;
+
+  text-align:
+    center;
+}
+
+.page-footer p {
+  margin:
+    0 0 10px;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media screen and (max-width: 700px) {
+
+  .page-header {
+    padding:
+      42px 16px 28px;
+  }
+
+  .site-name {
+    font-size:
+      12px;
+  }
+
+  .page-header h1 {
+    font-size:
+      28px;
+  }
+
+  .language-button {
+    min-width:
+      82px;
+
+    padding:
+      8px 13px;
+
+    font-size:
+      12px;
+  }
+
+  .page-main {
+    width:
+      calc(100% - 24px);
+
+    margin-bottom:
+      36px;
+  }
+
+  .disclaimer-card {
+    padding:
+      26px 20px;
+  }
+
+  .disclaimer-block {
+    margin-bottom:
+      26px;
+
+    padding-bottom:
+      24px;
+  }
+
+  .disclaimer-block h2 {
+    font-size:
+      16px;
+  }
+
+  .disclaimer-block p {
+    font-size:
+      12px;
+
+    line-height:
+      1.9;
+  }
+
+  .back-area a {
+    font-size:
+      12px;
+  }
+
+}
