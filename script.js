@@ -2,12 +2,21 @@
    VERSION / CONSTANTS
 ================================================== */
 
-const APP_VERSION = "Ver.1.0";
+const APP_VERSION =
+  "Ver.1.0";
 
-const CARD_SIZE = 1200;
-const MAX_LENGTH = 80;
-const MAX_LINES = 2;
-const CUSTOM_QUESTION_MAX_LENGTH = 40;
+const CARD_SIZE =
+  1200;
+
+const MAX_LENGTH =
+  80;
+
+const MAX_LINES =
+  2;
+
+const CUSTOM_QUESTION_MAX_LENGTH =
+  40;
+
 
 const TRANSPARENT_PIXEL =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjYGBg+A8AAQQBAHAgZQsAAAAASUVORK5CYII=";
@@ -59,6 +68,7 @@ const backgroundStates = {
 const QUESTIONS = {
 
   ja: [
+
     "名前と、その名前の由来は？",
     "出身地はどこ？",
     "年齢・誕生日は？",
@@ -79,9 +89,12 @@ const QUESTIONS = {
     "過去に後悔していることは？",
     "誰にも言っていない秘密は？",
     "自由質問"
+
   ],
 
+
   en: [
+
     "What is their name, and where did it come from?",
     "Where are they from?",
     "How old are they, and when is their birthday?",
@@ -102,6 +115,7 @@ const QUESTIONS = {
     "What do they regret about their past?",
     "What is a secret they have never told anyone?",
     "Custom Question"
+
   ]
 
 };
@@ -132,6 +146,9 @@ const translations = {
 
     xPostLink:
       "Xに投稿する",
+
+    viewCommunityPosts:
+      "みんなの投稿を見る",
 
     questionCardTitle:
       "質問カード",
@@ -266,7 +283,13 @@ const translations = {
       "カード",
 
     disclaimerLink:
-      "免責事項"
+      "免責事項",
+
+    afterExportTitle:
+      "カードが完成しました",
+
+    afterExportX:
+      "Xに投稿する"
 
   },
 
@@ -290,6 +313,9 @@ const translations = {
 
     xPostLink:
       "Post on X",
+
+    viewCommunityPosts:
+      "View Community Posts",
 
     questionCardTitle:
       "Question Card",
@@ -424,7 +450,13 @@ const translations = {
       "Card",
 
     disclaimerLink:
-      "Disclaimer"
+      "Disclaimer",
+
+    afterExportTitle:
+      "Your cards are ready",
+
+    afterExportX:
+      "Post on X"
 
   }
 
@@ -787,7 +819,7 @@ function setLanguage(
 
 
 /* ==================================================
-   LANGUAGE BUTTON
+   LANGUAGE BUTTONS
 ================================================== */
 
 document
@@ -1301,7 +1333,7 @@ if (
 
 
 /* ==================================================
-   FILE / IMAGE HELPERS
+   IMAGE HELPERS
 ================================================== */
 
 function readImageAsDataURL(
@@ -2931,7 +2963,7 @@ function dataURLToBlob(
 
 
 /* ==================================================
-   EXPORT
+   EXPORT ELEMENTS
 ================================================== */
 
 const generateButton =
@@ -2946,9 +2978,19 @@ const mobileExportResults =
   );
 
 
+const afterExportActions =
+  document.getElementById(
+    "after-export-actions"
+  );
+
+
 let generatedObjectUrls =
   [];
 
+
+/* ==================================================
+   EXPORT
+================================================== */
 
 if (
   generateButton
@@ -2977,6 +3019,16 @@ if (
 
 
       clearGeneratedResults();
+
+
+      if (
+        afterExportActions
+      ) {
+
+        afterExportActions.hidden =
+          true;
+
+      }
 
 
       try {
@@ -3171,6 +3223,34 @@ if (
 
         }
 
+
+        /*
+         * 4枚すべて正常生成した場合だけ
+         * 投稿ボタンを表示
+         */
+
+        if (
+          afterExportActions
+        ) {
+
+          afterExportActions.hidden =
+            false;
+
+
+          afterExportActions.scrollIntoView(
+            {
+
+              behavior:
+                "smooth",
+
+              block:
+                "nearest"
+
+            }
+          );
+
+        }
+
       }
 
       catch (
@@ -3181,6 +3261,16 @@ if (
           "Image generation error:",
           error
         );
+
+
+        if (
+          afterExportActions
+        ) {
+
+          afterExportActions.hidden =
+            true;
+
+        }
 
 
         if (
@@ -3479,19 +3569,6 @@ function showIOSExportResults(
       mobileExportResults.appendChild(
         wrapper
       );
-
-    }
-  );
-
-
-  mobileExportResults.scrollIntoView(
-    {
-
-      behavior:
-        "smooth",
-
-      block:
-        "start"
 
     }
   );

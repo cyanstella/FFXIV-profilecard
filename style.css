@@ -32,7 +32,8 @@ body {
 
   margin: 0 auto;
 
-  padding: 60px 20px 38px;
+  padding:
+    60px 20px 38px;
 
   text-align: center;
 }
@@ -61,26 +62,33 @@ body {
 
   gap: 4px;
 
-  margin: 26px auto 2px;
+  margin:
+    26px auto 2px;
+
   padding: 4px;
 
   background: #0d1119;
 
-  border: 1px solid #343d4d;
+  border:
+    1px solid #343d4d;
+
   border-radius: 7px;
 }
 
 .language-button {
   min-width: 95px;
 
-  padding: 9px 17px;
+  padding:
+    9px 17px;
 
   border: 0;
   border-radius: 4px;
 
-  background: transparent;
+  background:
+    transparent;
 
-  color: #929aa7;
+  color:
+    #929aa7;
 
   font-size: 13px;
   font-weight: 600;
@@ -116,20 +124,24 @@ body {
 ================================================== */
 
 .site-subtitle {
-  margin: 16px 0 0;
+  margin:
+    16px 0 0;
 
   color: #b79a66;
 
   font-size: 15px;
+
   letter-spacing: .18em;
 }
 
 .site-description {
   max-width: 760px;
 
-  margin: 32px auto 0;
+  margin:
+    32px auto 0;
 
-  padding: 24px 30px;
+  padding:
+    24px 30px;
 
   background:
     rgba(255,255,255,.025);
@@ -137,7 +149,8 @@ body {
   border:
     1px solid #292f3b;
 
-  border-radius: 8px;
+  border-radius:
+    8px;
 }
 
 .site-description p {
@@ -146,6 +159,7 @@ body {
   color: #aeb5c1;
 
   font-size: 14px;
+
   line-height: 1.8;
 }
 
@@ -177,7 +191,8 @@ body {
 
   font-weight: 600;
 
-  text-decoration: none;
+  text-decoration:
+    none;
 
   border-bottom:
     1px solid
@@ -186,45 +201,60 @@ body {
 
 
 /* ==================================================
-   X POST
+   SOCIAL ACTIONS
 ================================================== */
 
-.site-description .x-post-guide {
-  margin-top: 16px;
+.social-actions {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 18px;
 }
 
-.x-post-link {
-  display: inline-block;
+
+.x-post-link,
+.community-post-link {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 170px;
 
   padding:
-    8px 20px;
+    9px 18px;
 
-  border:
-    1px solid #b79a66;
+  border-radius: 5px;
 
-  border-radius:
-    5px;
+  font-size: 13px;
+  font-weight: 600;
 
-  background:
-    #171d27;
-
-  color:
-    #ffffff;
-
-  font-size:
-    13px;
-
-  font-weight:
-    600;
-
-  text-decoration:
-    none;
+  text-decoration: none;
 
   transition:
     background .2s ease,
     border-color .2s ease,
     color .2s ease;
 }
+
+
+.x-post-link {
+  border:
+    1px solid #b79a66;
+
+  background:
+    #171d27;
+
+  color: #fff;
+}
+
 
 .x-post-link:hover {
   background:
@@ -233,8 +263,28 @@ body {
   border-color:
     #d6c19a;
 
+  color: #fff;
+}
+
+
+.community-post-link {
+  border:
+    1px solid #343d4d;
+
+  background:
+    transparent;
+
   color:
-    #ffffff;
+    #b7beca;
+}
+
+
+.community-post-link:hover {
+  border-color:
+    #b79a66;
+
+  color:
+    #d6c19a;
 }
 
 
@@ -247,7 +297,8 @@ body {
 .settings,
 .preview-panel,
 .export-area-main {
-  background: #121722;
+  background:
+    #121722;
 
   border:
     1px solid #2b3240;
@@ -296,8 +347,7 @@ body {
 }
 
 .section-heading p {
-  margin:
-    0;
+  margin: 0;
 
   color:
     #818996;
@@ -337,8 +387,7 @@ body {
 }
 
 .input-area h2 {
-  margin-top:
-    0;
+  margin-top: 0;
 
   font-family:
     Georgia,
@@ -383,11 +432,9 @@ body {
 
 .input-question textarea,
 .input-question input[type="text"] {
-  display:
-    block;
+  display: block;
 
-  width:
-    100%;
+  width: 100%;
 
   padding:
     12px 15px;
@@ -1123,12 +1170,15 @@ button {
     600;
 }
 
-html[lang="en"] #card-1 .card-header h2 {
+html[lang="en"]
+#card-1
+.card-header h2 {
   font-size:
     52px;
 }
 
-html[lang="en"] .question-list {
+html[lang="en"]
+.question-list {
   font-size:
     22px;
 
@@ -1136,7 +1186,8 @@ html[lang="en"] .question-list {
     1.4;
 }
 
-html[lang="en"] .question-list li {
+html[lang="en"]
+.question-list li {
   margin-bottom:
     15px;
 }
@@ -1488,6 +1539,138 @@ html[lang="en"] .question-list li {
 
 
 /* ==================================================
+   AFTER EXPORT
+================================================== */
+
+.after-export-actions {
+  margin-top:
+    26px;
+
+  padding:
+    22px;
+
+  border:
+    1px solid
+    rgba(183,154,102,.35);
+
+  border-radius:
+    8px;
+
+  background:
+    rgba(183,154,102,.05);
+
+  text-align:
+    center;
+}
+
+
+.after-export-title {
+  margin:
+    0 0 16px;
+
+  color:
+    #d6c19a;
+
+  font-size:
+    15px;
+
+  font-weight:
+    700;
+}
+
+
+.after-export-x-button,
+.after-export-community-button {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  min-width:
+    200px;
+
+  margin:
+    4px;
+
+  padding:
+    13px 22px;
+
+  border-radius:
+    5px;
+
+  font-size:
+    14px;
+
+  font-weight:
+    700;
+
+  text-decoration:
+    none;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    filter .2s ease,
+    color .2s ease,
+    transform .1s ease;
+}
+
+
+.after-export-x-button {
+  border:
+    1px solid #c5a86a;
+
+  background:
+    linear-gradient(
+      180deg,
+      #c7aa70,
+      #ad8d52
+    );
+
+  color:
+    #fff;
+}
+
+
+.after-export-x-button:hover {
+  filter:
+    brightness(1.08);
+}
+
+
+.after-export-community-button {
+  border:
+    1px solid #454d5b;
+
+  background:
+    #171d27;
+
+  color:
+    #d1d6de;
+}
+
+
+.after-export-community-button:hover {
+  border-color:
+    #b79a66;
+
+  color:
+    #d6c19a;
+}
+
+
+.after-export-x-button:active,
+.after-export-community-button:active {
+  transform:
+    translateY(1px);
+}
+
+
+/* ==================================================
    MOBILE EXPORT
 ================================================== */
 
@@ -1833,12 +2016,38 @@ html[lang="en"] .question-list li {
       1fr;
   }
 
-  .x-post-link {
+}
+
+
+@media screen and (max-width: 600px) {
+
+  .social-actions {
+    display:
+      grid;
+
+    grid-template-columns:
+      1fr;
+  }
+
+  .x-post-link,
+  .community-post-link {
     width:
       100%;
 
-    max-width:
-      260px;
+    min-width:
+      0;
+  }
+
+  .after-export-x-button,
+  .after-export-community-button {
+    display:
+      flex;
+
+    width:
+      100%;
+
+    margin:
+      5px 0;
   }
 
 }
