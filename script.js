@@ -3,7 +3,7 @@
 ================================================== */
 
 const APP_VERSION =
-  "Ver.1.0";
+  "Ver.1.01";
 
 const CARD_SIZE =
   1200;
@@ -16,7 +16,6 @@ const MAX_LINES =
 
 const CUSTOM_QUESTION_MAX_LENGTH =
   40;
-
 
 const TRANSPARENT_PIXEL =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjYGBg+A8AAQQBAHAgZQsAAAAASUVORK5CYII=";
@@ -68,7 +67,6 @@ const backgroundStates = {
 const QUESTIONS = {
 
   ja: [
-
     "名前と、その名前の由来は？",
     "出身地はどこ？",
     "年齢・誕生日は？",
@@ -89,12 +87,9 @@ const QUESTIONS = {
     "過去に後悔していることは？",
     "誰にも言っていない秘密は？",
     "自由質問"
-
   ],
 
-
   en: [
-
     "What is their name, and where did it come from?",
     "Where are they from?",
     "How old are they, and when is their birthday?",
@@ -115,7 +110,6 @@ const QUESTIONS = {
     "What do they regret about their past?",
     "What is a secret they have never told anyone?",
     "Custom Question"
-
   ]
 
 };
@@ -470,14 +464,12 @@ const translations = {
 let currentLanguage =
   "ja";
 
-
 try {
 
   const saved =
     localStorage.getItem(
       "ffxiv-profile-language"
     );
-
 
   if (
     translations[saved]
@@ -628,7 +620,6 @@ function setLanguage(
         const key =
           element.dataset.i18n;
 
-
         if (
           typeof t[key] ===
           "string"
@@ -652,7 +643,6 @@ function setLanguage(
 
         const key =
           element.dataset.i18nHtml;
-
 
         if (
           typeof t[key] ===
@@ -819,7 +809,7 @@ function setLanguage(
 
 
 /* ==================================================
-   LANGUAGE BUTTONS
+   LANGUAGE BUTTON
 ================================================== */
 
 document
@@ -859,12 +849,10 @@ for (
       `q${i}`
     );
 
-
   const output =
     document.getElementById(
       `answer-${i}`
     );
-
 
   const counter =
     document.getElementById(
@@ -1077,7 +1065,7 @@ function updateCounterState(
 
 
 /* ==================================================
-   ANSWER FONT SIZE
+   ANSWER FONT
 ================================================== */
 
 function getAnswerFontSize(
@@ -1117,7 +1105,7 @@ function getAnswerFontSize(
 
 
 /* ==================================================
-   FIT CARDS
+   FIT
 ================================================== */
 
 function fitAllAnswerCards() {
@@ -1312,11 +1300,6 @@ function updateQ20Title() {
 
   }
 
-
-  requestAnimationFrame(
-    fitAllAnswerCards
-  );
-
 }
 
 
@@ -1351,13 +1334,10 @@ function readImageAsDataURL(
 
 
       reader.onload =
-        () => {
-
+        () =>
           resolve(
             reader.result
           );
-
-        };
 
 
       reader.onerror =
@@ -1389,13 +1369,10 @@ function loadImage(
 
 
       image.onload =
-        () => {
-
+        () =>
           resolve(
             image
           );
-
-        };
 
 
       image.onerror =
@@ -1424,115 +1401,70 @@ function setupCardSettings(
       options.cardId
     );
 
-
   const previewImage =
     document.getElementById(
       options.backgroundImageId
     );
-
 
   const upload =
     document.getElementById(
       options.backgroundUploadId
     );
 
-
   const clearButton =
     document.getElementById(
       options.removeButtonId
     );
-
 
   const x =
     document.getElementById(
       options.bgXId
     );
 
-
   const xValue =
     document.getElementById(
       options.bgXValueId
     );
-
 
   const y =
     document.getElementById(
       options.bgYId
     );
 
-
   const yValue =
     document.getElementById(
       options.bgYValueId
     );
-
 
   const scale =
     document.getElementById(
       options.bgScaleId
     );
 
-
   const scaleValue =
     document.getElementById(
       options.bgScaleValueId
     );
-
 
   const overlay =
     document.querySelector(
       options.overlaySelector
     );
 
-
   const opacity =
     document.getElementById(
       options.overlayOpacityId
     );
-
 
   const opacityValue =
     document.getElementById(
       options.overlayOpacityValueId
     );
 
-
   const state =
     backgroundStates[
       options.cardNumber
     ];
-
-
-  if (
-    !card ||
-    !previewImage ||
-    !upload ||
-    !clearButton ||
-    !x ||
-    !xValue ||
-    !y ||
-    !yValue ||
-    !scale ||
-    !scaleValue ||
-    !overlay ||
-    !opacity ||
-    !opacityValue ||
-    !state
-  ) {
-
-    console.error(
-      "Card settings missing:",
-      options
-    );
-
-
-    return;
-
-  }
-
-
-  previewImage.src =
-    TRANSPARENT_PIXEL;
 
 
   function updateBackground() {
@@ -1542,12 +1474,10 @@ function setupCardSettings(
         x.value
       );
 
-
     state.y =
       Number(
         y.value
       );
-
 
     state.scale =
       Number(
@@ -1570,10 +1500,8 @@ function setupCardSettings(
     xValue.textContent =
       `${state.x}%`;
 
-
     yValue.textContent =
       `${state.y}%`;
-
 
     scaleValue.textContent =
       `${state.scale}%`;
@@ -1704,7 +1632,6 @@ function setupCardSettings(
         state.dataUrl =
           dataUrl;
 
-
         state.image =
           image;
 
@@ -1720,11 +1647,6 @@ function setupCardSettings(
       catch (
         error
       ) {
-
-        console.error(
-          error
-        );
-
 
         alert(
           translations[
@@ -1745,22 +1667,17 @@ function setupCardSettings(
       upload.value =
         "";
 
-
       state.image =
         null;
-
 
       state.dataUrl =
         null;
 
-
       state.x =
         50;
 
-
       state.y =
         50;
-
 
       state.scale =
         100;
@@ -1769,10 +1686,8 @@ function setupCardSettings(
       x.value =
         50;
 
-
       y.value =
         50;
-
 
       scale.value =
         100;
@@ -1793,18 +1708,15 @@ function setupCardSettings(
     updateBackground
   );
 
-
   y.addEventListener(
     "input",
     updateBackground
   );
 
-
   scale.addEventListener(
     "input",
     updateBackground
   );
-
 
   opacity.addEventListener(
     "input",
@@ -1817,14 +1729,11 @@ function setupCardSettings(
       `input[name="${options.overlayRadioName}"]`
     )
     .forEach(
-      radio => {
-
+      radio =>
         radio.addEventListener(
           "change",
           updateOverlay
-        );
-
-      }
+        )
     );
 
 
@@ -1833,14 +1742,11 @@ function setupCardSettings(
       `input[name="${options.textRadioName}"]`
     )
     .forEach(
-      radio => {
-
+      radio =>
         radio.addEventListener(
           "change",
           updateTextColor
-        );
-
-      }
+        )
     );
 
 
@@ -1854,162 +1760,66 @@ function setupCardSettings(
 
 
 /* ==================================================
-   SETUP CARDS
+   SETUP
 ================================================== */
 
 setupCardSettings({
-
-  cardNumber: 2,
-
-  cardId:
-    "card-2",
-
-  backgroundImageId:
-    "answer1-background-image",
-
-  backgroundUploadId:
-    "answer1-background-upload",
-
-  removeButtonId:
-    "remove-answer1-background",
-
-  bgXId:
-    "answer1-bg-x",
-
-  bgXValueId:
-    "answer1-bg-x-value",
-
-  bgYId:
-    "answer1-bg-y",
-
-  bgYValueId:
-    "answer1-bg-y-value",
-
-  bgScaleId:
-    "answer1-bg-scale",
-
-  bgScaleValueId:
-    "answer1-bg-scale-value",
-
-  overlaySelector:
-    ".answer1-overlay",
-
-  overlayOpacityId:
-    "answer1-overlay-opacity",
-
-  overlayOpacityValueId:
-    "answer1-opacity-value",
-
-  overlayRadioName:
-    "answer1-overlay-color",
-
-  textRadioName:
-    "answer1-text-color"
-
+  cardNumber:2,
+  cardId:"card-2",
+  backgroundImageId:"answer1-background-image",
+  backgroundUploadId:"answer1-background-upload",
+  removeButtonId:"remove-answer1-background",
+  bgXId:"answer1-bg-x",
+  bgXValueId:"answer1-bg-x-value",
+  bgYId:"answer1-bg-y",
+  bgYValueId:"answer1-bg-y-value",
+  bgScaleId:"answer1-bg-scale",
+  bgScaleValueId:"answer1-bg-scale-value",
+  overlaySelector:".answer1-overlay",
+  overlayOpacityId:"answer1-overlay-opacity",
+  overlayOpacityValueId:"answer1-opacity-value",
+  overlayRadioName:"answer1-overlay-color",
+  textRadioName:"answer1-text-color"
 });
 
 
 setupCardSettings({
-
-  cardNumber: 3,
-
-  cardId:
-    "card-3",
-
-  backgroundImageId:
-    "answer2-background-image",
-
-  backgroundUploadId:
-    "answer2-background-upload",
-
-  removeButtonId:
-    "remove-answer2-background",
-
-  bgXId:
-    "answer2-bg-x",
-
-  bgXValueId:
-    "answer2-bg-x-value",
-
-  bgYId:
-    "answer2-bg-y",
-
-  bgYValueId:
-    "answer2-bg-y-value",
-
-  bgScaleId:
-    "answer2-bg-scale",
-
-  bgScaleValueId:
-    "answer2-bg-scale-value",
-
-  overlaySelector:
-    ".answer2-overlay",
-
-  overlayOpacityId:
-    "answer2-overlay-opacity",
-
-  overlayOpacityValueId:
-    "answer2-opacity-value",
-
-  overlayRadioName:
-    "answer2-overlay-color",
-
-  textRadioName:
-    "answer2-text-color"
-
+  cardNumber:3,
+  cardId:"card-3",
+  backgroundImageId:"answer2-background-image",
+  backgroundUploadId:"answer2-background-upload",
+  removeButtonId:"remove-answer2-background",
+  bgXId:"answer2-bg-x",
+  bgXValueId:"answer2-bg-x-value",
+  bgYId:"answer2-bg-y",
+  bgYValueId:"answer2-bg-y-value",
+  bgScaleId:"answer2-bg-scale",
+  bgScaleValueId:"answer2-bg-scale-value",
+  overlaySelector:".answer2-overlay",
+  overlayOpacityId:"answer2-overlay-opacity",
+  overlayOpacityValueId:"answer2-opacity-value",
+  overlayRadioName:"answer2-overlay-color",
+  textRadioName:"answer2-text-color"
 });
 
 
 setupCardSettings({
-
-  cardNumber: 4,
-
-  cardId:
-    "card-4",
-
-  backgroundImageId:
-    "answer3-background-image",
-
-  backgroundUploadId:
-    "answer3-background-upload",
-
-  removeButtonId:
-    "remove-answer3-background",
-
-  bgXId:
-    "answer3-bg-x",
-
-  bgXValueId:
-    "answer3-bg-x-value",
-
-  bgYId:
-    "answer3-bg-y",
-
-  bgYValueId:
-    "answer3-bg-y-value",
-
-  bgScaleId:
-    "answer3-bg-scale",
-
-  bgScaleValueId:
-    "answer3-bg-scale-value",
-
-  overlaySelector:
-    ".answer3-overlay",
-
-  overlayOpacityId:
-    "answer3-overlay-opacity",
-
-  overlayOpacityValueId:
-    "answer3-opacity-value",
-
-  overlayRadioName:
-    "answer3-overlay-color",
-
-  textRadioName:
-    "answer3-text-color"
-
+  cardNumber:4,
+  cardId:"card-4",
+  backgroundImageId:"answer3-background-image",
+  backgroundUploadId:"answer3-background-upload",
+  removeButtonId:"remove-answer3-background",
+  bgXId:"answer3-bg-x",
+  bgXValueId:"answer3-bg-x-value",
+  bgYId:"answer3-bg-y",
+  bgYValueId:"answer3-bg-y-value",
+  bgScaleId:"answer3-bg-scale",
+  bgScaleValueId:"answer3-bg-scale-value",
+  overlaySelector:".answer3-overlay",
+  overlayOpacityId:"answer3-overlay-opacity",
+  overlayOpacityValueId:"answer3-opacity-value",
+  overlayRadioName:"answer3-overlay-color",
+  textRadioName:"answer3-text-color"
 });
 
 
@@ -2041,22 +1851,13 @@ function updatePreviewScales() {
         }
 
 
-        const padding =
-          4;
-
-
         const availableWidth =
-          Math.max(
-            0,
-            frame.clientWidth
-            -
-            padding * 2
-          );
+          frame.clientWidth -
+          8;
 
 
         const scale =
-          availableWidth
-          /
+          availableWidth /
           CARD_SIZE;
 
 
@@ -2064,14 +1865,6 @@ function updatePreviewScales() {
           "--preview-scale",
           scale
         );
-
-
-        card.style.left =
-          `${padding}px`;
-
-
-        card.style.top =
-          `${padding}px`;
 
       }
     );
@@ -2081,61 +1874,12 @@ function updatePreviewScales() {
 
 window.addEventListener(
   "resize",
-  () => {
-
-    requestAnimationFrame(
-      updatePreviewScales
-    );
-
-  }
+  updatePreviewScales
 );
 
 
 /* ==================================================
-   HELPERS
-================================================== */
-
-function nextFrame() {
-
-  return new Promise(
-    resolve => {
-
-      requestAnimationFrame(
-        () => {
-
-          requestAnimationFrame(
-            resolve
-          );
-
-        }
-      );
-
-    }
-  );
-
-}
-
-
-function sleep(
-  milliseconds
-) {
-
-  return new Promise(
-    resolve => {
-
-      setTimeout(
-        resolve,
-        milliseconds
-      );
-
-    }
-  );
-
-}
-
-
-/* ==================================================
-   BACKGROUND CANVAS
+   CANVAS BACKGROUND
 ================================================== */
 
 function createBackgroundCanvas(
@@ -2151,7 +1895,6 @@ function createBackgroundCanvas(
   canvas.width =
     CARD_SIZE;
 
-
   canvas.height =
     CARD_SIZE;
 
@@ -2160,17 +1903,6 @@ function createBackgroundCanvas(
     canvas.getContext(
       "2d"
     );
-
-
-  if (
-    !ctx
-  ) {
-
-    throw new Error(
-      "Canvas unavailable"
-    );
-
-  }
 
 
   const state =
@@ -2193,7 +1925,6 @@ function createBackgroundCanvas(
     "#131e31"
   );
 
-
   gradient.addColorStop(
     1,
     "#0c111b"
@@ -2213,7 +1944,6 @@ function createBackgroundCanvas(
 
 
   if (
-    state &&
     state.image
   ) {
 
@@ -2225,46 +1955,27 @@ function createBackgroundCanvas(
   }
 
 
-  if (
-    state
-  ) {
-
-    if (
-      state.overlayColor ===
-      "white"
-    ) {
-
-      ctx.fillStyle =
-        `rgba(255,255,255,${state.overlayOpacity})`;
-
-    }
-
-    else {
-
-      ctx.fillStyle =
-        `rgba(0,0,0,${state.overlayOpacity})`;
-
-    }
+  ctx.fillStyle =
+    state.overlayColor ===
+    "white"
+    ?
+    `rgba(255,255,255,${state.overlayOpacity})`
+    :
+    `rgba(0,0,0,${state.overlayOpacity})`;
 
 
-    ctx.fillRect(
-      0,
-      0,
-      CARD_SIZE,
-      CARD_SIZE
-    );
-
-  }
+  ctx.fillRect(
+    0,
+    0,
+    CARD_SIZE,
+    CARD_SIZE
+  );
 
 
   return canvas;
 
 }
 
-
-/* ==================================================
-   DRAW BACKGROUND
-================================================== */
 
 function drawBackgroundImage(
   ctx,
@@ -2275,52 +1986,32 @@ function drawBackgroundImage(
     state.image;
 
 
-  const imageWidth =
-    image.naturalWidth
-    ||
-    image.width;
+  const width =
+    image.naturalWidth;
 
-
-  const imageHeight =
-    image.naturalHeight
-    ||
-    image.height;
-
-
-  if (
-    !imageWidth ||
-    !imageHeight
-  ) {
-
-    return;
-
-  }
+  const height =
+    image.naturalHeight;
 
 
   const coverScale =
     Math.max(
-      CARD_SIZE /
-      imageWidth,
-
-      CARD_SIZE /
-      imageHeight
+      CARD_SIZE / width,
+      CARD_SIZE / height
     );
 
 
   const baseWidth =
-    imageWidth *
+    width *
     coverScale;
 
-
   const baseHeight =
-    imageHeight *
+    height *
     coverScale;
 
 
   const px =
     state.x /
     100;
-
 
   const py =
     state.y /
@@ -2331,8 +2022,7 @@ function drawBackgroundImage(
     (
       CARD_SIZE -
       baseWidth
-    )
-    *
+    ) *
     px;
 
 
@@ -2340,8 +2030,7 @@ function drawBackgroundImage(
     (
       CARD_SIZE -
       baseHeight
-    )
-    *
+    ) *
     py;
 
 
@@ -2349,15 +2038,9 @@ function drawBackgroundImage(
     CARD_SIZE *
     px;
 
-
   const originY =
     CARD_SIZE *
     py;
-
-
-  const extraScale =
-    state.scale /
-    100;
 
 
   ctx.save();
@@ -2370,8 +2053,8 @@ function drawBackgroundImage(
 
 
   ctx.scale(
-    extraScale,
-    extraScale
+    state.scale / 100,
+    state.scale / 100
   );
 
 
@@ -2396,513 +2079,38 @@ function drawBackgroundImage(
 
 
 /* ==================================================
-   EXPORT CONTENT CLONE
+   EXPORT HELPERS
 ================================================== */
 
-function createTransparentContentClone(
-  sourceCard
-) {
-
-  const workspace =
-    document.getElementById(
-      "export-workspace"
-    );
-
-
-  if (
-    !workspace
-  ) {
-
-    throw new Error(
-      "Export workspace missing"
-    );
-
-  }
-
-
-  workspace.innerHTML =
-    "";
-
-
-  const clone =
-    sourceCard.cloneNode(
-      true
-    );
-
-
-  clone.removeAttribute(
-    "id"
-  );
-
-
-  clone
-    .querySelectorAll(
-      "[id]"
-    )
-    .forEach(
-      element => {
-
-        element.removeAttribute(
-          "id"
-        );
-
-      }
-    );
-
-
-  clone.classList.add(
-    "export-clone"
-  );
-
-
-  const background =
-    clone.querySelector(
-      ".card-background"
-    );
-
-
-  if (
-    background
-  ) {
-
-    background.remove();
-
-  }
-
-
-  const overlay =
-    clone.querySelector(
-      ".card-overlay"
-    );
-
-
-  if (
-    overlay
-  ) {
-
-    overlay.remove();
-
-  }
-
-
-  clone.style.background =
-    "transparent";
-
-
-  clone.style.setProperty(
-    "--preview-scale",
-    "1"
-  );
-
-
-  clone.style.position =
-    "relative";
-
-
-  clone.style.left =
-    "0";
-
-
-  clone.style.top =
-    "0";
-
-
-  clone.style.width =
-    `${CARD_SIZE}px`;
-
-
-  clone.style.height =
-    `${CARD_SIZE}px`;
-
-
-  clone.style.transform =
-    "none";
-
-
-  workspace.appendChild(
-    clone
-  );
-
-
-  return clone;
-
-}
-
-
-/* ==================================================
-   CONTENT LAYER
-================================================== */
-
-async function createContentLayer(
-  sourceCard
-) {
-
-  const clone =
-    createTransparentContentClone(
-      sourceCard
-    );
-
-
-  await nextFrame();
-
-
-  if (
-    isIOS
-  ) {
-
-    await sleep(
-      250
-    );
-
-  }
-
-
-  const dataUrl =
-    await htmlToImage.toPng(
-      clone,
-      {
-
-        width:
-          CARD_SIZE,
-
-        height:
-          CARD_SIZE,
-
-        canvasWidth:
-          CARD_SIZE,
-
-        canvasHeight:
-          CARD_SIZE,
-
-        pixelRatio:
-          1,
-
-        cacheBust:
-          false,
-
-        backgroundColor:
-          "rgba(0,0,0,0)",
-
-        style: {
-
-          width:
-            `${CARD_SIZE}px`,
-
-          height:
-            `${CARD_SIZE}px`,
-
-          position:
-            "relative",
-
-          left:
-            "0",
-
-          top:
-            "0",
-
-          background:
-            "transparent",
-
-          transform:
-            "none"
-
-        }
-
-      }
-    );
-
-
-  const workspace =
-    document.getElementById(
-      "export-workspace"
-    );
-
-
-  if (
-    workspace
-  ) {
-
-    workspace.innerHTML =
-      "";
-
-  }
-
-
-  return dataUrl;
-
-}
-
-
-/* ==================================================
-   QUESTION CARD EXPORT
-================================================== */
-
-async function generateQuestionCard(
-  sourceCard
-) {
-
-  const workspace =
-    document.getElementById(
-      "export-workspace"
-    );
-
-
-  if (
-    !workspace
-  ) {
-
-    throw new Error(
-      "Export workspace missing"
-    );
-
-  }
-
-
-  workspace.innerHTML =
-    "";
-
-
-  const clone =
-    sourceCard.cloneNode(
-      true
-    );
-
-
-  clone.removeAttribute(
-    "id"
-  );
-
-
-  clone
-    .querySelectorAll(
-      "[id]"
-    )
-    .forEach(
-      element => {
-
-        element.removeAttribute(
-          "id"
-        );
-
-      }
-    );
-
-
-  clone.classList.add(
-    "export-clone"
-  );
-
-
-  clone.style.background =
-    "#f4f1e9";
-
-
-  workspace.appendChild(
-    clone
-  );
-
-
-  await nextFrame();
-
-
-  if (
-    isIOS
-  ) {
-
-    await sleep(
-      200
-    );
-
-  }
-
-
-  const dataUrl =
-    await htmlToImage.toPng(
-      clone,
-      {
-
-        width:
-          CARD_SIZE,
-
-        height:
-          CARD_SIZE,
-
-        canvasWidth:
-          CARD_SIZE,
-
-        canvasHeight:
-          CARD_SIZE,
-
-        pixelRatio:
-          1,
-
-        cacheBust:
-          false,
-
-        backgroundColor:
-          "#f4f1e9"
-
-      }
-    );
-
-
-  workspace.innerHTML =
-    "";
-
-
-  return dataURLToBlob(
-    dataUrl
-  );
-
-}
-
-
-/* ==================================================
-   ANSWER CARD EXPORT
-================================================== */
-
-async function generateAnswerCard(
-  sourceCard,
-  cardNumber
-) {
-
-  const finalCanvas =
-    createBackgroundCanvas(
-      cardNumber
-    );
-
-
-  const ctx =
-    finalCanvas.getContext(
-      "2d"
-    );
-
-
-  if (
-    !ctx
-  ) {
-
-    throw new Error(
-      "Canvas unavailable"
-    );
-
-  }
-
-
-  const contentDataUrl =
-    await createContentLayer(
-      sourceCard
-    );
-
-
-  const contentImage =
-    await loadImage(
-      contentDataUrl
-    );
-
-
-  ctx.drawImage(
-    contentImage,
-    0,
-    0,
-    CARD_SIZE,
-    CARD_SIZE
-  );
-
-
-  return canvasToBlob(
-    finalCanvas
-  );
-
-}
-
-
-/* ==================================================
-   CANVAS -> BLOB
-================================================== */
-
-function canvasToBlob(
-  canvas
+function sleep(
+  milliseconds
 ) {
 
   return new Promise(
-    (
-      resolve,
-      reject
-    ) => {
-
-      if (
-        canvas.toBlob
-      ) {
-
-        canvas.toBlob(
-          blob => {
-
-            if (
-              blob
-            ) {
-
-              resolve(
-                blob
-              );
-
-            }
-
-            else {
-
-              reject(
-                new Error(
-                  "Canvas Blob is null"
-                )
-              );
-
-            }
-
-          },
-          "image/png"
-        );
-
-
-        return;
-
-      }
-
-
-      try {
-
-        const dataUrl =
-          canvas.toDataURL(
-            "image/png"
-          );
-
-
-        resolve(
-          dataURLToBlob(
-            dataUrl
-          )
-        );
-
-      }
-
-      catch (
-        error
-      ) {
-
-        reject(
-          error
-        );
-
-      }
-
-    }
+    resolve =>
+      setTimeout(
+        resolve,
+        milliseconds
+      )
   );
 
 }
 
 
-/* ==================================================
-   DATA URL -> BLOB
-================================================== */
+function nextFrame() {
+
+  return new Promise(
+    resolve =>
+      requestAnimationFrame(
+        () =>
+          requestAnimationFrame(
+            resolve
+          )
+      )
+  );
+
+}
+
 
 function dataURLToBlob(
   dataUrl
@@ -2950,12 +2158,52 @@ function dataURLToBlob(
 
 
   return new Blob(
-    [
-      bytes
-    ],
+    [bytes],
     {
-      type:
-        mime
+      type:mime
+    }
+  );
+
+}
+
+
+function canvasToBlob(
+  canvas
+) {
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      canvas.toBlob(
+        blob => {
+
+          if (
+            blob
+          ) {
+
+            resolve(
+              blob
+            );
+
+          }
+
+          else {
+
+            reject(
+              new Error(
+                "Blob creation failed."
+              )
+            );
+
+          }
+
+        },
+        "image/png"
+      );
+
     }
   );
 
@@ -2963,18 +2211,226 @@ function dataURLToBlob(
 
 
 /* ==================================================
-   EXPORT ELEMENTS
+   CONTENT CLONE
+================================================== */
+
+function createContentClone(
+  source
+) {
+
+  const workspace =
+    document.getElementById(
+      "export-workspace"
+    );
+
+
+  workspace.innerHTML =
+    "";
+
+
+  const clone =
+    source.cloneNode(
+      true
+    );
+
+
+  clone.removeAttribute(
+    "id"
+  );
+
+
+  clone
+    .querySelectorAll(
+      "[id]"
+    )
+    .forEach(
+      item =>
+        item.removeAttribute(
+          "id"
+        )
+    );
+
+
+  clone.classList.add(
+    "export-clone"
+  );
+
+
+  const background =
+    clone.querySelector(
+      ".card-background"
+    );
+
+
+  const overlay =
+    clone.querySelector(
+      ".card-overlay"
+    );
+
+
+  if (
+    background
+  ) {
+
+    background.remove();
+
+  }
+
+
+  if (
+    overlay
+  ) {
+
+    overlay.remove();
+
+  }
+
+
+  workspace.appendChild(
+    clone
+  );
+
+
+  return clone;
+
+}
+
+
+/* ==================================================
+   EXPORT QUESTION
+================================================== */
+
+async function generateQuestionCard(
+  source
+) {
+
+  const workspace =
+    document.getElementById(
+      "export-workspace"
+    );
+
+
+  workspace.innerHTML =
+    "";
+
+
+  const clone =
+    source.cloneNode(
+      true
+    );
+
+
+  clone.classList.add(
+    "export-clone"
+  );
+
+
+  workspace.appendChild(
+    clone
+  );
+
+
+  await nextFrame();
+
+
+  const dataUrl =
+    await htmlToImage.toPng(
+      clone,
+      {
+        width:1200,
+        height:1200,
+        canvasWidth:1200,
+        canvasHeight:1200,
+        pixelRatio:1,
+        backgroundColor:"#f4f1e9"
+      }
+    );
+
+
+  workspace.innerHTML =
+    "";
+
+
+  return dataURLToBlob(
+    dataUrl
+  );
+
+}
+
+
+/* ==================================================
+   EXPORT ANSWER
+================================================== */
+
+async function generateAnswerCard(
+  source,
+  number
+) {
+
+  const canvas =
+    createBackgroundCanvas(
+      number
+    );
+
+
+  const ctx =
+    canvas.getContext(
+      "2d"
+    );
+
+
+  const clone =
+    createContentClone(
+      source
+    );
+
+
+  await nextFrame();
+
+
+  const layer =
+    await htmlToImage.toPng(
+      clone,
+      {
+        width:1200,
+        height:1200,
+        canvasWidth:1200,
+        canvasHeight:1200,
+        pixelRatio:1,
+        backgroundColor:"rgba(0,0,0,0)"
+      }
+    );
+
+
+  const image =
+    await loadImage(
+      layer
+    );
+
+
+  ctx.drawImage(
+    image,
+    0,
+    0,
+    1200,
+    1200
+  );
+
+
+  return canvasToBlob(
+    canvas
+  );
+
+}
+
+
+/* ==================================================
+   EXPORT
 ================================================== */
 
 const generateButton =
   document.getElementById(
     "generate-button"
-  );
-
-
-const mobileExportResults =
-  document.getElementById(
-    "mobile-export-results"
   );
 
 
@@ -2984,638 +2440,133 @@ const afterExportActions =
   );
 
 
-let generatedObjectUrls =
-  [];
+generateButton.addEventListener(
+  "click",
+  async () => {
+
+    const t =
+      translations[
+        currentLanguage
+      ];
 
 
-/* ==================================================
-   EXPORT
-================================================== */
-
-if (
-  generateButton
-) {
-
-  generateButton.addEventListener(
-    "click",
-    async () => {
-
-      const t =
-        translations[
-          currentLanguage
-        ];
+    generateButton.disabled =
+      true;
 
 
-      let currentCard =
-        0;
+    afterExportActions.hidden =
+      true;
 
+
+    const generated =
+      [];
+
+
+    try {
+
+      for (
+        let i = 1;
+        i <= 4;
+        i++
+      ) {
+
+        generateButton.textContent =
+          t.generating(
+            i
+          );
+
+
+        const card =
+          document.getElementById(
+            `card-${i}`
+          );
+
+
+        let blob;
+
+
+        if (
+          i === 1
+        ) {
+
+          blob =
+            await generateQuestionCard(
+              card
+            );
+
+        }
+
+        else {
+
+          blob =
+            await generateAnswerCard(
+              card,
+              i
+            );
+
+        }
+
+
+        generated.push(
+          {
+            index:i,
+            blob,
+            filename:
+              `ffxiv-profile-${i}.png`
+          }
+        );
+
+      }
+
+
+      generated.forEach(
+        item =>
+          downloadBlob(
+            item.blob,
+            item.filename
+          )
+      );
+
+
+      afterExportActions.hidden =
+        false;
+
+    }
+
+    catch (
+      error
+    ) {
+
+      console.error(
+        error
+      );
+
+
+      alert(
+        currentLanguage ===
+        "ja"
+        ?
+        "画像の生成に失敗しました。"
+        :
+        "Image generation failed."
+      );
+
+    }
+
+    finally {
 
       generateButton.disabled =
-        true;
+        false;
 
 
       generateButton.textContent =
-        t.preparing;
-
-
-      clearGeneratedResults();
-
-
-      if (
-        afterExportActions
-      ) {
-
-        afterExportActions.hidden =
-          true;
-
-      }
-
-
-      try {
-
-        if (
-          typeof htmlToImage ===
-          "undefined"
-        ) {
-
-          throw new Error(
-            "html-to-image not loaded"
-          );
-
-        }
-
-
-        if (
-          document.fonts
-        ) {
-
-          try {
-
-            await Promise.race(
-              [
-                document.fonts.ready,
-                sleep(3000)
-              ]
-            );
-
-          }
-
-          catch (
-            error
-          ) {}
-
-        }
-
-
-        fitAllAnswerCards();
-
-
-        await nextFrame();
-
-
-        const generated =
-          [];
-
-
-        for (
-          let i = 1;
-          i <= 4;
-          i++
-        ) {
-
-          currentCard =
-            i;
-
-
-          generateButton.textContent =
-            t.preparingCard(
-              i
-            );
-
-
-          await nextFrame();
-
-
-          if (
-            isIOS
-          ) {
-
-            await sleep(
-              250
-            );
-
-          }
-
-
-          const sourceCard =
-            document.getElementById(
-              `card-${i}`
-            );
-
-
-          if (
-            !sourceCard
-          ) {
-
-            throw new Error(
-              `Card ${i} missing`
-            );
-
-          }
-
-
-          generateButton.textContent =
-            t.generating(
-              i
-            );
-
-
-          await nextFrame();
-
-
-          let blob;
-
-
-          if (
-            i === 1
-          ) {
-
-            blob =
-              await generateQuestionCard(
-                sourceCard
-              );
-
-          }
-
-          else {
-
-            blob =
-              await generateAnswerCard(
-                sourceCard,
-                i
-              );
-
-          }
-
-
-          generated.push(
-            {
-
-              index:
-                i,
-
-              blob:
-                blob,
-
-              filename:
-                `ffxiv-profile-${i}.png`
-
-            }
-          );
-
-
-          await sleep(
-            isIOS
-            ?
-            900
-            :
-            250
-          );
-
-
-          await nextFrame();
-
-        }
-
-
-        if (
-          isIOS
-        ) {
-
-          showIOSExportResults(
-            generated
-          );
-
-
-          alert(
-            t.generated
-          );
-
-        }
-
-        else {
-
-          for (
-            const item of generated
-          ) {
-
-            downloadBlob(
-              item.blob,
-              item.filename
-            );
-
-
-            await sleep(
-              350
-            );
-
-          }
-
-        }
-
-
-        /*
-         * 4枚すべて正常生成した場合だけ
-         * 投稿ボタンを表示
-         */
-
-        if (
-          afterExportActions
-        ) {
-
-          afterExportActions.hidden =
-            false;
-
-
-          afterExportActions.scrollIntoView(
-            {
-
-              behavior:
-                "smooth",
-
-              block:
-                "nearest"
-
-            }
-          );
-
-        }
-
-      }
-
-      catch (
-        error
-      ) {
-
-        console.error(
-          "Image generation error:",
-          error
-        );
-
-
-        if (
-          afterExportActions
-        ) {
-
-          afterExportActions.hidden =
-            true;
-
-        }
-
-
-        if (
-          currentCard
-        ) {
-
-          alert(
-            t.errorCard(
-              currentCard
-            )
-          );
-
-        }
-
-        else {
-
-          alert(
-            currentLanguage ===
-            "ja"
-            ?
-            "画像生成の準備に失敗しました。"
-            :
-            "Failed to prepare image generation."
-          );
-
-        }
-
-      }
-
-      finally {
-
-        const workspace =
-          document.getElementById(
-            "export-workspace"
-          );
-
-
-        if (
-          workspace
-        ) {
-
-          workspace.innerHTML =
-            "";
-
-        }
-
-
-        generateButton.disabled =
-          false;
-
-
-        generateButton.textContent =
-          translations[
-            currentLanguage
-          ].generate;
-
-      }
+        t.generate;
 
     }
-  );
-
-}
-
-
-/* ==================================================
-   IOS RESULTS
-================================================== */
-
-function showIOSExportResults(
-  generated
-) {
-
-  if (
-    !mobileExportResults
-  ) {
-
-    return;
 
   }
+);
 
-
-  const t =
-    translations[
-      currentLanguage
-    ];
-
-
-  mobileExportResults.hidden =
-    false;
-
-
-  generated.forEach(
-    item => {
-
-      const url =
-        URL.createObjectURL(
-          item.blob
-        );
-
-
-      generatedObjectUrls.push(
-        url
-      );
-
-
-      const wrapper =
-        document.createElement(
-          "div"
-        );
-
-
-      wrapper.className =
-        "mobile-export-item";
-
-
-      const title =
-        document.createElement(
-          "h4"
-        );
-
-
-      title.textContent =
-        `${t.card} ${item.index}`;
-
-
-      const image =
-        document.createElement(
-          "img"
-        );
-
-
-      image.src =
-        url;
-
-
-      image.alt =
-        `FFXIV Character Profile Card ${item.index}`;
-
-
-      const actions =
-        document.createElement(
-          "div"
-        );
-
-
-      actions.className =
-        "mobile-export-actions";
-
-
-      const open =
-        document.createElement(
-          "a"
-        );
-
-
-      open.href =
-        url;
-
-
-      open.target =
-        "_blank";
-
-
-      open.rel =
-        "noopener";
-
-
-      open.textContent =
-        t.openImage;
-
-
-      actions.appendChild(
-        open
-      );
-
-
-      try {
-
-        const file =
-          new File(
-            [
-              item.blob
-            ],
-            item.filename,
-            {
-              type:
-                "image/png"
-            }
-          );
-
-
-        if (
-          navigator.share &&
-          navigator.canShare &&
-          navigator.canShare(
-            {
-              files:
-                [
-                  file
-                ]
-            }
-          )
-        ) {
-
-          const share =
-            document.createElement(
-              "button"
-            );
-
-
-          share.type =
-            "button";
-
-
-          share.textContent =
-            t.shareSave;
-
-
-          share.addEventListener(
-            "click",
-            async () => {
-
-              try {
-
-                await navigator.share(
-                  {
-
-                    files:
-                      [
-                        file
-                      ],
-
-                    title:
-                      `FFXIV Character Profile Card ${item.index}`
-
-                  }
-                );
-
-              }
-
-              catch (
-                error
-              ) {
-
-                if (
-                  error.name !==
-                  "AbortError"
-                ) {
-
-                  console.error(
-                    error
-                  );
-
-                }
-
-              }
-
-            }
-          );
-
-
-          actions.appendChild(
-            share
-          );
-
-        }
-
-      }
-
-      catch (
-        error
-      ) {
-
-        console.warn(
-          error
-        );
-
-      }
-
-
-      wrapper.appendChild(
-        title
-      );
-
-
-      wrapper.appendChild(
-        image
-      );
-
-
-      wrapper.appendChild(
-        actions
-      );
-
-
-      mobileExportResults.appendChild(
-        wrapper
-      );
-
-    }
-  );
-
-}
-
-
-/* ==================================================
-   CLEAR RESULTS
-================================================== */
-
-function clearGeneratedResults() {
-
-  generatedObjectUrls.forEach(
-    url => {
-
-      URL.revokeObjectURL(
-        url
-      );
-
-    }
-  );
-
-
-  generatedObjectUrls =
-    [];
-
-
-  if (
-    mobileExportResults
-  ) {
-
-    mobileExportResults.innerHTML =
-      "";
-
-
-    mobileExportResults.hidden =
-      true;
-
-  }
-
-}
-
-
-/* ==================================================
-   DOWNLOAD
-================================================== */
 
 function downloadBlob(
   blob,
@@ -3628,40 +2579,36 @@ function downloadBlob(
     );
 
 
-  const anchor =
+  const link =
     document.createElement(
       "a"
     );
 
 
-  anchor.href =
+  link.href =
     url;
 
-
-  anchor.download =
+  link.download =
     filename;
 
 
   document.body.appendChild(
-    anchor
+    link
   );
 
 
-  anchor.click();
+  link.click();
 
 
-  anchor.remove();
+  link.remove();
 
 
   setTimeout(
-    () => {
-
+    () =>
       URL.revokeObjectURL(
         url
-      );
-
-    },
-    2500
+      ),
+    2000
   );
 
 }
@@ -3673,7 +2620,7 @@ function downloadBlob(
 
 window.addEventListener(
   "load",
-  async () => {
+  () => {
 
     setLanguage(
       currentLanguage
@@ -3684,9 +2631,6 @@ window.addEventListener(
 
 
     fitAllAnswerCards();
-
-
-    await nextFrame();
 
   }
 );

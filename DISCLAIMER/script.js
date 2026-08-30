@@ -3,7 +3,7 @@
 ================================================== */
 
 const APP_VERSION =
-  "Ver.1.0";
+  "Ver.1.01";
 
 
 /* ==================================================
@@ -132,30 +132,24 @@ const translations = {
 };
 
 
-/* ==================================================
-   LANGUAGE STATE
-================================================== */
-
 let currentLanguage =
   "ja";
 
 
 try {
 
-  const savedLanguage =
+  const saved =
     localStorage.getItem(
       "ffxiv-profile-language"
     );
 
 
   if (
-    translations[
-      savedLanguage
-    ]
+    translations[saved]
   ) {
 
     currentLanguage =
-      savedLanguage;
+      saved;
 
   }
 
@@ -165,10 +159,6 @@ catch (
   error
 ) {}
 
-
-/* ==================================================
-   VERSION
-================================================== */
 
 const versionText =
   document.getElementById(
@@ -186,39 +176,29 @@ if (
 }
 
 
-/* ==================================================
-   LANGUAGE
-================================================== */
-
 function setLanguage(
   language
 ) {
 
-  if (
-    !translations[
+  currentLanguage =
+    translations[
       language
     ]
-  ) {
-
-    language =
-      "ja";
-
-  }
-
-
-  currentLanguage =
-    language;
+    ?
+    language
+    :
+    "ja";
 
 
   document.documentElement.lang =
-    language;
+    currentLanguage;
 
 
   try {
 
     localStorage.setItem(
       "ffxiv-profile-language",
-      language
+      currentLanguage
     );
 
   }
@@ -230,7 +210,7 @@ function setLanguage(
 
   const t =
     translations[
-      language
+      currentLanguage
     ];
 
 
@@ -246,16 +226,12 @@ function setLanguage(
 
 
         if (
-          typeof t[
-            key
-          ] ===
+          typeof t[key] ===
           "string"
         ) {
 
           element.textContent =
-            t[
-              key
-            ];
+            t[key];
 
         }
 
@@ -273,36 +249,23 @@ function setLanguage(
         button.classList.toggle(
           "active",
           button.dataset.language ===
-          language
+          currentLanguage
         );
 
       }
     );
 
 
-  if (
-    language ===
+  document.title =
+    currentLanguage ===
     "en"
-  ) {
-
-    document.title =
-      "Disclaimer | FFXIV Character Profile Card";
-
-  }
-
-  else {
-
-    document.title =
-      "免責事項 | FFXIV Character Profile Card";
-
-  }
+    ?
+    "Disclaimer | FFXIV CHARACTER PROFILE CARD"
+    :
+    "免責事項 | FFXIV CHARACTER PROFILE CARD";
 
 }
 
-
-/* ==================================================
-   LANGUAGE BUTTON
-================================================== */
 
 document
   .querySelectorAll(
@@ -325,10 +288,6 @@ document
     }
   );
 
-
-/* ==================================================
-   INITIALIZE
-================================================== */
 
 setLanguage(
   currentLanguage

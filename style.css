@@ -24,7 +24,134 @@ body {
 
 
 /* ==================================================
-   HEADER
+   EORZEA PROFILE STUDIO HEADER
+================================================== */
+
+.studio-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  min-height: 68px;
+
+  padding:
+    0 22px;
+
+  background:
+    #f1eee6;
+
+  border-bottom:
+    1px solid #c9c4b8;
+}
+
+
+.studio-logo {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color:
+    #111111;
+
+  text-decoration:
+    none;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size:
+    17px;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    -0.035em;
+}
+
+
+.studio-logo-main {
+  display:
+    inline-block;
+}
+
+
+.studio-logo-box {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  min-height:
+    42px;
+
+  padding:
+    0 10px;
+
+  background:
+    #171717;
+
+  color:
+    #ffffff;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    -0.02em;
+}
+
+
+.studio-logo:hover
+.studio-logo-main {
+  opacity:
+    .65;
+}
+
+
+.studio-logo:hover
+.studio-logo-box {
+  background:
+    #b79a66;
+}
+
+
+.studio-series-label {
+  margin:
+    0;
+
+  color:
+    #554c42;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    .22em;
+
+  white-space:
+    nowrap;
+}
+
+
+/* ==================================================
+   MAIN HEADER
 ================================================== */
 
 .site-header {
@@ -47,9 +174,11 @@ body {
     serif;
 
   font-size: 42px;
+
   font-weight: 400;
 
-  letter-spacing: .14em;
+  letter-spacing:
+    .12em;
 }
 
 
@@ -67,22 +196,28 @@ body {
 
   padding: 4px;
 
-  background: #0d1119;
+  background:
+    #0d1119;
 
   border:
     1px solid #343d4d;
 
-  border-radius: 7px;
+  border-radius:
+    7px;
 }
 
 .language-button {
-  min-width: 95px;
+  min-width:
+    95px;
 
   padding:
     9px 17px;
 
-  border: 0;
-  border-radius: 4px;
+  border:
+    0;
+
+  border-radius:
+    4px;
 
   background:
     transparent;
@@ -90,21 +225,22 @@ body {
   color:
     #929aa7;
 
-  font-size: 13px;
-  font-weight: 600;
+  font-size:
+    13px;
 
-  cursor: pointer;
+  font-weight:
+    600;
 
-  transition:
-    background .2s ease,
-    color .2s ease;
+  cursor:
+    pointer;
 }
 
 .language-button:hover {
   background:
     rgba(183,154,102,.12);
 
-  color: #fff;
+  color:
+    #fff;
 }
 
 .language-button.active {
@@ -115,27 +251,32 @@ body {
       #ad8d52
     );
 
-  color: #fff;
+  color:
+    #fff;
 }
 
 
 /* ==================================================
-   HEADER TEXT
+   DESCRIPTION
 ================================================== */
 
 .site-subtitle {
   margin:
     16px 0 0;
 
-  color: #b79a66;
+  color:
+    #b79a66;
 
-  font-size: 15px;
+  font-size:
+    15px;
 
-  letter-spacing: .18em;
+  letter-spacing:
+    .18em;
 }
 
 .site-description {
-  max-width: 760px;
+  max-width:
+    760px;
 
   margin:
     32px auto 0;
@@ -154,96 +295,112 @@ body {
 }
 
 .site-description p {
-  margin: 0;
+  margin:
+    0;
 
-  color: #aeb5c1;
+  color:
+    #aeb5c1;
 
-  font-size: 14px;
+  font-size:
+    14px;
 
-  line-height: 1.8;
+  line-height:
+    1.8;
 }
 
 .site-description strong {
-  color: #fff;
+  color:
+    #fff;
 
-  font-weight: 700;
+  font-weight:
+    700;
 }
 
 .site-description .mobile-note {
-  margin-top: 8px;
+  margin-top:
+    8px;
 
-  color: #7f8793;
+  color:
+    #7f8793;
 
-  font-size: 12px;
+  font-size:
+    12px;
 }
 
 .site-description .hashtag-guide {
-  margin-top: 10px;
+  margin-top:
+    10px;
 }
 
 
-/* ==================================================
-   HASHTAG
-================================================== */
-
 .hashtag-link {
-  color: #d6c19a;
+  color:
+    #d6c19a;
 
-  font-weight: 600;
+  font-weight:
+    600;
 
   text-decoration:
     none;
 
   border-bottom:
-    1px solid
-    rgba(214,193,154,.45);
+    1px solid rgba(214,193,154,.45);
 }
 
 
 /* ==================================================
-   SOCIAL ACTIONS
+   SOCIAL
 ================================================== */
 
 .social-actions {
-  display: flex;
+  display:
+    flex;
 
-  justify-content: center;
+  justify-content:
+    center;
 
-  align-items: center;
+  align-items:
+    center;
 
-  flex-wrap: wrap;
+  flex-wrap:
+    wrap;
 
-  gap: 10px;
+  gap:
+    10px;
 
-  margin-top: 18px;
+  margin-top:
+    18px;
 }
-
 
 .x-post-link,
 .community-post-link {
-  display: inline-flex;
+  display:
+    inline-flex;
 
-  align-items: center;
-  justify-content: center;
+  align-items:
+    center;
 
-  min-width: 170px;
+  justify-content:
+    center;
+
+  min-width:
+    170px;
 
   padding:
     9px 18px;
 
-  border-radius: 5px;
+  border-radius:
+    5px;
 
-  font-size: 13px;
-  font-weight: 600;
+  font-size:
+    13px;
 
-  text-decoration: none;
+  font-weight:
+    600;
 
-  transition:
-    background .2s ease,
-    border-color .2s ease,
-    color .2s ease;
+  text-decoration:
+    none;
 }
-
 
 .x-post-link {
   border:
@@ -252,36 +409,22 @@ body {
   background:
     #171d27;
 
-  color: #fff;
+  color:
+    #fff;
 }
-
-
-.x-post-link:hover {
-  background:
-    rgba(183,154,102,.14);
-
-  border-color:
-    #d6c19a;
-
-  color: #fff;
-}
-
 
 .community-post-link {
   border:
     1px solid #343d4d;
 
-  background:
-    transparent;
-
   color:
     #b7beca;
 }
 
-
+.x-post-link:hover,
 .community-post-link:hover {
   border-color:
-    #b79a66;
+    #d6c19a;
 
   color:
     #d6c19a;
@@ -347,7 +490,8 @@ body {
 }
 
 .section-heading p {
-  margin: 0;
+  margin:
+    0;
 
   color:
     #818996;
@@ -387,7 +531,8 @@ body {
 }
 
 .input-area h2 {
-  margin-top: 0;
+  margin-top:
+    0;
 
   font-family:
     Georgia,
@@ -432,9 +577,11 @@ body {
 
 .input-question textarea,
 .input-question input[type="text"] {
-  display: block;
+  display:
+    block;
 
-  width: 100%;
+  width:
+    100%;
 
   padding:
     12px 15px;
@@ -720,7 +867,7 @@ body {
 
 
 /* ==================================================
-   BUTTONS
+   BUTTON
 ================================================== */
 
 button {
@@ -830,9 +977,7 @@ button {
     hidden;
 
   transform:
-    scale(
-      var(--preview-scale)
-    );
+    scale(var(--preview-scale));
 
   transform-origin:
     top left;
@@ -861,17 +1006,12 @@ button {
     5;
 
   border:
-    1px solid
-    rgba(165,139,91,.7);
+    1px solid rgba(165,139,91,.7);
 
   pointer-events:
     none;
 }
 
-
-/* ==================================================
-   LIGHT THEME
-================================================== */
 
 .profile-card.light-theme {
   border-color:
@@ -1122,7 +1262,7 @@ button {
 
 
 /* ==================================================
-   QUESTION LIST
+   QUESTIONS
 ================================================== */
 
 .question-columns {
@@ -1170,15 +1310,12 @@ button {
     600;
 }
 
-html[lang="en"]
-#card-1
-.card-header h2 {
+html[lang="en"] #card-1 .card-header h2 {
   font-size:
     52px;
 }
 
-html[lang="en"]
-.question-list {
+html[lang="en"] .question-list {
   font-size:
     22px;
 
@@ -1186,8 +1323,7 @@ html[lang="en"]
     1.4;
 }
 
-html[lang="en"]
-.question-list li {
+html[lang="en"] .question-list li {
   margin-bottom:
     15px;
 }
@@ -1205,8 +1341,7 @@ html[lang="en"]
     12px;
 
   border-bottom:
-    1px solid
-    rgba(165,139,91,.45);
+    1px solid rgba(165,139,91,.45);
 }
 
 .question {
@@ -1291,7 +1426,6 @@ html[lang="en"]
     15px;
 }
 
-
 .answer-card.compact-2 {
   --answer-scale:
     .88;
@@ -1317,7 +1451,7 @@ html[lang="en"]
 
 
 /* ==================================================
-   TEXT COLORS
+   TEXT
 ================================================== */
 
 .text-white,
@@ -1476,32 +1610,6 @@ html[lang="en"]
 
   font-weight:
     700;
-
-  letter-spacing:
-    .04em;
-
-  box-shadow:
-    0 4px 14px
-    rgba(0,0,0,.22);
-}
-
-#generate-button:hover {
-  box-shadow:
-    0 0 10px rgba(214,193,154,.30),
-    0 0 20px rgba(214,193,154,.18),
-    0 5px 16px rgba(0,0,0,.26);
-}
-
-#generate-button:active {
-  background:
-    linear-gradient(
-      180deg,
-      #282b31,
-      #101217
-    );
-
-  transform:
-    translateY(1px);
 }
 
 #generate-button:disabled {
@@ -1550,19 +1658,14 @@ html[lang="en"]
     22px;
 
   border:
-    1px solid
-    rgba(183,154,102,.35);
+    1px solid rgba(183,154,102,.35);
 
   border-radius:
     8px;
 
   background:
     rgba(183,154,102,.05);
-
-  text-align:
-    center;
 }
-
 
 .after-export-title {
   margin:
@@ -1577,7 +1680,6 @@ html[lang="en"]
   font-weight:
     700;
 }
-
 
 .after-export-x-button,
 .after-export-community-button {
@@ -1610,86 +1712,32 @@ html[lang="en"]
 
   text-decoration:
     none;
-
-  transition:
-    background .2s ease,
-    border-color .2s ease,
-    filter .2s ease,
-    color .2s ease,
-    transform .1s ease;
 }
 
-
 .after-export-x-button {
-  border:
-    1px solid #c5a86a;
-
   background:
-    linear-gradient(
-      180deg,
-      #c7aa70,
-      #ad8d52
-    );
+    #b79a66;
 
   color:
     #fff;
 }
 
-
-.after-export-x-button:hover {
-  filter:
-    brightness(1.08);
-}
-
-
 .after-export-community-button {
   border:
     1px solid #454d5b;
-
-  background:
-    #171d27;
 
   color:
     #d1d6de;
 }
 
 
-.after-export-community-button:hover {
-  border-color:
-    #b79a66;
-
-  color:
-    #d6c19a;
-}
-
-
-.after-export-x-button:active,
-.after-export-community-button:active {
-  transform:
-    translateY(1px);
-}
-
-
 /* ==================================================
-   MOBILE EXPORT
+   IOS
 ================================================== */
 
 .ios-export-guide {
   margin-top:
     12px;
-
-  padding:
-    10px 12px;
-
-  border:
-    1px solid
-    rgba(183,154,102,.28);
-
-  border-radius:
-    6px;
-
-  background:
-    rgba(183,154,102,.05);
 
   color:
     #969daa;
@@ -1720,23 +1768,12 @@ html[lang="en"]
     8px;
 }
 
-.mobile-export-item h4 {
-  margin:
-    0 0 12px;
-
-  color:
-    #d6c19a;
-}
-
 .mobile-export-item img {
   display:
     block;
 
   width:
     100%;
-
-  height:
-    auto;
 }
 
 .mobile-export-actions {
@@ -1751,39 +1788,6 @@ html[lang="en"]
 
   margin-top:
     12px;
-}
-
-.mobile-export-actions a,
-.mobile-export-actions button {
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  padding:
-    11px 8px;
-
-  border:
-    1px solid #b79a66;
-
-  border-radius:
-    5px;
-
-  background:
-    #171d27;
-
-  color:
-    #fff;
-
-  text-decoration:
-    none;
-
-  font-size:
-    13px;
 }
 
 
@@ -1839,29 +1843,7 @@ html[lang="en"]
   margin:
     0 !important;
 
-  background:
-    transparent !important;
-
   transform:
-    none !important;
-
-  transform-origin:
-    top left !important;
-
-  animation:
-    none !important;
-
-  transition:
-    none !important;
-}
-
-.export-clone *,
-.export-clone *::before,
-.export-clone *::after {
-  animation:
-    none !important;
-
-  transition:
     none !important;
 }
 
@@ -1899,9 +1881,6 @@ html[lang="en"]
   justify-content:
     center;
 
-  align-items:
-    center;
-
   gap:
     10px;
 
@@ -1913,35 +1892,8 @@ html[lang="en"]
   color:
     #b79a66;
 
-  font-size:
-    12px;
-
   text-decoration:
     none;
-
-  border-bottom:
-    1px solid
-    rgba(183,154,102,.4);
-
-  transition:
-    color .2s ease,
-    border-color .2s ease;
-}
-
-.footer-links a:hover {
-  color:
-    #d6c19a;
-
-  border-bottom-color:
-    #d6c19a;
-}
-
-.footer-link-separator {
-  color:
-    #555d69;
-
-  font-size:
-    11px;
 }
 
 
@@ -1951,35 +1903,9 @@ html[lang="en"]
 
 @media screen and (max-width: 900px) {
 
-  .site-header {
-    padding:
-      42px 15px 34px;
-  }
-
   .site-header h1 {
     font-size:
-      24px;
-  }
-
-  .language-button {
-    min-width:
-      85px;
-
-    font-size:
-      12px;
-  }
-
-  .question-preview-section,
-  .input-area,
-  .export-area-main {
-    width:
-      calc(100% - 24px);
-  }
-
-  .question-preview-section,
-  .input-area {
-    padding:
-      18px;
+      26px;
   }
 
   .editor-layout {
@@ -1995,31 +1921,42 @@ html[lang="en"]
       24px;
   }
 
-  .settings,
-  .preview-panel {
-    padding:
-      18px;
-  }
-
-  .export-area-main {
-    padding:
-      18px 18px 14px;
-  }
-
-  #generate-button {
-    font-size:
-      16px;
-  }
-
-  .mobile-export-actions {
-    grid-template-columns:
-      1fr;
-  }
-
 }
 
 
 @media screen and (max-width: 600px) {
+
+  .studio-header {
+    min-height:
+      58px;
+
+    padding:
+      0 12px;
+  }
+
+  .studio-logo {
+    gap:
+      6px;
+
+    font-size:
+      13px;
+  }
+
+  .studio-logo-box {
+    min-height:
+      34px;
+
+    padding:
+      0 8px;
+  }
+
+  .studio-series-label {
+    font-size:
+      7px;
+
+    letter-spacing:
+      .12em;
+  }
 
   .social-actions {
     display:
@@ -2033,16 +1970,10 @@ html[lang="en"]
   .community-post-link {
     width:
       100%;
-
-    min-width:
-      0;
   }
 
   .after-export-x-button,
   .after-export-community-button {
-    display:
-      flex;
-
     width:
       100%;
 

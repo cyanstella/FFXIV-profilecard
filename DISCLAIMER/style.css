@@ -3,11 +3,6 @@
     border-box;
 }
 
-html {
-  scroll-behavior:
-    smooth;
-}
-
 body {
   margin:
     0;
@@ -25,7 +20,6 @@ body {
     -apple-system,
     BlinkMacSystemFont,
     "Hiragino Sans",
-    "Hiragino Kaku Gothic ProN",
     "Yu Gothic",
     "Meiryo",
     sans-serif;
@@ -33,7 +27,103 @@ body {
 
 
 /* ==================================================
-   HEADER
+   STUDIO HEADER
+================================================== */
+
+.studio-header {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  min-height:
+    68px;
+
+  padding:
+    0 22px;
+
+  background:
+    #f1eee6;
+
+  border-bottom:
+    1px solid #c9c4b8;
+}
+
+.studio-logo {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    8px;
+
+  color:
+    #111;
+
+  text-decoration:
+    none;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:
+    17px;
+
+  font-weight:
+    900;
+}
+
+.studio-logo-box {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  min-height:
+    42px;
+
+  padding:
+    0 10px;
+
+  background:
+    #171717;
+
+  color:
+    #fff;
+}
+
+.studio-series-label {
+  margin:
+    0;
+
+  color:
+    #554c42;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    .22em;
+}
+
+
+/* ==================================================
+   PAGE
 ================================================== */
 
 .page-header {
@@ -51,29 +141,19 @@ body {
   color:
     #b79a66;
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
   font-size:
     14px;
 
   letter-spacing:
-    .22em;
+    .20em;
 }
 
 .page-header h1 {
   margin:
     0;
 
-  color:
-    #ffffff;
-
   font-family:
     Georgia,
-    "Hiragino Mincho ProN",
-    "Yu Mincho",
     serif;
 
   font-size:
@@ -121,47 +201,22 @@ body {
   border:
     0;
 
-  border-radius:
-    4px;
-
   background:
     transparent;
 
   color:
     #929aa7;
 
-  font-size:
-    13px;
-
-  font-weight:
-    600;
-
   cursor:
     pointer;
-
-  transition:
-    background .2s ease,
-    color .2s ease;
-}
-
-.language-button:hover {
-  background:
-    rgba(183,154,102,.12);
-
-  color:
-    #ffffff;
 }
 
 .language-button.active {
   background:
-    linear-gradient(
-      180deg,
-      #c7aa70,
-      #ad8d52
-    );
+    #b79a66;
 
   color:
-    #ffffff;
+    #fff;
 }
 
 
@@ -180,11 +235,6 @@ body {
     0 auto 54px;
 }
 
-
-/* ==================================================
-   CARD
-================================================== */
-
 .disclaimer-card {
   padding:
     38px 44px;
@@ -197,16 +247,7 @@ body {
 
   border-radius:
     12px;
-
-  box-shadow:
-    0 12px 40px
-    rgba(0,0,0,.18);
 }
-
-
-/* ==================================================
-   BLOCK
-================================================== */
 
 .disclaimer-block {
   margin-bottom:
@@ -216,28 +257,18 @@ body {
     30px;
 
   border-bottom:
-    1px solid
-    rgba(183,154,102,.18);
+    1px solid rgba(183,154,102,.18);
 }
 
 .disclaimer-block h2 {
-  margin:
-    0 0 16px;
-
   color:
     #d6c19a;
 
   font-size:
     17px;
-
-  font-weight:
-    600;
 }
 
 .disclaimer-block p {
-  margin:
-    0 0 12px;
-
   color:
     #a3abb7;
 
@@ -248,53 +279,18 @@ body {
     1.95;
 }
 
-
-/* ==================================================
-   CONTACT
-================================================== */
-
 .creator-link {
-  display:
-    inline-block;
-
   color:
     #d6c19a;
-
-  font-size:
-    14px;
 
   font-weight:
     700;
 
   text-decoration:
     none;
-
-  border-bottom:
-    1px solid
-    rgba(214,193,154,.48);
-
-  transition:
-    color .2s ease,
-    border-color .2s ease;
 }
-
-.creator-link:hover {
-  color:
-    #ffffff;
-
-  border-bottom-color:
-    #ffffff;
-}
-
-
-/* ==================================================
-   BACK
-================================================== */
 
 .back-area {
-  padding-top:
-    4px;
-
   text-align:
     center;
 }
@@ -303,19 +299,8 @@ body {
   color:
     #b79a66;
 
-  font-size:
-    13px;
-
   text-decoration:
     none;
-
-  transition:
-    color .2s ease;
-}
-
-.back-area a:hover {
-  color:
-    #d6c19a;
 }
 
 
@@ -340,81 +325,44 @@ body {
     center;
 }
 
-.page-footer p {
-  margin:
-    0 0 10px;
-}
-
 
 /* ==================================================
    MOBILE
 ================================================== */
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
 
-  .page-header {
-    padding:
-      42px 16px 28px;
-  }
-
-  .site-name {
-    font-size:
-      12px;
-  }
-
-  .page-header h1 {
-    font-size:
-      28px;
-  }
-
-  .language-button {
-    min-width:
-      82px;
+  .studio-header {
+    min-height:
+      58px;
 
     padding:
-      8px 13px;
+      0 12px;
+  }
 
+  .studio-logo {
     font-size:
-      12px;
+      13px;
+  }
+
+  .studio-logo-box {
+    min-height:
+      34px;
+  }
+
+  .studio-series-label {
+    font-size:
+      7px;
   }
 
   .page-main {
     width:
       calc(100% - 24px);
-
-    margin-bottom:
-      36px;
   }
 
   .disclaimer-card {
     padding:
       26px 20px;
-  }
-
-  .disclaimer-block {
-    margin-bottom:
-      26px;
-
-    padding-bottom:
-      24px;
-  }
-
-  .disclaimer-block h2 {
-    font-size:
-      16px;
-  }
-
-  .disclaimer-block p {
-    font-size:
-      12px;
-
-    line-height:
-      1.9;
-  }
-
-  .back-area a {
-    font-size:
-      12px;
   }
 
 }
